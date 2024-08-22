@@ -1,3 +1,4 @@
+import { CM, CXL, H2 } from "@/components/Typography";
 import { Image } from "expo-image";
 import React, { useCallback, useEffect, useRef } from "react";
 import {
@@ -10,8 +11,10 @@ import {
 } from "react-native";
 import DeviceInfo from "react-native-device-info";
 import styled from "styled-components/native";
+import Space from "@/components/Space";
 
 import * as Imgs from "@/assets/images/app-start/_index";
+import Button from "@/components/Button";
 
 const NOTCH = DeviceInfo.hasNotch();
 const SCALE = NOTCH ? 1.2 : 1;
@@ -77,7 +80,6 @@ const STORE = NOTCH
       ];
 
 export default function Index() {
-  const imgAnim = useRef(new Animated.Value(0)).current;
   const nameAnim = useRef(new Animated.Value(0)).current;
   const animY = nameAnim.interpolate({
     inputRange: [0, 1],
@@ -85,21 +87,13 @@ export default function Index() {
   });
 
   const onInit = useCallback(() => {
-    Animated.timing(imgAnim, {
-      useNativeDriver: true,
-      toValue: 1,
-      delay: 500,
-      duration: 1000,
-    }).start();
-
     Animated.timing(nameAnim, {
       useNativeDriver: true,
       toValue: 1,
       duration: 1000,
       delay: 1500,
-      // easing: Easing.sin,
     }).start();
-  }, [imgAnim, nameAnim]);
+  }, [nameAnim]);
 
   useEffect(() => {
     onInit();
@@ -110,28 +104,28 @@ export default function Index() {
       <StatusBar animated={true} hidden={true} />
       {STORE.map(getImage)}
       <S.BlurWrapper>
-        {/* <U.Space height={NOTCH ? 15 : 50} /> */}
+        <Space height={NOTCH ? 15 : 50} />
         <Animated.View
           style={{ opacity: nameAnim, transform: [{ translateY: animY }] }}>
-          {/* <T.H2 textAlign={"center"}>Welcome to AllBright.</T.H2>
-          <U.Space height={10} />
-          <T.CXL textAlign={"center"}>
+          <H2 textAlign={"center"}>Welcome to AllBright.</H2>
+          <Space height={10} />
+          <CXL textAlign={"center"}>
             A professional community for
             {"\n"} smart-minded women
-          </T.CXL> */}
+          </CXL>
         </Animated.View>
         <S.SubContainer>
           <Animated.View style={{ opacity: nameAnim, width: "100%" }}>
-            {/* <Button onPress={() => nav.push("SelectSignUp")}>
+            <Button onPress={() => console.log("join allbright..")}>
               Join AllBright
-            </Button> */}
-            {/* <U.Space height={10} />
+            </Button>
+            <Space height={10} />
             <Button
               background={"rgb(58, 59, 61)"}
               isSecondary={true}
-              onPress={() => nav.push("Login")}>
-              <T.CM colour={"rgb(228, 230, 235)"}>Log in</T.CM>
-            </Button> */}
+              onPress={() => console.log("login")}>
+              <CM color={"rgb(228, 230, 235)"}>Log in</CM>
+            </Button>
           </Animated.View>
         </S.SubContainer>
       </S.BlurWrapper>
