@@ -1,4 +1,7 @@
 import { Stack } from "expo-router";
+import { LogBox } from "react-native";
+
+LogBox.ignoreLogs([/Animated: `useNativeDriver`.*/]);
 
 export default function RootLayout() {
   return (
