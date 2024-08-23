@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import styled from "styled-components/native";
 
-/*eslint import/namespace: ['error', { allowComputed: true }]*/
 import Link from "@/components/Link";
 import Space from "@/components/Space";
 import AppStartImg from "@/features/AppStart/partials/AppStartImg";
