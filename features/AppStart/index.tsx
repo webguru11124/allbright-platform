@@ -11,15 +11,11 @@ import styled from "styled-components/native";
 
 import Link from "@/components/Link";
 import Space from "@/components/Space";
+import withAppStartProps from "@/features/AppStart/hocs/withAppStartProps";
 import AppStartImg from "@/features/AppStart/partials/AppStartImg";
-import withAppStartProps from "./hocs/withAppStartProps";
+import { StoreItem } from "@/features/AppStart/types";
 
 type StyleProps = ViewProps & { marginBottom: number };
-
-export type StoreItem = {
-  img: number;
-  xyc: [x: number, y: number, c: number];
-};
 
 export type Props = {
   store: StoreItem[];

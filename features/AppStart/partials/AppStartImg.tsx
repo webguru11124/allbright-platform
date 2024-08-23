@@ -2,8 +2,7 @@ import { Image } from "expo-image";
 import React from "react";
 import { DimensionValue, ImageStyle, StyleProp } from "react-native";
 
-/*eslint import/namespace: ['error', { allowComputed: true }]*/
-import { StoreItem } from "..";
+import { StoreItem } from "@/features/AppStart/types";
 
 type Props = {
   elm: StoreItem;

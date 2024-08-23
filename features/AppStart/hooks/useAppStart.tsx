@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef } from "react";
 import { Animated } from "react-native";
+import DeviceInfo from "react-native-device-info";
 
 /*eslint import/namespace: ['error', { allowComputed: true }]*/
 import * as Imgs from "@/assets/images/app-start/_index";
-import DeviceInfo from "react-native-device-info";
-import { StoreItem } from "..";
-import { STORE } from "../constants";
+import { STORE } from "@/features/AppStart/constants";
+import { StoreItem } from "@/features/AppStart/types";
 
 export default function useAppStart() {
   const NOTCH = DeviceInfo.hasNotch();
