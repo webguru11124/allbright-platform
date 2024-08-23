@@ -1,7 +1,7 @@
 import * as T from "@/components/Typography";
 import * as theme from "@/theme";
 import React, { ReactNode } from "react";
-import RN from "react-native";
+import RN, { Platform } from "react-native";
 import styled from "styled-components/native";
 import { Href, Link as NativeLink } from "expo-router";
 import { View } from "react-native";
@@ -25,17 +25,7 @@ type ContainerProps = Omit<LinkProps, "href">;
 export default function Link(props: LinkProps) {
   return (
     <S.Container {..._.omit(props, ["href"])}>
-      <NativeLink
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        href={props.href as Href}>
-        {getChildren()}
-      </NativeLink>
+      <S.NativeLink href={props.href as Href}>{getChildren()}</S.NativeLink>
     </S.Container>
   );
 
@@ -98,6 +88,16 @@ function getFontColour(bgColour: string) {
 }
 
 const S = {
+  NativeLink: styled(NativeLink)`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: ${Platform.OS === "web" ? "auto" : "center"};
+    padding-top: ${Platform.OS === "web" ? 0 : 13}px;
+  `,
+
   Container: styled(View)<ContainerProps>`
     width: 100%;
     height: 45px;
