@@ -44,6 +44,7 @@ const Index = ({
         elm={el}
         idx={idx}
         heightOffsetPercent={HEIGHT_OFFSET_PERCENT}
+        key={`${el.img}`}
       />
     ))}
 
