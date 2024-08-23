@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Props as AppStartProps } from "@/features/AppStart";
 import useAppStart from "@/features/AppStart/hooks/useAppStart";
+import { AppStartProps } from "@/features/AppStart/types";
 
 const withAppStartProps = (WrappedComponent: React.FC<AppStartProps>) => {
   const WC = ({ ...rest }) => {

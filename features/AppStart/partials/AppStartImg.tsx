@@ -2,15 +2,13 @@ import { Image } from "expo-image";
 import React from "react";
 import { DimensionValue, ImageStyle, StyleProp } from "react-native";
 
-import { StoreItem } from "@/features/AppStart/types";
+import { AppStartImgProps } from "@/features/AppStart/types";
 
-type Props = {
-  elm: StoreItem;
-  heightOffsetPercent: number;
-  idx: number;
-};
-
-export default function AppStartImg({ elm, heightOffsetPercent, idx }: Props) {
+export default function AppStartImg({
+  elm,
+  heightOffsetPercent,
+  idx,
+}: AppStartImgProps) {
   const [x, y, c]: [x: number, y: number, c: number] = elm.xyc;
   const xDim: DimensionValue = `${x}%`;
   const yDim: DimensionValue = `${y - heightOffsetPercent}%`;

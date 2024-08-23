@@ -1,29 +1,13 @@
 import { CM, CXL, H2 } from "@/components/Typography";
 import React from "react";
-import {
-  Animated,
-  SafeAreaView,
-  StatusBar,
-  View,
-  ViewProps,
-} from "react-native";
+import { Animated, SafeAreaView, StatusBar, View } from "react-native";
 import styled from "styled-components/native";
 
 import Link from "@/components/Link";
 import Space from "@/components/Space";
 import withAppStartProps from "@/features/AppStart/hocs/withAppStartProps";
 import AppStartImg from "@/features/AppStart/partials/AppStartImg";
-import { StoreItem } from "@/features/AppStart/types";
-
-type StyleProps = ViewProps & { marginBottom: number };
-
-export type Props = {
-  store: StoreItem[];
-  nameAnim: Animated.Value;
-  animY: Animated.AnimatedInterpolation<string | number>;
-  NOTCH: boolean;
-  HEIGHT_OFFSET_PERCENT: number;
-};
+import { AppStartProps, AppStartStyleProps } from "@/features/AppStart/types";
 
 const Index = ({
   store,
@@ -31,7 +15,7 @@ const Index = ({
   animY,
   NOTCH,
   HEIGHT_OFFSET_PERCENT,
-}: Props) => (
+}: AppStartProps) => (
   <Container>
     <StatusBar animated={true} hidden={true} />
     {store.map((el, idx) => (
@@ -74,7 +58,7 @@ const Container = styled(SafeAreaView)`
   }};
 `;
 
-const SubContainer = styled(View)<StyleProps>`
+const SubContainer = styled(View)<AppStartStyleProps>`
   position: absolute;
   bottom: 0px;
   width: 100%;
