@@ -20,3 +20,8 @@ export type AppStartImgProps = {
   heightOffsetPercent: number;
   idx: number;
 };
+
+export type BackgroundImageMasonryProps = {
+  store: StoreItem[];
+  heightOffset: number;
+};

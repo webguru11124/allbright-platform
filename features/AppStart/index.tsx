@@ -6,7 +6,7 @@ import styled from "styled-components/native";
 import Link from "@/components/Link";
 import Space from "@/components/Space";
 import withAppStartProps from "@/features/AppStart/hocs/withAppStartProps";
-import AppStartImg from "@/features/AppStart/partials/AppStartImg";
+import BackgroundImageMasonry from "@/features/AppStart/partials/BackgroundImageMasonry";
 import { AppStartProps, AppStartStyleProps } from "@/features/AppStart/types";
 
 const Index = ({
@@ -18,15 +18,10 @@ const Index = ({
 }: AppStartProps) => (
   <Container>
     <StatusBar animated={true} hidden={true} />
-    {store.map((el, idx) => (
-      <AppStartImg
-        elm={el}
-        idx={idx}
-        heightOffsetPercent={HEIGHT_OFFSET_PERCENT}
-        key={`${el.img}`}
-      />
-    ))}
-
+    <BackgroundImageMasonry
+      store={store}
+      heightOffset={HEIGHT_OFFSET_PERCENT}
+    />
     <BlurWrapper>
       <Space height={NOTCH ? 15 : 50} />
       <Animated.View
