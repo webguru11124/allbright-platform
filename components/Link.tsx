@@ -25,7 +25,17 @@ type ContainerProps = Omit<LinkProps, "href">;
 export default function Link(props: LinkProps) {
   return (
     <S.Container {..._.omit(props, ["href"])}>
-      <NativeLink href={props.href as Href}>{getChildren()}</NativeLink>
+      <NativeLink
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        href={props.href as Href}>
+        {getChildren()}
+      </NativeLink>
     </S.Container>
   );
 
