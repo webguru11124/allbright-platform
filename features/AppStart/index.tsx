@@ -14,7 +14,7 @@ import styled from "styled-components/native";
 import Space from "@/components/Space";
 
 import * as Imgs from "@/assets/images/app-start/_index";
-import Button from "@/components/Button";
+import Link from "@/components/Link";
 
 const NOTCH = DeviceInfo.hasNotch();
 const SCALE = NOTCH ? 1.2 : 1;
@@ -116,16 +116,14 @@ export default function Index() {
         </Animated.View>
         <S.SubContainer>
           <Animated.View style={{ opacity: nameAnim, width: "100%" }}>
-            <Button onPress={() => console.log("join allbright..")}>
-              Join AllBright
-            </Button>
+            <Link href="/register">Join AllBright</Link>
             <Space height={10} />
-            <Button
+            <Link
+              href="/login"
               background={"rgb(58, 59, 61)"}
-              isSecondary={true}
-              onPress={() => console.log("login")}>
+              isSecondary={true}>
               <CM color={"rgb(228, 230, 235)"}>Log in</CM>
-            </Button>
+            </Link>
           </Animated.View>
         </S.SubContainer>
       </S.BlurWrapper>
@@ -146,7 +144,7 @@ export default function Index() {
           effect: "cross-dissolve",
           timing: "ease-in",
         }}
-        blurRadius={0.1}
+        blurRadius={0.01}
       />
     );
   }
