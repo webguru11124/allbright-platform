@@ -5,6 +5,7 @@ import RN from "react-native";
 import styled from "styled-components/native";
 import { Href, Link as NativeLink } from "expo-router";
 import { View } from "react-native";
+import _ from "lodash";
 
 type LinkProps = {
   isLoading?: boolean;
@@ -19,9 +20,11 @@ type LinkProps = {
   children?: ReactNode;
 };
 
+type ContainerProps = Omit<LinkProps, "href">;
+
 export default function Link(props: LinkProps) {
   return (
-    <S.Container {...props}>
+    <S.Container {..._.omit(props, ["href"])}>
       <NativeLink href={props.href as Href}>{getChildren()}</NativeLink>
     </S.Container>
   );
@@ -51,7 +54,7 @@ export function TinyLink(props: LinkProps) {
   const currScheme = RN.useColorScheme() || "dark";
 
   return (
-    <S.TinyContainer {...props}>
+    <S.TinyContainer {..._.omit(props, ["href"])}>
       <NativeLink href={props.href as Href}>{getChildren()}</NativeLink>
     </S.TinyContainer>
   );
@@ -85,7 +88,7 @@ function getFontColour(bgColour: string) {
 }
 
 const S = {
-  Container: styled(View)<LinkProps>`
+  Container: styled(View)<ContainerProps>`
     width: 100%;
     height: 45px;
     border-radius: 50px;
@@ -106,7 +109,7 @@ const S = {
     color: p.theme.bg.card,
   }))``,
 
-  TinyContainer: styled(View)<LinkProps>`
+  TinyContainer: styled(View)<ContainerProps>`
     border-radius: 24px;
     background: ${(p) => (p.isCta ? p.theme.colors.teal : p.theme.bg.overlay)};
     align-items: center;

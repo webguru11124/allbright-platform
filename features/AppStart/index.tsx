@@ -11,8 +11,8 @@ import {
 } from "react-native";
 import DeviceInfo from "react-native-device-info";
 import styled from "styled-components/native";
-import Space from "@/components/Space";
 
+import Space from "@/components/Space";
 import * as Imgs from "@/assets/images/app-start/_index";
 import Link from "@/components/Link";
 
