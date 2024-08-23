@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import DeviceInfo from "react-native-device-info";
 import styled from "styled-components/native";
+import { DimensionValue } from "react-native";
 
 import Space from "@/components/Space";
 import * as Imgs from "@/assets/images/app-start/_index";
@@ -20,63 +21,63 @@ const NOTCH = DeviceInfo.hasNotch();
 const SCALE = NOTCH ? 1.2 : 1;
 const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 const IS_8 = WIDTH === 375 && HEIGHT === 667;
+const HEIGHT_OFFSET_PERCENT = 4.7;
 
 const STORE = NOTCH
   ? [
-      { img: Imgs.FB, xyc: ["42%", "5%", 80 * SCALE] },
-      { img: Imgs.FC, xyc: ["78%", "12%", 50 * SCALE] },
-      { img: Imgs.FD, xyc: ["18%", "15%", 60 * SCALE] },
-      { img: Imgs.FE, xyc: ["4%", "27%", 70 * SCALE] },
-      { img: Imgs.FF, xyc: ["37%", "26%", 55 * SCALE] },
-      { img: Imgs.FG, xyc: ["82%", "28%", 45 * SCALE] },
-      { img: Imgs.FH, xyc: ["4%", "9%", 40 * SCALE] },
-      { img: Imgs.FI, xyc: ["62%", "21%", 65 * SCALE] },
+      { img: Imgs.FB, xyc: [42, 5, 80 * SCALE] },
+      { img: Imgs.FC, xyc: [78, 12, 50 * SCALE] },
+      { img: Imgs.FD, xyc: [18, 15, 60 * SCALE] },
+      { img: Imgs.FE, xyc: [4, 27, 70 * SCALE] },
+      { img: Imgs.FF, xyc: [37, 26, 55 * SCALE] },
+      { img: Imgs.FG, xyc: [82, 28, 45 * SCALE] },
+      { img: Imgs.FH, xyc: [4, 9, 40 * SCALE] },
+      { img: Imgs.FI, xyc: [62, 21, 65 * SCALE] },
       // ------------------------------------------------
-      { img: Imgs.FJ, xyc: ["78%", "58%", 70 * SCALE] },
-      { img: Imgs.GA, xyc: ["72%", "74%", 65 * SCALE] },
-      { img: Imgs.GB, xyc: ["55%", "61%", 65 * SCALE] },
-      // { img: Imgs.GC, xyc: [ '56%', '71%', 50 * SCALE ] },
-      { img: Imgs.GF, xyc: ["36%", "76%", 80 * SCALE] },
-      { img: Imgs.GE, xyc: ["32%", "65%", 50 * SCALE] },
-      { img: Imgs.GG, xyc: ["5%", "59%", 65 * SCALE] },
-      { img: Imgs.GD, xyc: ["11%", "75%", 50 * SCALE] },
+      { img: Imgs.FJ, xyc: [78, 58, 70 * SCALE] },
+      { img: Imgs.GA, xyc: [72, 74, 65 * SCALE] },
+      { img: Imgs.GB, xyc: [55, 61, 65 * SCALE] },
+      { img: Imgs.GF, xyc: [36, 76, 80 * SCALE] },
+      { img: Imgs.GE, xyc: [32, 65, 50 * SCALE] },
+      { img: Imgs.GG, xyc: [5, 59, 65 * SCALE] },
+      { img: Imgs.GD, xyc: [11, 75, 50 * SCALE] },
     ]
   : IS_8
     ? [
-        { img: Imgs.FB, xyc: ["42%", "5%", 80 * SCALE] },
-        { img: Imgs.FC, xyc: ["78%", "12%", 50 * SCALE] },
-        { img: Imgs.FD, xyc: ["18%", "15%", 60 * SCALE] },
-        { img: Imgs.FE, xyc: ["4%", "27%", 70 * SCALE] },
-        { img: Imgs.FF, xyc: ["37%", "26%", 55 * SCALE] },
-        { img: Imgs.FG, xyc: ["82%", "28%", 45 * SCALE] },
-        { img: Imgs.FH, xyc: ["4%", "9%", 40 * SCALE] },
-        { img: Imgs.FI, xyc: ["62%", "21%", 65 * SCALE] },
+        { img: Imgs.FB, xyc: [42, 5, 80 * SCALE] },
+        { img: Imgs.FC, xyc: [78, 12, 50 * SCALE] },
+        { img: Imgs.FD, xyc: [18, 15, 60 * SCALE] },
+        { img: Imgs.FE, xyc: [4, 27, 70 * SCALE] },
+        { img: Imgs.FF, xyc: [37, 26, 55 * SCALE] },
+        { img: Imgs.FG, xyc: [82, 28, 45 * SCALE] },
+        { img: Imgs.FH, xyc: [4, 9, 40 * SCALE] },
+        { img: Imgs.FI, xyc: [62, 21, 65 * SCALE] },
         // ------------------------------------------------
-        { img: Imgs.FJ, xyc: ["78%", "58%", 70 * SCALE] },
-        { img: Imgs.GA, xyc: ["72%", "74%", 65 * SCALE] },
-        { img: Imgs.GB, xyc: ["55%", "61%", 65 * SCALE] },
-        { img: Imgs.GF, xyc: ["45%", "74%", 60 * SCALE] },
-        { img: Imgs.GE, xyc: ["32%", "65%", 50 * SCALE] },
-        { img: Imgs.GG, xyc: ["5%", "59%", 65 * SCALE] },
-        { img: Imgs.GD, xyc: ["11%", "75%", 50 * SCALE] },
+        { img: Imgs.FJ, xyc: [78, 58, 70 * SCALE] },
+        { img: Imgs.GA, xyc: [72, 74, 65 * SCALE] },
+        { img: Imgs.GB, xyc: [55, 61, 65 * SCALE] },
+        { img: Imgs.GF, xyc: [45, 74, 60 * SCALE] },
+        { img: Imgs.GE, xyc: [32, 65, 50 * SCALE] },
+        { img: Imgs.GG, xyc: [5, 59, 65 * SCALE] },
+        { img: Imgs.GD, xyc: [11, 75, 50 * SCALE] },
       ]
     : [
-        { img: Imgs.FB, xyc: ["42%", "5%", 80 * SCALE] },
-        { img: Imgs.FC, xyc: ["78%", "12%", 50 * SCALE] },
-        { img: Imgs.FD, xyc: ["18%", "15%", 60 * SCALE] },
-        { img: Imgs.FE, xyc: ["4%", "27%", 70 * SCALE] },
-        { img: Imgs.FF, xyc: ["37%", "26%", 55 * SCALE] },
-        { img: Imgs.FG, xyc: ["82%", "28%", 45 * SCALE] },
-        { img: Imgs.FH, xyc: ["4%", "9%", 40 * SCALE] },
-        { img: Imgs.FI, xyc: ["62%", "21%", 65 * SCALE] },
+        { img: Imgs.FB, xyc: [42, 5, 80 * SCALE] },
+        { img: Imgs.FC, xyc: [78, 12, 50 * SCALE] },
+        { img: Imgs.FD, xyc: [18, 15, 60 * SCALE] },
+        { img: Imgs.FE, xyc: [4, 27, 70 * SCALE] },
+        { img: Imgs.FF, xyc: [37, 26, 55 * SCALE] },
+        { img: Imgs.FG, xyc: [82, 28, 45 * SCALE] },
+        { img: Imgs.FH, xyc: [4, 9, 40 * SCALE] },
+        { img: Imgs.FI, xyc: [62, 21, 65 * SCALE] },
         // ------------------------------------------------
-        { img: Imgs.FJ, xyc: ["78%", "58%", 70 * SCALE] },
-        { img: Imgs.GA, xyc: ["72%", "74%", 65 * SCALE] },
-        { img: Imgs.GB, xyc: ["55%", "61%", 65 * SCALE] },
-        { img: Imgs.GF, xyc: ["36%", "74%", 80 * SCALE] },
-        { img: Imgs.GE, xyc: ["32%", "65%", 50 * SCALE] },
-        { img: Imgs.GG, xyc: ["5%", "59%", 65 * SCALE] },
-        { img: Imgs.GD, xyc: ["11%", "75%", 50 * SCALE] },
+        { img: Imgs.FJ, xyc: [78, 58, 70 * SCALE] },
+        { img: Imgs.GA, xyc: [72, 74, 65 * SCALE] },
+        { img: Imgs.GB, xyc: [55, 61, 65 * SCALE] },
+        { img: Imgs.GF, xyc: [36, 74, 80 * SCALE] },
+        { img: Imgs.GE, xyc: [32, 65, 50 * SCALE] },
+        { img: Imgs.GG, xyc: [5, 59, 65 * SCALE] },
+        { img: Imgs.GD, xyc: [11, 75, 50 * SCALE] },
       ];
 
 export default function Index() {
@@ -131,8 +132,17 @@ export default function Index() {
   );
 
   function getImage(elm: any, idx: number) {
-    const [x, y, c] = elm.xyc;
-    const currStyle = [SS.one, { left: x, top: y }, { width: c, height: c }];
+    const [x, y, c]: [x: number, y: number, c: number] = elm.xyc;
+    const xDim: DimensionValue = `${x}%`;
+    const yDim: DimensionValue = `${y - HEIGHT_OFFSET_PERCENT}%`;
+    const currStyle = [
+      SS.one,
+      {
+        left: xDim,
+        top: yDim,
+      },
+      { width: c, height: c },
+    ];
 
     return (
       <Image
