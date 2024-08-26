@@ -24,41 +24,41 @@ function base(p: StyleProps) {
 
 export const H1 = styled.Text<StyleProps>`
   ${base}
-  font-family: 'HK Grotesk';
+  font-family: 'HK Grotesk, Sans-Serif';
   font-size: 48px;
 `;
 
 export const H2 = styled.Text<StyleProps>`
   ${base}
-  font-family: 'HK Grotesk';
+  font-family: 'HK Grotesk, Sans-Serif';
   font-size: 32px;
   font-weight: ${(p) => p?.weight ?? "bold"};
 `;
 
 export const H3 = styled.Text<StyleProps>`
   ${base}
-  font-family: 'HK Grotesk';
+  font-family: 'HK Grotesk, Sans-Serif';
   font-size: 24px;
   font-weight: ${(p) => p?.weight ?? "bold"};
 `;
 
 export const H4 = styled.Text<StyleProps>`
   ${base}
-  font-family: 'HK Grotesk';
+  font-family: 'HK Grotesk, Sans-Serif';
   font-size: 20px;
   font-weight: ${(p) => p?.weight ?? "bold"};
 `;
 
 export const H5 = styled.Text<StyleProps>`
   ${base}
-  font-family: 'HK Grotesk';
+  font-family: 'HK Grotesk, Sans-Serif';
   font-size: 16px;
   font-weight: ${(p) => p?.weight ?? "bold"};
 `;
 
 export const H6 = styled.Text<StyleProps>`
   ${base}
-  font-family: 'HK Grotesk';
+  font-family: 'HK Grotesk, Sans-Serif';
   font-size: 12px;
   font-weight: ${(p) => p?.weight ?? "bold"};
 `;
@@ -83,38 +83,38 @@ export const H3Rox = styled.Text<StyleProps>`
 
 export const CXXL = styled.Text<StyleProps>`
   ${base}
-  font-family: 'HK Grotesk';
+  font-family: 'HK Grotesk, Sans-Serif';
   font-size: 24px;
 `;
 
 export const CXL = styled.Text<StyleProps>`
   ${base}
-  font-family: 'HK Grotesk';
+  font-family: 'HK Grotesk, Sans-Serif';
   font-size: 18px;
 `;
 
 export const CL = styled.Text<StyleProps>`
   ${base}
-  font-family: 'HK Grotesk';
+  font-family: 'HK Grotesk, Sans-Serif';
   font-size: 16px;
 `;
 
 export const CM = styled.Text<StyleProps>`
   ${base}
-  font-family: 'HK Grotesk';
+  font-family: 'HK Grotesk, Sans-Serif';
   font-size: 14px;
 `;
 
 export const CS = styled.Text<StyleProps>`
   ${base}
-  font-family: 'HK Grotesk';
+  font-family: 'HK Grotesk, Sans-Serif';
   font-size: 12px;
   flex-shrink: 1;
 `;
 
 export const CXS = styled.Text<StyleProps>`
   ${base}
-  font-family: 'HK Grotesk';
+  font-family: 'HK Grotesk, Sans-Serif';
   font-size: 10px;
 `;
 
@@ -125,7 +125,7 @@ export const Link = styled(CS)`
 // old: to be removed
 export const H1C = styled.Text<StyleProps>`
   ${base}
-  font-family: 'HK Grotesk';
+  font-family: 'HK Grotesk, Sans-Serif';
   font-weight: bold;
   font-size: 30px;
   line-height: 38px;
@@ -133,7 +133,7 @@ export const H1C = styled.Text<StyleProps>`
 
 export const CMX = styled.Text<StyleProps>`
   ${base}
-  font-family: 'HK Grotesk';
+  font-family: 'HK Grotesk, Sans-Serif';
   font-size: 15px;
   ${(p) => (p.letterSpacing ? `letter-spacing: ${p.letterSpacing}px;` : "")}
 `;
