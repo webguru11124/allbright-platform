@@ -84,15 +84,14 @@ const withTabButtonProps = (WrappedComponent: React.FC<Props>) => {
 const useTabButton = ({ href }: { href: Href<string | object> }) => {
   const pathName = usePathname();
   const widthAnim = useRef(new Animated.Value(0)).current;
+  const ANIMATION_DURATION = 150;
 
-  const isActive = useMemo(() => {
-    return pathName === href;
-  }, [pathName, href]);
+  const isActive = useMemo(() => pathName === href, [pathName, href]);
 
   const onHoverIn = () => {
     Animated.timing(widthAnim, {
       toValue: 100,
-      duration: 150,
+      duration: ANIMATION_DURATION,
       useNativeDriver: false,
     }).start();
   };
@@ -100,7 +99,7 @@ const useTabButton = ({ href }: { href: Href<string | object> }) => {
   const onHoverOut = () => {
     Animated.timing(widthAnim, {
       toValue: 0,
-      duration: 150,
+      duration: ANIMATION_DURATION,
       useNativeDriver: false,
       easing: Easing.ease,
     }).start();
