@@ -1,4 +1,4 @@
-import { Animated, ViewProps } from "react-native";
+import { Animated, DimensionValue, ViewProps } from "react-native";
 
 export type StoreItem = {
   img: number;
@@ -18,6 +18,9 @@ export type AppStartProps = {
 export type AppStartImgProps = {
   elm: StoreItem;
   heightOffsetPercent: number;
+  xDim: DimensionValue;
+  yDim: DimensionValue;
+  c: number;
   idx: number;
 };
 
