@@ -2,7 +2,7 @@ import { View } from "react-native";
 import styled from "styled-components/native";
 
 import IconAllBright from "@/components/IconAllbright";
-import TabButton from "@/components/navigation/TabButton";
+import TabButton from "@/features/Navbar/partials/TabButton";
 import { H6 } from "@/components/Typography";
 
 export default function NavigationBar() {

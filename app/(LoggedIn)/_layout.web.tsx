@@ -1,10 +1,10 @@
 import { Slot } from "expo-router";
-import NavigationBar from "@/components/navigation/NavigationBar";
+import Navbar from "@/features/Navbar";
 
 export default function Layout() {
   return (
     <>
-      <NavigationBar />
+      <Navbar />
       <Slot />
     </>
   );

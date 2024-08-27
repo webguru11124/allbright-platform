@@ -36,7 +36,7 @@ export default function useAppStart() {
       useNativeDriver: true,
       toValue: 1,
       duration: 1000,
-      delay: 1500,
+      delay: 500,
     }).start();
   }, [nameAnim]);
 
