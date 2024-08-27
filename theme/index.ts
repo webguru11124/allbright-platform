@@ -1,6 +1,16 @@
 "use strict";
 
-import { DefaultTheme } from "@react-navigation/native";
+import {
+  DarkTheme as NativeDarkTheme,
+  DefaultTheme as NativeDefaultTheme,
+} from "@react-navigation/native";
+
+const defaultColors = {
+  success: "rgb(209 231 221)",
+  danger: "#f8d7da",
+  warning: "#fff3cd",
+  info: "#cff4fc",
+};
 
 export const colors = {
   teal: "#00605C", // All primary buttons and CTAs
@@ -53,22 +63,60 @@ export const light = {
   isDark: false,
 };
 
-export const NavLight = {
-  ...DefaultTheme,
+export const DefaultTheme = {
+  ...NativeDefaultTheme,
+  name: "light",
   colors: {
-    ...DefaultTheme.colors,
-    background: light.bg.base,
-    card: light.bg.card,
-    border: light.bg.overlay,
+    ...defaultColors,
+    primary: "rgb(50, 150, 50)",
+    secondary: "rgb(255, 150, 50)",
+    inactive: "rgb(150,150,150)",
+    background: "rgb(242, 242, 242)",
+    inputs: {
+      background: "transparent",
+      text: "rgb(28, 28, 30)",
+      border: "rgb(199, 199, 204)",
+      placeholder: "rgb(150,150,150)",
+    },
+    button: {
+      primary: "#00605C",
+    },
+    txt: {
+      primo: "#DADCE1",
+      placeholder: "#DADCE180",
+    },
+    card: "rgb(255, 255, 255)",
+    text: "rgb(28, 28, 30)",
+    headerText: "rgb(50, 100, 30)",
+    border: "rgb(199, 199, 204)",
+    notification: "rgb(255, 69, 58)",
+    error: "rgb(255, 0, 0)",
   },
 };
 
-export const NavDark = {
-  ...DefaultTheme,
+export const DarkTheme = {
+  ...NativeDarkTheme,
+  headerText: NativeDarkTheme.colors.text,
+  name: "dark",
+  error: "rgb(255, 0, 0)",
   colors: {
-    ...DefaultTheme.colors,
-    background: dark.bg.base,
-    card: dark.bg.card,
-    border: dark.bg.overlay,
+    ...NativeDarkTheme.colors,
+    ...defaultColors,
+    secondary: "rgb(0, 250, 50)",
+    inactive: "rgb(221,221,221)",
+    inputs: {
+      background: "transparent",
+      text: "rgb(255,255,255)",
+      border: "rgb(199, 199, 204)",
+      placeholder: "rgb(150,150,150)",
+    },
+    button: {
+      primary: "#00605C",
+    },
+    txt: {
+      primo: colors.charcoal,
+      placeholder: colors.charcoal + "80",
+    },
+    headerText: "rgb(255, 255, 255)",
   },
 };
