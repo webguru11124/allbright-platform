@@ -1,11 +1,11 @@
 import AppStartImg from "@/features/AppStart/partials/AppStartImg";
 import { BackgroundImageMasonryProps } from "@/features/AppStart/types";
 
-export default function BackgroundImageMasonry({
+const BackgroundImageMasonry = ({
   store,
   heightOffset,
-}: BackgroundImageMasonryProps) {
-  return store.map((el, idx) => (
+}: BackgroundImageMasonryProps) =>
+  store.map((el, idx) => (
     <AppStartImg
       elm={el}
       idx={idx}
@@ -13,4 +13,5 @@ export default function BackgroundImageMasonry({
       key={`${el.img}`}
     />
   ));
-}
+
+export default BackgroundImageMasonry;
