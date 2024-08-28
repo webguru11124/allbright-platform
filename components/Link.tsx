@@ -15,7 +15,7 @@ type LinkProps = {
   background?: string;
   name?: string;
   disabled?: boolean;
-  href: string;
+  href: Href;
   theme: Theme;
   children?: ReactNode;
 };

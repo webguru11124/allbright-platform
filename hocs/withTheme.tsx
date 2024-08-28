@@ -2,15 +2,25 @@ import React from "react";
 
 import useTheme from "@/hooks/useTheme";
 
-const withTheme = (WrappedComponent: React.FC<any>) => {
-  const WC = ({ ...rest }) => {
-    const theme: Theme = useTheme();
+type WithThemeProps = {
+  theme: Theme;
+};
 
-    return <WrappedComponent theme={theme} {...rest} />;
+const withTheme = <T extends WithThemeProps = WithThemeProps>(
+  WrappedComponent: React.ComponentType<T>,
+): React.ComponentType<Omit<T, keyof WithThemeProps>> => {
+  const displayName =
+    WrappedComponent.displayName || WrappedComponent.name || "Component";
+
+  const ComponentWithTheme = (props: Omit<T, keyof WithThemeProps>) => {
+    const theme = useTheme();
+
+    return <WrappedComponent {...(props as T)} theme={theme} />;
   };
 
-  WC.displayName = WrappedComponent.displayName;
-  return WC;
+  ComponentWithTheme.displayName = `withTheme(${displayName})`;
+
+  return ComponentWithTheme;
 };
 
 export default withTheme;
