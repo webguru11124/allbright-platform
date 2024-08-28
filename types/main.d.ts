@@ -1,5 +1,5 @@
 import { GestureResponderEvent, MouseEvent } from "react-native";
-import * as DefaultTheme from "@/theme";
+import { DefaultTheme } from "@/theme";
 
 declare global {
   type GestureEvent = (event: GestureResponderEvent) => void;

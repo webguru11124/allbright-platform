@@ -1,11 +1,11 @@
-import * as T from "@/components/Typography";
-import * as theme from "@/theme";
-import { useTheme } from "@react-navigation/native";
 import { Href, Link as NativeLink } from "expo-router";
 import _ from "lodash";
 import React, { ReactNode } from "react";
-import RN, { Platform, View } from "react-native";
+import { Platform, View } from "react-native";
 import styled from "styled-components/native";
+
+import * as T from "@/components/Typography";
+import withTheme from "@/hocs/withTheme";
 
 type LinkProps = {
   isLoading?: boolean;
@@ -16,18 +16,17 @@ type LinkProps = {
   name?: string;
   disabled?: boolean;
   href: string;
+  theme: Theme;
   children?: ReactNode;
 };
 
 type ContainerProps = Omit<LinkProps, "href">;
 
-export default function Link(props: LinkProps) {
-  const theme: any = useTheme();
-
+function Link(props: LinkProps) {
   return (
     <S.Container
       {..._.omit(props, ["href"])}
-      background={theme.colors.button.primary}>
+      background={props.theme.colors.button.primary}>
       <S.NativeLink href={props.href as Href}>{getChildren()}</S.NativeLink>
     </S.Container>
   );
@@ -47,33 +46,8 @@ export default function Link(props: LinkProps) {
       props.isWhite || props.isSecondary
         ? "#FFF50"
         : props.background
-          ? getFontColour(props.background, theme)
+          ? getFontColour(props.background, props.theme)
           : "white";
-    return <T.CM color={fontColour}>{props.name || props.children}</T.CM>;
-  }
-}
-
-export function TinyLink(props: LinkProps) {
-  const theme: any = useTheme();
-
-  return (
-    <S.TinyContainer {..._.omit(props, ["href"])}>
-      <NativeLink href={props.href as Href}>{getChildren()}</NativeLink>
-    </S.TinyContainer>
-  );
-
-  function getChildren() {
-    if (props.isLoading) return <S.ActivityIndicator />;
-
-    if (React.isValidElement(props.children)) return props.children;
-
-    // eslint-disable-next-line import/namespace
-    const defaultFont = theme.colors.text;
-    const fontColour = props.isCta
-      ? "white"
-      : props.background
-        ? getFontColour(props.background, theme)
-        : defaultFont;
     return <T.CM color={fontColour}>{props.name || props.children}</T.CM>;
   }
 }
@@ -120,9 +94,11 @@ const S = {
   TinyContainer: styled(View)<ContainerProps>`
     border-radius: 24px;
     background: ${(p) =>
-      p.isCta ? p.theme.colors.charcoal : p.theme.bg.overlay};
+      p.isCta ? p.theme.colors.secondary : p.theme.bg.overlay};
     align-items: center;
     justify-content: center;
     padding: 10px 15px;
   `,
 };
+
+export default withTheme(Link);

@@ -28,7 +28,7 @@ const withAppStartImg = (WrappedComponent: React.FC<AppStartImgProps>) => {
     );
   };
 
-  WC.displayName = "AppStartImg";
+  WC.displayName = WrappedComponent.displayName;
   return WC;
 };
 

@@ -10,7 +10,7 @@ const withAppStartProps = (WrappedComponent: React.FC<AppStartProps>) => {
     return <WrappedComponent {...props} {...rest} />;
   };
 
-  WC.displayName = "AppStart";
+  WC.displayName = WrappedComponent.displayName;
   return WC;
 };
 
