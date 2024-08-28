@@ -1,5 +1,4 @@
-import { View } from "react-native";
-
+import RegisterScreen from "@/features/Auth/Register";
 export default function Login() {
-  return <View></View>;
+  return <RegisterScreen />;
 }
