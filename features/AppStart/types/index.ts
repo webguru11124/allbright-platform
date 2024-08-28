@@ -7,13 +7,20 @@ export type StoreItem = {
 
 export type AppStartStyleProps = ViewProps & { marginBottom: number };
 
-export type AppStartProps = {
-  store: StoreItem[];
+export type EntryButtonsProps = {
   nameAnim: Animated.Value;
-  animY: Animated.AnimatedInterpolation<string | number>;
-  NOTCH: boolean;
-  HEIGHT_OFFSET_PERCENT: number;
 };
+
+export type BackgroundImageMasonryProps = {
+  store: StoreItem[];
+  heightOffset: number;
+};
+
+export type AppStartProps = EntryButtonsProps &
+  BackgroundImageMasonryProps & {
+    animY: Animated.AnimatedInterpolation<string | number>;
+    NOTCH: boolean;
+  };
 
 export type AppStartImgProps = {
   elm: StoreItem;
@@ -22,9 +29,4 @@ export type AppStartImgProps = {
   yDim: DimensionValue;
   c: number;
   idx: number;
-};
-
-export type BackgroundImageMasonryProps = {
-  store: StoreItem[];
-  heightOffset: number;
 };

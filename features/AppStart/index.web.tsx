@@ -1,12 +1,12 @@
-import { CM, CXL, H2 } from "@/components/Typography";
+import { CXL, H2 } from "@/components/Typography";
 import React from "react";
 import { Animated, SafeAreaView, StatusBar, View } from "react-native";
 import styled from "styled-components/native";
 
-import Link from "@/components/Link";
 import Space from "@/components/Space";
 import withAppStartProps from "@/features/AppStart/hocs/withAppStartProps";
 import BackgroundImageMasonry from "@/features/AppStart/partials/BackgroundImageMasonry";
+import EntryButtons from "@/features/AppStart/partials/EntryButtons";
 import { AppStartProps, AppStartStyleProps } from "@/features/AppStart/types";
 
 const Index = ({
@@ -14,16 +14,13 @@ const Index = ({
   nameAnim,
   animY,
   NOTCH,
-  HEIGHT_OFFSET_PERCENT,
+  heightOffset,
 }: AppStartProps) => (
   <Main>
     <Section>
       <Container>
         <StatusBar animated={true} hidden={true} />
-        <BackgroundImageMasonry
-          store={store}
-          heightOffset={HEIGHT_OFFSET_PERCENT}
-        />
+        <BackgroundImageMasonry store={store} heightOffset={heightOffset} />
         <BlurWrapper>
           <Space height={NOTCH ? 15 : 50} />
           <Animated.View
@@ -40,13 +37,7 @@ const Index = ({
     </Section>
     <Section>
       <SubContainer marginBottom={NOTCH ? 10 : 20}>
-        <Animated.View style={{ opacity: nameAnim, width: "100%" }}>
-          <Link href="/register">Join AllBright</Link>
-          <Space height={10} />
-          <Link href="/home" background={"rgb(58, 59, 61)"} isSecondary={true}>
-            <CM color={"rgb(228, 230, 235)"}>Log in</CM>
-          </Link>
-        </Animated.View>
+        <EntryButtons nameAnim={nameAnim} />
       </SubContainer>
     </Section>
   </Main>

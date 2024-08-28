@@ -9,7 +9,7 @@ import { StoreItem } from "@/features/AppStart/types";
 
 export default function useAppStart() {
   const NOTCH = DeviceInfo.hasNotch();
-  const HEIGHT_OFFSET_PERCENT = 4.7;
+  const heightOffset = 4.7;
 
   const nameAnim = useRef(new Animated.Value(0)).current;
   const animY = nameAnim.interpolate({
@@ -44,5 +44,5 @@ export default function useAppStart() {
     onInit();
   }, [onInit]);
 
-  return { typedImgs, store, nameAnim, animY, NOTCH, HEIGHT_OFFSET_PERCENT };
+  return { typedImgs, store, nameAnim, animY, NOTCH, heightOffset };
 }
