@@ -71,7 +71,7 @@ export const DefaultTheme = {
     primary: "rgb(50, 150, 50)",
     secondary: "rgb(255, 150, 50)",
     inactive: "rgb(150,150,150)",
-    background: "rgb(242, 242, 242)",
+    background: "#F9F4F0",
     inputs: {
       background: "transparent",
       text: "rgb(28, 28, 30)",
@@ -104,6 +104,7 @@ export const DarkTheme = {
     ...defaultColors,
     secondary: "rgb(0, 250, 50)",
     inactive: "rgb(221,221,221)",
+    background: "#bbb",
     inputs: {
       background: "transparent",
       text: "rgb(255,255,255)",

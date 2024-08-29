@@ -1,8 +1,8 @@
-import { Slot } from "expo-router";
 import { ThemeProvider } from "@react-navigation/native";
+import { Slot } from "expo-router";
 
-import { DefaultTheme } from "@/theme";
 import Header from "@/features/Auth/partials/Header";
+import { DefaultTheme } from "@/theme";
 
 export default function Layout() {
   return (
