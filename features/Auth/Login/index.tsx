@@ -1,7 +1,18 @@
-import { CM } from "@/components/Typography";
+import styled from "styled-components/native";
+import LoginForm from "@/features/Auth/Login/forms/LoginForm";
 
 const Login = () => {
-  return <CM>You are viewing the login screen</CM>;
+  return (
+    <FormContainer>
+      <LoginForm />
+    </FormContainer>
+  );
 };
 
 export default Login;
+
+const FormContainer = styled.View`
+  padding: 30px 10px 0 10px;
+  flex: 1;
+  justify-content: flex-start;
+`;

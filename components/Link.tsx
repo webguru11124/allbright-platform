@@ -26,7 +26,7 @@ function Link(props: LinkProps) {
   return (
     <S.Container
       {..._.omit(props, ["href"])}
-      background={props.theme.colors.button.primary}>
+      background={props.theme.colors.button.background}>
       <S.NativeLink href={props.href as Href}>{getChildren()}</S.NativeLink>
     </S.Container>
   );

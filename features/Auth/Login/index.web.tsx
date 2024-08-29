@@ -1,9 +1,11 @@
-import styled, { css } from "styled-components/native";
-
-import { CM } from "@/components/Typography";
-import { MediaQueryContext } from "@/contexts/MediaQueryContext";
-import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 import { useContext } from "react";
+import styled, { css } from "styled-components/native";
+import { Image } from "react-native";
+
+import { MediaQueryContext } from "@/contexts/MediaQueryContext";
+import LoginForm from "@/features/Auth/Login/forms/LoginForm";
+import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
+import { BE } from "@/assets/images/app-start/_index";
 
 type StyleProps = {
   maxWidth: (val: number) => boolean;
@@ -16,15 +18,15 @@ const Login = () => {
     <Main>
       <Section maxWidth={maxWidth}>
         <ImageContainer maxWidth={maxWidth}>
-          <StyledImage
+          <Image
             source={require("@/assets/images/auth/login-image.png")}
             resizeMode="contain"
-            maxWidth={maxWidth}
+            blurRadius={maxWidth(BREAKPOINT_TABLET) ? 10 : 0}
           />
         </ImageContainer>
-        <ButtonContainer maxWidth={maxWidth}>
-          <CM>Lorem Ipsum Dolor</CM>
-        </ButtonContainer>
+        <FormContainer maxWidth={maxWidth}>
+          <LoginForm />
+        </FormContainer>
       </Section>
     </Main>
   );
@@ -68,24 +70,28 @@ const ImageContainer = styled.View<StyleProps>`
       height: 80%;
       width: 100%;
       position: absolute;
+      bottom: 0;
+      top: 20px;
     `}
 `;
 
-const StyledImage = styled.Image<StyleProps>``;
-
-const ButtonContainer = styled.View<StyleProps>`
-  background: #fff;
+const FormContainer = styled.View<StyleProps>`
+  background: #eee;
   width: 50%;
   height: 100%;
+  justify-content: center;
+  padding: 20px;
 
   ${(props) =>
     props.maxWidth(BREAKPOINT_TABLET) &&
     css`
+      position: absolute;
+      top: 20px;
+      bottom: 0;
       width: 100%;
       height: 80%;
-      background-color: white;
-      opacity: 0.75;
-      z-index: 10;
+      background-color: transparent;
+      z-index: 1;
     `}
 `;
 

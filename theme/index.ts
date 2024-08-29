@@ -73,13 +73,14 @@ export const DefaultTheme = {
     inactive: "rgb(150,150,150)",
     background: "#F9F4F0",
     inputs: {
-      background: "transparent",
-      text: "rgb(28, 28, 30)",
+      background: "#FFF",
+      text: "#414143",
       border: "rgb(199, 199, 204)",
       placeholder: "rgb(150,150,150)",
     },
     button: {
-      primary: "#00605C",
+      primary: "#FFF",
+      background: "#00605C",
     },
     txt: {
       primo: "#DADCE1",
@@ -106,13 +107,14 @@ export const DarkTheme = {
     inactive: "rgb(221,221,221)",
     background: "#bbb",
     inputs: {
-      background: "transparent",
-      text: "rgb(255,255,255)",
+      background: "#FFF",
+      text: "#414143",
       border: "rgb(199, 199, 204)",
       placeholder: "rgb(150,150,150)",
     },
     button: {
-      primary: "#00605C",
+      primary: "#FFF",
+      background: "#00605C",
     },
     txt: {
       primo: colors.charcoal,
