@@ -1,6 +1,4 @@
-import { CM } from "@/components/Typography";
-// import loginImg from "@/assets/images/auth/login-image.png";
-import { View, Image } from "react-native";
+import { Image } from "react-native";
 import styled from "styled-components/native";
 
 const Login = () => {
