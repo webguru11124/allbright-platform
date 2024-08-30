@@ -9,20 +9,19 @@ import loginSchema from "./loginSchema";
 const LoginForm = () => {
   const {
     inputs,
+    postBody,
     errors,
     blurFuncs,
     changeTextFuncs,
     isFormValid,
     validateInputs,
-  } = useForm({
-    baseSchema: loginSchema,
-  });
+  } = useForm(loginSchema);
 
   const onPress = () => {
     const result = validateInputs();
 
     if (result) {
-      console.log(inputs);
+      console.log(postBody);
     }
   };
 

@@ -2,13 +2,16 @@ import Joi from "joi";
 import _ from "lodash";
 import { useMemo, useState } from "react";
 
-type Base = {
-  baseSchema: Joi.PartialSchemaMap<any> | undefined;
+type Settings = {
+  omit?: string[];
 };
 
 type EventType = { name: string; value: string };
 
-const useForm = ({ baseSchema }: Base) => {
+const useForm = (
+  baseSchema: Joi.PartialSchemaMap<any> | undefined,
+  settings: Settings = {},
+) => {
   const schemaKeys = Object.keys(baseSchema || {});
 
   const schemaInputs = _.chain(schemaKeys)
@@ -82,11 +85,17 @@ const useForm = ({ baseSchema }: Base) => {
     [allInputsTouched, noErrors],
   );
 
+  const postBody = useMemo(
+    () => (settings?.omit ? _.omit(inputs, settings.omit) : inputs),
+    [inputs, settings],
+  );
+
   return {
     schema,
     schemaInputs,
     schemaKeys,
     inputs,
+    postBody,
     errors,
     touched,
     blurFuncs,
