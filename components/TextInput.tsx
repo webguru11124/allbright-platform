@@ -1,21 +1,26 @@
+import { TextInputProps, TextStyle } from "react-native";
+import { FloatingLabelInput } from "react-native-floating-label-input";
+
 import withTheme from "@/hocs/withTheme";
-import { TextInputProps } from "react-native";
-import styled from "styled-components/native";
 
 type Props = TextInputProps & { theme: Theme };
 
-const TextInput = ({ theme, ...rest }: Props) => {
-  return <StyledTextInput {...rest} theme={theme} />;
+const TextInput = ({ theme, onChange, placeholder, ...rest }: Props) => {
+  return (
+    <FloatingLabelInput
+      {...rest}
+      label={placeholder || "Please enter"}
+      inputStyles={{ outline: "none", fontSize: 16 } as TextStyle}
+      containerStyles={{
+        height: 50,
+        backgroundColor: theme.colors.inputs.background,
+        paddingLeft: 15,
+        borderRadius: 5,
+      }}
+      animationDuration={150}
+      onChange={onChange}
+    />
+  );
 };
 
 export default withTheme(TextInput);
-
-const StyledTextInput = styled.TextInput<TextInputProps>`
-  height: 50px;
-  font-size: 16px;
-  color: ${(p) => p.theme.colors.inputs.text};
-  background-color: ${(p) => p.theme.colors.inputs.background};
-  border: black;
-  border-radius: 4px;
-  padding-left: 15px;
-`;
