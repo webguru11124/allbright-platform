@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
+    "@react-native-async-storage/async-storage": "^2.0.0",
     "@react-navigation/native": "^6.0.2",
     "dom-to-image": "^2.6.0",
     "expo": "~51.0.28",
@@ -35,6 +36,7 @@
     "expo-system-ui": "~3.0.7",
     "expo-web-browser": "~13.0.3",
     "firebase": "^10.13.0",
+    "joi": "^17.13.3",
     "lodash": "^4.17.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
