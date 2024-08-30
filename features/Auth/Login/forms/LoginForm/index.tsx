@@ -1,31 +1,25 @@
 import TextInput from "@/components/TextInput";
 import { SafeAreaView } from "react-native";
+import _ from "lodash";
 
 import Button from "@/components/Button";
 import Space from "@/components/Space";
 import { useState } from "react";
-import { loginSchema } from "./loginSchema";
+import loginSchema, { schemaInputs } from "./loginSchema";
 
-type Inputs = {
-  email: string | undefined;
-  password: string | undefined;
-};
+type EventType = { name: string; value: string };
 
 const LoginForm = () => {
-  const [inputs, setInputs] = useState<Inputs>({
-    email: undefined,
-    password: undefined,
-  });
+  const [inputs, setInputs] = useState<typeof schemaInputs>(schemaInputs);
+  const [errors, setErrors] = useState<typeof schemaInputs>(schemaInputs);
+  const [touched, setTouched] = useState<typeof schemaInputs>(schemaInputs);
 
-  const [errors, setErrors] = useState<Inputs>({
-    email: undefined,
-    password: undefined,
-  });
-
-  const updateInputs = ({ name, value }: { name: string; value: any }) =>
+  const updateInputs = ({ name, value }: EventType) =>
     setInputs((prev) => ({ ...prev, [name]: value }));
 
-  const validateInput = ({ name, value }: { name: string; value: any }) => {
+  const validateInput = ({ name, value }: EventType) => {
+    setTouched((prev) => ({ ...prev, [name]: true }));
+
     const { error } = loginSchema.extract(name).validate(value);
 
     setErrors((prev) => ({
@@ -35,6 +29,27 @@ const LoginForm = () => {
         : undefined,
     }));
   };
+
+  const blurFuncs = _.chain(schemaInputs)
+    .keys()
+    .map((v) => [v, () => validateInput({ name: v, value: inputs[v] })])
+    .fromPairs()
+    .value();
+
+  const onChangeText = ({ name, value }: EventType) => {
+    updateInputs({
+      name: name,
+      value: value,
+    });
+
+    touched[name] && validateInput({ name, value });
+  };
+
+  const changeTextFuncs = _.chain(schemaInputs)
+    .keys()
+    .map((v) => [v, (value: string) => onChangeText({ name: v, value: value })])
+    .fromPairs()
+    .value();
 
   const onPress = () => {};
 
@@ -47,13 +62,8 @@ const LoginForm = () => {
         textContentType="emailAddress"
         value={inputs.email}
         error={errors.email}
-        onBlur={() => validateInput({ name: "email", value: inputs["email"] })}
-        onChange={(ev) =>
-          updateInputs({
-            name: "email",
-            value: (ev.target as unknown as HTMLInputElement).value,
-          })
-        }
+        onBlur={blurFuncs.email}
+        onChangeText={changeTextFuncs.email}
       />
       <Space height={10} />
       <TextInput
@@ -63,15 +73,8 @@ const LoginForm = () => {
         textContentType="password"
         value={inputs.password}
         error={errors.password}
-        onBlur={() =>
-          validateInput({ name: "password", value: inputs["password"] })
-        }
-        onChange={(ev) =>
-          updateInputs({
-            name: "password",
-            value: (ev.target as unknown as HTMLInputElement).value,
-          })
-        }
+        onBlur={blurFuncs.password}
+        onChangeText={changeTextFuncs.password}
       />
       <Space height={50} />
       <Button onPress={onPress}>Submit</Button>
