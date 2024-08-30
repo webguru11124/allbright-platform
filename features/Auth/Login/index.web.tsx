@@ -17,9 +17,9 @@ const Login = () => {
     <Main>
       <Section maxWidth={maxWidth}>
         <ImageContainer maxWidth={maxWidth}>
-          <Image
+          <StyledImage
             source={require("@/assets/images/auth/login-image.png")}
-            resizeMode="contain"
+            resizeMode="cover"
             blurRadius={maxWidth(BREAKPOINT_TABLET) ? 10 : 0}
           />
         </ImageContainer>
@@ -48,11 +48,11 @@ const Section = styled.View<StyleProps>`
   ${(props) =>
     props.maxWidth(BREAKPOINT_TABLET) &&
     css`
-      flex-direction: column;
+      flex-direction: row;
       justify-content: flex-start;
       width: 90%;
-      height: 100%;
-      padding: 10px 0;
+      height: 60%;
+      padding: 0;
     `}
 `;
 
@@ -67,12 +67,22 @@ const ImageContainer = styled.View<StyleProps>`
   ${(props) =>
     props.maxWidth(BREAKPOINT_TABLET) &&
     css`
-      height: 80%;
+      height: 100%;
       width: 100%;
       position: absolute;
       bottom: 0;
-      top: 20px;
+      top: 0;
     `}
+`;
+
+const StyledImage = styled.Image`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
 `;
 
 const FormContainer = styled.View<StyleProps>`
