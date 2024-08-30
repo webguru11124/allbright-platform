@@ -1,11 +1,10 @@
 import { useContext } from "react";
-import styled, { css } from "styled-components/native";
 import { Image } from "react-native";
+import styled, { css } from "styled-components/native";
 
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import LoginForm from "@/features/Auth/Login/forms/LoginForm";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
-import { BE } from "@/assets/images/app-start/_index";
 
 type StyleProps = {
   maxWidth: (val: number) => boolean;
@@ -44,6 +43,7 @@ const Section = styled.View<StyleProps>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  box-shadow: 0px 0px 30px #17171750;
 
   ${(props) =>
     props.maxWidth(BREAKPOINT_TABLET) &&

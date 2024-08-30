@@ -10,13 +10,14 @@ const LoginForm = () => {
       <TextInput
         placeholder="Email"
         placeholderTextColor={"#ddd"}
-        keyboardType="email-address"
+        inputMode="email"
         textContentType="emailAddress"
       />
       <Space height={10} />
       <TextInput
         placeholder="Password"
         placeholderTextColor={"#ddd"}
+        inputMode="text"
         textContentType="password"
       />
       <Space height={50} />
