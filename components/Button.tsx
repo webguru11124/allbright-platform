@@ -11,7 +11,10 @@ type Props = Omit<ButtonProps, "title"> & {
 
 const Button = (props: Props) => {
   return (
-    <StyledPressable theme={props.theme}>
+    <StyledPressable
+      disabled={props.disabled}
+      onPress={props.onPress}
+      theme={props.theme}>
       <CM color={props.theme.colors.button.primary}>{props.children}</CM>
     </StyledPressable>
   );
@@ -23,6 +26,7 @@ const StyledPressable = styled.Pressable`
   height: 50px;
   background-color: ${(p) => p.theme.colors.button.background};
   border-radius: 25px;
+  opacity: ${(p) => (p.disabled ? 0.6 : 1)};
 `;
 
 export default withTheme(Button);

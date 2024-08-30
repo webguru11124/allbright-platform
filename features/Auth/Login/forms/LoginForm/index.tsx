@@ -7,11 +7,24 @@ import useForm from "@/hooks/useForm";
 import loginSchema from "./loginSchema";
 
 const LoginForm = () => {
-  const { inputs, errors, blurFuncs, changeTextFuncs } = useForm({
+  const {
+    inputs,
+    errors,
+    blurFuncs,
+    changeTextFuncs,
+    isFormValid,
+    validateInputs,
+  } = useForm({
     baseSchema: loginSchema,
   });
 
-  const onPress = () => {};
+  const onPress = () => {
+    const result = validateInputs();
+
+    if (result) {
+      console.log(inputs);
+    }
+  };
 
   return (
     <SafeAreaView>
@@ -37,7 +50,9 @@ const LoginForm = () => {
         onChangeText={changeTextFuncs.password}
       />
       <Space height={50} />
-      <Button onPress={onPress}>Submit</Button>
+      <Button disabled={!isFormValid} onPress={onPress}>
+        Submit
+      </Button>
     </SafeAreaView>
   );
 };

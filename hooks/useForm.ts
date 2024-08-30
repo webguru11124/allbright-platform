@@ -1,6 +1,6 @@
 import Joi from "joi";
 import _ from "lodash";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 type Base = {
   baseSchema: Joi.PartialSchemaMap<any> | undefined;
@@ -21,6 +21,16 @@ const useForm = ({ baseSchema }: Base) => {
   const [inputs, setInputs] = useState<typeof schemaInputs>(schemaInputs);
   const [errors, setErrors] = useState<typeof schemaInputs>(schemaInputs);
   const [touched, setTouched] = useState<typeof schemaInputs>(schemaInputs);
+
+  const noErrors = useMemo(
+    () => Object.keys(errors).every((v) => errors[v] === undefined),
+    [errors],
+  );
+
+  const allInputsTouched = useMemo(
+    () => Object.keys(touched).every((v) => touched[v] !== undefined),
+    [touched],
+  );
 
   const updateInputs = ({ name, value }: EventType) =>
     setInputs((prev) => ({ ...prev, [name]: value }));
@@ -59,6 +69,19 @@ const useForm = ({ baseSchema }: Base) => {
     .fromPairs()
     .value();
 
+  const validateInputs = (): boolean => {
+    Object.entries(inputs).forEach((val) =>
+      validateInput({ name: _.head(val), value: _.last(val) }),
+    );
+
+    return noErrors;
+  };
+
+  const isFormValid = useMemo(
+    () => allInputsTouched && noErrors,
+    [allInputsTouched, noErrors],
+  );
+
   return {
     schema,
     schemaInputs,
@@ -68,6 +91,8 @@ const useForm = ({ baseSchema }: Base) => {
     touched,
     blurFuncs,
     changeTextFuncs,
+    validateInputs,
+    isFormValid,
   };
 };
 
