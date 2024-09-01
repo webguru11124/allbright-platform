@@ -3,6 +3,7 @@ import { SafeAreaView } from "react-native";
 
 import Button from "@/components/Button";
 import Space from "@/components/Space";
+import { Login, useSignIn } from "@/hooks/resources/useAuth";
 import useForm from "@/hooks/useForm";
 import loginSchema from "./loginSchema";
 
@@ -17,11 +18,22 @@ const LoginForm = () => {
     validateInputs,
   } = useForm(loginSchema);
 
+  const { mutate } = useSignIn();
+
   const onPress = () => {
     const result = validateInputs();
 
     if (result) {
       console.log(postBody);
+
+      mutate(postBody as Login, {
+        onSuccess: (response) => {
+          console.log(response);
+        },
+        onError: (error) => {
+          console.error(error);
+        },
+      });
     }
   };
 

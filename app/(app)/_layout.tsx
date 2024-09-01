@@ -2,8 +2,7 @@ import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 
 import useRootLayout from "@/hooks/useRootLayout";
-import { DefaultTheme } from "@/theme";
-import { ThemeProvider } from "@react-navigation/native";
+import Providers from "@/utils/providers";
 
 export default function RootLayout() {
   const [loaded, error] = useRootLayout();
@@ -19,12 +18,12 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={DefaultTheme}>
+    <Providers>
       <Stack
         screenOptions={{
           headerShown: false,
         }}
       />
-    </ThemeProvider>
+    </Providers>
   );
 }

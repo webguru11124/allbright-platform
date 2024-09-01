@@ -1,14 +1,13 @@
-import { Slot } from "expo-router";
 import Navbar from "@/features/Navbar";
-import { ThemeProvider } from "@react-navigation/native";
+import { Slot } from "expo-router";
 
-import { DefaultTheme } from "@/theme";
+import Providers from "@/utils/providers";
 
 export default function Layout() {
   return (
-    <ThemeProvider value={DefaultTheme}>
+    <Providers>
       <Navbar />
       <Slot />
-    </ThemeProvider>
+    </Providers>
   );
 }
