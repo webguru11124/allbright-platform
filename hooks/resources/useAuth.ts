@@ -9,6 +9,11 @@ export type Login = {
   password: string;
 };
 
+export type Register = {
+  email: string;
+  password: string;
+};
+
 const signinFn = async (loginData: Login) => {
   const response = await api.post(SIGNIN_URL, loginData);
   return response;

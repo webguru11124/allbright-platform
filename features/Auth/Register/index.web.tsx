@@ -2,14 +2,14 @@ import { useContext } from "react";
 import styled, { css } from "styled-components/native";
 
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
-import LoginForm from "@/features/Auth/Login/forms/LoginForm";
+import RegisterForm from "@/features/Auth/Register/forms/RegisterForm";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 
 type StyleProps = {
   maxWidth: (val: number) => boolean;
 };
 
-const Login = () => {
+const Register = () => {
   const { maxWidth } = useContext<MediaQuery>(MediaQueryContext);
 
   return (
@@ -23,7 +23,7 @@ const Login = () => {
           />
         </ImageContainer>
         <FormContainer maxWidth={maxWidth}>
-          <LoginForm />
+          <RegisterForm />
         </FormContainer>
       </Section>
     </Main>
@@ -104,4 +104,4 @@ const FormContainer = styled.View<StyleProps>`
     `}
 `;
 
-export default Login;
+export default Register;
