@@ -6,7 +6,14 @@ import withTheme from "@/hocs/withTheme";
 
 type Props = TextInputProps & { error: string | undefined; theme: Theme };
 
-const TextInput = ({ theme, error, onChange, placeholder, ...rest }: Props) => {
+const TextInput = ({
+  theme,
+  error,
+  onBlur,
+  onChangeText,
+  placeholder,
+  ...rest
+}: Props) => {
   return (
     <>
       <FloatingLabelInput
@@ -22,7 +29,8 @@ const TextInput = ({ theme, error, onChange, placeholder, ...rest }: Props) => {
           borderWidth: Boolean(error) ? 3 : 0,
         }}
         animationDuration={150}
-        onChange={onChange}
+        onChangeText={onChangeText}
+        onBlur={onBlur}
       />
       {error && <CS color="red">{error}</CS>}
     </>

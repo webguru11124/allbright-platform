@@ -8,24 +8,13 @@ import { Login, useSignIn } from "@/hooks/resources/useAuth";
 import useForm from "@/hooks/useForm";
 
 const LoginForm = () => {
-  const {
-    inputs,
-    postBody,
-    errors,
-    blurFuncs,
-    changeTextFuncs,
-    isFormValid,
-    validateInputs,
-  } = useForm(loginSchema);
+  const { inputs, postBody, errors, blurFuncs, changeTextFuncs, isFormValid } =
+    useForm(loginSchema);
 
   const { mutate, isPending } = useSignIn();
 
   const onPress = () => {
-    const result = validateInputs();
-
-    if (result) {
-      console.log(postBody);
-
+    if (isFormValid) {
       mutate(postBody as Login, {
         onSuccess: (response) => {
           console.log(response);
