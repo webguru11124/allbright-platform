@@ -69,6 +69,8 @@ const RegisterForm = () => {
         selectedValue={inputs.country}
         onValueChange={changeTextFuncs.country}
         items={countries}
+        error={errors.country}
+        onBlur={blurFuncs.country}
       />
       <Space height={50} />
       <Button disabled={!isFormValid} isLoading={isPending} onPress={onPress}>
