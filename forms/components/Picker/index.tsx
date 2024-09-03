@@ -16,7 +16,6 @@ type Props = {
   selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
   onValueChange: (itemValue: unknown, itemIndex: number) => void;
   onBlur: (e: NativeSyntheticEvent<TargetedEvent>) => void;
-  togglePicker: GestureEvent;
   items: {
     key: string;
     label: string;
@@ -35,16 +34,12 @@ const Picker = ({
   selectedValue,
   onValueChange,
   onBlur,
-  togglePicker,
   items,
   error,
   theme,
 }: Props) => {
   return (
     <>
-      <Pressable onPress={togglePicker}>
-        <CS style={{ textDecorationLine: "underline" }}>Close</CS>
-      </Pressable>
       <StyledPicker
         selectedValue={selectedValue}
         onValueChange={onValueChange}
@@ -84,13 +79,13 @@ export const PickerInput = withTheme(
         <TextInput
           placeholder="Country"
           placeholderTextColor={"#ddd"}
-          inputMode="text"
           textContentType="countryName"
           value={input !== "undefined" ? input : undefined}
           error={error}
           onFocus={onFocus}
           onPress={onPress}
           onChangeText={() => {}}
+          showSoftInputOnFocus={false}
         />
       ) : (
         <Pressable onPress={onPress}>

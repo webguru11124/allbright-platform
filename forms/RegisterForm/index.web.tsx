@@ -8,6 +8,7 @@ import registerSchema from "@/forms/RegisterForm/registerSchema";
 import { Register, useSignIn } from "@/hooks/resources/useAuth";
 import useForm from "@/forms/hooks/useForm";
 import { pickerAdaptor as countries } from "@/utils/data/countries";
+import CountryPicker from "@/forms/components/CountryPicker/index.web";
 
 const RegisterForm = () => {
   const { inputs, postBody, errors, blurFuncs, changeTextFuncs, isFormValid } =
@@ -65,10 +66,9 @@ const RegisterForm = () => {
         onChangeText={changeTextFuncs.password_confirmation}
       />
       <Space height={10} />
-      <Picker
+      <CountryPicker
         selectedValue={inputs.country}
         onValueChange={changeTextFuncs.country}
-        items={countries}
         error={errors.country}
         onBlur={blurFuncs.country}
       />

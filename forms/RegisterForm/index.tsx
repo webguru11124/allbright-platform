@@ -40,6 +40,30 @@ const RegisterForm = () => {
 
   return (
     <View style={{ flex: 1 }}>
+      {/* Move to its own component */}
+      <BottomSheetModalProvider>
+        <BottomSheetModal show={showPicker}>
+          <View
+            style={{ alignItems: "flex-end", width: "100%", paddingRight: 30 }}>
+            <Pressable onPress={togglePicker}>
+              <CS
+                style={{
+                  textDecorationLine: "underline",
+                  textDecorationStyle: "solid",
+                }}>
+                Close
+              </CS>
+            </Pressable>
+          </View>
+          <Picker
+            selectedValue={inputs.country}
+            onValueChange={changeTextFuncs.country}
+            items={countries}
+            error={errors.country}
+            onBlur={blurFuncs.country}
+          />
+        </BottomSheetModal>
+      </BottomSheetModalProvider>
       <SafeAreaView>
         <TextInput
           placeholder="Email"
@@ -91,18 +115,6 @@ const RegisterForm = () => {
           Submit
         </Button>
       </SafeAreaView>
-      <BottomSheetModalProvider>
-        <BottomSheetModal show={showPicker}>
-          <Picker
-            selectedValue={inputs.country}
-            onValueChange={changeTextFuncs.country}
-            togglePicker={togglePicker}
-            items={countries}
-            error={errors.country}
-            onBlur={blurFuncs.country}
-          />
-        </BottomSheetModal>
-      </BottomSheetModalProvider>
     </View>
   );
 };
