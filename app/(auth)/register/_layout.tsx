@@ -8,9 +8,11 @@ export default function Layout() {
   return (
     <Stack
       screenOptions={{
+        headerTitleAlign: "center",
         headerStyle: {
           backgroundColor: "transparent",
         },
+        headerShadowVisible: false,
         headerTintColor: theme.colors.primary,
         headerTitleStyle: {
           fontWeight: "bold",
