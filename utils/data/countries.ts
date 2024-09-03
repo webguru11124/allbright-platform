@@ -1,4 +1,4 @@
-export default [
+const countries = [
   { Code: "GB", Prefix: "+44", Name: "United Kingdom" },
   { Code: "US", Prefix: "+1", Name: "United States" },
   { Code: "HK", Prefix: "+852", Name: "Hong Kong" },
@@ -249,3 +249,11 @@ export default [
   { Code: "ZM", Name: "Zambia" },
   { Code: "ZW", Name: "Zimbabwe" },
 ];
+
+export default countries;
+
+export const pickerAdaptor = countries.map((item) => ({
+  key: item.Code,
+  label: item.Name,
+  value: item.Code,
+}));

@@ -1,5 +1,5 @@
 import { SafeAreaView } from "react-native";
-import { Picker } from "@react-native-picker/picker";
+import Picker from "@/forms/components/Picker";
 
 import Button from "@/forms/components/Button";
 import Space from "@/components/Space";
@@ -7,7 +7,7 @@ import TextInput from "@/forms/components/TextInput";
 import registerSchema from "@/forms/RegisterForm/registerSchema";
 import { Register, useSignIn } from "@/hooks/resources/useAuth";
 import useForm from "@/forms/hooks/useForm";
-import countries from "@/utils/data/countries";
+import { pickerAdaptor as countries } from "@/utils/data/countries";
 
 const RegisterForm = () => {
   const { inputs, postBody, errors, blurFuncs, changeTextFuncs, isFormValid } =
@@ -67,12 +67,9 @@ const RegisterForm = () => {
       <Space height={10} />
       <Picker
         selectedValue={inputs.country}
-        onValueChange={changeTextFuncs.country}>
-        <Picker.Item key={"-1"} label={"Please select"} value={undefined} />
-        {countries.map((item) => (
-          <Picker.Item key={item.Code} label={item.Name} value={item.Code} />
-        ))}
-      </Picker>
+        onValueChange={changeTextFuncs.country}
+        items={countries}
+      />
       <Space height={50} />
       <Button disabled={!isFormValid} isLoading={isPending} onPress={onPress}>
         Submit
