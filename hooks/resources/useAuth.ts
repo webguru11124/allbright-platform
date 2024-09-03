@@ -12,6 +12,7 @@ export type Login = {
 export type Register = {
   email: string;
   password: string;
+  password_confirmation: string;
 };
 
 const signinFn = async (loginData: Login) => {
