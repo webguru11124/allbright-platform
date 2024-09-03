@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import RegisterForm from "@/features/Auth/Register/forms/RegisterForm";
+import RegisterForm from "@/forms/RegisterForm";
 
 const Register = () => {
   return (

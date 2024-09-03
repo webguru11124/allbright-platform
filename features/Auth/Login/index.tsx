@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import LoginForm from "@/features/Auth/Login/forms/LoginForm";
+import LoginForm from "@/forms/LoginForm";
 
 const Login = () => {
   return (

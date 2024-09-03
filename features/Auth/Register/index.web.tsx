@@ -2,7 +2,7 @@ import { useContext } from "react";
 import styled, { css } from "styled-components/native";
 
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
-import RegisterForm from "@/features/Auth/Register/forms/RegisterForm";
+import RegisterForm from "@/forms/RegisterForm";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 
 type StyleProps = {

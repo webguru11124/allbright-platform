@@ -1,4 +1,4 @@
-import useForm from "@/hooks/useForm";
+import useForm from "@/forms/hooks/useForm";
 import { renderHook } from "@testing-library/react-native";
 import Joi from "joi";
 
