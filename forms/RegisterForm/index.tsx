@@ -1,17 +1,12 @@
-import { Pressable, SafeAreaView, View } from "react-native";
+import { SafeAreaView, View } from "react-native";
 
-import BottomSheetModal from "@/components/BottomSheetModal";
 import Space from "@/components/Space";
-import { CS } from "@/components/Typography";
 import Button from "@/forms/components/Button";
+import CountryPicker from "@/forms/components/CountryPicker";
 import TextInput from "@/forms/components/TextInput";
 import useForm from "@/forms/hooks/useForm";
 import registerSchema from "@/forms/RegisterForm/registerSchema";
 import { Register, useSignIn } from "@/hooks/resources/useAuth";
-import { pickerAdaptor as countries } from "@/utils/data/countries";
-import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
-import { useState } from "react";
-import Picker, { PickerInput } from "../components/Picker";
 
 const RegisterForm = () => {
   const { inputs, postBody, errors, blurFuncs, changeTextFuncs, isFormValid } =
@@ -32,38 +27,8 @@ const RegisterForm = () => {
     }
   };
 
-  const [showPicker, setShowPicker] = useState<boolean>(false);
-
-  const togglePicker = () => {
-    setShowPicker((prev) => !prev);
-  };
-
   return (
     <View style={{ flex: 1 }}>
-      {/* Move to its own component */}
-      <BottomSheetModalProvider>
-        <BottomSheetModal show={showPicker}>
-          <View
-            style={{ alignItems: "flex-end", width: "100%", paddingRight: 30 }}>
-            <Pressable onPress={togglePicker}>
-              <CS
-                style={{
-                  textDecorationLine: "underline",
-                  textDecorationStyle: "solid",
-                }}>
-                Close
-              </CS>
-            </Pressable>
-          </View>
-          <Picker
-            selectedValue={inputs.country}
-            onValueChange={changeTextFuncs.country}
-            items={countries}
-            error={errors.country}
-            onBlur={blurFuncs.country}
-          />
-        </BottomSheetModal>
-      </BottomSheetModalProvider>
       <SafeAreaView>
         <TextInput
           placeholder="Email"
@@ -100,14 +65,14 @@ const RegisterForm = () => {
           onChangeText={changeTextFuncs.password_confirmation}
         />
         <Space height={10} />
-        <PickerInput
-          input={inputs.country}
-          displayValue={
-            countries.find((item) => item.value === inputs.country)?.label
-          }
+        <CountryPicker
+          // input={inputs.country}
+          // displayValue={
+          //   countries.find((item) => item.value === inputs.country)?.label
+          // }
           error={errors.country}
-          onFocus={togglePicker}
-          onPress={togglePicker}
+          // onFocus={togglePicker}
+          // onPress={togglePicker}
         />
         <Space height={10} />
 
