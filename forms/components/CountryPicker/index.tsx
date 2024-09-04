@@ -1,6 +1,6 @@
 import { pickerAdaptor as countries } from "@/utils/data/countries";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Alert, Modal, TextInputProps } from "react-native";
 import styled from "styled-components/native";
 
@@ -8,18 +8,26 @@ import Space from "@/components/Space";
 import { CM } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
 
-type Props = TextInputProps & { error: string | undefined; theme: Theme };
+type Props = Omit<TextInputProps, "onBlur"> & {
+  onChangeText: Function;
+  theme: Theme;
+};
 
-const CountryPicker = ({
-  theme,
-  error,
-  onBlur,
-  onChangeText,
-  placeholder,
-  value,
-  placeholderTextColor,
-}: Props) => {
+const CountryPicker = ({ theme, onChangeText, placeholder, value }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
+
+  const handleChangeText = (value: string) => {
+    onChangeText(value);
+    setModalVisible(false);
+  };
+
+  const displayValue = useMemo(
+    () =>
+      Boolean(value)
+        ? countries.find((item) => item.value === value)?.label
+        : undefined,
+    [value],
+  );
 
   return (
     <>
@@ -41,8 +49,15 @@ const CountryPicker = ({
             </TitleContainer>
             <Space height={10} />
             <ItemContainer>
+              <PressableItem
+                key={"test-key"}
+                onPress={() => handleChangeText("undefined")}>
+                <PressableLabel>{"Select"}</PressableLabel>
+              </PressableItem>
               {countries.map((item) => (
-                <PressableItem key={item.key}>
+                <PressableItem
+                  key={item.key}
+                  onPress={() => handleChangeText(item.value)}>
                   <PressableLabel>{item.label}</PressableLabel>
                 </PressableItem>
               ))}
@@ -51,7 +66,7 @@ const CountryPicker = ({
         </CenteredView>
       </Modal>
       <StyledPressable theme={theme} onPress={() => setModalVisible(true)}>
-        <CM color={"rgb(73, 101, 140)"}>Country</CM>
+        <CM color={"rgb(73, 101, 140)"}>{displayValue || placeholder}</CM>
         <MaterialIcons name={"arrow-drop-down"} size={24} color={"black"} />
       </StyledPressable>
     </>

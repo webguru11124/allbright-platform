@@ -32,7 +32,6 @@ const RegisterForm = () => {
       <SafeAreaView>
         <TextInput
           placeholder="Email"
-          placeholderTextColor={"#ddd"}
           inputMode="email"
           textContentType="emailAddress"
           value={inputs.email}
@@ -44,7 +43,6 @@ const RegisterForm = () => {
         <TextInput
           secureTextEntry={true}
           placeholder="Password"
-          placeholderTextColor={"#ddd"}
           inputMode="text"
           textContentType="password"
           value={inputs.password}
@@ -56,7 +54,6 @@ const RegisterForm = () => {
         <TextInput
           secureTextEntry={true}
           placeholder="Confirm Password"
-          placeholderTextColor={"#ddd"}
           inputMode="text"
           textContentType="password"
           value={inputs.password_confirmation}
@@ -66,13 +63,9 @@ const RegisterForm = () => {
         />
         <Space height={10} />
         <CountryPicker
-          // input={inputs.country}
-          // displayValue={
-          //   countries.find((item) => item.value === inputs.country)?.label
-          // }
-          error={errors.country}
-          // onFocus={togglePicker}
-          // onPress={togglePicker}
+          placeholder="Country"
+          value={inputs.country}
+          onChangeText={changeTextFuncs.country}
         />
         <Space height={10} />
 
