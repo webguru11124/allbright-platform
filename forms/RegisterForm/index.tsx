@@ -65,6 +65,8 @@ const RegisterForm = () => {
         <CountryPicker
           placeholder="Country"
           value={inputs.country}
+          error={errors.country}
+          onBlur={blurFuncs.country}
           onChangeText={changeTextFuncs.country}
         />
         <Space height={10} />

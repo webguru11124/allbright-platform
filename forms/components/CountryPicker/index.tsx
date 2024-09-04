@@ -5,15 +5,24 @@ import { Alert, Modal, TextInputProps } from "react-native";
 import styled from "styled-components/native";
 
 import Space from "@/components/Space";
-import { CM } from "@/components/Typography";
+import { CM, CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
 
 type Props = Omit<TextInputProps, "onBlur"> & {
   onChangeText: Function;
+  error: string | undefined;
+  onBlur: Function;
   theme: Theme;
 };
 
-const CountryPicker = ({ theme, onChangeText, placeholder, value }: Props) => {
+const CountryPicker = ({
+  theme,
+  onChangeText,
+  placeholder,
+  onBlur,
+  error,
+  value,
+}: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleChangeText = (value: string) => {
@@ -29,6 +38,11 @@ const CountryPicker = ({ theme, onChangeText, placeholder, value }: Props) => {
     [value],
   );
 
+  const onCloseButtonPress = () => {
+    onBlur();
+    setModalVisible(!modalVisible);
+  };
+
   return (
     <>
       <Modal
@@ -43,17 +57,12 @@ const CountryPicker = ({ theme, onChangeText, placeholder, value }: Props) => {
           <ModalView>
             <TitleContainer>
               <Title>Country</Title>
-              <CloseButton onPress={() => setModalVisible(!modalVisible)}>
+              <CloseButton onPress={onCloseButtonPress}>
                 <MaterialIcons name={"close"} size={24} color={"black"} />
               </CloseButton>
             </TitleContainer>
             <Space height={10} />
             <ItemContainer>
-              <PressableItem
-                key={"test-key"}
-                onPress={() => handleChangeText("undefined")}>
-                <PressableLabel>{"Select"}</PressableLabel>
-              </PressableItem>
               {countries.map((item) => (
                 <PressableItem
                   key={item.key}
@@ -65,10 +74,14 @@ const CountryPicker = ({ theme, onChangeText, placeholder, value }: Props) => {
           </ModalView>
         </CenteredView>
       </Modal>
-      <StyledPressable theme={theme} onPress={() => setModalVisible(true)}>
+      <StyledPressable
+        theme={theme}
+        onPress={() => setModalVisible(true)}
+        error={error}>
         <CM color={"rgb(73, 101, 140)"}>{displayValue || placeholder}</CM>
         <MaterialIcons name={"arrow-drop-down"} size={24} color={"black"} />
       </StyledPressable>
+      {error && <CS color="red">{error}</CS>}
     </>
   );
 };
@@ -127,7 +140,7 @@ const CloseButton = styled.Pressable`
   background-color: transparent;
 `;
 
-const StyledPressable = styled.Pressable`
+const StyledPressable = styled.Pressable<{ error: string | undefined }>`
   height: 50px;
   width: 100%;
   flex-direction: row;
@@ -136,6 +149,8 @@ const StyledPressable = styled.Pressable`
   padding-left: 20px;
   padding-right: 10px;
   padding-top: 15px;
+  border-color: ${(p) => (Boolean(p.error) ? "red" : "transparent")};
+  border-width: ${(p) => (Boolean(p.error) ? 3 : 0)}px;
   border-radius: 5px;
   color: rgb(73, 101, 140);
 `;
