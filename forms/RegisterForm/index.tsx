@@ -8,6 +8,7 @@ import TextInput from "@/forms/components/TextInput";
 import useForm from "@/forms/hooks/useForm";
 import registerSchema from "@/forms/RegisterForm/registerSchema";
 import { Register, useSignIn } from "@/hooks/resources/useAuth";
+import AgreeTermsCheckBox from "@/forms/components/AgreeTermsCheckBox";
 
 const RegisterForm = () => {
   const { inputs, postBody, errors, blurFuncs, changeTextFuncs, isFormValid } =
@@ -99,6 +100,14 @@ const RegisterForm = () => {
         error={errors.password_confirmation}
         onBlur={blurFuncs.password_confirmation}
         onChangeText={changeTextFuncs.password_confirmation}
+      />
+      <Space height={10} />
+      <AgreeTermsCheckBox
+        placeholder=""
+        value={inputs.termsAgreed}
+        error={errors.termsAgreed}
+        onBlur={blurFuncs.termsAgreed}
+        onChangeText={changeTextFuncs.termsAgreed}
       />
       <Space height={10} />
 

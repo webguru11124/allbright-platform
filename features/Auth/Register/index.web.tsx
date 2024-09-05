@@ -37,7 +37,7 @@ const Main = styled.View`
 `;
 
 const Section = styled.View<StyleProps>`
-  height: 80%;
+  height: 90%;
   width: 80%;
   flex-direction: row;
   justify-content: center;
@@ -50,7 +50,7 @@ const Section = styled.View<StyleProps>`
       flex-direction: row;
       justify-content: flex-start;
       width: 90%;
-      height: 60%;
+      height: 80%;
       padding: 0;
     `}
 `;

@@ -1,12 +1,14 @@
 import axios from "axios";
 
+import config from "@/config";
+
 const headers = {
   "Content-Type": "application/json",
-  "x-api-key": process.env.EXPO_PUBLIC_API_KEY,
+  "x-api-key": config.API_KEY,
 };
 
 const api = axios.create({
-  baseURL: process.env.EXPO_PUBLIC_API_URL,
+  baseURL: config.API_URL,
   headers,
   timeout: 200000,
 });

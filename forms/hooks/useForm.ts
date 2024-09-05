@@ -6,7 +6,7 @@ type Settings = {
   omit?: string[];
 };
 
-type EventType = { name: string; value: string };
+type EventType = { name: string; value: string | boolean };
 
 const useForm = (
   baseSchema: Joi.PartialSchemaMap<any> | undefined,

@@ -1,4 +1,4 @@
 import RegisterScreen from "@/features/Auth/Register";
-export default function Login() {
+export default function Register() {
   return <RegisterScreen />;
 }
