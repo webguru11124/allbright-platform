@@ -9,21 +9,24 @@ import { pickerAdaptor as countries } from "@/utils/data/countries";
 
 type Props = {
   selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
-  onValueChange: (itemValue: unknown, itemIndex: number) => void;
+  placeholder: string;
+  onChangeText: (itemValue: unknown, itemIndex: number) => void;
   onBlur: (e: NativeSyntheticEvent<TargetedEvent>) => void;
   error: string | undefined;
 };
 
 const CountryPicker = ({
   selectedValue,
-  onValueChange,
+  placeholder,
+  onChangeText,
   onBlur,
   error,
 }: Props) => {
   return (
     <Picker
+      placeholder={placeholder}
       selectedValue={selectedValue}
-      onValueChange={onValueChange}
+      onValueChange={onChangeText}
       items={countries}
       error={error}
       onBlur={onBlur}

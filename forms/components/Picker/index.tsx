@@ -14,6 +14,7 @@ import withTheme from "@/hocs/withTheme";
 
 type Props = {
   selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
+  placeholder: string;
   onValueChange: (itemValue: unknown, itemIndex: number) => void;
   onBlur: (e: NativeSyntheticEvent<TargetedEvent>) => void;
   items: {
@@ -32,6 +33,7 @@ type StyleProps = {
 
 const Picker = ({
   selectedValue,
+  placeholder,
   onValueChange,
   onBlur,
   items,
@@ -46,7 +48,7 @@ const Picker = ({
         backgroundcolor={theme.colors.inputs.background}
         error={error}
         onBlur={onBlur}>
-        <NativePicker.Item key={"-1"} label={"Country"} value={undefined} />
+        <NativePicker.Item key={"-1"} label={placeholder} value={undefined} />
         {items.map(({ key, label, value }) => (
           <NativePicker.Item key={key} label={label} value={value} />
         ))}

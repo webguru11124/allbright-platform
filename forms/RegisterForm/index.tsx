@@ -1,4 +1,4 @@
-import { SafeAreaView, View } from "react-native";
+import { SafeAreaView } from "react-native";
 
 import Space from "@/components/Space";
 import Button from "@/forms/components/Button";
@@ -28,54 +28,52 @@ const RegisterForm = () => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <SafeAreaView>
-        <TextInput
-          placeholder="Email"
-          inputMode="email"
-          textContentType="emailAddress"
-          value={inputs.email}
-          error={errors.email}
-          onBlur={blurFuncs.email}
-          onChangeText={changeTextFuncs.email}
-        />
-        <Space height={10} />
-        <TextInput
-          secureTextEntry={true}
-          placeholder="Password"
-          inputMode="text"
-          textContentType="password"
-          value={inputs.password}
-          error={errors.password}
-          onBlur={blurFuncs.password}
-          onChangeText={changeTextFuncs.password}
-        />
-        <Space height={10} />
-        <TextInput
-          secureTextEntry={true}
-          placeholder="Confirm Password"
-          inputMode="text"
-          textContentType="password"
-          value={inputs.password_confirmation}
-          error={errors.password_confirmation}
-          onBlur={blurFuncs.password_confirmation}
-          onChangeText={changeTextFuncs.password_confirmation}
-        />
-        <Space height={10} />
-        <CountryPicker
-          placeholder="Country"
-          value={inputs.country}
-          error={errors.country}
-          onBlur={blurFuncs.country}
-          onChangeText={changeTextFuncs.country}
-        />
-        <Space height={10} />
+    <SafeAreaView>
+      <TextInput
+        placeholder="Email"
+        inputMode="email"
+        textContentType="emailAddress"
+        value={inputs.email}
+        error={errors.email}
+        onBlur={blurFuncs.email}
+        onChangeText={changeTextFuncs.email}
+      />
+      <Space height={10} />
+      <TextInput
+        secureTextEntry={true}
+        placeholder="Password"
+        inputMode="text"
+        textContentType="password"
+        value={inputs.password}
+        error={errors.password}
+        onBlur={blurFuncs.password}
+        onChangeText={changeTextFuncs.password}
+      />
+      <Space height={10} />
+      <TextInput
+        secureTextEntry={true}
+        placeholder="Confirm Password"
+        inputMode="text"
+        textContentType="password"
+        value={inputs.password_confirmation}
+        error={errors.password_confirmation}
+        onBlur={blurFuncs.password_confirmation}
+        onChangeText={changeTextFuncs.password_confirmation}
+      />
+      <Space height={10} />
+      <CountryPicker
+        placeholder="Country"
+        value={inputs.country}
+        error={errors.country}
+        onBlur={blurFuncs.country}
+        onChangeText={changeTextFuncs.country}
+      />
+      <Space height={10} />
 
-        <Button disabled={!isFormValid} isLoading={isPending} onPress={onPress}>
-          Submit
-        </Button>
-      </SafeAreaView>
-    </View>
+      <Button disabled={!isFormValid} isLoading={isPending} onPress={onPress}>
+        Submit
+      </Button>
+    </SafeAreaView>
   );
 };
 
