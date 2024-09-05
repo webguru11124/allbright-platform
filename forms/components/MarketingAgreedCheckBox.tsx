@@ -1,9 +1,8 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { Linking, TextInputProps } from "react-native";
+import { TextInputProps } from "react-native";
 import styled from "styled-components/native";
 
 import { CS } from "@/components/Typography";
-import { Links } from "@/constants/Links";
 import withTheme from "@/hocs/withTheme";
 
 type Props = Omit<TextInputProps, "onBlur"> & {
@@ -12,7 +11,12 @@ type Props = Omit<TextInputProps, "onBlur"> & {
   theme: Theme;
 };
 
-const AgreeTermsCheckBox = ({ theme, onChangeText, error, value }: Props) => {
+const MarketingAgreedCheckBox = ({
+  theme,
+  onChangeText,
+  error,
+  value,
+}: Props) => {
   const onPress = () => {
     onChangeText(!value);
   };
@@ -24,8 +28,8 @@ const AgreeTermsCheckBox = ({ theme, onChangeText, error, value }: Props) => {
           {value && <MaterialIcons name={"check"} size={24} color={"black"} />}
         </TickWrapper>
         <CS>
-          I agree to the AllBright{" "}
-          <Link onPress={() => Linking.openURL(Links.terms)}>Terms of Use</Link>
+          I would like to receive relevant information, newsletters and
+          opportunities updates from AllBright by email
         </CS>
       </TickContainer>
       {error && <CS color="red">{error}</CS>}
@@ -58,4 +62,4 @@ const Link = styled(CS)`
   text-decoration: underline;
 `;
 
-export default withTheme(AgreeTermsCheckBox);
+export default withTheme(MarketingAgreedCheckBox);

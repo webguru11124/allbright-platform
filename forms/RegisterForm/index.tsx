@@ -7,19 +7,21 @@ import CountryPicker from "@/forms/components/CountryPicker";
 import TextInput from "@/forms/components/TextInput";
 import useForm from "@/forms/hooks/useForm";
 import registerSchema from "@/forms/RegisterForm/registerSchema";
-import { Register, useSignIn } from "@/hooks/resources/useAuth";
+import { Register, useRegister } from "@/hooks/resources/useAuth";
 import AgreeTermsCheckBox from "@/forms/components/AgreeTermsCheckBox";
+import MarketingAgreedCheckBox from "../components/MarketingAgreedCheckBox";
+import ThirdPartyAgreedCheckBox from "../components/ThirdPartyAgreedCheckBox";
+import { RegisterInput, registrationAdaptor } from "@/forms/adaptors";
 
 const RegisterForm = () => {
   const { inputs, postBody, errors, blurFuncs, changeTextFuncs, isFormValid } =
     useForm(registerSchema);
 
-  const { mutate, isPending } = useSignIn();
+  const { mutate, isPending } = useRegister();
 
   const onPress = () => {
     if (isFormValid) {
-      const updatedPostBody = _.omit(postBody, ["password_confirmation"]);
-      mutate(updatedPostBody as Register, {
+      mutate(registrationAdaptor(postBody as RegisterInput) as Register, {
         onSuccess: (response) => {
           console.log(response);
         },
@@ -107,8 +109,17 @@ const RegisterForm = () => {
         error={errors.termsAgreed}
         onChangeText={changeTextFuncs.termsAgreed}
       />
+      <MarketingAgreedCheckBox
+        value={inputs.marketingAgreed}
+        error={errors.marketingAgreed}
+        onChangeText={changeTextFuncs.marketingAgreed}
+      />
+      <ThirdPartyAgreedCheckBox
+        value={inputs.thirdPartyAgreed}
+        error={errors.thirdPartyAgreed}
+        onChangeText={changeTextFuncs.thirdPartyAgreed}
+      />
       <Space height={10} />
-
       <Button disabled={!isFormValid} isLoading={isPending} onPress={onPress}>
         Submit
       </Button>

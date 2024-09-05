@@ -16,6 +16,8 @@ export const registerSchema = {
   password: Joi.string().min(4).alphanum().required(),
   password_confirmation: Joi.string().min(4).alphanum().required(),
   termsAgreed: Joi.boolean().invalid(false).required(),
+  marketingAgreed: Joi.boolean().required(),
+  thirdPartyAgreed: Joi.boolean().required(),
 };
 
 export default registerSchema;
