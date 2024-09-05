@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { SafeAreaView } from "react-native";
 
 import Space from "@/components/Space";
@@ -16,7 +17,8 @@ const RegisterForm = () => {
 
   const onPress = () => {
     if (isFormValid) {
-      mutate(postBody as Register, {
+      const updatedPostBody = _.omit(postBody, ["password_confirmation"]);
+      mutate(updatedPostBody as Register, {
         onSuccess: (response) => {
           console.log(response);
         },
@@ -30,6 +32,26 @@ const RegisterForm = () => {
   return (
     <SafeAreaView>
       <TextInput
+        placeholder="First Name"
+        inputMode="text"
+        textContentType="name"
+        value={inputs.first_name}
+        error={errors.first_name}
+        onBlur={blurFuncs.first_name}
+        onChangeText={changeTextFuncs.first_name}
+      />
+      <Space height={10} />
+      <TextInput
+        placeholder="Last Name"
+        inputMode="text"
+        textContentType="name"
+        value={inputs.last_name}
+        error={errors.last_name}
+        onBlur={blurFuncs.last_name}
+        onChangeText={changeTextFuncs.last_name}
+      />
+      <Space height={10} />
+      <TextInput
         placeholder="Email"
         inputMode="email"
         textContentType="emailAddress"
@@ -37,6 +59,24 @@ const RegisterForm = () => {
         error={errors.email}
         onBlur={blurFuncs.email}
         onChangeText={changeTextFuncs.email}
+      />
+      <Space height={10} />
+      <TextInput
+        placeholder="City"
+        inputMode="text"
+        textContentType="addressCity"
+        value={inputs.city}
+        error={errors.city}
+        onBlur={blurFuncs.city}
+        onChangeText={changeTextFuncs.city}
+      />
+      <Space height={10} />
+      <CountryPicker
+        placeholder="Country"
+        value={inputs.country}
+        error={errors.country}
+        onBlur={blurFuncs.country}
+        onChangeText={changeTextFuncs.country}
       />
       <Space height={10} />
       <TextInput
@@ -59,14 +99,6 @@ const RegisterForm = () => {
         error={errors.password_confirmation}
         onBlur={blurFuncs.password_confirmation}
         onChangeText={changeTextFuncs.password_confirmation}
-      />
-      <Space height={10} />
-      <CountryPicker
-        placeholder="Country"
-        value={inputs.country}
-        error={errors.country}
-        onBlur={blurFuncs.country}
-        onChangeText={changeTextFuncs.country}
       />
       <Space height={10} />
 
