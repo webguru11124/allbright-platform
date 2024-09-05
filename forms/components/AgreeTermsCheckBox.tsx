@@ -5,26 +5,14 @@ import styled from "styled-components/native";
 import { CS } from "@/components/Typography";
 import { Links } from "@/constants/Links";
 import withTheme from "@/hocs/withTheme";
-import { useEffect } from "react";
 
 type Props = Omit<TextInputProps, "onBlur"> & {
   onChangeText: (value: string | boolean) => void;
-  placeholder: string | React.FC;
   error: string | undefined;
-  onBlur: Function;
   theme: Theme;
 };
 
-const CheckBox = ({
-  theme,
-  onChangeText,
-  placeholder,
-  onBlur,
-  error,
-  value,
-}: Props) => {
-  useEffect(() => console.log("value", value), [value]);
-
+const CheckBox = ({ theme, onChangeText, error, value }: Props) => {
   const onPress = () => {
     onChangeText(!value);
   };

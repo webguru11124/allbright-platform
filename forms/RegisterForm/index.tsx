@@ -103,10 +103,8 @@ const RegisterForm = () => {
       />
       <Space height={10} />
       <AgreeTermsCheckBox
-        placeholder=""
         value={inputs.termsAgreed}
         error={errors.termsAgreed}
-        onBlur={blurFuncs.termsAgreed}
         onChangeText={changeTextFuncs.termsAgreed}
       />
       <Space height={10} />

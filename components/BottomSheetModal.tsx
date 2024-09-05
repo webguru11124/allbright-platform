@@ -4,7 +4,7 @@ import {
 } from "@gorhom/bottom-sheet";
 import { StyleSheet, View } from "react-native";
 
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 type Props = {
   show: boolean;
@@ -17,10 +17,6 @@ const BottomSheetModal = ({ show, children }: Props) => {
 
   // variables
   const snapPoints = useMemo(() => ["80%", "30%"], []);
-
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log("handleSheetChanges", index);
-  }, []);
 
   useEffect(() => {
     if (show) {
@@ -35,8 +31,7 @@ const BottomSheetModal = ({ show, children }: Props) => {
       <RNBottomSheetModal
         ref={bottomSheetModalRef}
         index={1}
-        snapPoints={snapPoints}
-        onChange={handleSheetChanges}>
+        snapPoints={snapPoints}>
         <BottomSheetView style={styles.contentContainer}>
           {children}
         </BottomSheetView>
