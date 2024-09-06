@@ -6,15 +6,15 @@ import AgreeTermsCheckBox from "@/forms/components/AgreeTermsCheckBox";
 import Button from "@/forms/components/Button";
 import CountryPicker from "@/forms/components/CountryPicker";
 import TextInput from "@/forms/components/TextInput";
-import useForm from "@/forms/hooks/useForm";
 import registerSchema from "@/forms/RegisterForm/registerSchema";
 import { Register, useRegister } from "@/hooks/resources/useAuth";
 import MarketingAgreedCheckBox from "../components/MarketingAgreedCheckBox";
 import ThirdPartyAgreedCheckBox from "../components/ThirdPartyAgreedCheckBox";
+import useFormWithPassConf from "../hooks/useFormWithPassConf";
 
 const RegisterForm = () => {
   const { inputs, postBody, errors, blurFuncs, changeTextFuncs, isFormValid } =
-    useForm(registerSchema);
+    useFormWithPassConf(registerSchema);
 
   const { mutate, isPending } = useRegister();
 
