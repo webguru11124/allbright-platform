@@ -1,7 +1,11 @@
 import { registrationAdaptor } from "@/forms/adaptors";
-import { RegisterInput } from "@/forms/adaptors";
+import { RegisterInput, RegisterOutput } from "@/forms/adaptors";
 
-type TestItem = { description: string; inputs: RegisterInput; outputs: {} };
+type TestItem = {
+  description: string;
+  inputs: RegisterInput;
+  outputs: RegisterOutput;
+};
 
 describe.each<TestItem>([
   {
