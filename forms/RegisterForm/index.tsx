@@ -1,17 +1,16 @@
-import _ from "lodash";
 import { SafeAreaView } from "react-native";
 
 import Space from "@/components/Space";
+import { RegisterInput, registrationAdaptor } from "@/forms/adaptors";
+import AgreeTermsCheckBox from "@/forms/components/AgreeTermsCheckBox";
 import Button from "@/forms/components/Button";
 import CountryPicker from "@/forms/components/CountryPicker";
 import TextInput from "@/forms/components/TextInput";
 import useForm from "@/forms/hooks/useForm";
 import registerSchema from "@/forms/RegisterForm/registerSchema";
 import { Register, useRegister } from "@/hooks/resources/useAuth";
-import AgreeTermsCheckBox from "@/forms/components/AgreeTermsCheckBox";
 import MarketingAgreedCheckBox from "../components/MarketingAgreedCheckBox";
 import ThirdPartyAgreedCheckBox from "../components/ThirdPartyAgreedCheckBox";
-import { RegisterInput, registrationAdaptor } from "@/forms/adaptors";
 
 const RegisterForm = () => {
   const { inputs, postBody, errors, blurFuncs, changeTextFuncs, isFormValid } =

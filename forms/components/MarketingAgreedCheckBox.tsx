@@ -58,8 +58,4 @@ const TickWrapper = styled.View<{ error: string | undefined }>`
   align-items: center;
 `;
 
-const Link = styled(CS)`
-  text-decoration: underline;
-`;
-
 export default withTheme(MarketingAgreedCheckBox);
