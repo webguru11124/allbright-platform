@@ -19,8 +19,8 @@ const LoginForm = () => {
         onSuccess: (response) => {
           console.log(response);
         },
-        onError: (error) => {
-          console.error(error);
+        onError: (error: any) => {
+          console.error(error?.data);
         },
       });
     }

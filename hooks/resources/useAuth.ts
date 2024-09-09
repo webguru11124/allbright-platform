@@ -13,24 +13,23 @@ export type Login = {
 
 export type Register = RegisterOutput;
 
-const signinFn = async (loginData: Login) => {
-  const response = await api.post(SIGNIN_URL, loginData);
-  return response;
-};
+const signinFn = async (loginData: Login) =>
+  await api.post(SIGNIN_URL, loginData);
 
 export const useSignIn = () => {
   return useMutation({
+    mutationKey: ["register"],
     mutationFn: signinFn,
   });
 };
 
-const registerFn = async (registrationData: Register) => {
-  const response = await api.post(REGISTER_URL, registrationData);
-  return response;
+const registerFn = (registrationData: Register) => {
+  return api.post(REGISTER_URL, registrationData);
 };
 
 export const useRegister = () => {
   return useMutation({
+    mutationKey: ["login"],
     mutationFn: registerFn,
   });
 };
