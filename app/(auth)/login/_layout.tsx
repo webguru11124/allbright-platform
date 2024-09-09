@@ -12,6 +12,7 @@ export default function RootLayout() {
         headerStyle: {
           backgroundColor: "transparent",
         },
+        headerShadowVisible: false,
         headerTintColor: theme.colors.primary,
         headerTitleStyle: {
           fontWeight: "bold",
