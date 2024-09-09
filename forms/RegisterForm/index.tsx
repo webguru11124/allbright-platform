@@ -14,7 +14,9 @@ import useFormWithPassConf from "../hooks/useFormWithPassConf";
 
 const RegisterForm = () => {
   const { inputs, postBody, errors, blurFuncs, changeTextFuncs, isFormValid } =
-    useFormWithPassConf(registerSchema);
+    useFormWithPassConf(registerSchema, {
+      default: { marketingAgreed: false, thirdPartyAgreed: false },
+    });
 
   const { mutate, isPending } = useRegister();
 

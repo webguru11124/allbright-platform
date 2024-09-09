@@ -2,8 +2,9 @@ import Joi from "joi";
 import _ from "lodash";
 import { useMemo, useState } from "react";
 
-type Settings = {
+export type Settings = {
   omit?: string[];
+  default?: { [key: string]: string | number | boolean };
 };
 
 type EventType = { name: string; value: string | boolean };
@@ -15,7 +16,7 @@ const useForm = (
   const schema = Joi.object(baseSchema);
   const schemaKeys = Object.keys(baseSchema || {});
   const schemaInputs = _.chain(schemaKeys)
-    .map((key) => [key, undefined])
+    .map((key) => [key, settings?.default?.[key]])
     .fromPairs()
     .value();
 

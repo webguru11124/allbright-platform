@@ -2,10 +2,7 @@ import Joi from "joi";
 
 import useForm from "@/forms/hooks/useForm";
 import { useMemo } from "react";
-
-type Settings = {
-  omit?: string[];
-};
+import { Settings } from "@/forms/hooks/useForm";
 
 const useFormWithPassConf = (
   baseSchema: Joi.PartialSchemaMap<any> | undefined,

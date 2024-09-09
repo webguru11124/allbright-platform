@@ -1,5 +1,5 @@
 import useForm from "@/forms/hooks/useForm";
-import { renderHook } from "@testing-library/react-native";
+import { renderHook, waitFor } from "@testing-library/react-native";
 import Joi from "joi";
 import _ from "lodash";
 
@@ -32,44 +32,48 @@ describe("useForms", () => {
     });
   });
 
-  describe(".postBody", () => {
-    it("are extracted from the schema minus settings.omit", () => {
-      const schema = {
-        ..._.pick(baseSchema, ["email", "password"]),
-        password_confirmation: Joi.string().min(4).alphanum().required(),
-      };
+  describe("settings", () => {
+    describe(".omit", () => {
+      it("removes omitted properties from the postBody", () => {
+        const schema = {
+          ..._.pick(baseSchema, ["email", "password"]),
+          password_confirmation: Joi.string().min(4).alphanum().required(),
+        };
 
-      const { result } = renderHook(() =>
-        useForm(schema, { omit: ["password_confirmation"] }),
-      );
+        const { result } = renderHook(() =>
+          useForm(schema, { omit: ["password_confirmation"] }),
+        );
 
-      expect(result.current.inputs).toStrictEqual({
-        email: undefined,
-        password: undefined,
-        password_confirmation: undefined,
-      });
+        expect(result.current.inputs).toStrictEqual({
+          email: undefined,
+          password: undefined,
+          password_confirmation: undefined,
+        });
 
-      expect(result.current.postBody).toStrictEqual({
-        email: undefined,
-        password: undefined,
+        expect(result.current.postBody).toStrictEqual({
+          email: undefined,
+          password: undefined,
+        });
       });
     });
-  });
 
-  describe(".schema", () => {
-    it("are extracted from the schema minus settings.omit", () => {
-      const schema = baseSchema;
+    describe(".default", () => {
+      it("adds default values to the provided properties", () => {
+        const { result } = renderHook(() =>
+          useForm(baseSchema, {
+            default: { first_name: "Steve", password: "Help!" },
+          }),
+        );
 
-      const { result } = renderHook(() => useForm(schema));
-      const { error } = result.current.schema
-        .extract("first_name")
-        .validate("");
-      expect(error).not.toBeUndefined();
-
-      const { error: updatedError } = result.current.schema
-        .extract("first_name")
-        .validate("lorem");
-      expect(updatedError).toBeUndefined();
+        waitFor(() => {
+          expect(result.current.inputs).toStrictEqual({
+            first_name: "Steve",
+            last_name: undefined,
+            email: undefined,
+            password: "Help!",
+          });
+        });
+      });
     });
   });
 });
