@@ -17,7 +17,7 @@ const signinFn = async (loginData: Login) => {
   try {
     return await api.post(SIGNIN_URL, loginData);
   } catch (error: any) {
-    throw errorHandler(error?.data?.statusCode);
+    throw HandledError(error?.data?.statusCode);
   }
 };
 
@@ -36,7 +36,7 @@ export const useRegister = () =>
     mutationFn: registerFn,
   });
 
-const errorHandler = (statusCode: number) => {
+const HandledError = (statusCode: number) => {
   let result: Partial<ClientError>;
   switch (statusCode) {
     case 401:
