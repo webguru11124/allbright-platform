@@ -1,6 +1,8 @@
 import Joi from "joi";
 import _ from "lodash";
 import { useMemo, useState } from "react";
+import Toast from "react-native-root-toast";
+import useTheme from "@/hooks/useTheme";
 
 export type Settings = {
   omit?: string[];
@@ -13,6 +15,7 @@ const useForm = (
   baseSchema: Joi.PartialSchemaMap<any> | undefined,
   settings: Settings = {},
 ) => {
+  const theme = useTheme();
   const schema = Joi.object(baseSchema);
   const schemaKeys = Object.keys(baseSchema || {});
   const schemaInputs = _.chain(schemaKeys)
@@ -74,6 +77,24 @@ const useForm = (
     [inputs, settings],
   );
 
+  const showSuccessMessage = (message: string) => {
+    showToastMessage(message, theme.colors.alert.success);
+  };
+
+  const showErrorMessage = (message: string) => {
+    showToastMessage(message, theme.colors.alert.danger);
+  };
+
+  const showToastMessage = (message: string, color: string) => {
+    Toast.show(message, {
+      duration: 10000,
+      backgroundColor: color,
+      hideOnPress: true,
+      opacity: 1,
+      position: Toast.positions.TOP,
+    });
+  };
+
   return {
     schema,
     schemaInputs,
@@ -85,6 +106,8 @@ const useForm = (
     blurFuncs,
     changeTextFuncs,
     isFormValid,
+    showSuccessMessage,
+    showErrorMessage,
   };
 };
 

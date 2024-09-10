@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 
-import api from "@/utils/api";
 import { RegisterOutput } from "@/forms/adaptors";
+import api from "@/utils/api";
 
 const SIGNIN_URL = "/v1/auth/signin";
 const REGISTER_URL = "/v1/auth/register/allbright_free";
@@ -13,23 +13,39 @@ export type Login = {
 
 export type Register = RegisterOutput;
 
-const signinFn = async (loginData: Login) =>
-  await api.post(SIGNIN_URL, loginData);
+const signinFn = async (loginData: Login) => {
+  try {
+    return await api.post(SIGNIN_URL, loginData);
+  } catch (error: any) {
+    throw errorHandler(error?.data?.statusCode);
+  }
+};
 
-export const useSignIn = () => {
-  return useMutation({
+export const useSignIn = () =>
+  useMutation({
     mutationKey: ["register"],
     mutationFn: signinFn,
   });
-};
 
-const registerFn = (registrationData: Register) => {
-  return api.post(REGISTER_URL, registrationData);
-};
+const registerFn = (registrationData: Register) =>
+  api.post(REGISTER_URL, registrationData);
 
-export const useRegister = () => {
-  return useMutation({
+export const useRegister = () =>
+  useMutation({
     mutationKey: ["login"],
     mutationFn: registerFn,
   });
+
+const errorHandler = (statusCode: number) => {
+  let result: Partial<ClientError>;
+  switch (statusCode) {
+    case 401:
+    default:
+      result = {
+        type: "danger",
+        message: "Login failed: Please check your username and password",
+      };
+  }
+
+  return result;
 };

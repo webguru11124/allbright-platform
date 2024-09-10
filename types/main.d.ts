@@ -11,4 +11,8 @@ declare global {
     maxWidth: (val: number) => boolean;
     minWidth: (val: number) => boolean;
   };
+  type ClientError = {
+    type: "danger" | "warning";
+    message: string;
+  };
 }

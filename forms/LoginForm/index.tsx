@@ -1,15 +1,22 @@
 import { SafeAreaView } from "react-native";
 
-import Button from "@/forms/components/Button";
 import Space from "@/components/Space";
+import Button from "@/forms/components/Button";
 import TextInput from "@/forms/components/TextInput";
+import useForm from "@/forms/hooks/useForm";
 import loginSchema from "@/forms/LoginForm/loginSchema";
 import { Login, useSignIn } from "@/hooks/resources/useAuth";
-import useForm from "@/forms/hooks/useForm";
 
 const LoginForm = () => {
-  const { inputs, postBody, errors, blurFuncs, changeTextFuncs, isFormValid } =
-    useForm(loginSchema);
+  const {
+    inputs,
+    postBody,
+    errors,
+    blurFuncs,
+    changeTextFuncs,
+    isFormValid,
+    showErrorMessage,
+  } = useForm(loginSchema);
 
   const { mutate, isPending } = useSignIn();
 
@@ -19,9 +26,7 @@ const LoginForm = () => {
         onSuccess: (response) => {
           console.log(response);
         },
-        onError: (error: any) => {
-          console.error(error?.data);
-        },
+        onError: (error: any) => showErrorMessage(error.message),
       });
     }
   };
