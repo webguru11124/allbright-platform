@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 
 import { RegisterOutput } from "@/forms/adaptors";
-import api from "@/utils/api";
+import api from "@/lib/api";
 
 const SIGNIN_URL = "/v1/auth/signin";
 const REGISTER_URL = "/v1/auth/register/allbright_free";

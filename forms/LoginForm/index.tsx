@@ -1,4 +1,5 @@
 import { SafeAreaView } from "react-native";
+import { router } from "expo-router";
 
 import Space from "@/components/Space";
 import Button from "@/forms/components/Button";
@@ -6,6 +7,7 @@ import TextInput from "@/forms/components/TextInput";
 import useForm from "@/forms/hooks/useForm";
 import loginSchema from "@/forms/LoginForm/loginSchema";
 import { Login, useSignIn } from "@/hooks/resources/useAuth";
+import { setToken } from "@/utils/token";
 
 const LoginForm = () => {
   const {
@@ -24,7 +26,8 @@ const LoginForm = () => {
     if (isFormValid) {
       mutate(postBody as Login, {
         onSuccess: (response) => {
-          console.log(response);
+          setToken(response as unknown as string);
+          router.replace("/home");
         },
         onError: (error: any) => showErrorMessage(error.message),
       });
