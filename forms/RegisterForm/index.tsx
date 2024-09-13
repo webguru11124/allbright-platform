@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import { SafeAreaView } from "react-native";
 
 import Space from "@/components/Space";
@@ -8,6 +9,7 @@ import CountryPicker from "@/forms/components/CountryPicker";
 import TextInput from "@/forms/components/TextInput";
 import registerSchema from "@/forms/RegisterForm/registerSchema";
 import { Register, useRegister } from "@/hooks/resources/useAuth";
+import { setToken } from "@/utils/token";
 import MarketingAgreedCheckBox from "../components/MarketingAgreedCheckBox";
 import ThirdPartyAgreedCheckBox from "../components/ThirdPartyAgreedCheckBox";
 import useFormWithPassConf from "../hooks/useFormWithPassConf";
@@ -24,7 +26,8 @@ const RegisterForm = () => {
     if (isFormValid) {
       mutate(registrationAdaptor(postBody as RegisterInput) as Register, {
         onSuccess: (response) => {
-          console.log(response);
+          setToken(response as unknown as string);
+          router.replace("/home");
         },
         onError: (error: any) => {
           console.error(error?.data);
