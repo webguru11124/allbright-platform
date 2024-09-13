@@ -4,6 +4,7 @@ import styled, { css } from "styled-components/native";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import LoginForm from "@/forms/LoginForm";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
+import RegisterLink from "../partials/RegisterLink";
 
 type StyleProps = {
   maxWidth: (val: number) => boolean;
@@ -24,6 +25,7 @@ const Login = () => {
         </ImageContainer>
         <FormContainer maxWidth={maxWidth}>
           <LoginForm />
+          <RegisterLink />
         </FormContainer>
       </Section>
     </Main>
