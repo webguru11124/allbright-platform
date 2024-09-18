@@ -16,7 +16,7 @@
   },
   "jest": {
     "preset": "jest-expo",
-    "setupFiles": ["./__mocks__/jestSetup.ts"]
+    "setupFiles": ["./node_modules/react-native-gesture-handler/jestSetup.js", "./__mocks__/jestSetup.ts"]
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",

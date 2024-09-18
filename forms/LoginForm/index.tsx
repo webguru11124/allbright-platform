@@ -1,39 +1,39 @@
-import { SafeAreaView } from "react-native";
-import { router } from "expo-router";
+import {
+  NativeSyntheticEvent,
+  SafeAreaView,
+  TextInputFocusEventData,
+} from "react-native";
 
 import Space from "@/components/Space";
 import Button from "@/forms/components/Button";
 import TextInput from "@/forms/components/TextInput";
-import useForm from "@/forms/hooks/useForm";
-import loginSchema from "@/forms/LoginForm/loginSchema";
-import { Login, useSignIn } from "@/hooks/resources/useAuth";
-import { setToken } from "@/utils/token";
+import withLoginFormProps from "../hocs/withLoginFormProps";
 
-const LoginForm = () => {
-  const {
-    inputs,
-    postBody,
-    errors,
-    blurFuncs,
-    changeTextFuncs,
-    isFormValid,
-    showErrorMessage,
-  } = useForm(loginSchema);
-
-  const { mutate, isPending } = useSignIn();
-
-  const onPress = () => {
-    if (isFormValid) {
-      mutate(postBody as Login, {
-        onSuccess: (response) => {
-          setToken(response as unknown as string);
-          router.replace("/home");
-        },
-        onError: (error: any) => showErrorMessage(error.message),
-      });
-    }
+export type LoginFormProps = {
+  inputs: { email: string | undefined; password: string | undefined };
+  errors: { email: string | undefined; password: string | undefined };
+  blurFuncs: {
+    email: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+    password: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   };
+  changeTextFuncs: {
+    email: (text: string) => void;
+    password: (text: string) => void;
+  };
+  isFormValid: boolean;
+  isPending: boolean;
+  onPress: GestureEvent;
+};
 
+export const LoginForm = ({
+  inputs,
+  errors,
+  blurFuncs,
+  changeTextFuncs,
+  isFormValid,
+  isPending,
+  onPress,
+}: LoginFormProps) => {
   return (
     <SafeAreaView>
       <TextInput
@@ -66,4 +66,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default withLoginFormProps(LoginForm);
