@@ -46,6 +46,7 @@ const RegisterForm = () => {
         error={errors.first_name}
         onBlur={blurFuncs.first_name}
         onChangeText={changeTextFuncs.first_name}
+        testID="RegisterForm:FirstName"
       />
       <Space height={10} />
       <TextInput
@@ -56,6 +57,7 @@ const RegisterForm = () => {
         error={errors.last_name}
         onBlur={blurFuncs.last_name}
         onChangeText={changeTextFuncs.last_name}
+        testID="RegisterForm:LastName"
       />
       <Space height={10} />
       <TextInput
@@ -66,6 +68,7 @@ const RegisterForm = () => {
         error={errors.email}
         onBlur={blurFuncs.email}
         onChangeText={changeTextFuncs.email}
+        testID="RegisterForm:Email"
       />
       <Space height={10} />
       <TextInput
@@ -76,6 +79,7 @@ const RegisterForm = () => {
         error={errors.city}
         onBlur={blurFuncs.city}
         onChangeText={changeTextFuncs.city}
+        testID="RegisterForm:City"
       />
       <Space height={10} />
       <CountryPicker
@@ -84,6 +88,7 @@ const RegisterForm = () => {
         error={errors.country}
         onBlur={blurFuncs.country}
         onChangeText={changeTextFuncs.country}
+        testID="RegisterForm:Country"
       />
       <Space height={10} />
       <TextInput
@@ -95,6 +100,7 @@ const RegisterForm = () => {
         error={errors.password}
         onBlur={blurFuncs.password}
         onChangeText={changeTextFuncs.password}
+        testID="RegisterForm:Password"
       />
       <Space height={10} />
       <TextInput
@@ -106,25 +112,33 @@ const RegisterForm = () => {
         error={errors.password_confirmation}
         onBlur={blurFuncs.password_confirmation}
         onChangeText={changeTextFuncs.password_confirmation}
+        testID="RegisterForm:PasswordConfirmation"
       />
       <Space height={10} />
       <AgreeTermsCheckBox
         value={inputs.termsAgreed}
         error={errors.termsAgreed}
         onChangeText={changeTextFuncs.termsAgreed}
+        testID="RegisterForm:TermsAgreed"
       />
       <MarketingAgreedCheckBox
         value={inputs.marketingAgreed}
         error={errors.marketingAgreed}
         onChangeText={changeTextFuncs.marketingAgreed}
+        testID="RegisterForm:MarketingAgreed"
       />
       <ThirdPartyAgreedCheckBox
         value={inputs.thirdPartyAgreed}
         error={errors.thirdPartyAgreed}
         onChangeText={changeTextFuncs.thirdPartyAgreed}
+        testID="RegisterForm:ThirdPartyAgreed"
       />
       <Space height={10} />
-      <Button disabled={!isFormValid} isLoading={isPending} onPress={onPress}>
+      <Button
+        disabled={!isFormValid}
+        isLoading={isPending}
+        onPress={onPress}
+        testID="RegisterForm:Submit">
         Submit
       </Button>
     </SafeAreaView>

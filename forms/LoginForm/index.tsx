@@ -61,7 +61,11 @@ export const LoginForm = ({
         testID="LoginForm:Password"
       />
       <Space height={50} />
-      <Button disabled={!isFormValid} isLoading={isPending} onPress={onPress}>
+      <Button
+        disabled={!isFormValid}
+        isLoading={isPending}
+        onPress={onPress}
+        testID="LoginForm:Submit">
         Submit
       </Button>
     </SafeAreaView>
