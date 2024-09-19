@@ -75,8 +75,8 @@ describe("LoginForm", () => {
     await fireBlurEvent(screen.getByTestId("LoginForm:Email"), EMAIL);
     await fireBlurEvent(screen.getByTestId("LoginForm:Password"), PASS);
 
-    expect(screen.findByText(EXPECTED_EMAIL)).not.toBeNull();
-    expect(screen.findByText(EXPECTED_PASS)).not.toBeNull();
+    expect(await screen.findByText(EXPECTED_EMAIL)).not.toBeNull();
+    expect(await screen.findByText(EXPECTED_PASS)).not.toBeNull();
 
     await act(() => {
       fireEvent.press(screen.getByText("Submit"));
