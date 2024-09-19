@@ -1,8 +1,8 @@
 import { faker } from "@faker-js/faker";
-import { fireEvent, userEvent } from "@testing-library/react-native";
+import { fireEvent, waitFor } from "@testing-library/react-native";
 import { act, renderRouter, screen } from "expo-router/testing-library";
-import { ReactTestInstance } from "react-test-renderer";
 
+import { fireBlurEvent } from "@/__mocks__/test-utils";
 import LoginForm from "@/forms/LoginForm";
 import api from "@/lib/api";
 import Providers from "@/utils/providers";
@@ -24,6 +24,7 @@ describe("LoginForm", () => {
     const MOCK_TOKEN = "my-bearer-token";
     const EMAIL = faker.internet.email();
     const PASS = faker.internet.password();
+    const tokenSpy = jest.spyOn(tokenFns, "setToken");
 
     renderRouter({
       index: jest.fn(() => (
@@ -40,14 +41,14 @@ describe("LoginForm", () => {
 
     mockedApi.post.mockResolvedValueOnce(MOCK_TOKEN);
 
-    const tokenSpy = jest.spyOn(tokenFns, "setToken");
-
     await act(() => {
       fireEvent.press(screen.getByText("Submit"));
     });
 
-    expect(tokenSpy).toHaveBeenCalledWith(MOCK_TOKEN);
-    expect(screen).toHavePathname("/home");
+    await waitFor(() => {
+      expect(tokenSpy).toHaveBeenCalledWith(MOCK_TOKEN);
+      expect(screen).toHavePathname("/home");
+    });
   });
 
   it(`should:
@@ -71,19 +72,8 @@ describe("LoginForm", () => {
 
     expect(screen).toHavePathname("/");
 
-    // Need to search for inputs with placeholder text of "" due
-    // to the way react-native-floating-label-input works
-    // TODO: move to its own function findAllTextInputs
-
-    const [emailInput, passwordInput]: ReactTestInstance[] =
-      await screen.findAllByPlaceholderText("");
-
-    const user = userEvent.setup();
-
-    // TODO: move to its own function: fireBlurEvent
-    // paste fires onBlur
-    await user.paste(emailInput, EMAIL);
-    await user.paste(passwordInput, PASS);
+    await fireBlurEvent(screen.getByTestId("LoginForm:Email"), EMAIL);
+    await fireBlurEvent(screen.getByTestId("LoginForm:Password"), PASS);
 
     expect(screen.findByText(EXPECTED_EMAIL)).not.toBeNull();
     expect(screen.findByText(EXPECTED_PASS)).not.toBeNull();
@@ -92,6 +82,6 @@ describe("LoginForm", () => {
       fireEvent.press(screen.getByText("Submit"));
     });
 
-    expect(screen).toHavePathname("/"); // user does not go to home screen
+    expect(screen).not.toHavePathname("/home");
   });
 });

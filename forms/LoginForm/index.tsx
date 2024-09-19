@@ -45,6 +45,7 @@ export const LoginForm = ({
         error={errors.email}
         onBlur={blurFuncs.email}
         onChangeText={changeTextFuncs.email}
+        testID="LoginForm:Email"
       />
       <Space height={10} />
       <TextInput
@@ -57,6 +58,7 @@ export const LoginForm = ({
         error={errors.password}
         onBlur={blurFuncs.password}
         onChangeText={changeTextFuncs.password}
+        testID="LoginForm:Password"
       />
       <Space height={50} />
       <Button disabled={!isFormValid} isLoading={isPending} onPress={onPress}>
