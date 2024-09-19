@@ -36,6 +36,7 @@ describe("LoginForm", () => {
           <LoginForm {...props} />
         </Providers>,
       );
+      jest.clearAllMocks();
     });
 
     it("when the email input is updated", () => {
