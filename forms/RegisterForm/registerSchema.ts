@@ -13,8 +13,8 @@ export const registerSchema = {
     .messages({
       "*": "Please pick a country from the list",
     }),
-  password: Joi.string().min(4).alphanum().required(),
-  password_confirmation: Joi.string().min(4).alphanum().required(),
+  password: Joi.string().min(4).required(),
+  password_confirmation: Joi.string().min(4).required(),
   termsAgreed: Joi.boolean().invalid(false).required(),
   marketingAgreed: Joi.boolean().required(),
   thirdPartyAgreed: Joi.boolean().required(),

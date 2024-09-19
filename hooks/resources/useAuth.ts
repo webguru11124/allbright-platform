@@ -15,7 +15,9 @@ export type Register = RegisterOutput;
 
 const signinFn = async (loginData: Login) => {
   try {
-    return await api.post(SIGNIN_URL, loginData);
+    const myVal = await api.post(SIGNIN_URL, loginData);
+
+    return myVal;
   } catch (error: any) {
     throw HandledError(error?.data?.statusCode);
   }

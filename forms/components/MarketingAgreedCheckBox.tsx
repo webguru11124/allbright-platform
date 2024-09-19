@@ -16,6 +16,7 @@ const MarketingAgreedCheckBox = ({
   onChangeText,
   error,
   value,
+  testID,
 }: Props) => {
   const onPress = () => {
     onChangeText(!value);
@@ -23,7 +24,7 @@ const MarketingAgreedCheckBox = ({
 
   return (
     <>
-      <TickContainer onPress={onPress}>
+      <TickContainer testID={testID} onPress={onPress}>
         <TickWrapper error={error}>
           {value && <MaterialIcons name={"check"} size={24} color={"black"} />}
         </TickWrapper>

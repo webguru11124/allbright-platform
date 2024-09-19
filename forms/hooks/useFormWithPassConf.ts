@@ -19,6 +19,8 @@ const useFormWithPassConf = (
     blurFuncs,
     changeTextFuncs,
     isFormValid: internalIsFormValid,
+    showSuccessMessage,
+    showErrorMessage,
   } = useForm(baseSchema, settings);
 
   const errors = useMemo<typeof internalErrors>(
@@ -53,6 +55,8 @@ const useFormWithPassConf = (
     blurFuncs,
     changeTextFuncs,
     isFormValid,
+    showSuccessMessage,
+    showErrorMessage,
   };
 };
 
