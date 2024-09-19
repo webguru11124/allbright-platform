@@ -1,8 +1,4 @@
-import {
-  NativeSyntheticEvent,
-  SafeAreaView,
-  TextInputFocusEventData,
-} from "react-native";
+import { SafeAreaView } from "react-native";
 
 import Space from "@/components/Space";
 import Button from "@/forms/components/Button";
@@ -13,8 +9,8 @@ export type LoginFormProps = {
   inputs: { email: string | undefined; password: string | undefined };
   errors: { email: string | undefined; password: string | undefined };
   blurFuncs: {
-    email: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
-    password: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+    email: SyntheticEvent;
+    password: SyntheticEvent;
   };
   changeTextFuncs: {
     email: (text: string) => void;

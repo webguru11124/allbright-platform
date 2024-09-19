@@ -17,9 +17,9 @@ type InputProps = {
   password_confirmation: string | undefined;
   city: string | undefined;
   country: string | undefined;
-  termsAgreed: string;
-  marketingAgreed: string;
-  thirdPartyAgreed: string;
+  termsAgreed: string | undefined;
+  marketingAgreed: string | undefined;
+  thirdPartyAgreed: string | undefined;
 };
 
 export type RegisterFormProps = {
