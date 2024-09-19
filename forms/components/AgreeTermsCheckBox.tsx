@@ -12,14 +12,20 @@ type Props = Omit<TextInputProps, "onBlur"> & {
   theme: Theme;
 };
 
-const AgreeTermsCheckBox = ({ theme, onChangeText, error, value }: Props) => {
+const AgreeTermsCheckBox = ({
+  theme,
+  onChangeText,
+  error,
+  value,
+  testID,
+}: Props) => {
   const onPress = () => {
     onChangeText(!value);
   };
 
   return (
     <>
-      <TickContainer onPress={onPress}>
+      <TickContainer testID={testID} onPress={onPress}>
         <TickWrapper error={error}>
           {value && <MaterialIcons name={"check"} size={24} color={"black"} />}
         </TickWrapper>
