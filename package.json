@@ -21,6 +21,9 @@
       "./node_modules/react-native-gesture-handler/jestSetup.js",
       "./__mocks__/jestSetup.ts"
     ]
+  }, 
+  "engines": {
+    "node": "20.17.0"
   },
   "engines": {
     "node": "^20"
