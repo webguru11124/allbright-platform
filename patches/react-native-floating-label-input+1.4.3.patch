@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-floating-label-input/src/index.tsx b/node_modules/react-native-floating-label-input/src/index.tsx
+index 15d4b54..c7a9c92 100644
+--- a/node_modules/react-native-floating-label-input/src/index.tsx
++++ b/node_modules/react-native-floating-label-input/src/index.tsx
+@@ -596,7 +596,7 @@ const FloatingLabelInput: React.ForwardRefRenderFunction<InputRef, Props> = (
+       onPress={setFocus}
+       onLayout={onLayout}
+     >
+-      <View style={{ flexDirection: 'row', flexGrow: 1 }}>
++      <View tabIndex={-1} style={{ flexDirection: 'row', flexGrow: 1 }}>
+         {staticLabel && (
+           <AnimatedText
+             {...labelProps}
