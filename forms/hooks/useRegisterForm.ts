@@ -3,7 +3,7 @@ import Joi from "joi";
 
 import { RegisterInput, registrationAdaptor } from "@/forms/adaptors";
 import useFormWithPassConf from "@/forms/hooks/useFormWithPassConf";
-import { Register, useSignIn } from "@/hooks/resources/useAuth";
+import { Register, useRegister } from "@/hooks/resources/useAuth";
 import { setToken } from "@/utils/token";
 
 const useRegisterForm = (
@@ -21,7 +21,7 @@ const useRegisterForm = (
     default: { marketingAgreed: false, thirdPartyAgreed: false },
   });
 
-  const { mutate, isPending } = useSignIn();
+  const { mutate, isPending } = useRegister();
 
   const onPress = () => {
     if (isFormValid) {

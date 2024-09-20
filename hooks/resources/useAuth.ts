@@ -25,7 +25,7 @@ const signinFn = async (loginData: Login) => {
 
 export const useSignIn = () =>
   useMutation({
-    mutationKey: ["register"],
+    mutationKey: ["signin"],
     mutationFn: signinFn,
   });
 
@@ -34,7 +34,7 @@ const registerFn = (registrationData: Register) =>
 
 export const useRegister = () =>
   useMutation({
-    mutationKey: ["login"],
+    mutationKey: ["register"],
     mutationFn: registerFn,
   });
 
