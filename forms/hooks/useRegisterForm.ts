@@ -3,7 +3,12 @@ import Joi from "joi";
 
 import { RegisterInput, registrationAdaptor } from "@/forms/adaptors";
 import useFormWithPassConf from "@/forms/hooks/useFormWithPassConf";
-import { Register, useRegister } from "@/hooks/resources/useAuth";
+import {
+  Login,
+  Register,
+  useRegister,
+  useSignIn,
+} from "@/hooks/resources/useAuth";
 import { setToken } from "@/utils/token";
 
 const useRegisterForm = (
@@ -21,17 +26,31 @@ const useRegisterForm = (
     default: { marketingAgreed: false, thirdPartyAgreed: false },
   });
 
-  const { mutate, isPending } = useRegister();
+  const { mutate: mutateRegister, isPending: isPendingRegister } =
+    useRegister();
+
+  const { mutate: mutateSignin, isPending: isPendingSignIn } = useSignIn();
+
+  const signin = () =>
+    mutateSignin(postBody as Login, {
+      onSuccess: (response) => {
+        setToken(response as unknown as string);
+        router.replace("/home");
+      },
+      onError: (error: any) => showErrorMessage(error.message),
+    });
 
   const onPress = () => {
     if (isFormValid) {
-      mutate(registrationAdaptor(postBody as RegisterInput) as Register, {
-        onSuccess: (response) => {
-          setToken(response as unknown as string);
-          router.replace("/home");
+      mutateRegister(
+        registrationAdaptor(postBody as RegisterInput) as Register,
+        {
+          onSuccess: ({ data }) => {
+            if (data.success) signin();
+          },
+          onError: (error: any) => showErrorMessage(error.message),
         },
-        onError: (error: any) => showErrorMessage(error.message),
-      });
+      );
     }
   };
 
@@ -41,7 +60,7 @@ const useRegisterForm = (
     blurFuncs,
     changeTextFuncs,
     isFormValid,
-    isPending,
+    isPending: isPendingRegister || isPendingSignIn,
     onPress,
   };
 };

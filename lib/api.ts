@@ -30,9 +30,4 @@ const api = axios.create({
 //   (error) => Promise.reject(error)
 // );
 
-api.interceptors.response.use(
-  (resp) => Promise.resolve(resp.data),
-  (error) => Promise.reject(error.response),
-);
-
 export default api;
