@@ -12,11 +12,15 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "lint": "eslint . --fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "postinstall": "patch-package"
   },
   "jest": {
     "preset": "jest-expo",
-    "setupFiles": ["./node_modules/react-native-gesture-handler/jestSetup.js", "./__mocks__/jestSetup.ts"]
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js",
+      "./__mocks__/jestSetup.ts"
+    ]
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
@@ -43,11 +47,13 @@
     "firebase": "^10.13.0",
     "joi": "^17.13.3",
     "lodash": "^4.17.21",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.5",
     "react-native-device-info": "^11.1.0",
-    "react-native-floating-label-input": "^1.4.3",
+    "react-native-floating-label-input": "1.4.3",
     "react-native-gesture-handler": "~2.16.1",
     "react-native-reanimated": "~3.10.1",
     "react-native-root-toast": "^3.6.0",
