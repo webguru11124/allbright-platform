@@ -57,6 +57,7 @@ describe("RegisterForm", () => {
     fireEvent.changeText(screen.getByText("Email"), faker.internet.email());
     fireEvent.press(screen.getByTestId("RegisterForm:TermsAgreed"));
 
+    mockedApi.post.mockResolvedValueOnce({ data: { success: true } });
     mockedApi.post.mockResolvedValueOnce(MOCK_TOKEN);
 
     await act(() => {
