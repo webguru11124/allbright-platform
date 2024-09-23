@@ -15,7 +15,7 @@ type Props = Omit<TextInputProps, "onBlur"> & {
   theme: Theme;
 };
 
-const CountryPicker = ({
+const CityPicker = ({
   theme,
   onChangeText,
   placeholder,
@@ -56,7 +56,7 @@ const CountryPicker = ({
         <CenteredView>
           <ModalView>
             <TitleContainer>
-              <Title>Country</Title>
+              <Title>City</Title>
               <CloseButton onPress={onCloseButtonPress}>
                 <MaterialIcons name={"close"} size={24} color={"black"} />
               </CloseButton>
@@ -155,4 +155,4 @@ const StyledPressable = styled.Pressable<{ error: string | undefined }>`
   color: rgb(73, 101, 140);
 `;
 
-export default withTheme(CountryPicker);
+export default withTheme(CityPicker);
