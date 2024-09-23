@@ -41,5 +41,5 @@ Join our community of developers creating universal apps.
 
 ## Supported Node.js Version
 
-![Node.js Version](https://img.shields.io/badge/node-20.17.0-brightgreen)
+![Node.js Version](https://img.shields.io/badge/node-%3C20-brightgreen)
 
