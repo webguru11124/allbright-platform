@@ -5,7 +5,7 @@ import {
   TargetedEvent,
 } from "react-native";
 
-import { pickerAdaptor as countries } from "@/utils/data/countries";
+import { pickerAdaptor as industries } from "@/utils/data/industries";
 
 type Props = {
   selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
@@ -15,7 +15,7 @@ type Props = {
   error: string | undefined;
 };
 
-const CountryPicker = ({
+const IndustryPicker = ({
   selectedValue,
   placeholder,
   onChangeText,
@@ -27,11 +27,11 @@ const CountryPicker = ({
       placeholder={placeholder}
       selectedValue={selectedValue}
       onValueChange={onChangeText}
-      items={countries}
+      items={industries}
       error={error}
       onBlur={onBlur}
     />
   );
 };
 
-export default CountryPicker;
+export default IndustryPicker;

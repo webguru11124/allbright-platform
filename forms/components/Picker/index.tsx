@@ -70,6 +70,7 @@ type PickerInputProps = {
   input: string | undefined;
   displayValue: string | undefined;
   error: string | undefined;
+  placeholder: string;
   theme: Theme;
   onFocus: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   onPress: (e: NativeSyntheticEvent<NativeTouchEvent>) => void;
@@ -82,19 +83,20 @@ export const PickerInput = withTheme(
     error,
     theme,
     onFocus,
+    placeholder,
     onPress,
   }: PickerInputProps) => {
     {
       return Boolean(input) === false || input === "undefined" ? (
         <TextInput
-          placeholder="Country"
+          placeholder={placeholder}
           placeholderTextColor={"#ddd"}
           textContentType="countryName"
           value={input !== "undefined" ? input : undefined}
           error={error}
           onFocus={onFocus}
           onPress={onPress}
-          onChangeText={() => {}}
+          onChangeText={() => { }}
           showSoftInputOnFocus={false}
         />
       ) : (
@@ -108,7 +110,7 @@ export const PickerInput = withTheme(
   }
 );
 
-const StyledPicker = styled(NativePicker)<StyleProps>`
+const StyledPicker = styled(NativePicker) <StyleProps>`
   background-color: white;
   height: 100%;
   width: 100%;
