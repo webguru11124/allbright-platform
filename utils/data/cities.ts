@@ -53670,8 +53670,16 @@ export const cities = [
     code: "NL",
   },
 ] as const;
-export const pickerAdaptor = cities.map((item) => ({
-  key: `${item.city} ${item.code}`,
-  label: `${item.city}, ${item.country}`,
-  value: item.city,
-}));
+export const pickerAdaptor = cities
+  .map<{ key: string; label: string; value: string }>((item) => ({
+    key: `${item.city} ${item.code}`,
+    label: `${item.city}, ${item.country}`,
+    value: item.city,
+  }))
+  .reduce<{ key: string; label: string; value: string }[]>((acc, current) => {
+    // Check if the key already exists in the accumulator
+    if (!acc.some(item => item.key === current.key)) {
+      acc.push(current);
+    }
+    return acc;
+  }, []);
