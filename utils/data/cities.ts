@@ -53670,3 +53670,8 @@ export const cities = [
     code: "NL",
   },
 ] as const;
+export const pickerAdaptor = cities.map((item) => ({
+  key: item.city,
+  label: `${item.city, item.country}`,
+  value: item.code,
+}));
