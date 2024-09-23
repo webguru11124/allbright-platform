@@ -8,6 +8,7 @@ import withAppStartProps from "@/features/AppStart/hocs/withAppStartProps";
 import BackgroundImageMasonry from "@/features/AppStart/partials/BackgroundImageMasonry";
 import EntryButtons from "@/features/AppStart/partials/EntryButtons";
 import { AppStartProps, AppStartStyleProps } from "@/features/AppStart/types";
+import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 
 const Index = ({
   store,
@@ -15,12 +16,16 @@ const Index = ({
   animY,
   NOTCH,
   heightOffset,
+  minWidth,
 }: AppStartProps) => (
   <Main>
     <Section>
       <Container>
         <StatusBar animated={true} hidden={true} />
-        <BackgroundImageMasonry store={store} heightOffset={heightOffset} />
+        <BackgroundImageMasonry
+          store={store}
+          heightOffset={minWidth(BREAKPOINT_TABLET) ? heightOffset : -5}
+        />
         <BlurWrapper>
           <Space height={NOTCH ? 15 : 50} />
           <Animated.View
@@ -31,15 +36,25 @@ const Index = ({
               A professional community for
               {"\n"} smart-minded women
             </CXL>
+            {minWidth(BREAKPOINT_TABLET) === false && (
+              <>
+                <Space height={100} />
+                <SubContainer marginBottom={0}>
+                  <EntryButtons nameAnim={nameAnim} />
+                </SubContainer>
+              </>
+            )}
           </Animated.View>
         </BlurWrapper>
       </Container>
     </Section>
-    <Section>
-      <SubContainer marginBottom={NOTCH ? 10 : 20}>
-        <EntryButtons nameAnim={nameAnim} />
-      </SubContainer>
-    </Section>
+    {minWidth(BREAKPOINT_TABLET) && (
+      <Section>
+        <SubContainer marginBottom={NOTCH ? 10 : 20}>
+          <EntryButtons nameAnim={nameAnim} />
+        </SubContainer>
+      </Section>
+    )}
   </Main>
 );
 

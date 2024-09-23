@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useContext, useEffect, useRef } from "react";
 import { Animated } from "react-native";
 import DeviceInfo from "react-native-device-info";
 
@@ -6,8 +6,10 @@ import DeviceInfo from "react-native-device-info";
 import * as Imgs from "@/assets/images/app-start/_index";
 import { STORE } from "@/features/AppStart/constants";
 import { StoreItem } from "@/features/AppStart/types";
+import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 
 export default function useAppStart() {
+  const { minWidth } = useContext<MediaQuery>(MediaQueryContext);
   const NOTCH = DeviceInfo.hasNotch();
   const heightOffset = 4.7;
 
@@ -44,5 +46,5 @@ export default function useAppStart() {
     onInit();
   }, [onInit]);
 
-  return { typedImgs, store, nameAnim, animY, NOTCH, heightOffset };
+  return { typedImgs, store, nameAnim, animY, NOTCH, heightOffset, minWidth };
 }

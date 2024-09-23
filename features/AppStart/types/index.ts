@@ -20,6 +20,7 @@ export type AppStartProps = EntryButtonsProps &
   BackgroundImageMasonryProps & {
     animY: Animated.AnimatedInterpolation<string | number>;
     NOTCH: boolean;
+    minWidth: (val: number) => boolean;
   };
 
 export type AppStartImgProps = {
