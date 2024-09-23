@@ -71,7 +71,7 @@ export const PublicProfileForm = ({
       testID="PublicProfileForm:City"
     />
     <Space height={10} />
-    {/* <IndustryPicker
+    <IndustryPicker
       placeholder="Industry"
       value={inputs.city}
       error={errors.city}
@@ -88,7 +88,7 @@ export const PublicProfileForm = ({
       onChangeText={changeTextFuncs.city}
       testID="PublicProfileForm:City"
     />
-    <Space height={10} /> */}
+    <Space height={10} />
     <CountryPicker
       placeholder="Country"
       value={inputs.country}
