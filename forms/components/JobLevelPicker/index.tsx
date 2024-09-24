@@ -35,7 +35,7 @@ const JobLevelPicker = ({
       Boolean(value)
         ? jobLevels.find((item) => item.value === value)?.label
         : undefined,
-    [value],
+    [value]
   );
 
   const onCloseButtonPress = () => {
@@ -58,7 +58,11 @@ const JobLevelPicker = ({
             <TitleContainer>
               <Title>Job Level</Title>
               <CloseButton onPress={onCloseButtonPress}>
-                <MaterialIcons name={"close"} size={24} color={"black"} />
+                <MaterialIcons
+                  name={"close"}
+                  size={24}
+                  color={"black"}
+                />
               </CloseButton>
             </TitleContainer>
             <Space height={10} />
@@ -79,7 +83,11 @@ const JobLevelPicker = ({
         onPress={() => setModalVisible(true)}
         error={error}>
         <CM color={"rgb(73, 101, 140)"}>{displayValue || placeholder}</CM>
-        <MaterialIcons name={"arrow-drop-down"} size={24} color={"black"} />
+        <MaterialIcons
+          name={"arrow-drop-down"}
+          size={24}
+          color={"black"}
+        />
       </StyledPressable>
       {error && <CS color="red">{error}</CS>}
     </>

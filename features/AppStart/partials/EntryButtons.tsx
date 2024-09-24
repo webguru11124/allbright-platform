@@ -18,7 +18,10 @@ const EntryButtons = ({ nameAnim }: EntryButtonsProps) => {
         <CM color={"rgb(228, 230, 235)"}>Log in</CM>
       </Link>
       <Space height={10} />
-      <Link href="/onboarding/public-profile" background={"rgb(58, 59, 61)"} isSecondary={true}>
+      <Link
+        href="/onboarding/public-profile"
+        background={"rgb(58, 59, 61)"}
+        isSecondary={true}>
         <CM color={"rgb(228, 230, 235)"}>Onboarding</CM>
       </Link>
     </Animated.View>
