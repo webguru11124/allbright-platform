@@ -1,7 +1,25 @@
 diff --git a/node_modules/react-native-floating-label-input/src/index.tsx b/node_modules/react-native-floating-label-input/src/index.tsx
-index 15d4b54..c7a9c92 100644
+index 15d4b54..c4c55e6 100644
 --- a/node_modules/react-native-floating-label-input/src/index.tsx
 +++ b/node_modules/react-native-floating-label-input/src/index.tsx
+@@ -30,13 +30,13 @@ import Animated, {
+ } from 'react-native-reanimated';
+ import { styles } from './styles';
+ 
+-import makeVisibleWhite from './assets/make_visible_white.png';
++const makeVisibleWhite = require('./assets/make_invisible_white.png');
+ 
+-import makeInvisibleWhite from './assets/make_invisible_white.png';
++const makeInvisibleWhite = require('./assets/make_invisible_white.png');
+ 
+-import makeVisibleBlack from './assets/make_visible_black.png';
++const makeVisibleBlack = require('./assets/make_visible_black.png');
+ 
+-import makeInvisibleBlack from './assets/make_invisible_black.png';
++const makeInvisibleBlack = require('./assets/make_invisible_black.png');
+ import { getValueWithCurrencyMask, getValueWithNonCurrencyMask } from './utils';
+ 
+ export interface Props extends Omit<TextInputProps, 'secureTextEntry'> {
 @@ -596,7 +596,7 @@ const FloatingLabelInput: React.ForwardRefRenderFunction<InputRef, Props> = (
        onPress={setFocus}
        onLayout={onLayout}

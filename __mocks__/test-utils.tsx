@@ -3,7 +3,7 @@ import { ReactTestInstance } from "react-test-renderer";
 
 export const fireBlurEvent = async (
   element: ReactTestInstance,
-  text: string,
+  text: string
 ) => {
   const user = userEvent.setup();
   await user.paste(element, text);

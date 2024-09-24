@@ -40,17 +40,17 @@ describe("RegisterForm", () => {
 
     fireEvent.changeText(
       screen.getByText("First Name"),
-      faker.person.firstName(),
+      faker.person.firstName()
     );
     fireEvent.changeText(
       screen.getByText("Last Name"),
-      faker.person.lastName(),
+      faker.person.lastName()
     );
     fireEvent.changeText(screen.getByText("Email"), faker.internet.email());
     fireEvent.changeText(screen.getByText("City"), faker.location.city());
     fireEvent.changeText(
       screen.getByText("Country"),
-      faker.helpers.arrayElement(countries).Code,
+      faker.helpers.arrayElement(countries).Code
     );
     fireEvent.changeText(screen.getByText("Password"), PASSWORD);
     fireEvent.changeText(screen.getByText("Confirm Password"), PASSWORD);
@@ -103,7 +103,7 @@ describe("RegisterForm", () => {
 
     await fireBlurEvent(
       screen.getByTestId("RegisterForm:FirstName"),
-      FIRST_NAME,
+      FIRST_NAME
     );
     await fireBlurEvent(screen.getByTestId("RegisterForm:LastName"), LAST_NAME);
     await fireBlurEvent(screen.getByTestId("RegisterForm:Email"), EMAIL);
@@ -143,11 +143,11 @@ describe("RegisterForm", () => {
     await fireBlurEvent(screen.getByTestId("RegisterForm:Password"), PASS);
     await fireBlurEvent(
       screen.getByTestId("RegisterForm:PasswordConfirmation"),
-      PASS_CONF,
+      PASS_CONF
     );
 
     expect(
-      await screen.findByText(EXPECTED_PASSWORD_CONF_ERROR),
+      await screen.findByText(EXPECTED_PASSWORD_CONF_ERROR)
     ).not.toBeNull();
 
     await act(() => {

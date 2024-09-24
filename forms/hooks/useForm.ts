@@ -14,7 +14,7 @@ type EventType = { name: string; value: string | boolean };
 
 const useForm = (
   baseSchema: Joi.PartialSchemaMap<any> | undefined,
-  settings: Settings = {},
+  settings: Settings = {}
 ) => {
   const theme = useTheme();
   const schema = Joi.object(baseSchema);
@@ -70,12 +70,12 @@ const useForm = (
 
   const isFormValid = useMemo(
     () => schema.validate(inputs).error === undefined,
-    [inputs, schema],
+    [inputs, schema]
   );
 
   const postBody = useMemo(
     () => (settings?.omit ? _.omit(inputs, settings.omit) : inputs),
-    [inputs, settings],
+    [inputs, settings]
   );
 
   const showSuccessMessage = (message: string) => {

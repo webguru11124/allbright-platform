@@ -43,9 +43,17 @@ const Picker = ({
         backgroundcolor={theme.colors.inputs.background}
         error={error}
         onBlur={onBlur}>
-        <NativePicker.Item key={"-1"} label={"Country"} value={undefined} />
+        <NativePicker.Item
+          key={"-1"}
+          label={"Country"}
+          value={undefined}
+        />
         {items.map(({ key, label, value }) => (
-          <NativePicker.Item key={key} label={label} value={value} />
+          <NativePicker.Item
+            key={key}
+            label={label}
+            value={value}
+          />
         ))}
       </StyledPicker>
       {error && <CS color="red">{error}</CS>}

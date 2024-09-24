@@ -17,8 +17,14 @@ const Index = ({
   heightOffset,
 }: AppStartProps) => (
   <Container>
-    <StatusBar animated={true} hidden={true} />
-    <BackgroundImageMasonry store={store} heightOffset={heightOffset} />
+    <StatusBar
+      animated={true}
+      hidden={true}
+    />
+    <BackgroundImageMasonry
+      store={store}
+      heightOffset={heightOffset}
+    />
     <BlurWrapper>
       <Space height={NOTCH ? 15 : 50} />
       <Animated.View

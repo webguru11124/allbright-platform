@@ -48,9 +48,17 @@ const Picker = ({
         backgroundcolor={theme.colors.inputs.background}
         error={error}
         onBlur={onBlur}>
-        <NativePicker.Item key={"-1"} label={placeholder} value={undefined} />
+        <NativePicker.Item
+          key={"-1"}
+          label={placeholder}
+          value={undefined}
+        />
         {items.map(({ key, label, value }) => (
-          <NativePicker.Item key={key} label={label} value={value} />
+          <NativePicker.Item
+            key={key}
+            label={label}
+            value={value}
+          />
         ))}
       </StyledPicker>
       {error && <CS color="red">{error}</CS>}
@@ -97,7 +105,7 @@ export const PickerInput = withTheme(
         </Pressable>
       );
     }
-  },
+  }
 );
 
 const StyledPicker = styled(NativePicker)<StyleProps>`
