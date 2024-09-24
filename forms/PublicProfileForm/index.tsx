@@ -49,9 +49,9 @@ export type PublicProfileFormProps = {
     job_level: (text: string) => void;
     termsAgreed: ((text: string) => void) & ((value: string | boolean) => void);
     marketingAgreed: ((text: string) => void) &
-    ((value: string | boolean) => void);
+      ((value: string | boolean) => void);
     thirdPartyAgreed: ((text: string) => void) &
-    ((value: string | boolean) => void);
+      ((value: string | boolean) => void);
   };
   isFormValid: boolean;
   isPending: boolean;

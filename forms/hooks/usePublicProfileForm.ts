@@ -3,7 +3,7 @@ import Joi from "joi";
 import useFormWithPassConf from "@/forms/hooks/useFormWithPassConf";
 
 const usePublicProfileForm = (
-  publicProfileSchema: Joi.PartialSchemaMap<any> | undefined,
+  publicProfileSchema: Joi.PartialSchemaMap<any> | undefined
 ) => {
   const { inputs, errors, blurFuncs, changeTextFuncs, isFormValid } =
     useFormWithPassConf(publicProfileSchema, {});

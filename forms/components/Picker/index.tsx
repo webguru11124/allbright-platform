@@ -94,7 +94,7 @@ export const PickerInput = withTheme(
           error={error}
           onFocus={onFocus}
           onPress={onPress}
-          onChangeText={() => { }}
+          onChangeText={() => {}}
           showSoftInputOnFocus={false}
         />
       ) : (
@@ -108,7 +108,7 @@ export const PickerInput = withTheme(
   }
 );
 
-const StyledPicker = styled(NativePicker) <StyleProps>`
+const StyledPicker = styled(NativePicker)<StyleProps>`
   background-color: white;
   height: 100%;
   width: 100%;
