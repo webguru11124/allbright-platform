@@ -20,7 +20,7 @@ enum State {
 }
 
 const usePublicProfileForm = (
-  registerSchema: Joi.PartialSchemaMap<any> | undefined,
+  publicProfileSchema: Joi.PartialSchemaMap<any> | undefined,
 ) => {
   const [state, setState] = useState<State>(State.IDLE);
   const {
@@ -31,69 +31,20 @@ const usePublicProfileForm = (
     changeTextFuncs,
     isFormValid,
     showErrorMessage,
-  } = useFormWithPassConf(registerSchema, {
-    default: { marketingAgreed: false, thirdPartyAgreed: false },
+  } = useFormWithPassConf(publicProfileSchema, {
+    // default: {},
   });
 
-  const { mutate: mutateRegister, isPending: isPendingRegister } =
+  // TODO: update mutation to use usePublicProfile API
+  const { mutate: mutateRegister, isPending } =
     useRegister();
 
-  const { mutate: mutateSignin, isPending: isPendingSignIn } = useSignIn();
-
   const onPress = () => {
-    if (isFormValid) setState(State.REGISTER);
+    // if (isFormValid) setState(State.REGISTER); 
+    console.log("mutate calling");
+    // TODO: Update handling error and sucess on mutate
   };
 
-  const register = useCallback(
-    () =>
-      mutateRegister(
-        registrationAdaptor(postBody as RegisterInput) as Register,
-        {
-          onSuccess: ({ data }) => {
-            if (data.success) setState(State.SIGNIN);
-          },
-          onError: (error: any) => showErrorMessage(error.message),
-        },
-      ),
-    [mutateRegister, postBody, showErrorMessage],
-  );
-
-  const signin = useCallback(
-    () =>
-      mutateSignin(postBody as Login, {
-        onSuccess: (response) => {
-          setToken(response as unknown as string);
-          setState(State.SUCCESS);
-        },
-        onError: (error: any) => showErrorMessage(error.message),
-      }),
-    [mutateSignin, postBody, showErrorMessage],
-  );
-
-  const navigateToHome = useCallback(() => {
-    router.replace("/home");
-  }, []);
-
-  useEffect(() => {
-    switch (state) {
-      case State.REGISTER:
-        if (isPendingRegister === false) register();
-        break;
-      case State.SIGNIN:
-        if (isPendingSignIn === false) signin();
-        break;
-      case State.SUCCESS:
-        navigateToHome();
-        break;
-    }
-  }, [
-    isPendingRegister,
-    isPendingSignIn,
-    navigateToHome,
-    register,
-    signin,
-    state,
-  ]);
 
   return {
     inputs,
@@ -101,7 +52,7 @@ const usePublicProfileForm = (
     blurFuncs,
     changeTextFuncs,
     isFormValid,
-    isPending: isPendingRegister || isPendingSignIn,
+    isPending,
     onPress,
   };
 };

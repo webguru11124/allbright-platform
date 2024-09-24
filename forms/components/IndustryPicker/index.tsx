@@ -56,7 +56,7 @@ const IndustryPicker = ({
         <CenteredView>
           <ModalView>
             <TitleContainer>
-              <Title>Industry</Title>
+              <Title>Job Level</Title>
               <CloseButton onPress={onCloseButtonPress}>
                 <MaterialIcons name={"close"} size={24} color={"black"} />
               </CloseButton>
