@@ -2,7 +2,6 @@ import { Picker as NativePicker } from "@react-native-picker/picker";
 import {
   NativeSyntheticEvent,
   NativeTouchEvent,
-  TargetedEvent,
 } from "react-native";
 import styled from "styled-components/native";
 
@@ -12,7 +11,7 @@ import withTheme from "@/hocs/withTheme";
 type Props = {
   selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
   onValueChange: (itemValue: unknown, itemIndex: number) => void;
-  onBlur: (e: NativeSyntheticEvent<TargetedEvent>) => void;
+  onBlur: SyntheticEvent;
   items: {
     key: string;
     label: string;

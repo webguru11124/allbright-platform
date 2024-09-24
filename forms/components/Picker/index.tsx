@@ -3,8 +3,6 @@ import {
   NativeSyntheticEvent,
   NativeTouchEvent,
   Pressable,
-  TargetedEvent,
-  TextInputFocusEventData,
 } from "react-native";
 import styled from "styled-components/native";
 
@@ -16,7 +14,7 @@ type Props = {
   selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
   placeholder: string;
   onValueChange: (itemValue: unknown, itemIndex: number) => void;
-  onBlur: (e: NativeSyntheticEvent<TargetedEvent>) => void;
+  onBlur: SyntheticEvent;
   items: {
     key: string;
     label: string;
@@ -72,8 +70,8 @@ type PickerInputProps = {
   error: string | undefined;
   placeholder: string;
   theme: Theme;
-  onFocus: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
-  onPress: (e: NativeSyntheticEvent<NativeTouchEvent>) => void;
+  onFocus: SyntheticEvent;
+  onPress: SyntheticEvent;
 };
 
 export const PickerInput = withTheme(

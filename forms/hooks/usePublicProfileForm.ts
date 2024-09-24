@@ -6,15 +6,9 @@ const usePublicProfileForm = (
   publicProfileSchema: Joi.PartialSchemaMap<any> | undefined,
 ) => {
   const { inputs, errors, blurFuncs, changeTextFuncs, isFormValid } =
-    useFormWithPassConf(publicProfileSchema, {
-      // default: {},
-    });
-
-  // TODO: update mutation to use usePublicProfile API
+    useFormWithPassConf(publicProfileSchema, {});
 
   const onPress = () => {
-    // if (isFormValid) setState(State.REGISTER);
-    console.log("mutate calling");
     // TODO: Update handling error and sucess on mutate
   };
 

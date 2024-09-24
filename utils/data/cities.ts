@@ -53677,7 +53677,6 @@ export const pickerAdaptor = cities
     value: item.city,
   }))
   .reduce<{ key: string; label: string; value: string }[]>((acc, current) => {
-    // Check if the key already exists in the accumulator
     if (!acc.some(item => item.key === current.key)) {
       acc.push(current);
     }

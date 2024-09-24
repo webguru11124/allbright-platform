@@ -2,7 +2,6 @@ import Picker from "@/forms/components/Picker";
 import {
   NativeSyntheticEvent,
   NativeTouchEvent,
-  TargetedEvent,
 } from "react-native";
 
 import { pickerAdaptor as cities } from "@/utils/data/cities";
@@ -11,7 +10,7 @@ type Props = {
   selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
   placeholder: string;
   onChangeText: (itemValue: unknown, itemIndex: number) => void;
-  onBlur: (e: NativeSyntheticEvent<TargetedEvent>) => void;
+  onBlur: SyntheticEvent;
   error: string | undefined;
 };
 
