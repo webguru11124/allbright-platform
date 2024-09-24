@@ -24,9 +24,17 @@ const MarketingAgreedCheckBox = ({
 
   return (
     <>
-      <TickContainer testID={testID} onPress={onPress}>
+      <TickContainer
+        testID={testID}
+        onPress={onPress}>
         <TickWrapper error={error}>
-          {value && <MaterialIcons name={"check"} size={24} color={"black"} />}
+          {value && (
+            <MaterialIcons
+              name={"check"}
+              size={24}
+              color={"black"}
+            />
+          )}
         </TickWrapper>
         <CS>
           I would like to receive relevant information, newsletters and

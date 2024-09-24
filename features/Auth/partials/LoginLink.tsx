@@ -8,7 +8,9 @@ const LoginLink = () => {
   return (
     <LinkContainer>
       <CS>Don't have an account? </CS>
-      <Link href="/login" asChild>
+      <Link
+        href="/login"
+        asChild>
         <Pressable>
           <CsUnderlined>Login</CsUnderlined>
         </Pressable>

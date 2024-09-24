@@ -59,7 +59,7 @@ describe("useFormWithPassConfs", () => {
 
       expect(result.current.touched.password_confirmation).toEqual(true);
       expect(result.current.errors.password_confirmation).toEqual(
-        '"Password_confirmation" is required',
+        '"Password_confirmation" is required'
       );
     });
   });
@@ -134,7 +134,7 @@ describe("useFormWithPassConfs", () => {
       await act(async () => {
         await result.current.changeTextFuncs.password("matchingpasswords");
         await result.current.changeTextFuncs.password_confirmation(
-          "matchingpasswords",
+          "matchingpasswords"
         );
       });
 

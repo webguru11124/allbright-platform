@@ -41,7 +41,7 @@ describe("useForms", () => {
         };
 
         const { result } = renderHook(() =>
-          useForm(schema, { omit: ["password_confirmation"] }),
+          useForm(schema, { omit: ["password_confirmation"] })
         );
 
         expect(result.current.inputs).toStrictEqual({
@@ -62,7 +62,7 @@ describe("useForms", () => {
         const { result } = renderHook(() =>
           useForm(baseSchema, {
             default: { first_name: "Steve", password: "Help!" },
-          }),
+          })
         );
 
         waitFor(() => {

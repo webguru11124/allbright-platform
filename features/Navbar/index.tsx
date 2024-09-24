@@ -13,32 +13,44 @@ export default function NavigationBar() {
           <IconAllBright width={183} />
         </TabIconContainer>
         <TabButton href="/home">
-          <H6 weight={700} color={"#414143"}>
+          <H6
+            weight={700}
+            color={"#414143"}>
             Home
           </H6>
         </TabButton>
         <TabButton href="/connect">
-          <H6 weight={700} color={"#414143"}>
+          <H6
+            weight={700}
+            color={"#414143"}>
             Connect
           </H6>
         </TabButton>
         <TabButton href="/">
-          <H6 weight={700} color={"#414143"}>
+          <H6
+            weight={700}
+            color={"#414143"}>
             Learning
           </H6>
         </TabButton>
         <TabButton href="/">
-          <H6 weight={700} color={"#414143"}>
+          <H6
+            weight={700}
+            color={"#414143"}>
             Events
           </H6>
         </TabButton>
         <TabButton href="/">
-          <H6 weight={700} color={"#414143"}>
+          <H6
+            weight={700}
+            color={"#414143"}>
             Groups
           </H6>
         </TabButton>
         <TabButton href="/">
-          <H6 weight={700} color={"#414143"}>
+          <H6
+            weight={700}
+            color={"#414143"}>
             The Allbright Post
           </H6>
         </TabButton>

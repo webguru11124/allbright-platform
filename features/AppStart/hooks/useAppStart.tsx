@@ -30,7 +30,7 @@ export default function useAppStart() {
       ({
         xyc: el.xyc,
         img: typedImgs[el.img],
-      }) as StoreItem,
+      }) as StoreItem
   );
 
   const onInit = useCallback(() => {

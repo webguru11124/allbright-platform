@@ -60,7 +60,7 @@ export const getAllItems = async () => {
         accumulator[key] = JSON.parse(value || "{}");
         return accumulator;
       },
-      {},
+      {}
     );
   } catch (error) {
     console.error("Error getting all items:", error);

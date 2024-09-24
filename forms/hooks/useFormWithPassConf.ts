@@ -6,7 +6,7 @@ import { Settings } from "@/forms/hooks/useForm";
 
 const useFormWithPassConf = (
   baseSchema: Joi.PartialSchemaMap<any> | undefined,
-  settings: Settings = {},
+  settings: Settings = {}
 ) => {
   const {
     schema,
@@ -35,13 +35,13 @@ const useFormWithPassConf = (
         : {
             ...internalErrors,
           },
-    [internalErrors, inputs.password, inputs.password_confirmation, touched],
+    [internalErrors, inputs.password, inputs.password_confirmation, touched]
   );
 
   const isFormValid = useMemo(
     () =>
       internalIsFormValid && inputs.password === inputs.password_confirmation,
-    [inputs.password, inputs.password_confirmation, internalIsFormValid],
+    [inputs.password, inputs.password_confirmation, internalIsFormValid]
   );
 
   return {

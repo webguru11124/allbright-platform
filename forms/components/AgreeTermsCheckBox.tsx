@@ -25,9 +25,17 @@ const AgreeTermsCheckBox = ({
 
   return (
     <>
-      <TickContainer testID={testID} onPress={onPress}>
+      <TickContainer
+        testID={testID}
+        onPress={onPress}>
         <TickWrapper error={error}>
-          {value && <MaterialIcons name={"check"} size={24} color={"black"} />}
+          {value && (
+            <MaterialIcons
+              name={"check"}
+              size={24}
+              color={"black"}
+            />
+          )}
         </TickWrapper>
         <CS>
           I agree to the AllBright{" "}

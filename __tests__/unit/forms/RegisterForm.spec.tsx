@@ -63,7 +63,7 @@ describe("RegisterForm", () => {
       screen = render(
         <Providers>
           <RegisterForm {...props} />
-        </Providers>,
+        </Providers>
       );
       jest.clearAllMocks();
     });
@@ -80,7 +80,7 @@ describe("RegisterForm", () => {
       const passwordInput = screen.getByText("Password");
       fireEvent.changeText(passwordInput, expectedPassword);
       expect(props.changeTextFuncs.password).toHaveBeenCalledWith(
-        expectedPassword,
+        expectedPassword
       );
     });
   });
@@ -92,7 +92,7 @@ describe("RegisterForm", () => {
       screen = render(
         <Providers>
           <RegisterForm {...props} />
-        </Providers>,
+        </Providers>
       );
     });
 
@@ -109,7 +109,7 @@ describe("RegisterForm", () => {
       screen.rerender(
         <Providers>
           <RegisterForm {...updatedProps} />
-        </Providers>,
+        </Providers>
       );
 
       expect(screen.queryByText(updatedProps.errors.email)).not.toBeNull();
@@ -128,7 +128,7 @@ describe("RegisterForm", () => {
       screen.rerender(
         <Providers>
           <RegisterForm {...updatedProps} />
-        </Providers>,
+        </Providers>
       );
 
       expect(screen.queryByText(updatedProps.errors.password)).not.toBeNull();
@@ -142,7 +142,7 @@ describe("RegisterForm", () => {
       screen = render(
         <Providers>
           <RegisterForm {...props} />
-        </Providers>,
+        </Providers>
       );
     });
 
@@ -160,7 +160,7 @@ describe("RegisterForm", () => {
       screen.rerender(
         <Providers>
           <RegisterForm {...updatedProps} />
-        </Providers>,
+        </Providers>
       );
 
       fireEvent.press(submit);

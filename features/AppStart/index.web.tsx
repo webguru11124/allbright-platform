@@ -21,7 +21,10 @@ const Index = ({
   <Main>
     <Section>
       <Container>
-        <StatusBar animated={true} hidden={true} />
+        <StatusBar
+          animated={true}
+          hidden={true}
+        />
         <BackgroundImageMasonry
           store={store}
           heightOffset={minWidth(BREAKPOINT_TABLET) ? heightOffset : -5}
