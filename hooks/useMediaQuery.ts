@@ -7,7 +7,7 @@ export const BREAKPOINT_LAPTOP = 1024;
 
 const useMediaQuery = () => {
   const [currentWidth, setCurrentWidth] = useState(
-    Dimensions.get("window").width,
+    Dimensions.get("window").width
   );
 
   useEffect(() => {

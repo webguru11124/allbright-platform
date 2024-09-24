@@ -20,7 +20,7 @@ enum State {
 }
 
 const useRegisterForm = (
-  registerSchema: Joi.PartialSchemaMap<any> | undefined,
+  registerSchema: Joi.PartialSchemaMap<any> | undefined
 ) => {
   const [state, setState] = useState<State>(State.IDLE);
   const {
@@ -53,9 +53,9 @@ const useRegisterForm = (
             if (data.success) setState(State.SIGNIN);
           },
           onError: (error: any) => showErrorMessage(error.message),
-        },
+        }
       ),
-    [mutateRegister, postBody, showErrorMessage],
+    [mutateRegister, postBody, showErrorMessage]
   );
 
   const signin = useCallback(
@@ -67,7 +67,7 @@ const useRegisterForm = (
         },
         onError: (error: any) => showErrorMessage(error.message),
       }),
-    [mutateSignin, postBody, showErrorMessage],
+    [mutateSignin, postBody, showErrorMessage]
   );
 
   const navigateToHome = useCallback(() => {

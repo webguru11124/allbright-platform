@@ -1,4 +1,4 @@
-export type InterestTitles = (typeof interestObjects)[number]["title"][];
+export type InterestTitles = (typeof interestObjects)[number]["title"];
 
 export const interestObjects = [
   { title: "Technology", imgSrc: null },
@@ -25,10 +25,11 @@ export const interestObjects = [
   { title: "Business services", imgSrc: null },
 ] as const;
 
-export const interests: InterestTitles = interestObjects.reduce(
-  (acc, interest) => {
-    acc.push(interest.title);
+// TODO: Viktor - please fix!
+export const interests: any = interestObjects.reduce(
+  (acc: string[], interest) => {
+    acc.push(interest.title as unknown as InterestTitles);
     return acc;
   },
-  [],
+  []
 );

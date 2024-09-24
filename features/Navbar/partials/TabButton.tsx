@@ -21,7 +21,9 @@ const TabButton = ({
   onHoverOut,
   children,
 }: Props) => (
-  <StyledPressable onHoverIn={onHoverIn} onHoverOut={onHoverOut}>
+  <StyledPressable
+    onHoverIn={onHoverIn}
+    onHoverOut={onHoverOut}>
     <StyledLink href={href}>{children}</StyledLink>
     <Animated.View
       style={[
