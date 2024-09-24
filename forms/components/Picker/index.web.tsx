@@ -2,7 +2,6 @@ import { Picker as NativePicker } from "@react-native-picker/picker";
 import {
   NativeSyntheticEvent,
   NativeTouchEvent,
-  TargetedEvent,
 } from "react-native";
 import styled from "styled-components/native";
 
@@ -12,7 +11,7 @@ import withTheme from "@/hocs/withTheme";
 type Props = {
   selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
   onValueChange: (itemValue: unknown, itemIndex: number) => void;
-  onBlur: (e: NativeSyntheticEvent<TargetedEvent>) => void;
+  onBlur: SyntheticEvent;
   items: {
     key: string;
     label: string;
@@ -20,6 +19,8 @@ type Props = {
   }[];
   error: string | undefined;
   theme: Theme;
+  placeholder: string;
+  label: string;
 };
 
 type StyleProps = {
@@ -33,6 +34,7 @@ const Picker = ({
   onBlur,
   items,
   error,
+  placeholder,
   theme,
 }: Props) => {
   return (
@@ -43,11 +45,7 @@ const Picker = ({
         backgroundcolor={theme.colors.inputs.background}
         error={error}
         onBlur={onBlur}>
-        <NativePicker.Item
-          key={"-1"}
-          label={"Country"}
-          value={undefined}
-        />
+        <NativePicker.Item key={"-1"} label={placeholder ?? "Country"} value={undefined} />
         {items.map(({ key, label, value }) => (
           <NativePicker.Item
             key={key}
@@ -61,7 +59,7 @@ const Picker = ({
   );
 };
 
-const StyledPicker = styled(NativePicker)<StyleProps>`
+const StyledPicker = styled(NativePicker) <StyleProps>`
   height: 50px;
   background-color: ${(p) => p.backgroundcolor};
   padding-left: 15px;

@@ -12,3 +12,9 @@ export const jobLevels = [
   "Owner",
   "Partner",
 ] as const;
+
+export const pickerAdaptor = jobLevels.map((item) => ({
+  key: item,
+  label: item,
+  value: item,
+}));
