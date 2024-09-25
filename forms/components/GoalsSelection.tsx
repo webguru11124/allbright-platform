@@ -47,7 +47,7 @@ const GoalsSection: FunctionComponent<GoalsSectionProps> = (props) => {
           <TickBox
             key={goal}
             label={goal}
-            onChangeText={() => setGoalsStateHandler(goal)}
+            onChange={() => setGoalsStateHandler(goal)}
             value={goalIsSelected(goal)}
             {...props}
             error=""

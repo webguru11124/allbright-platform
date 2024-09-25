@@ -5,22 +5,23 @@ import { CM } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
 
 type Props = Omit<ButtonProps, "title"> & {
-  isLoading: boolean;
+  isLoading?: boolean;
   theme: Theme;
   children: React.ReactNode;
 };
 
-const Button = (props: Props) => {
+const Button = ({ disabled, theme, ...props }: Props) => {
   return (
     <StyledPressable
-      disabled={props.disabled || props.isLoading}
+      disabled={disabled || props.isLoading}
       onPress={props.onPress}
-      theme={props.theme}>
-      <CM color={props.theme.colors.button.primary}>
+      theme={theme}
+      {...props}>
+      <CM color={theme.colors.button.primary}>
         {props.isLoading ? (
           <ActivityIndicator
             size={24}
-            color={props.theme.colors.button.primary}
+            color={theme.colors.button.primary}
           />
         ) : (
           props.children

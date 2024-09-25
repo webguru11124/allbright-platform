@@ -9,6 +9,10 @@ import IndustryPicker from "../components/IndustryPicker";
 import TextInput from "../components/TextInput";
 import GoalsSection from "../components/GoalsSelection";
 import goals from "@/utils/data/goals";
+import ProfilePhotoUploadSection from "../components/ProfilePhotoUploadSection";
+
+const placeholderBiography =
+  "Example: As a female CEO, I'm committed to leading with vision and impact. Alongside championing diversity and innovation, my passion for travel fuels my global perspective. Let's connect to empower each other in the world of leadership and swap adventure stories! ✈️ \n(500 characters max)";
 
 type InputProps = {
   job_title: string | undefined;
@@ -16,6 +20,7 @@ type InputProps = {
   city: string | undefined;
   industry: string | undefined;
   job_level: string | undefined;
+  user_biography: string | undefined;
 };
 
 export type PublicProfileFormProps = {
@@ -27,6 +32,7 @@ export type PublicProfileFormProps = {
     job_level: SyntheticEvent;
     company_name: SyntheticEvent;
     job_title: SyntheticEvent;
+    user_biography: SyntheticEvent;
   };
   changeTextFuncs: {
     city: (text: string) => void;
@@ -34,6 +40,7 @@ export type PublicProfileFormProps = {
     job_level: (text: string) => void;
     company_name: (text: string) => void;
     job_title: (text: string) => void;
+    user_biography: (text: string) => void;
   };
   isFormValid: boolean;
   isPending: boolean;
@@ -65,7 +72,7 @@ export const PublicProfileForm = ({
     />
     <Space height={10} />
     <TextInput
-      placeholder="Job title*"
+      label="Job title*"
       placeholderTextColor={"#ddd"}
       inputMode="text"
       textContentType="jobTitle"
@@ -77,7 +84,7 @@ export const PublicProfileForm = ({
     />
     <Space height={10} />
     <TextInput
-      placeholder="Company name (if applicable)"
+      label="Company name (if applicable)"
       placeholderTextColor={"#ddd"}
       inputMode="text"
       textContentType="none"
@@ -108,13 +115,30 @@ export const PublicProfileForm = ({
     <Space height={10} />
     <GoalsSection setField={setOnboardingFieldHandler} />
     <Space height={10} />
-
+    <ProfilePhotoUploadSection />
+    <Space height={10} />
+    <TextInput
+      placeholder={placeholderBiography}
+      label={"Biography*"}
+      placeholderTextColor={"#ddd"}
+      inputMode="text"
+      textContentType="none"
+      multiline
+      maxLength={40}
+      numberOfLines={10}
+      value={inputs.user_biography}
+      error={errors.user_biography}
+      onBlur={blurFuncs.user_biography}
+      onChangeText={changeTextFuncs.user_biography}
+      testID="PublicProfileForm:UserBiography"
+    />
+    <Space height={10} />
     <Button
       disabled={!isFormValid}
       isLoading={isPending}
       onPress={onPress}
       testID="PublicProfileForm:Submit">
-      Submit
+      Next
     </Button>
   </SafeAreaView>
 );

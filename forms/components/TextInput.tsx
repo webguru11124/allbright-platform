@@ -4,7 +4,11 @@ import { FloatingLabelInput } from "react-native-floating-label-input";
 import { CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
 
-type Props = TextInputProps & { error: string | undefined; theme: Theme };
+type Props = TextInputProps & {
+  label?: string;
+  error: string | undefined;
+  theme: Theme;
+};
 
 const TextInput = ({
   theme,
@@ -12,16 +16,17 @@ const TextInput = ({
   onBlur,
   onChangeText,
   placeholder,
+  label,
   ...rest
 }: Props) => {
   return (
     <>
       <FloatingLabelInput
-        {...rest}
-        label={placeholder || "Please enter"}
+        label={label || placeholder || "Please enter"}
+        placeholder={placeholder}
         inputStyles={{ outline: "none", fontSize: 16 } as TextStyle}
         containerStyles={{
-          height: 50,
+          height: rest.multiline ? undefined : 50,
           backgroundColor: theme.colors.inputs.background,
           paddingLeft: 15,
           borderRadius: 5,
@@ -31,6 +36,7 @@ const TextInput = ({
         animationDuration={150}
         onChangeText={onChangeText}
         onBlur={onBlur}
+        {...rest}
       />
       {error && <CS color="red">{error}</CS>}
     </>

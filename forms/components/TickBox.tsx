@@ -5,24 +5,17 @@ import styled from "styled-components/native";
 import { CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
 
-type Props = Omit<TextInputProps, "onBlur" | "value"> & {
-  onChangeText: (value: string | boolean) => void;
-  error: string | undefined;
+type Props = Omit<TextInputProps, "onBlur" | "value" | "onChange"> & {
+  onChange: (value: string | boolean) => void;
+  error?: string | undefined;
   theme: Theme;
   label: string;
   value: boolean;
 };
 
-const TickBox = ({
-  theme,
-  onChangeText,
-  error,
-  value,
-  label,
-  testID,
-}: Props) => {
+const TickBox = ({ theme, onChange, error, value, label, testID }: Props) => {
   const onPress = () => {
-    onChangeText(!value);
+    onChange(!value);
   };
 
   return (
