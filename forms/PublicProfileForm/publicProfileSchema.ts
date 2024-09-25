@@ -10,12 +10,18 @@ export const publicProfileSchema = {
     .messages({
       "*": "Please pick a country from the list",
     }),
-  job_level: Joi.string().valid(...jobLevels).required().messages({
-    "*": "Please pick a job level from the list",
-  }),
-  industry: Joi.string().valid(...onboardingIndustries).required().messages({
-    "*": "Please pick an industry from the list",
-  }),
+  job_level: Joi.string()
+    .valid(...jobLevels)
+    .required()
+    .messages({
+      "*": "Please pick a job level from the list",
+    }),
+  industry: Joi.string()
+    .valid(...onboardingIndustries)
+    .required()
+    .messages({
+      "*": "Please pick an industry from the list",
+    }),
 };
 
 export default publicProfileSchema;

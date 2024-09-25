@@ -53677,7 +53677,7 @@ export const pickerAdaptor = cities
     value: item.city,
   }))
   .reduce<{ key: string; label: string; value: string }[]>((acc, current) => {
-    if (!acc.some(item => item.key === current.key)) {
+    if (!acc.some((item) => item.key === current.key)) {
       acc.push(current);
     }
     return acc;

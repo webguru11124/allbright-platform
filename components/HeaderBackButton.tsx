@@ -12,6 +12,7 @@ const HeaderBackButton = () => {
       color={theme.colors.primary}
       size={36}
       onPress={() => router.back()}
+      testID={"HeaderBackButton"}
     />
   );
 };
