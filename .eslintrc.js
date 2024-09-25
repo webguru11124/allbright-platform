@@ -17,6 +17,7 @@ module.exports = {
         trailingComma: "es5",
         singleAttributePerLine: true,
         bracketSameLine: true,
+        endOfLine: "auto",
       },
     ],
   },
