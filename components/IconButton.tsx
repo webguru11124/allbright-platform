@@ -7,6 +7,7 @@ type Props = {
   onPress: GestureEvent;
   color?: string;
   size?: number;
+  testID?: string;
 };
 
 export default function IconButton({
@@ -15,9 +16,11 @@ export default function IconButton({
   onPress,
   color = "#fff",
   size = 24,
+  testID,
 }: Props) {
   return (
     <Pressable
+      testID={testID}
       style={styles.iconButton}
       onPress={onPress}>
       <MaterialIcons
