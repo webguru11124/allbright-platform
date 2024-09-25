@@ -6,7 +6,6 @@ const withPublicProfileFormProps = (
 ): React.ComponentType => {
   const WC = ({ ...rest }) => {
     const props = usePublicProfileForm(publicProfileSchema);
-
     return (
       <WrappedComponent
         {...props}
