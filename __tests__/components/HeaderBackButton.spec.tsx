@@ -32,6 +32,8 @@ describe("HeaderBackButton", () => {
     );
   });
 
+  afterEach(() => jest.clearAllMocks());
+
   it(`should:
       - navigate to the previous screen when pressed
     `, async () => {
