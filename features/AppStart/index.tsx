@@ -9,7 +9,7 @@ import BackgroundImageMasonry from "@/features/AppStart/partials/BackgroundImage
 import EntryButtons from "@/features/AppStart/partials/EntryButtons";
 import { AppStartProps, AppStartStyleProps } from "@/features/AppStart/types";
 
-const Index = ({
+export const AppStart = ({
   store,
   nameAnim,
   animY,
@@ -69,4 +69,4 @@ const BlurWrapper = styled(View)`
   padding-bottom: 100px;
 `;
 
-export default withAppStartProps(Index);
+export default withAppStartProps(AppStart);
