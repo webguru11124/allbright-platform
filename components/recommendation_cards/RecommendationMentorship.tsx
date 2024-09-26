@@ -1,10 +1,14 @@
+import React from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
 
 import { Colors } from "@/constants/Colors";
 import { CS, H5 } from "../Typography";
 import Badge from "./Badge";
+import { MentorshipRecommendationModel } from "@/types/Recommendations";
 
-const RecommendationMentorship = () => {
+const RecommendationMentorship: React.FC<MentorshipRecommendationModel> = (
+  props
+) => {
   const styles = StyleSheet.create({
     container: {},
     image: {
@@ -43,11 +47,11 @@ const RecommendationMentorship = () => {
       />
       <View style={styles.textContent}>
         <H5 color="white">
-          <Text style={styles.nameContainer}>Laura</Text>
+          <Text style={styles.nameContainer}>{props.firstName}</Text>
           {/* <Space/> */}
-          <Text style={styles.nameContainer}>Wallace</Text>
+          <Text style={styles.nameContainer}>{props.lastName}</Text>
         </H5>
-        <CS color="white">CRM Manager / Data Insights Manager</CS>
+        <CS color="white">{props.jobTitle}</CS>
       </View>
     </View>
   );

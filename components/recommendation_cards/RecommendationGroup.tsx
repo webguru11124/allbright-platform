@@ -1,11 +1,13 @@
+import React from "react";
 import { StyleSheet, View, Image } from "react-native";
 
 import { Colors } from "@/constants/Colors";
 import { CS, H5 } from "../Typography";
 import Divider from "./Divider";
 import Badge from "./Badge";
+import { GroupRecommendationModel } from "@/types/Recommendations";
 
-const RecommendationGroup = () => {
+const RecommendationGroup: React.FC<GroupRecommendationModel> = (props) => {
   const styles = StyleSheet.create({
     container: {
       padding: 20,
@@ -34,13 +36,15 @@ const RecommendationGroup = () => {
           source={require("../../assets/images/test-image.jpg")}
         />
       </View>
-      <Badge colour={Colors.light.purple} text="Group" textColour="white" />
+      <Badge
+        colour={Colors.light.purple}
+        text="Group"
+        textColour="white"
+      />
       <View style={styles.textContent}>
-        <H5>EvolveHer</H5>
+        <H5>{props.name}</H5>
         <Divider colour={Colors.light.purple} />
-        <CS>
-          Bringing together like-minded women to connect, share and learn.
-        </CS>
+        <CS>{props.description}</CS>
       </View>
     </View>
   );

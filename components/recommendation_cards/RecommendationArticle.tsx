@@ -1,11 +1,13 @@
+import React from "react";
 import { StyleSheet, View, Image } from "react-native";
 
 import { Colors } from "@/constants/Colors";
 import { CS, H5 } from "../Typography";
 import Badge from "./Badge";
 import Divider from "./Divider";
+import { ArticleRecommendationModel } from "@/types/Recommendations";
 
-const RecommendationArticle = () => {
+const RecommendationArticle: React.FC<ArticleRecommendationModel> = (props) => {
   const styles = StyleSheet.create({
     container: {
       padding: 20,
@@ -34,10 +36,13 @@ const RecommendationArticle = () => {
           source={require("@/assets/images/test-image.jpg")}
         />
       </View>
-      <Badge colour={Colors.light.yellow} text="Article" />
+      <Badge
+        colour={Colors.light.yellow}
+        text="Article"
+      />
       <View style={styles.textContent}>
-        <H5>How to stop apologising and embrace my authentic self at work</H5>
-        <CS>By Kim Bansi</CS>
+        <H5>{props.title}</H5>
+        <CS>By {props.author}</CS>
         <Divider colour={Colors.light.yellow} />
       </View>
     </View>

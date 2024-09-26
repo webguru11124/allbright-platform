@@ -4,8 +4,10 @@ import { Colors } from "@/constants/Colors";
 import { CS, H5 } from "../Typography";
 import Divider from "./Divider";
 import Badge from "./Badge";
+import React from "react";
+import { EventRecommendationModel } from "@/types/Recommendations";
 
-const RecommendationEventCard = () => {
+const RecommendationEventCard: React.FC<EventRecommendationModel> = (props) => {
   const styles = StyleSheet.create({
     container: {
       padding: 20,
@@ -34,16 +36,15 @@ const RecommendationEventCard = () => {
           source={require("../../assets/images/test-image.jpg")}
         />
       </View>
-      <Badge colour={Colors.light.green} text="Event" />
+      <Badge
+        colour={Colors.light.green}
+        text="Event"
+      />
       <View style={styles.textContent}>
-        <H5>Present with Purpose: Crafting Your Presentation</H5>
-        <CS>Zoom • Oct 23rd</CS>
+        <H5>{props.title}</H5>
+        <CS>{props.location} • Oct 23rd</CS>
         <Divider colour={Colors.light.green} />
-        <CS>
-          Does public speaking leave you filled with dread? You’re not alone.
-          Join us for an event that will reframe your presentation narrative
-          Present with Purpose, led by voice and communication coach Arabella...
-        </CS>
+        <CS>{props.description}</CS>
       </View>
     </View>
   );

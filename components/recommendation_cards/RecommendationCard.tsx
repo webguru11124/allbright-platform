@@ -8,10 +8,25 @@ import RecommendationConnection from "./RecommendationConnection";
 import RecommendationCourse from "./RecommendationCourse";
 import RecommendationGroup from "./RecommendationGroup";
 import RecommendationMentorship from "./RecommendationMentorship";
+import {
+  ArticleRecommendationModel,
+  ConnectionRecommendationModel,
+  RecommendationType,
+  MentorshipRecommendationModel,
+  LessonRecommendationModel,
+  EventRecommendationModel,
+  GroupRecommendationModel,
+  PromotionRecommendationModel,
+} from "@/types/Recommendations";
 
-type RecommendationCardProps = {
-  type: string;
-};
+type RecommendationCardProps =
+  | ConnectionRecommendationModel
+  | MentorshipRecommendationModel
+  | LessonRecommendationModel
+  | EventRecommendationModel
+  | GroupRecommendationModel
+  | ArticleRecommendationModel
+  | PromotionRecommendationModel;
 
 const RecommendationCard = (props: RecommendationCardProps) => {
   const scaleValue = useRef(new Animated.Value(1)).current;
@@ -32,8 +47,10 @@ const RecommendationCard = (props: RecommendationCardProps) => {
       borderWidth: 1,
       overflow: "hidden",
       width: 250,
-      // Height needs to be fit-content - find a fix
-      height: "fit-content",
+
+      // FIX: Height needs to be fit-content
+
+      // height: "fit-content",
       maxHeight: 400,
       backgroundColor: "#F9F4F0",
       cursor: "pointer",
@@ -81,20 +98,22 @@ const RecommendationCard = (props: RecommendationCardProps) => {
     }).start();
   };
 
-  const getCardType = (type: string) => {
-    switch (type) {
-      case "article":
-        return <RecommendationArticle />;
-      case "connection":
-        return <RecommendationConnection />;
-      case "course":
-        return <RecommendationCourse />;
-      case "event":
-        return <RecommendationEvent />;
-      case "group":
-        return <RecommendationGroup />;
-      case "mentorship":
-        return <RecommendationMentorship />;
+  const getCardType = (category: RecommendationType) => {
+    switch (category) {
+      // FIX: Types failing
+
+      // case "articles":
+      //   return <RecommendationArticle {...props} />;
+      // case "connections":
+      //   return <RecommendationConnection {...props} />;
+      // case "courses":
+      //   return <RecommendationCourse {...props} />;
+      // case "events":
+      //   return <RecommendationEvent {...props} />;
+      // case "groups":
+      //   return <RecommendationGroup {...props} />;
+      // case "mentorships":
+      //   return <RecommendationMentorship {...props} />;
       default:
         return null;
     }
@@ -107,7 +126,7 @@ const RecommendationCard = (props: RecommendationCardProps) => {
         onHoverOut={scaleDown}
         onPress={() => console.log("CARD CLICKED")}
         style={styles.pressable}>
-        {getCardType(props.type)}
+        {getCardType(props.category)}
       </Pressable>
     </Animated.View>
   );

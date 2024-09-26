@@ -4,8 +4,10 @@ import { Colors } from "@/constants/Colors";
 import { CS, H5 } from "../Typography";
 import Divider from "./Divider";
 import Badge from "./Badge";
+import React from "react";
+import { LessonRecommendationModel } from "@/types/Recommendations";
 
-const RecommendationCourse = () => {
+const RecommendationCourse: React.FC<LessonRecommendationModel> = (props) => {
   const styles = StyleSheet.create({
     container: {
       padding: 20,
@@ -34,16 +36,16 @@ const RecommendationCourse = () => {
           source={require("../../assets/images/test-image.jpg")}
         />
       </View>
-      <Badge colour={Colors.light.orange} text="Academy" textColour="white" />
+      <Badge
+        colour={Colors.light.orange}
+        text="Academy"
+        textColour="white"
+      />
       <View style={styles.textContent}>
-        <H5>How To Negotiate Like A Pro</H5>
-        <CS>On Demand • 5 videos</CS>
+        <H5>{props.lessonName}</H5>
+        <CS>On Demand • {props.lessonActivitiesCollection.total} videos</CS>
         <Divider colour={Colors.light.orange} />
-        <CS>
-          Executive coach, business mentor, and founder of the Southwestern
-          Empowerment Katy Kvalvik will teach you how to negotiate your way to
-          success.
-        </CS>
+        <CS>{props.lessonIntroductionText}</CS>
       </View>
     </View>
   );

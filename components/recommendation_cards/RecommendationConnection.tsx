@@ -4,8 +4,12 @@ import { Colors } from "@/constants/Colors";
 import { CS, H5 } from "../Typography";
 import Divider from "./Divider";
 import Badge from "./Badge";
+import React from "react";
+import { ConnectionRecommendationModel } from "@/types/Recommendations";
 
-const RecommendationConnection = () => {
+const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (
+  props
+) => {
   const styles = StyleSheet.create({
     container: {
       padding: 20,
@@ -37,11 +41,17 @@ const RecommendationConnection = () => {
           source={require("../../assets/images/test-image.jpg")}
         />
       </View>
-      <Badge colour={Colors.light.teal} text="Connection" textColour="white" />
+      <Badge
+        colour={Colors.light.teal}
+        text="Connection"
+        textColour="white"
+      />
       <View style={styles.textContent}>
-        <H5>Laura Wallace</H5>
-        <CS>CRM Manager</CS>
-        <CS>Manchester, United Kingdom</CS>
+        <H5>
+          {props.firstName} {props.lastName}
+        </H5>
+        <CS>{props.jobTitle}</CS>
+        <CS>{props.location}</CS>
         <Divider colour={Colors.light.teal} />
       </View>
     </View>

@@ -7,11 +7,15 @@ import { View } from "react-native";
 export default function Home() {
   return (
     <View>
-      <MasonryGrid>
+      {/* FIX: types failing */}
+
+      {/* <MasonryGrid>
         {DUMMY_RECS.map((item) => (
+
+
           <RecommendationCard {...item} />
         ))}
-      </MasonryGrid>
+      </MasonryGrid> */}
       <Link href="/">Go Back</Link>
     </View>
   );
