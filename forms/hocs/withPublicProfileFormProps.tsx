@@ -1,7 +1,6 @@
 import usePublicProfileForm from "../hooks/usePublicProfileForm";
 import publicProfileSchema from "@/forms/PublicProfileForm/publicProfileSchema";
 
-// TODO: Replace 'any' in React.ComponentType<any> with RegisterFormProps
 const withPublicProfileFormProps = (
   WrappedComponent: React.ComponentType<any>
 ): React.ComponentType => {
