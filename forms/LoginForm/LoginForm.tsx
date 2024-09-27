@@ -3,17 +3,7 @@ import { SafeAreaView } from "react-native";
 import Space from "@/components/Space";
 import Button from "@/forms/components/Button";
 import TextInput from "@/forms/components/TextInput";
-import { Dictionary } from "lodash";
-
-export type LoginFormProps = {
-  inputs: Dictionary<string | undefined>;
-  errors: Dictionary<string | undefined>;
-  blurFuncs: Dictionary<SyntheticEvent>;
-  changeTextFuncs: Dictionary<SyntheticEvent>;
-  isFormValid: boolean;
-  isPending: boolean;
-  onPress: GestureEvent;
-};
+import { FormProps } from "../types/forms.types";
 
 export const LoginForm = ({
   inputs,
@@ -23,7 +13,7 @@ export const LoginForm = ({
   isFormValid,
   isPending,
   onPress,
-}: LoginFormProps) => {
+}: FormProps) => {
   return (
     <SafeAreaView>
       <TextInput
