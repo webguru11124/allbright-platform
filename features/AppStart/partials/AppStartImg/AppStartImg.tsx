@@ -2,9 +2,14 @@ import { Image } from "expo-image";
 import React from "react";
 
 import { AppStartImgProps } from "@/features/AppStart/types";
-import withAppStartImg from "../hocs/withAppStartImg";
 
-const AppStartImg = ({ elm, xDim, yDim, c, idx }: AppStartImgProps) => (
+const AppStartImg: React.FC<AppStartImgProps> = ({
+  elm,
+  xDim,
+  yDim,
+  c,
+  idx,
+}: AppStartImgProps) => (
   <Image
     key={idx}
     style={[
@@ -25,4 +30,4 @@ const AppStartImg = ({ elm, xDim, yDim, c, idx }: AppStartImgProps) => (
   />
 );
 
-export default withAppStartImg(AppStartImg);
+export default AppStartImg;
