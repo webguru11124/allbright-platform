@@ -4,13 +4,12 @@ import { Animated, SafeAreaView, StatusBar, View } from "react-native";
 import styled from "styled-components/native";
 
 import Space from "@/components/Space";
-import withAppStartProps from "@/features/AppStart/hocs/withAppStartProps";
 import BackgroundImageMasonry from "@/features/AppStart/partials/BackgroundImageMasonry";
 import EntryButtons from "@/features/AppStart/partials/EntryButtons";
 import { AppStartProps, AppStartStyleProps } from "@/features/AppStart/types";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 
-const Index = ({
+const AppStart = ({
   store,
   nameAnim,
   animY,
@@ -94,4 +93,4 @@ const BlurWrapper = styled(View)`
   padding-bottom: 100px;
 `;
 
-export default withAppStartProps(Index);
+export default AppStart;
