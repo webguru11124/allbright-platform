@@ -5,19 +5,9 @@ import AgreeTermsCheckBox from "@/forms/components/AgreeTermsCheckBox";
 import Button from "@/forms/components/Button";
 import CountryPicker from "@/forms/components/CountryPicker";
 import TextInput from "@/forms/components/TextInput";
-import { Dictionary } from "lodash";
 import MarketingAgreedCheckBox from "../components/MarketingAgreedCheckBox";
 import ThirdPartyAgreedCheckBox from "../components/ThirdPartyAgreedCheckBox";
-
-export type RegisterFormProps = {
-  inputs: Dictionary<string | undefined>;
-  errors: Dictionary<string | undefined>;
-  blurFuncs: Dictionary<SyntheticEvent>;
-  changeTextFuncs: Dictionary<SyntheticEvent>;
-  isFormValid: boolean;
-  isPending: boolean;
-  onPress: GestureEvent;
-};
+import { FormProps } from "../types/forms.types";
 
 export const RegisterForm = ({
   inputs,
@@ -27,7 +17,7 @@ export const RegisterForm = ({
   isFormValid,
   isPending,
   onPress,
-}: RegisterFormProps) => (
+}: FormProps) => (
   <SafeAreaView>
     <TextInput
       placeholder="First Name"
