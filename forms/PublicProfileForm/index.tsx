@@ -7,9 +7,10 @@ import CityPicker from "@/forms/components/CityPicker";
 import JobLevelPicker from "@/forms/components/JobLevelPicker";
 import IndustryPicker from "../components/IndustryPicker";
 import TextInput from "../components/TextInput";
-import GoalsSection from "../components/GoalsSelection";
 import goals from "@/utils/data/goals";
+import GoalsSelection from "../components/GoalsSelection";
 import ProfilePhotoUploadSection from "../components/ProfilePhotoUploadSection";
+import { ProfileImage } from "../hooks/useProfilePhotoUploadSection";
 
 const placeholderBiography =
   "Example: As a female CEO, I'm committed to leading with vision and impact. Alongside championing diversity and innovation, my passion for travel fuels my global perspective. Let's connect to empower each other in the world of leadership and swap adventure stories! ✈️ \n(500 characters max)";
@@ -43,6 +44,7 @@ export type PublicProfileFormProps = {
     job_title: (text: string) => void;
     user_biography: (text: string) => void;
     goals: (value: (typeof goals)[number][]) => void;
+    profile_image: (file: ProfileImage) => void;
   };
   isFormValid: boolean;
   isPending: boolean;
@@ -110,9 +112,11 @@ export const PublicProfileForm = ({
       testID="PublicProfileForm:Industry"
     />
     <Space height={10} />
-    <GoalsSection updateField={changeTextFuncs.goals} />
+    <GoalsSelection updateField={changeTextFuncs.goals} />
     <Space height={10} />
-    <ProfilePhotoUploadSection />
+    <ProfilePhotoUploadSection
+      uploadProfileImage={changeTextFuncs.profile_image}
+    />
     <Space height={10} />
     <TextInput
       placeholder={placeholderBiography}

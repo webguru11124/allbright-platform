@@ -3,6 +3,14 @@ import { jobLevels } from "@/utils/data/jobLevels";
 import { onboardingIndustries } from "@/utils/data/industries";
 import goals from "@/utils/data/goals";
 
+const profileImageSchema = Joi.object({
+  state: Joi.any().required(), // Assuming no specific validation for 'state'
+  file: Joi.string().required().messages({
+    "any.required": "Please select a profile image",
+    "string.base": "Profile image must be a valid string",
+  }),
+});
+
 export const publicProfileSchema = {
   city: Joi.string().max(60).required(),
   job_level: Joi.string()
@@ -32,6 +40,9 @@ export const publicProfileSchema = {
     })
     .max(500)
     .min(10),
+  profile_image: profileImageSchema.required().messages({
+    "any.required": "Profile image is required",
+  }),
 };
 
 export default publicProfileSchema;

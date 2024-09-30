@@ -4,40 +4,30 @@ import styled from "styled-components/native";
 import colours from "@/utils/ui/colours";
 import { Image } from "react-native";
 import { IconCamera } from "@/components/Icons";
-import { useImagePicker } from "@/forms/hooks/useImagePicker";
 
 interface StyleProps {
   height?: string;
   width?: string;
 }
 interface ProfilePhotoInputProps {
-  onFileUpload: (file: string) => void;
   imageSrc?: string | null;
   height?: string;
   width?: string;
+  pickProfileImage: () => void;
 }
 
 const ProfilePhotoInput: React.FunctionComponent<ProfilePhotoInputProps> = (
   props
 ) => {
-  const pickImageAsync = useImagePicker();
   const getImageDisplay = () => {
     if (props.imageSrc)
       return <S.StyledImage source={{ uri: props.imageSrc }} />;
 
     return <S.CameraIcon data-cy="camera-icon" />;
   };
-  const pickProfileImage = async () => {
-    try {
-      const image = await pickImageAsync();
-      props.onFileUpload(image);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
-    <S.DisplayPhotoSection onPress={pickProfileImage}>
+    <S.DisplayPhotoSection onPress={props.pickProfileImage}>
       <S.DisplayPhoto
         height={props.height}
         width={props.width}>
