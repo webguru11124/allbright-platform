@@ -1,23 +1,38 @@
 import Joi from "joi";
 
 import useFormWithPassConf from "@/forms/hooks/useFormWithPassConf";
-import goals from "@/utils/data/goals";
+import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
+import { publicProfileAdaptor, PublicProfileInput } from "../adaptors";
+import { useRouter } from "expo-router";
 
 const usePublicProfileForm = (
   publicProfileSchema: Joi.PartialSchemaMap<any> | undefined
 ) => {
-  const { inputs, errors, blurFuncs, changeTextFuncs, isFormValid } =
-    useFormWithPassConf(publicProfileSchema, {});
+  const {
+    inputs,
+    errors,
+    blurFuncs,
+    changeTextFuncs,
+    postBody,
+    isFormValid,
+    showErrorMessage,
+  } = useFormWithPassConf(publicProfileSchema, {});
+  const { mutate: mutateUpdateUser, isPending: isPendingUpdateUser } =
+    useUserUpdate();
+  const router = useRouter();
 
-  const onPress = () => {
+  const onPress = async () => {
     // TODO: Update handling error and sucess on mutate
-  };
-
-  const setOnboardingFieldHandler = (
-    field: "goals",
-    value: (typeof goals)[number][]
-  ) => {
-    // setField(field, value);
+    mutateUpdateUser(publicProfileAdaptor(postBody as PublicProfileInput), {
+      onSuccess: (response) => {
+        console.log("response", response);
+        router.replace("/onboarding/private-profile");
+      },
+      onError: (error: any) => {
+        console.error(error);
+        showErrorMessage(error.message);
+      },
+    });
   };
 
   return {
@@ -26,8 +41,8 @@ const usePublicProfileForm = (
     blurFuncs,
     changeTextFuncs,
     isFormValid,
+    isPending: isPendingUpdateUser,
     onPress,
-    setOnboardingFieldHandler,
   };
 };
 

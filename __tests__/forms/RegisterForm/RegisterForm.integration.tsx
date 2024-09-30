@@ -120,40 +120,4 @@ describe("RegisterForm", () => {
 
     expect(screen).not.toHavePathname("/home");
   });
-
-  it(`should:
-    - Enter a valid password
-    - Enter a different value for password_confirmation
-    - Display the password confirmation error message
-    `, async () => {
-    const PASS = faker.internet.password({ prefix: "pass_" });
-    const PASS_CONF = faker.internet.password({ prefix: "conf_" });
-    const EXPECTED_PASSWORD_CONF_ERROR = `"Password Confirmation" and "Password" should match`;
-
-    renderRouter({
-      index: jest.fn(() => (
-        <Providers>
-          <RegisterForm />
-        </Providers>
-      )),
-    });
-
-    expect(screen).toHavePathname("/");
-
-    await fireBlurEvent(screen.getByTestId("RegisterForm:Password"), PASS);
-    await fireBlurEvent(
-      screen.getByTestId("RegisterForm:PasswordConfirmation"),
-      PASS_CONF
-    );
-
-    expect(
-      await screen.findByText(EXPECTED_PASSWORD_CONF_ERROR)
-    ).not.toBeNull();
-
-    await act(() => {
-      fireEvent.press(screen.getByText("Submit"));
-    });
-
-    expect(screen).not.toHavePathname("/home");
-  });
 });

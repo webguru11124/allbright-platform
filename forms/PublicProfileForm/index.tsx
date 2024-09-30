@@ -20,6 +20,7 @@ type InputProps = {
   city: string | undefined;
   industry: string | undefined;
   job_level: string | undefined;
+  goals: (typeof goals)[number][];
   user_biography: string | undefined;
 };
 
@@ -41,14 +42,11 @@ export type PublicProfileFormProps = {
     company_name: (text: string) => void;
     job_title: (text: string) => void;
     user_biography: (text: string) => void;
+    goals: (value: (typeof goals)[number][]) => void;
   };
   isFormValid: boolean;
   isPending: boolean;
   onPress: GestureEvent;
-  setOnboardingFieldHandler: (
-    field: "goals",
-    value: (typeof goals)[number][]
-  ) => void;
 };
 
 export const PublicProfileForm = ({
@@ -59,7 +57,6 @@ export const PublicProfileForm = ({
   isFormValid,
   isPending,
   onPress,
-  setOnboardingFieldHandler,
 }: PublicProfileFormProps) => (
   <SafeAreaView>
     <CityPicker
@@ -113,7 +110,7 @@ export const PublicProfileForm = ({
       testID="PublicProfileForm:Industry"
     />
     <Space height={10} />
-    <GoalsSection setField={setOnboardingFieldHandler} />
+    <GoalsSection updateField={changeTextFuncs.goals} />
     <Space height={10} />
     <ProfilePhotoUploadSection />
     <Space height={10} />

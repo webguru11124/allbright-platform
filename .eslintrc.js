@@ -1,4 +1,10 @@
 module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+    jest: true, // Use 'jest: true' instead of 'jest/globals'
+  },
   extends: ["expo", "prettier"],
   plugins: ["prettier"],
   rules: {

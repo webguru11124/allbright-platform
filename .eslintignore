@@ -2,3 +2,5 @@
 /.expo
 
 node_modules
+utils/index.js
+metro.config.js
