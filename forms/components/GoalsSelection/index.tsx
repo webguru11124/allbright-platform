@@ -2,10 +2,11 @@ import { CL } from "@/components/Typography";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 import goals from "@/utils/data/goals";
-import { errorOutline } from "@/utils/errorOutline";
+import { errorOutline } from "@/utils/ui/errorOutline";
 import React, { FunctionComponent, useContext } from "react";
 import styled, { css } from "styled-components/native";
-import TickBox from "./TickBox";
+import TickBox from "../TickBox";
+import withGoalsSelectionProps from "@/forms/hocs/withGoalsSelectionProps";
 
 type StyleProps = {
   maxWidth: (val: number) => boolean;
@@ -13,30 +14,13 @@ type StyleProps = {
 };
 
 interface GoalsSectionProps {
-  setField: (field: "goals", value: (typeof goals)[number][]) => void;
+  goalIsSelected: (goal: (typeof goals)[number]) => boolean;
+  setGoalsStateHandler: (goal: (typeof goals)[number]) => void;
   error?: boolean;
 }
 
 const GoalsSection: FunctionComponent<GoalsSectionProps> = (props) => {
-  const goalsState: (typeof goals)[number][] = [];
-  const goalIsSelected = (goal: (typeof goals)[number]) =>
-    goalsState?.includes(goal);
-
-  const setGoalsStateHandler = (goal: (typeof goals)[number]) => {
-    let goalsList: (typeof goals)[number][] = [];
-
-    if (goalIsSelected(goal)) {
-      goalsList = [...goalsState].filter((item) => item !== goal);
-    }
-
-    if (!goalIsSelected(goal)) {
-      goalsList = goalsState.length < 3 ? goalsState.concat(goal) : goalsState;
-    }
-
-    props.setField("goals", goalsList);
-  };
   const { maxWidth } = useContext<MediaQuery>(MediaQueryContext);
-
   return (
     <Container
       error={props.error}
@@ -47,8 +31,8 @@ const GoalsSection: FunctionComponent<GoalsSectionProps> = (props) => {
           <TickBox
             key={goal}
             label={goal}
-            onChange={() => setGoalsStateHandler(goal)}
-            value={goalIsSelected(goal)}
+            onChange={() => props.setGoalsStateHandler(goal)}
+            value={props.goalIsSelected(goal)}
             {...props}
             error=""
             testID={`goals-checkbox-${goal}`}
@@ -84,4 +68,4 @@ const GoalsContainer = styled.View<StyleProps>`
     `}
 `;
 
-export default GoalsSection;
+export default withGoalsSelectionProps(GoalsSection);

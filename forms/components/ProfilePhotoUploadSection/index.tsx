@@ -1,35 +1,27 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components/native";
 import { CM, H4 } from "@/components/Typography";
-import colours from "@/utils/colours";
-import Button from "./Button";
+import colours from "@/utils/ui/colours";
+import Button from "../Button";
 import { ArrowRight } from "@/components/Icons";
-import ProfilePhotoInput from "./ProfilePhotoInput";
-import TickBox from "./TickBox";
+import ProfilePhotoInput from "../ProfilePhotoInput";
+import TickBox from "../TickBox";
 import { LocalImageType } from "@/types/files/localImage";
 import { View } from "react-native";
-import { useImagePicker } from "../hooks/useImagePicker";
+import { useImagePicker } from "../../hooks/useImagePicker";
+import { useProfilePhotoUploadSection } from "@/forms/hooks/useProfilePhotoUploadSection";
 
 const ProfilePhotoUploadSection: FunctionComponent = () => {
-  const [profileImage, setProfileImage] = React.useState<{
-    state: LocalImageType;
-    file: string | null;
-  }>({ state: LocalImageType.FILE_NOT_SET, file: null });
-
+  const { profileImage, handleImageUpload, handleProfileWantedToggle } =
+    useProfilePhotoUploadSection();
   const imageSrc = profileImage.file;
-
-  const handleImageUpload = (file: string) => {
-    setProfileImage({ state: LocalImageType.FILE_SET, file });
-  };
-
-  const handleProfileWantedToggle = (value: string | boolean) => {};
 
   const pickImageAsync = useImagePicker();
 
   const pickProfileImage = async () => {
     try {
       const image = await pickImageAsync();
-      setProfileImage({ state: LocalImageType.FILE_SET, file: image });
+      handleImageUpload(image);
     } catch (error) {
       console.log(error);
     }

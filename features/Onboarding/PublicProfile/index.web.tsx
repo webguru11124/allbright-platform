@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import PublicProfileForm from "@/forms/PublicProfileForm";
 import { OnboadingPageLayout } from "../layout";
 import { CM, H3, H5 } from "@/components/Typography";
-import colours from "@/utils/colours";
+import colours from "@/utils/ui/colours";
 
 const PublicProfile = () => {
   return (

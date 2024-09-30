@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 
-import colours from "@/utils/colours";
+import colours from "@/utils/ui/colours";
 import { Image } from "react-native";
 import { IconCamera } from "@/components/Icons";
 import { useImagePicker } from "@/forms/hooks/useImagePicker";
