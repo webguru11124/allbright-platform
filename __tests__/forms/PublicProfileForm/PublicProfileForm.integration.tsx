@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { fireEvent, } from "@testing-library/react-native";
+import { fireEvent } from "@testing-library/react-native";
 import { act, renderRouter, screen } from "expo-router/testing-library";
 
 import PublicProfileForm from "@/forms/PublicProfileForm";
@@ -124,5 +124,4 @@ describe("PublicProfileForm", () => {
 
   //   expect(screen).not.toHavePathname("/home");
   // });
-
 });

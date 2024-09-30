@@ -41,6 +41,7 @@ describe("PublicProfileForm", () => {
       job_title: jest.fn(),
       user_biography: jest.fn(),
       goals: jest.fn(),
+      profile_image: jest.fn(),
     },
     isFormValid: false,
     isPending: false,

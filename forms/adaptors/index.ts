@@ -1,6 +1,7 @@
 import { cities } from "@/utils/data/cities";
 import goals from "@/utils/data/goals";
 import { jobLevels } from "@/utils/data/jobLevels";
+import { ProfileImage } from "../hooks/useProfilePhotoUploadSection";
 
 export type RegisterInput = {
   first_name: string;
@@ -47,6 +48,7 @@ export type PublicProfileInput = {
   industry: string;
   goals: (typeof goals)[number][];
   user_biography: string;
+  profile_image: ProfileImage;
 };
 
 export type PublicProfileOutput = {
@@ -57,6 +59,7 @@ export type PublicProfileOutput = {
   jobIndustry: string;
   goals: (typeof goals)[number][];
   bio: string;
+  imageSrc?: string | null;
 };
 
 export const publicProfileAdaptor = (

@@ -44,7 +44,7 @@ export type UserModel = {
   profileImageUrl?: string;
   goals?: (typeof goals)[number][];
   phoneNumber?: string;
-  imageSrc?: string;
+  imageSrc?: string | null;
   location?: string;
   events?: string[];
   groups?: string[];
