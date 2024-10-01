@@ -2,8 +2,6 @@ import { Href, Link } from "expo-router";
 import { Animated, Pressable } from "react-native";
 import styled from "styled-components/native";
 
-import withTabButtonProps from "../hocs/withTabButtonProps";
-
 export type Props = {
   isActive: boolean;
   widthAnim: Animated.Value;
@@ -56,4 +54,4 @@ const StyledLink = styled(Link)`
   display: flex;
 `;
 
-export default withTabButtonProps(TabButton);
+export default TabButton;
