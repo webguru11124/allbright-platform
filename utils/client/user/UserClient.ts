@@ -1,8 +1,9 @@
 import * as u from "../../";
 import { UserModel } from "@/types/user";
-import { storage } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import api from "@/lib/api";
+import { storage } from "@/utils/client/firebase";
+import { getUserId } from "@/utils/token";
 
 class UserClient {
   public async findUserById(userId: string): Promise<UserModel | undefined> {
@@ -17,13 +18,13 @@ class UserClient {
   }
 
   public async updateUser(user: Partial<UserModel>): Promise<boolean> {
-    const response = await api.post("/api/user/update-user", {
-      updates: user,
+    const userId = await getUserId();
+    if (!userId) return Promise.reject("Invalid User Id");
+    const response = await api.put(`/v1/users/${userId}`, {
+      ...user,
     });
 
-    if (!response.data.success)
-      throw new Error("Unable to update user successfully");
-    return response.data.data;
+    return response.data;
   }
 
   public async updateUserImage(fileUrl: string): Promise<string | undefined> {
@@ -45,33 +46,6 @@ class UserClient {
       // Return the modified image URL
       return `${imageUrl.split("?")[0]}_800x800?${imageUrl.split("?")[1]}`;
     }
-  }
-
-  public async paginateUserIds(
-    userIds: string[],
-    token: string | undefined | null
-  ) {
-    if (token === null) return { nextToken: null, data: [], remaining: [] };
-
-    let ids = [...userIds];
-    const limit = 30;
-    const start =
-      token && userIds.includes(token)
-        ? userIds.findIndex((el) => el === token)
-        : 0;
-    const end = start + limit;
-
-    if (ids.length > 30) {
-      ids = ids.slice(start, end);
-    }
-
-    const { data } = (await api.post("/api/user/get-by-id", { id: ids })).data;
-
-    return {
-      nextToken: userIds[end] || null,
-      data,
-      remaining: userIds.slice(end) || [],
-    };
   }
 }
 

@@ -1,3 +1,4 @@
+import { parseJwt } from ".";
 import * as constants from "../constants/Storage";
 import * as asyncStorage from "../lib/asyncStorage";
 
@@ -7,4 +8,9 @@ export async function setToken(token: string) {
 
 export async function getToken() {
   return await asyncStorage.getItem(constants.ACCESS_TOKEN);
+}
+
+export async function getUserId() {
+  const jsonPayload = parseJwt(await getToken());
+  return await jsonPayload.sub;
 }

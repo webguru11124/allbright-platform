@@ -27,7 +27,7 @@ type InputProps = {
 
 export type PublicProfileFormProps = {
   inputs: InputProps;
-  errors: InputProps;
+  errors: Omit<InputProps, "goals"> & { goals: string };
   blurFuncs: {
     city: SyntheticEvent;
     industry: SyntheticEvent;
@@ -112,7 +112,10 @@ export const PublicProfileForm = ({
       testID="PublicProfileForm:Industry"
     />
     <Space height={10} />
-    <GoalsSelection updateField={changeTextFuncs.goals} />
+    <GoalsSelection
+      updateField={changeTextFuncs.goals}
+      error={errors.goals}
+    />
     <Space height={10} />
     <ProfilePhotoUploadSection
       uploadProfileImage={changeTextFuncs.profile_image}

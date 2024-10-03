@@ -21,7 +21,7 @@ const useLoginForm = (loginSchema: Joi.PartialSchemaMap<any> | undefined) => {
     if (isFormValid) {
       mutate(postBody as Login, {
         onSuccess: (response) => {
-          setToken(response as unknown as string);
+          setToken(response.data as unknown as string);
           router.replace("/home");
         },
         onError: (error: any) => showErrorMessage(error.message),

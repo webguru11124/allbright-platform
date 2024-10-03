@@ -29,7 +29,9 @@ const ProfilePhotoUploadSection = ({
       <S.CM>Profile picture</S.CM>
 
       <S.PhotoInformationSection>
-        <S.ArrowButton onPress={pickProfileImage}>
+        <S.ArrowButton
+          onPress={pickProfileImage}
+          testID="ProfilePhotoUploadSection:ArrowButton">
           <ArrowRight fill={colours.lightShell} />
         </S.ArrowButton>
         <S.SelectPhotoText>
@@ -48,8 +50,15 @@ const ProfilePhotoUploadSection = ({
       </S.PhotoUploadPosition>
       <TickBox
         label="I do not wish to use a photo"
+        testID="ProfilePhotoUploadSection:ProfileWantedToggle"
         value={profileImage.state === LocalImageType.FILE_UNSET}
-        onChange={handleProfileWantedToggle}
+        onChange={() => {
+          if (profileImage.state === LocalImageType.FILE_UNSET) {
+            handleProfileWantedToggle(true);
+          } else {
+            handleProfileWantedToggle(false);
+          }
+        }}
       />
     </View>
   );
