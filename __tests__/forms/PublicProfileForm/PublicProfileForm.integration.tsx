@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { fireEvent } from "@testing-library/react-native";
-import { act, renderRouter, screen } from "expo-router/testing-library";
+import { renderRouter, screen, waitFor } from "expo-router/testing-library";
 
 import PublicProfileForm from "@/forms/PublicProfileForm";
 import api from "@/lib/api";
@@ -54,18 +54,16 @@ describe("PublicProfileForm", () => {
     fireEvent.press(screen.getByTestId(`goals-checkbox-${randomGoals[1]}`));
     fireEvent.press(screen.getByTestId(`goals-checkbox-${randomGoals[2]}`));
 
-    mockedApi.post.mockResolvedValueOnce({ data: { data: {}, success: true } });
+    mockedApi.post.mockResolvedValueOnce({});
     // Check that the button is not disabled before API call
     const submitButton = screen.getByTestId("PublicProfileForm:Submit");
-    expect(submitButton.props.disabled).not.toBe(true);
 
-    await act(() => {
-      fireEvent.press(screen.getByTestId("PublicProfileForm:Submit"));
+    expect(submitButton.props.disabled).toBe(false);
+    fireEvent.press(screen.getByTestId("PublicProfileForm:Submit"));
+
+    await waitFor(() => {
+      expect(screen).toHavePathname("/onboarding/private-profile");
     });
-
-    // await waitFor(() => {
-    //   expect(screen).toHavePathname("/onboarding/private-profile");
-    // });
   });
 
   // it(`should:

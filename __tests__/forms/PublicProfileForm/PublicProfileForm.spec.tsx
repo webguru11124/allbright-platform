@@ -22,7 +22,7 @@ describe("PublicProfileForm", () => {
       company_name: undefined,
       job_title: undefined,
       user_biography: undefined,
-      goals: [],
+      goals: "",
     },
     blurFuncs: {
       city: jest.fn(),

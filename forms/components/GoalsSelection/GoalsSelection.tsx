@@ -1,4 +1,4 @@
-import { CL } from "@/components/Typography";
+import { CL, CS } from "@/components/Typography";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 import goals from "@/utils/data/goals";
@@ -9,13 +9,13 @@ import TickBox from "../TickBox";
 
 type StyleProps = {
   maxWidth: (val: number) => boolean;
-  error?: boolean;
+  error?: string;
 };
 
 interface GoalsSectionProps {
   goalIsSelected: (goal: (typeof goals)[number]) => boolean;
   setGoalsStateHandler: (goal: (typeof goals)[number]) => void;
-  error?: boolean;
+  error?: string;
 }
 
 const GoalsSection: FunctionComponent<GoalsSectionProps> = (props) => {
@@ -33,11 +33,11 @@ const GoalsSection: FunctionComponent<GoalsSectionProps> = (props) => {
             onChange={() => props.setGoalsStateHandler(goal)}
             value={props.goalIsSelected(goal)}
             {...props}
-            error=""
             testID={`goals-checkbox-${goal}`}
           />
         ))}
       </GoalsContainer>
+      {props.error && <CS color="red">{props.error}</CS>}
     </Container>
   );
 };
@@ -46,7 +46,7 @@ const Container = styled.View<StyleProps>`
   padding: 10px 0;
 
   ${(p) =>
-    p.error &&
+    !!p.error &&
     `
     ${errorOutline}
     border-radius: 5px;
