@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/react-native";
 
-import { PublicProfileForm } from "@/forms/PublicProfileForm";
+import PublicProfileForm from "@/forms/PublicProfileForm/PublicProfileForm";
 import Providers from "@/utils/providers";
 import { faker } from "@faker-js/faker";
 
@@ -13,7 +13,6 @@ describe("PublicProfileForm", () => {
       company_name: undefined,
       job_title: undefined,
       user_biography: undefined,
-      goals: [],
     },
     errors: {
       city: undefined,
@@ -22,7 +21,6 @@ describe("PublicProfileForm", () => {
       company_name: undefined,
       job_title: undefined,
       user_biography: undefined,
-      goals: "",
     },
     blurFuncs: {
       city: jest.fn(),
@@ -52,11 +50,9 @@ describe("PublicProfileForm", () => {
     let screen: any;
 
     beforeEach(() => {
-      screen = render(
-        <Providers>
-          <PublicProfileForm {...props} />
-        </Providers>
-      );
+      screen = render(<PublicProfileForm {...props} />, {
+        wrapper: Providers,
+      });
       jest.clearAllMocks();
     });
 

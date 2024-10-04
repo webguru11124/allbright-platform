@@ -1,12 +1,12 @@
 import * as Joi from "joi";
 
 import * as React from "react";
-import useFormWithPassConf from "@/forms/hooks/useFormWithPassConf";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 import { publicProfileAdaptor, PublicProfileInput } from "../adaptors";
 import { useRouter } from "expo-router";
 import { LocalImageType } from "@/types/files/localImage";
 import UserClient from "@/utils/client/user/UserClient";
+import useForm from "./useForm";
 
 const usePublicProfileForm = (
   publicProfileSchema: Joi.PartialSchemaMap<any> | undefined
@@ -19,7 +19,7 @@ const usePublicProfileForm = (
     postBody,
     isFormValid,
     showErrorMessage,
-  } = useFormWithPassConf(publicProfileSchema, {});
+  } = useForm(publicProfileSchema, {});
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
@@ -61,7 +61,6 @@ const usePublicProfileForm = (
       setLoading(false);
     }
   };
-
   return {
     inputs,
     errors,

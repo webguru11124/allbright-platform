@@ -1,11 +1,14 @@
-import { Picker as NativePicker } from "@react-native-picker/picker";
+import {
+  Picker as NativePicker,
+  PickerProps,
+} from "@react-native-picker/picker";
 import { NativeSyntheticEvent, NativeTouchEvent } from "react-native";
 import styled from "styled-components/native";
 
 import { CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
 
-type Props = {
+type Props = PickerProps & {
   selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
   onValueChange: (itemValue: unknown, itemIndex: number) => void;
   onBlur: SyntheticEvent;
@@ -33,6 +36,7 @@ const Picker = ({
   error,
   placeholder,
   theme,
+  ...props
 }: Props) => {
   return (
     <>
@@ -41,7 +45,8 @@ const Picker = ({
         onValueChange={onValueChange}
         backgroundcolor={theme.colors.inputs.background}
         error={error}
-        onBlur={onBlur}>
+        onBlur={onBlur}
+        {...props}>
         <NativePicker.Item
           key={"-1"}
           label={placeholder ?? "Country"}
@@ -66,7 +71,7 @@ const StyledPicker = styled(NativePicker)<StyleProps>`
   padding-left: 15px;
   border-radius: 5px;
   border-color: ${(p) => (p.error ? "red" : "tranparent")};
-  border-width: ${(p) => (p.error ? 3 : 0)};
+  border-width: ${(p) => (p.error ? 3 : 0)}px;
   font-size: 14px;
   color: rgb(73, 101, 140);
 `;

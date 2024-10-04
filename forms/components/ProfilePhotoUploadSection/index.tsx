@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import { useImagePicker } from "../../hooks/useImagePicker";
 import {
   ProfileImage,
   useProfilePhotoUploadSection,
@@ -13,24 +12,8 @@ interface ProfilePhotoUploadSectionProps {
 const ProfilePhotoUploadSectionContainer: FunctionComponent<
   ProfilePhotoUploadSectionProps
 > = (props) => {
-  const { profileImage, handleImageUpload, handleProfileWantedToggle } =
-    useProfilePhotoUploadSection();
-
-  const pickImageAsync = useImagePicker();
-
-  const pickProfileImage = async () => {
-    try {
-      const image = await pickImageAsync();
-      handleImageUpload(image);
-    } catch (error) {
-      throw error;
-    }
-  };
-
-  React.useEffect(() => {
-    props.uploadProfileImage(profileImage);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [profileImage]);
+  const { profileImage, pickProfileImage, handleProfileWantedToggle } =
+    useProfilePhotoUploadSection(props.uploadProfileImage);
 
   return (
     <ProfilePhotoUploadSection

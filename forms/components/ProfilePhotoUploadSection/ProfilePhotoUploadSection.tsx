@@ -26,28 +26,30 @@ const ProfilePhotoUploadSection = ({
   const imageSrc = profileImage.file;
   return (
     <View>
-      <S.CM>Profile picture</S.CM>
+      <CM>Profile picture</CM>
 
-      <S.PhotoInformationSection>
-        <S.ArrowButton
+      <PhotoInformationSection>
+        <ArrowButton
           onPress={pickProfileImage}
           testID="ProfilePhotoUploadSection:ArrowButton">
           <ArrowRight fill={colours.lightShell} />
-        </S.ArrowButton>
-        <S.SelectPhotoText>
+        </ArrowButton>
+        <SelectPhotoText>
           <H4>'Select photo'</H4>
-          <CM>Please ensure it is of just yourself and no one else.</CM>
-        </S.SelectPhotoText>
-      </S.PhotoInformationSection>
+          <CMMarginBottom>
+            Please ensure it is of just yourself and no one else.
+          </CMMarginBottom>
+        </SelectPhotoText>
+      </PhotoInformationSection>
 
-      <S.PhotoUploadPosition>
+      <PhotoUploadPosition>
         <ProfilePhotoInput
           imageSrc={
             profileImage.state === LocalImageType.FILE_UNSET ? null : imageSrc
           }
           pickProfileImage={pickProfileImage}
         />
-      </S.PhotoUploadPosition>
+      </PhotoUploadPosition>
       <TickBox
         label="I do not wish to use a photo"
         testID="ProfilePhotoUploadSection:ProfileWantedToggle"
@@ -64,28 +66,13 @@ const ProfilePhotoUploadSection = ({
   );
 };
 
-const S = () => {};
-S.ArrowButton = styled(Button)`
-  padding-left: 20px;
-  padding-right: 20px;
-`;
-S.CM = styled(CM)`
-  margin-bottom: 20px;
-`;
+const ArrowButton = styled(Button)``;
+const CMMarginBottom = styled(CM)``;
 
-S.PhotoInformationSection = styled.View`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
-  align-items: center;
-`;
+const PhotoInformationSection = styled.View``;
 
-S.PhotoUploadPosition = styled.View`
-  margin-bottom: 20px;
-`;
+const PhotoUploadPosition = styled.View``;
 
-S.SelectPhotoText = styled.View`
-  margin-left: 8px;
-`;
+const SelectPhotoText = styled.View``;
 
 export default ProfilePhotoUploadSection;

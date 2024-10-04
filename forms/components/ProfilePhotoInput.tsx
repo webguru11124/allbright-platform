@@ -21,9 +21,14 @@ const ProfilePhotoInput: React.FunctionComponent<ProfilePhotoInputProps> = (
 ) => {
   const getImageDisplay = () => {
     if (props.imageSrc)
-      return <S.StyledImage source={{ uri: props.imageSrc }} />;
+      return (
+        <S.StyledImage
+          testID="profile-photo"
+          source={{ uri: props.imageSrc }}
+        />
+      );
 
-    return <S.CameraIcon data-cy="camera-icon" />;
+    return <S.CameraIcon testID="camera-icon" />;
   };
 
   return (
@@ -58,10 +63,6 @@ S.DisplayPhoto = styled.View<StyleProps>`
   justify-content: center;
   align-items: center;
   position: relative;
-
-  &:hover {
-    filter: brightness(0.9);
-  }
 `;
 
 S.CameraIcon = styled(IconCamera)`
