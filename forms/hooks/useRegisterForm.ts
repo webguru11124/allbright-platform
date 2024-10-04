@@ -62,7 +62,7 @@ const useRegisterForm = (
     () =>
       mutateSignin(postBody as Login, {
         onSuccess: (response) => {
-          setToken(response as unknown as string);
+          setToken(response.data as unknown as string);
           setState(State.SUCCESS);
         },
         onError: (error: any) => showErrorMessage(error.message),

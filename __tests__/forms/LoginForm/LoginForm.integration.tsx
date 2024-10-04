@@ -39,7 +39,7 @@ describe("LoginForm", () => {
     fireEvent.changeText(screen.getByText("Email"), EMAIL);
     fireEvent.changeText(screen.getByText("Password"), PASS);
 
-    mockedApi.post.mockResolvedValueOnce(MOCK_TOKEN);
+    mockedApi.post.mockResolvedValueOnce({ data: MOCK_TOKEN });
 
     await act(() => {
       fireEvent.press(screen.getByText("Submit"));

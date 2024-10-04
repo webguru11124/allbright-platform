@@ -1,8 +1,12 @@
-import { Picker as NativePicker } from "@react-native-picker/picker";
+import {
+  Picker as NativePicker,
+  PickerProps,
+} from "@react-native-picker/picker";
 import {
   NativeSyntheticEvent,
   NativeTouchEvent,
   Pressable,
+  TextInputProps,
 } from "react-native";
 import styled from "styled-components/native";
 
@@ -10,7 +14,7 @@ import { CS } from "@/components/Typography";
 import TextInput from "@/forms/components/TextInput";
 import withTheme from "@/hocs/withTheme";
 
-type Props = {
+type Props = Omit<PickerProps, "selectedValue"> & {
   selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
   placeholder: string;
   onValueChange: (itemValue: unknown, itemIndex: number) => void;
@@ -37,6 +41,7 @@ const Picker = ({
   items,
   error,
   theme,
+  ...props
 }: Props) => {
   return (
     <>
@@ -45,7 +50,8 @@ const Picker = ({
         onValueChange={onValueChange}
         backgroundcolor={theme.colors.inputs.background}
         error={error}
-        onBlur={onBlur}>
+        onBlur={onBlur}
+        {...props}>
         <NativePicker.Item
           key={"-1"}
           label={placeholder}
@@ -64,7 +70,7 @@ const Picker = ({
   );
 };
 
-type PickerInputProps = {
+type PickerInputProps = TextInputProps & {
   input: string | undefined;
   displayValue: string | undefined;
   error: string | undefined;
@@ -83,6 +89,7 @@ export const PickerInput = withTheme(
     onFocus,
     placeholder,
     onPress,
+    ...props
   }: PickerInputProps) => {
     {
       return Boolean(input) === false || input === "undefined" ? (
@@ -96,6 +103,7 @@ export const PickerInput = withTheme(
           onPress={onPress}
           onChangeText={() => {}}
           showSoftInputOnFocus={false}
+          {...props}
         />
       ) : (
         <Pressable onPress={onPress}>

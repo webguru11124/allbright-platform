@@ -17,7 +17,7 @@ export default function Layout() {
         headerTitleStyle: {
           fontWeight: "bold",
         },
-        headerTitle: "Sign up",
+        headerTitle: "Onboarding",
         headerLeft: () => <HeaderBackButton />,
       }}
     />

@@ -19,7 +19,7 @@ const EntryButtons = ({ nameAnim }: EntryButtonsProps) => {
       </Link>
       <Space height={10} />
       <Link
-        href="/onboarding/public-profile"
+        href="/onboarding/welcome"
         background={"rgb(58, 59, 61)"}
         isSecondary={true}>
         <CM color={"rgb(228, 230, 235)"}>Onboarding</CM>
