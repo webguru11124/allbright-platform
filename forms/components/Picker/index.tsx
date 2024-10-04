@@ -14,7 +14,7 @@ import { CS } from "@/components/Typography";
 import TextInput from "@/forms/components/TextInput";
 import withTheme from "@/hocs/withTheme";
 
-type Props = Omit<PickerProps, 'selectedValue'> & {
+type Props = Omit<PickerProps, "selectedValue"> & {
   selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
   placeholder: string;
   onValueChange: (itemValue: unknown, itemIndex: number) => void;
@@ -101,7 +101,7 @@ export const PickerInput = withTheme(
           error={error}
           onFocus={onFocus}
           onPress={onPress}
-          onChangeText={() => { }}
+          onChangeText={() => {}}
           showSoftInputOnFocus={false}
           {...props}
         />
@@ -116,7 +116,7 @@ export const PickerInput = withTheme(
   }
 );
 
-const StyledPicker = styled(NativePicker) <StyleProps>`
+const StyledPicker = styled(NativePicker)<StyleProps>`
   background-color: white;
   height: 100%;
   width: 100%;
