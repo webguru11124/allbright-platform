@@ -1,7 +1,7 @@
 import React from "react";
-import Svg, { Path } from "react-native-svg";
+import Svg, { Path, SvgProps } from "react-native-svg";
 
-type Props = {
+type Props = SvgProps & {
   width?: number;
   height?: number;
   colour?: string;
