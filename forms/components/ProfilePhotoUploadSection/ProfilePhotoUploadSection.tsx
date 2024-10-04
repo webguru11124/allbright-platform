@@ -66,13 +66,27 @@ const ProfilePhotoUploadSection = ({
   );
 };
 
-const ArrowButton = styled(Button)``;
-const CMMarginBottom = styled(CM)``;
+const ArrowButton = styled(Button)`
+  padding-left: 20px;
+  padding-right: 20px;
+`;
+const CMMarginBottom = styled(CM)`
+  margin-bottom: 20px;
+`;
 
-const PhotoInformationSection = styled.View``;
+const PhotoInformationSection = styled.View`
+  flex-direction: row;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  align-items: center;
+`;
 
-const PhotoUploadPosition = styled.View``;
+const PhotoUploadPosition = styled.View`
+  margin-bottom: 20px;
+`;
 
-const SelectPhotoText = styled.View``;
+const SelectPhotoText = styled.View`
+  margin-left: 8px;
+`;
 
 export default ProfilePhotoUploadSection;
