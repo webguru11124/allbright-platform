@@ -1,8 +1,9 @@
 import React from "react";
-import { render, screen, fireEvent } from "expo-router/testing-library";
+import { render, screen, fireEvent } from "@testing-library/react-native";
 import goals from "@/utils/data/goals";
 import GoalsSectionContainer from "@/forms/components/GoalsSelection";
 import Providers from "@/utils/providers";
+import { ReactTestInstance } from "react-test-renderer";
 
 describe("GoalsSectionContainer", () => {
   const updateFieldMock = jest.fn();
@@ -17,23 +18,22 @@ describe("GoalsSectionContainer", () => {
     updateFieldMock.mockClear();
   });
 
+  function selectGoal(goal: ReactTestInstance, expectation: string[]) {
+    fireEvent.press(goal);
+    expect(updateFieldMock).toHaveBeenCalledWith(expectation);
+  }
+
   it("should select and deselect goals", () => {
     renderComponent();
 
     const goal1 = screen.getByTestId(`goals-checkbox-${goals[0]}`);
     const goal2 = screen.getByTestId(`goals-checkbox-${goals[1]}`);
 
-    // Select first goal
-    fireEvent.press(goal1);
-    expect(updateFieldMock).toHaveBeenCalledWith([goals[0]]);
+    selectGoal(goal1, [goals[0]]);
 
-    // Select second goal
-    fireEvent.press(goal2);
-    expect(updateFieldMock).toHaveBeenCalledWith([goals[0], goals[1]]);
+    selectGoal(goal2, [goals[0], goals[1]]);
 
-    // Deselect first goal
-    fireEvent.press(goal1);
-    expect(updateFieldMock).toHaveBeenCalledWith([goals[1]]);
+    selectGoal(goal1, [goals[1]]);
   });
 
   it("should not allow selecting more than 3 goals", () => {
@@ -44,19 +44,11 @@ describe("GoalsSectionContainer", () => {
     const goal3 = screen.getByTestId(`goals-checkbox-${goals[2]}`);
     const goal4 = screen.getByTestId(`goals-checkbox-${goals[3]}`);
 
-    // Select first 3 goals
-    fireEvent.press(goal1);
-    fireEvent.press(goal2);
-    fireEvent.press(goal3);
-    expect(updateFieldMock).toHaveBeenCalledWith([
-      goals[0],
-      goals[1],
-      goals[2],
-    ]);
+    selectGoal(goal1, [goals[0]]);
+    selectGoal(goal2, [goals[0], goals[1]]);
+    selectGoal(goal3, [goals[0], goals[1], goals[2]]);
 
-    // Try to select the fourth goal
     fireEvent.press(goal4);
-    // Ensure the fourth goal is not added to the selection
     expect(updateFieldMock).not.toHaveBeenCalledWith([
       goals[0],
       goals[1],
@@ -71,9 +63,8 @@ describe("GoalsSectionContainer", () => {
     const goal1 = screen.getByTestId(`goals-checkbox-${goals[0]}`);
 
     // Deselect all goals
-    fireEvent.press(goal1);
-    fireEvent.press(goal1);
-    expect(updateFieldMock).toHaveBeenCalledWith([]);
+    selectGoal(goal1, [goals[0]]);
+    selectGoal(goal1, []);
 
     // Simulate the error state (e.g., by passing an error prop)
     const errorMessage = screen.queryByText(/choose between 1 and to 3/i);

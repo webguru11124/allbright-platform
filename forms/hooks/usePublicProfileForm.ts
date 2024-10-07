@@ -61,6 +61,7 @@ const usePublicProfileForm = (
       setLoading(false);
     }
   };
+
   return {
     inputs,
     errors,
