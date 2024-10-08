@@ -23,18 +23,26 @@ const TextInput = ({
     <>
       <FloatingLabelInput
         label={label || placeholder || "Please enter"}
-        placeholder={placeholder}
-        inputStyles={{ outline: "none", fontSize: 16 } as TextStyle}
+        inputStyles={
+          {
+            outline: "none",
+            minHeight: 50,
+            fontSize: 16,
+            textAlignVertical: "top",
+          } as TextStyle
+        }
         containerStyles={{
-          height: rest.multiline ? undefined : 50,
           backgroundColor: theme.colors.inputs.background,
           paddingLeft: 15,
           borderRadius: 5,
           borderColor: Boolean(error) ? "red" : "transparent",
           borderWidth: Boolean(error) ? 3 : 0,
+          paddingTop: rest.multiline ? 35 : 0,
         }}
         animationDuration={150}
         onChangeText={onChangeText}
+        customLabelStyles={{ topBlurred: rest.multiline ? -90 : undefined }}
+        labelStyles={{ paddingTop: 0, textAlignVertical: "top" }}
         onBlur={onBlur}
         {...rest}
       />

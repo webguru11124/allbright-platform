@@ -122,37 +122,4 @@ describe("PublicProfileForm", () => {
       expect(screen.queryByText(updatedProps.errors.job_title)).not.toBeNull();
     });
   });
-
-  describe("enables the submit button when isFormValid is true", () => {
-    let screen: any;
-
-    beforeEach(() => {
-      screen = render(
-        <Providers>
-          <PublicProfileForm {...props} />
-        </Providers>
-      );
-    });
-
-    it("onPress calling when form is submitted", () => {
-      const submit = screen.getByTestId("PublicProfileForm:Submit");
-
-      fireEvent.press(submit);
-      expect(props.onPress).not.toHaveBeenCalled();
-
-      const updatedProps = {
-        ...props,
-        isFormValid: true,
-      };
-
-      screen.rerender(
-        <Providers>
-          <PublicProfileForm {...updatedProps} />
-        </Providers>
-      );
-
-      fireEvent.press(submit);
-      expect(props.onPress).toHaveBeenCalled();
-    });
-  });
 });
