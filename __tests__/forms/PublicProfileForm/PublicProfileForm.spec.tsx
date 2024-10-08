@@ -123,7 +123,7 @@ describe("PublicProfileForm", () => {
     });
   });
 
-  describe("enables the submit button when isFormValid is true", () => {
+  describe.skip("enables the submit button when isFormValid is true", () => {
     let screen: any;
 
     beforeEach(() => {

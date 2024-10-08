@@ -44,6 +44,15 @@ const useForm = (
     }));
   };
 
+  const validateAllInputs = (): boolean => {
+    _.keys(schemaInputs).forEach((key) => {
+      validateInput({ name: key, value: inputs[key] });
+    });
+
+    const hasErrors = _.some(errors, (error) => error !== undefined);
+    return !hasErrors;
+  };
+
   const blurFuncs = _.chain(schemaInputs)
     .keys()
     .map((key) => [key, () => validateInput({ name: key, value: inputs[key] })])
@@ -116,6 +125,7 @@ const useForm = (
     blurFuncs,
     changeTextFuncs,
     isFormValid,
+    validateAllInputs,
     showSuccessMessage,
     showErrorMessage,
   };

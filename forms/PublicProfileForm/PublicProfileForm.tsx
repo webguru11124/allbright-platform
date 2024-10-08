@@ -90,7 +90,6 @@ const PublicProfileForm = ({
       inputMode="text"
       textContentType="none"
       multiline
-      maxLength={40}
       numberOfLines={10}
       value={inputs.user_biography}
       error={errors.user_biography}
@@ -99,8 +98,8 @@ const PublicProfileForm = ({
       testID="PublicProfileForm:UserBiography"
     />
     <Space height={10} />
+
     <Button
-      disabled={!isFormValid}
       isLoading={isPending}
       onPress={onPress}
       testID="PublicProfileForm:Submit">

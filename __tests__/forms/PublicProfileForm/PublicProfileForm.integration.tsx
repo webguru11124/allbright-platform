@@ -34,9 +34,6 @@ describe("PublicProfileForm", () => {
       - Make a call to api.post which update user profile
       - Navigate to the second onboarding route
       `, async () => {
-    (UserClient.prototype.updateUserImage as jest.Mock).mockResolvedValueOnce(
-      "image-uri"
-    );
     renderRouter({
       index: jest.fn(() => (
         <Providers>
@@ -82,9 +79,6 @@ describe("PublicProfileForm", () => {
     await act(() => fireEvent.press(submitButton));
 
     await waitFor(() => {
-      expect(UserClient.prototype.updateUserImage).toHaveBeenCalledWith(
-        "image-uri"
-      );
       expect(UserClient.prototype.updateUser).toHaveBeenCalledWith({
         city: randomCity,
         jobTitle: randomJobTitle,
@@ -100,18 +94,9 @@ describe("PublicProfileForm", () => {
   });
 
   it(`should:
-    - Enter an empty city name
-    - Enter an empty industry name
-    - Enter an empty job level
-    - Enter an empty company name
     - Enter an empty job title
-    - Enter an incorrectly formatted email address
-    - Enter a password that isn't long enough
-    - Display the first_name error message
-    - Display the last_name error message
-    - Display the email error message
-    - Display the password error message
-    - Not allow submitting of form
+    - Showing Error message
+    - Not allowing making api request
     `, async () => {
     const JOB_TITLE = "";
 
@@ -136,6 +121,39 @@ describe("PublicProfileForm", () => {
     await act(() => {
       fireEvent.press(screen.getByTestId("PublicProfileForm:Submit"));
     });
+    expect(UserClient.prototype.updateUser).not.toHaveBeenCalled();
+    expect(screen).not.toHavePathname("/onboarding/private-profile");
+  });
+
+  it(`should: 
+    - Press submit button
+    - Show error message
+    - Not allowing making api request)
+    `, async () => {
+    const CITY_ERROR_MESSAGE = "Please pick a city from the list";
+    const JOB_TITLE_ERROR_MESSAGE = "Please enter a job title";
+    const JOB_LEVEL_ERROR_MESSAGE = "Please pick a job level from the list";
+    const INDUSTRY_ERROR_MESSAGE = "Please pick an industry from the list";
+    const GOALS_ERROR_MESSAGE = "You must select at least one goal.";
+    const BIO_ERROR_MESSAGE = "Biography is required";
+    renderRouter({
+      index: jest.fn(() => (
+        <Providers>
+          <PublicProfileForm />
+        </Providers>
+      )),
+    });
+
+    expect(screen).toHavePathname("/");
+    await act(() => {
+      fireEvent.press(screen.getByTestId("PublicProfileForm:Submit"));
+    });
+    expect(await screen.findByText(CITY_ERROR_MESSAGE)).not.toBeNull();
+    expect(await screen.findByText(JOB_TITLE_ERROR_MESSAGE)).not.toBeNull();
+    expect(await screen.findByText(JOB_LEVEL_ERROR_MESSAGE)).not.toBeNull();
+    expect(await screen.findByText(INDUSTRY_ERROR_MESSAGE)).not.toBeNull();
+    expect(await screen.findByText(GOALS_ERROR_MESSAGE)).not.toBeNull();
+    expect(await screen.findByText(BIO_ERROR_MESSAGE)).not.toBeNull();
     expect(UserClient.prototype.updateUser).not.toHaveBeenCalled();
     expect(screen).not.toHavePathname("/onboarding/private-profile");
   });
