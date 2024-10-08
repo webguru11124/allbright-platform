@@ -3,13 +3,10 @@ import { jobLevels } from "@/utils/data/jobLevels";
 import { onboardingIndustries } from "@/utils/data/industries";
 import goals from "@/utils/data/goals";
 
-const profileImageSchema = Joi.object({
-  state: Joi.any(), // Assuming no specific validation for 'state'
-  file: Joi.string(), // Assuming no specific validation for 'file'
-});
-
 export const publicProfileSchema = {
-  city: Joi.string().max(60).required(),
+  city: Joi.string().max(60).required().messages({
+    "any.required": "Please pick a city from the list",
+  }),
   job_level: Joi.string()
     .valid(...jobLevels)
     .required()
@@ -23,21 +20,27 @@ export const publicProfileSchema = {
       "*": "Please pick an industry from the list",
     }),
   goals: Joi.array()
+    .required()
     .items(Joi.string().valid(...goals))
     .min(1)
-    .max(3),
+    .max(3)
+    .messages({
+      "array.min": "You must select at least one goal.",
+      "array.max": "You can select up to three goals.",
+      "array.includes": "Invalid goal selected.",
+      "any.required": "You must select at least one goal.",
+    }),
   company_name: Joi.string().allow(null),
   job_title: Joi.string().required().messages({
     "*": "Please enter a job title",
   }),
-  user_biography: Joi.string()
-    .required()
-    .messages({
-      "*": "Please enter a biography",
-    })
-    .max(500)
-    .min(10),
-  profile_image: profileImageSchema,
+  user_biography: Joi.string().required().min(10).max(500).messages({
+    "string.empty": "Biography is required",
+    "string.min": "Biography must be at least 10 characters long",
+    "string.max": "Biography must be less than or equal to 500 characters long",
+    "any.required": "Biography is required",
+  }),
+  profile_image: Joi.any(),
 };
 
 export default publicProfileSchema;
