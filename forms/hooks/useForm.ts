@@ -49,8 +49,7 @@ const useForm = (
       validateInput({ name: key, value: inputs[key] });
     });
 
-    const hasErrors = _.some(errors, (error) => error !== undefined);
-    return !hasErrors;
+    return Boolean(_.some(errors, (error) => error !== undefined)) === false;
   };
 
   const blurFuncs = _.chain(schemaInputs)
