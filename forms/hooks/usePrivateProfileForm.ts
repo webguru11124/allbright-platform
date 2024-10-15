@@ -2,7 +2,6 @@ import * as React from "react";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 import { privateProfileAdaptor, PrivateProfileInput } from "../adaptors";
 import { useRouter } from "expo-router";
-import { LocalImageType } from "@/types/files/localImage";
 import useForm from "./useForm";
 import Joi from "joi";
 
@@ -41,7 +40,7 @@ const usePrivateProfileForm = (
       setLoading(false);
     }
   };
-  console.log(errors)
+  console.log(errors);
 
   return {
     inputs,

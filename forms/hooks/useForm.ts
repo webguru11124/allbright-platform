@@ -46,7 +46,6 @@ const useForm = (
 
   const validateAllInputs = (): boolean => {
     const newErrors = _.mapValues(schemaInputs, (value, key) => {
-
       setTouched((prev) => ({ ...prev, [key]: true }));
       const { error } = schema.extract(key).validate(inputs[key]);
       return error

@@ -27,7 +27,8 @@ export const profilePrivate = {
       })
     )
     .min(1)
-    .required().messages({
+    .required()
+    .messages({
       "any.required": "You must select at least one option",
     }),
 };

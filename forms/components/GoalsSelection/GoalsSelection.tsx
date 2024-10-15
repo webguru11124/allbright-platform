@@ -1,4 +1,4 @@
-import { CL, CS } from "@/components/Typography";
+import { CL } from "@/components/Typography";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 import goals from "@/utils/data/goals";
@@ -18,7 +18,10 @@ interface GoalsSectionProps {
   error?: string;
 }
 
-const GoalsSection: FunctionComponent<GoalsSectionProps> = ({ error, ...props }) => {
+const GoalsSection: FunctionComponent<GoalsSectionProps> = ({
+  error,
+  ...props
+}) => {
   const { maxWidth } = useContext<MediaQuery>(MediaQueryContext);
   return (
     <>
@@ -40,7 +43,6 @@ const GoalsSection: FunctionComponent<GoalsSectionProps> = ({ error, ...props })
     </>
   );
 };
-
 
 const GoalsContainer = styled.View<StyleProps>`
   padding: 15px 0 0 0;

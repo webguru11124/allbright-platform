@@ -19,9 +19,8 @@ const FormFieldContainer = ({ children, error }: Props) => {
 };
 
 const Container = styled.View<StyleProps>`
-  
-    border-width: 3px;
-    border-color: transparent;
+  border-width: 3px;
+  border-color: transparent;
   ${(p) =>
     !!p.error &&
     `

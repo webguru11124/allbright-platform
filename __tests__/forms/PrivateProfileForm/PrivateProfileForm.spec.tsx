@@ -2,16 +2,11 @@ import { act, fireEvent, render } from "@testing-library/react-native";
 
 import PrivateProfileForm from "@/forms/PrivateProfileForm/PrivateProfileForm";
 import Providers from "@/utils/providers";
-import { faker } from "@faker-js/faker";
-import organisationSize from "@/utils/data/organisationSize";
-import { jobStatus } from "@/utils/data/jobStatus";
 
 describe("PrivateProfileForm", () => {
   const props = {
-    inputs: {
-    },
-    errors: {
-    },
+    inputs: {},
+    errors: {},
     blurFuncs: {
       interests: jest.fn(),
       jobStatus: jest.fn(),
@@ -132,7 +127,9 @@ describe("PrivateProfileForm", () => {
         </Providers>
       );
 
-      expect(screen.queryByText(updatedProps.errors.dateOfBirth)).not.toBeNull();
+      expect(
+        screen.queryByText(updatedProps.errors.dateOfBirth)
+      ).not.toBeNull();
     });
   });
 });
