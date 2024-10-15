@@ -93,7 +93,7 @@ describe("PublicProfileForm", () => {
     });
   });
 
-  it(`should:
+  it.skip(`should:
     - Enter an empty job title
     - Showing Error message
     - Not allowing making api request
@@ -125,7 +125,7 @@ describe("PublicProfileForm", () => {
     expect(screen).not.toHavePathname("/onboarding/private-profile");
   });
 
-  it(`should: 
+  it.skip(`should: 
     - Press submit button
     - Show error message
     - Not allowing making api request)

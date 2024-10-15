@@ -26,7 +26,7 @@ function Link(props: LinkProps) {
   return (
     <S.Container
       {..._.omit(props, ["href"])}
-      background={props.theme.colors.button.background}>
+      background={props.theme.colors.button?.background || "#FFF"}>
       <S.NativeLink href={props.href as Href}>{getChildren()}</S.NativeLink>
     </S.Container>
   );
@@ -55,9 +55,9 @@ function Link(props: LinkProps) {
 function getFontColour(bgColour: string, theme: any) {
   const colour =
     bgColour.charAt(0) === "#" ? bgColour.substring(1, 7) : bgColour;
-  const r = parseInt(colour.substring(0, 2), 16); // hexToR
-  const g = parseInt(colour.substring(2, 4), 16); // hexToG
-  const b = parseInt(colour.substring(4, 6), 16); // hexToB
+  const r = parseInt(colour.substring(0, 2), 16);
+  const g = parseInt(colour.substring(2, 4), 16);
+  const b = parseInt(colour.substring(4, 6), 16);
 
   return r * 0.299 + g * 0.587 + b * 0.114 > 186
     ? theme.colors.button.primary
