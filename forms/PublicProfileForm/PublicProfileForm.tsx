@@ -8,7 +8,6 @@ import IndustryPicker from "../components/IndustryPicker";
 import TextInput from "../components/TextInput";
 import GoalsSelection from "../components/GoalsSelection";
 import ProfilePhotoUploadSection from "../components/ProfilePhotoUploadSection";
-import RNPaperTextInput from "../components/TextInput/RNPaperInput";
 
 import { FormProps } from "../types/forms.types";
 
@@ -45,7 +44,7 @@ const PublicProfileForm = ({
       testID="PublicProfileForm:JobTitle"
     />
     <Space height={10} />
-    <RNPaperTextInput
+    <TextInput
       label="Company name (if applicable)"
       placeholderTextColor={"#ddd"}
       inputMode="text"

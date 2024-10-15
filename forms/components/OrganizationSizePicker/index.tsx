@@ -56,7 +56,7 @@ const OrganizationSizePicker = ({
         <CenteredView>
           <ModalView>
             <TitleContainer>
-              <Title>Size of organization*</Title>
+              <Title>Size of organization</Title>
               <CloseButton onPress={onCloseButtonPress}>
                 <MaterialIcons
                   name={"close"}

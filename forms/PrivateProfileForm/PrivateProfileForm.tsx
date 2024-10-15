@@ -48,7 +48,7 @@ const PrivateProfileForm = ({
       error={errors.organisationSize}
       onBlur={blurFuncs.organisationSize}
       onChangeText={changeTextFuncs.organisationSize}
-      testID="PrivateProfileForm:organisationSize"
+      testID="PrivateProfileForm:OrganisationSize"
     />
     <Space height={10} />
     <EthnicGroupsSection

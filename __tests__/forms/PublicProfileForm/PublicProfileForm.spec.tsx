@@ -1,4 +1,4 @@
-import { act, fireEvent, render } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
 
 import PublicProfileForm from "@/forms/PublicProfileForm/PublicProfileForm";
 import Providers from "@/utils/providers";
@@ -68,7 +68,7 @@ describe("PublicProfileForm", () => {
     it("when the companyName input is updated", () => {
       const expectedCompanyName = faker.company.name();
       const input = screen.getByTestId("PublicProfileForm:CompanyName");
-      act(() => fireEvent.changeText(input, expectedCompanyName));
+      fireEvent.changeText(input, expectedCompanyName);
       expect(props.changeTextFuncs.company_name).toHaveBeenCalledWith(
         expectedCompanyName
       );

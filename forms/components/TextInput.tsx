@@ -39,7 +39,6 @@ const TextInput = ({
           borderWidth: Boolean(error) ? 3 : 0,
           paddingTop: rest.multiline ? 35 : 0,
         }}
-        textContentType="birthdateDay"
         animationDuration={150}
         onChangeText={onChangeText}
         customLabelStyles={{ topBlurred: rest.multiline ? -90 : undefined }}

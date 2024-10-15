@@ -1,34 +1,35 @@
 import { faker } from "@faker-js/faker";
 import { act, fireEvent } from "@testing-library/react-native";
 import { renderRouter, screen, waitFor } from "expo-router/testing-library";
-import * as ImagePicker from "expo-image-picker";
 
-import PrivateProfileForm from "@/forms/PrivateProfileForm";
 import api from "@/lib/api";
 import Providers from "@/utils/providers";
-import { onboardingIndustries } from "@/utils/data/industries";
-import { jobLevels } from "@/utils/data/jobLevels";
-import goals from "@/utils/data/goals";
 import UserClient from "@/utils/client/user/UserClient";
-import { fireBlurEvent } from "@/__mocks__/test-utils";
+import PrivateProfileForm from "@/forms/PrivateProfileForm";
+import { jobStatus } from "@/utils/data/jobStatus";
+import UKSalaries from "@/utils/data/salary";
+import organisationSize from "@/utils/data/organisationSize";
+import { ethnicGroups } from "@/utils/data/ethnicGroups";
+import { interests } from "@/utils/data/interests";
 
 jest.mock("@/lib/api");
 jest.mock("@/utils/client/user/UserClient");
 const mockedApi = api as jest.Mocked<typeof api>;
 
-jest.mock("expo-image-picker", () => ({
-  launchImageLibraryAsync: jest.fn(),
-}));
-
-describe.skip("PrivateProfileForm", () => {
+describe("PrivateProfileForm", () => {
+  function selectInterest(interest: string) {
+    const interestElement = screen.getByTestId(
+      `interests-checkbox-${interest}`
+    );
+    fireEvent.press(interestElement);
+  }
+  function selectEthnicGroup(ethnicGroup: string) {
+    const checkbox = screen.getByTestId(`ethnic-group-option-${ethnicGroup}`);
+    fireEvent.press(checkbox);
+  }
   beforeEach(() => {
-    (ImagePicker.launchImageLibraryAsync as jest.Mock).mockResolvedValueOnce({
-      canceled: false,
-      assets: [{ uri: "image-uri" }],
-    });
     jest.clearAllMocks();
   });
-
   it(`should:
       - Enter valid data for the relevant form fields
       - Make a call to api.post which update user profile
@@ -43,88 +44,48 @@ describe.skip("PrivateProfileForm", () => {
     });
 
     expect(screen).toHavePathname("/");
-    const randomCity = faker.location.city();
-    const randomIndustry = onboardingIndustries[0];
-    const randomJobLevel = jobLevels[0];
-    const randomCompanyName = faker.company.name();
-    const randomJobTitle = faker.person.jobTitle();
-    const randomBiography = faker.lorem.sentences(5);
-    const randomGoals = goals.slice(0, 3);
-
-    fireEvent.changeText(screen.getByText("City"), randomCity);
-    fireEvent.changeText(screen.getByText("Job Level"), randomJobLevel);
-    fireEvent.changeText(screen.getByText("Industry"), randomIndustry);
-    fireEvent.changeText(screen.getByText("Job title*"), randomJobTitle);
-    act(() =>
-      fireEvent.changeText(
-        screen.getByTestId("PrivateProfileForm:CompanyName"),
-        randomCompanyName
-      )
+    const randomInterests = faker.helpers.arrayElements(interests);
+    const randomJobStatus = faker.helpers.arrayElement(jobStatus);
+    const randomSalaryRange = faker.helpers.arrayElement(UKSalaries);
+    const randomOrgnizationSize = faker.helpers.arrayElement(organisationSize);
+    const randomeEthnicGroups = faker.helpers.arrayElements(
+      ethnicGroups.slice(1, -1)
     );
-    fireEvent.changeText(screen.getByText("Biography*"), randomBiography);
+    const randomBirthDate = "1/1/2000";
+    const formattedBirthDate = new Date(randomBirthDate);
 
-    fireEvent.press(screen.getByTestId(`goals-checkbox-${randomGoals[0]}`));
-    fireEvent.press(screen.getByTestId(`goals-checkbox-${randomGoals[1]}`));
-    fireEvent.press(screen.getByTestId(`goals-checkbox-${randomGoals[2]}`));
-
-    fireEvent.press(
-      screen.getByTestId("ProfilePhotoUploadSection:ArrowButton")
+    randomInterests.forEach((interest) => selectInterest(interest as string));
+    randomeEthnicGroups.forEach((ethnicGroup) =>
+      selectEthnicGroup(ethnicGroup.title)
     );
+
+    fireEvent.changeText(screen.getByText("Job status*"), randomJobStatus);
+    fireEvent.changeText(screen.getByText("Salary band"), randomSalaryRange);
+    fireEvent.changeText(
+      screen.getByText("Size of organization"),
+      randomOrgnizationSize
+    );
+    fireEvent.changeText(
+      screen.getByTestId("PrivateProfileForm:DateOfBirth"),
+      randomBirthDate
+    );
+
     mockedApi.post.mockResolvedValueOnce({});
-    await act(() =>
-      fireEvent.press(
-        screen.getByTestId("ProfilePhotoUploadSection:ArrowButton")
-      )
-    );
-    // Check that the button is not disabled before API call
+
     const submitButton = screen.getByTestId("PrivateProfileForm:Submit");
     await act(() => fireEvent.press(submitButton));
 
     await waitFor(() => {
       expect(UserClient.prototype.updateUser).toHaveBeenCalledWith({
-        city: randomCity,
-        jobTitle: randomJobTitle,
-        jobLevel: randomJobLevel,
-        jobIndustry: randomIndustry,
-        jobCompany: randomCompanyName,
-        bio: randomBiography,
-        goals: [randomGoals[0], randomGoals[1], randomGoals[2]],
-        imageSrc: "image-uri",
+        jobStatus: randomJobStatus,
+        salary: randomSalaryRange,
+        organisationSize: randomOrgnizationSize,
+        interests: randomInterests,
+        ethnicGroups: randomeEthnicGroups,
+        dateOfBirth: formattedBirthDate,
       });
-      expect(screen).toHavePathname("/onboarding/private-profile");
+      expect(screen).toHavePathname("/onboarding/profile-goals");
     });
-  });
-
-  it(`should:
-    - Enter an empty job title
-    - Showing Error message
-    - Not allowing making api request
-    `, async () => {
-    const JOB_TITLE = "";
-
-    const EXPECTED_JOB_TITLE = `Please enter a job title`;
-
-    renderRouter({
-      index: jest.fn(() => (
-        <Providers>
-          <PrivateProfileForm />
-        </Providers>
-      )),
-    });
-
-    expect(screen).toHavePathname("/");
-
-    await fireBlurEvent(
-      screen.getByTestId("PrivateProfileForm:JobTitle"),
-      JOB_TITLE
-    );
-
-    expect(await screen.findByText(EXPECTED_JOB_TITLE)).not.toBeNull();
-    await act(() => {
-      fireEvent.press(screen.getByTestId("PrivateProfileForm:Submit"));
-    });
-    expect(UserClient.prototype.updateUser).not.toHaveBeenCalled();
-    expect(screen).not.toHavePathname("/onboarding/private-profile");
   });
 
   it(`should: 
@@ -132,12 +93,10 @@ describe.skip("PrivateProfileForm", () => {
     - Show error message
     - Not allowing making api request)
     `, async () => {
-    const CITY_ERROR_MESSAGE = "Please pick a city from the list";
-    const JOB_TITLE_ERROR_MESSAGE = "Please enter a job title";
-    const JOB_LEVEL_ERROR_MESSAGE = "Please pick a job level from the list";
-    const INDUSTRY_ERROR_MESSAGE = "Please pick an industry from the list";
-    const GOALS_ERROR_MESSAGE = "You must select at least one goal.";
-    const BIO_ERROR_MESSAGE = "Biography is required";
+    const INTERESTS_ERROR_MESSAGE = '"Interests" is required';
+    const JOB_STATUS_ERROR_MESSAGER = '"JobStatus" is required';
+    const DATEOF_BRITH_ERROR_MESSAGE = '"DateOfBirth" is required';
+    const ERROR_MESSAGE = "Please fill out all required fields";
     renderRouter({
       index: jest.fn(() => (
         <Providers>
@@ -150,12 +109,11 @@ describe.skip("PrivateProfileForm", () => {
     await act(() => {
       fireEvent.press(screen.getByTestId("PrivateProfileForm:Submit"));
     });
-    expect(await screen.findByText(CITY_ERROR_MESSAGE)).not.toBeNull();
-    expect(await screen.findByText(JOB_TITLE_ERROR_MESSAGE)).not.toBeNull();
-    expect(await screen.findByText(JOB_LEVEL_ERROR_MESSAGE)).not.toBeNull();
-    expect(await screen.findByText(INDUSTRY_ERROR_MESSAGE)).not.toBeNull();
-    expect(await screen.findByText(GOALS_ERROR_MESSAGE)).not.toBeNull();
-    expect(await screen.findByText(BIO_ERROR_MESSAGE)).not.toBeNull();
+    expect(await screen.findByText(INTERESTS_ERROR_MESSAGE)).not.toBeNull();
+    expect(await screen.findByText(JOB_STATUS_ERROR_MESSAGER)).not.toBeNull();
+    expect(await screen.findByText(DATEOF_BRITH_ERROR_MESSAGE)).not.toBeNull();
+    expect(await screen.findByText(ERROR_MESSAGE)).not.toBeNull();
+
     expect(UserClient.prototype.updateUser).not.toHaveBeenCalled();
     expect(screen).not.toHavePathname("/onboarding/private-profile");
   });

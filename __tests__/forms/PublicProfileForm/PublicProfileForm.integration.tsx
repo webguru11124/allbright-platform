@@ -55,11 +55,9 @@ describe("PublicProfileForm", () => {
     fireEvent.changeText(screen.getByText("Job Level"), randomJobLevel);
     fireEvent.changeText(screen.getByText("Industry"), randomIndustry);
     fireEvent.changeText(screen.getByText("Job title*"), randomJobTitle);
-    act(() =>
-      fireEvent.changeText(
-        screen.getByTestId("PublicProfileForm:CompanyName"),
-        randomCompanyName
-      )
+    fireEvent.changeText(
+      screen.getByTestId("PublicProfileForm:CompanyName"),
+      randomCompanyName
     );
     fireEvent.changeText(screen.getByText("Biography*"), randomBiography);
 

@@ -25,7 +25,6 @@ export const interestObjects = [
   { title: "Business services", imgSrc: null },
 ] as const;
 
-// TODO: Viktor - please fix!
 export const interests: any = interestObjects.reduce(
   (acc: string[], interest) => {
     acc.push(interest.title as unknown as InterestTitles);

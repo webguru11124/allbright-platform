@@ -40,7 +40,6 @@ const usePrivateProfileForm = (
       setLoading(false);
     }
   };
-  console.log(errors);
 
   return {
     inputs,
