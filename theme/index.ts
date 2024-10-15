@@ -5,11 +5,30 @@ import {
   DefaultTheme as NativeDefaultTheme,
 } from "@react-navigation/native";
 
+import {
+  MD2LightTheme as DefaultPaperTheme,
+  MD2DarkTheme as DarkPaperTheme,
+} from "react-native-paper";
+
 const alertColors = {
   success: "#00605C",
   danger: "#EB5757",
   warning: "#fff3cd",
   info: "#cff4fc",
+};
+
+export const PaperDefaultTheme = {
+  ...DefaultPaperTheme,
+  colors: {
+    ...DefaultPaperTheme.colors,
+    primary: "rgb(73, 101, 140)",
+    placeholder: "rgb(73,101,140)",
+    text: "rgb(73, 101, 140)",
+  },
+};
+
+export const PaperDarkTheme = {
+  ...DarkPaperTheme,
 };
 
 export const DefaultTheme = {

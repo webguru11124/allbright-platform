@@ -45,11 +45,18 @@ const useForm = (
   };
 
   const validateAllInputs = (): boolean => {
-    _.keys(schemaInputs).forEach((key) => {
-      validateInput({ name: key, value: inputs[key] });
+    const newErrors = _.mapValues(schemaInputs, (value, key) => {
+
+      setTouched((prev) => ({ ...prev, [key]: true }));
+      const { error } = schema.extract(key).validate(inputs[key]);
+      return error
+        ? `${error.message.replace("value", key.slice(0, 1).toUpperCase() + key.slice(1))}`
+        : undefined;
     });
 
-    return Boolean(_.some(errors, (error) => error !== undefined)) === false;
+    setErrors(newErrors);
+
+    return Boolean(_.some(newErrors, (error) => error !== undefined)) === false;
   };
 
   const blurFuncs = _.chain(schemaInputs)

@@ -2,6 +2,7 @@ import { cities } from "@/utils/data/cities";
 import goals from "@/utils/data/goals";
 import { jobLevels } from "@/utils/data/jobLevels";
 import { ProfileImage } from "../hooks/useProfilePhotoUploadSection";
+import { interests } from "@/utils/data/interests";
 
 export type RegisterInput = {
   first_name: string;
@@ -40,6 +41,15 @@ export const registrationAdaptor = (postBody: RegisterInput) => ({
   thirdPartyAgreed: postBody.thirdPartyAgreed,
 });
 
+export type PrivateProfileInput = {
+  interests: (typeof interests)[number][];
+  jobStatus: string;
+  salary: string;
+  orgnaizationSize: string;
+  dateOfBirth: Date;
+  ethnicGroups: string[];
+};
+
 export type PublicProfileInput = {
   city: (typeof cities)[number]["city"];
   job_title: string;
@@ -72,4 +82,15 @@ export const publicProfileAdaptor = (
   jobIndustry: postBody.industry,
   goals: postBody.goals,
   bio: postBody.user_biography,
+});
+
+export const privateProfileAdaptor = (
+  postBody: PrivateProfileInput
+): PrivateProfileInput => ({
+  interests: postBody.interests,
+  jobStatus: postBody.jobStatus,
+  salary: postBody.salary,
+  orgnaizationSize: postBody.orgnaizationSize,
+  dateOfBirth: postBody.dateOfBirth,
+  ethnicGroups: postBody.ethnicGroups,
 });

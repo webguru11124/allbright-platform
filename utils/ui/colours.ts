@@ -1,5 +1,4 @@
-import colours from "./colours";
-export default {
+const colours = {
   teal: "#00605C", // All primary buttons and CTAs
   charcoal: "#414143", // All text
   charcoalMid: "#414143BB", // Placeholder text
@@ -86,3 +85,4 @@ export const recommendationColour = {
   mentorship: colours.charcoal,
   programme: "#555C9A",
 };
+export default colours;
