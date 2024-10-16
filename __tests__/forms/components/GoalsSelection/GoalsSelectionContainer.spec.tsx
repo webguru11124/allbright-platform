@@ -67,7 +67,7 @@ describe("GoalsSectionContainer", () => {
     selectGoal(goal1, []);
 
     // Simulate the error state (e.g., by passing an error prop)
-    const errorMessage = screen.queryByText(/choose between 1 and to 3/i);
+    const errorMessage = screen.queryByText(/choose between 1 and 3/i);
     expect(errorMessage).not.toBeNull(); // Assuming that this would be visible during error
   });
 });

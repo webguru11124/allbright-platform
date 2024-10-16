@@ -7,7 +7,7 @@ import { CS } from "@/components/Typography";
 const LoginLink = () => {
   return (
     <LinkContainer>
-      <CS>Don't have an account? </CS>
+      <CS>Already have an account? </CS>
       <Link
         href="/login"
         asChild>
