@@ -27,7 +27,7 @@ const GoalsSection: FunctionComponent<GoalsSectionProps> = ({
       <Container
         error={error}
         maxWidth={maxWidth}>
-        <CL>Why do you want to meet others? Choose between 1 and to 3</CL>
+        <CL>Why do you want to meet others? Choose between 1 and 3</CL>
         <GoalsContainer maxWidth={maxWidth}>
           {goals.map((goal) => (
             <TickBox
