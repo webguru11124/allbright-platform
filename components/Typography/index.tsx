@@ -14,7 +14,7 @@ type StyleProps = {
 
 function base(p: StyleProps) {
   let formatting = "";
-  formatting += `color: ${p.color};`;
+  formatting += `color: ${p.color || "#000"};`;
   if (p.weight) formatting += `font-weight: ${p.weight}px;`;
   if (p.fontStyle) formatting += `font-style: ${p.fontStyle};`;
   if (p.textAlign) formatting += `text-align: ${p.textAlign};`;
@@ -110,30 +110,4 @@ export const CS = styled.Text<StyleProps>`
   font-family: 'HK Grotesk, Sans-Serif';
   font-size: 12px;
   flex-shrink: 1;
-`;
-
-export const CXS = styled.Text<StyleProps>`
-  ${base}
-  font-family: 'HK Grotesk, Sans-Serif';
-  font-size: 10px;
-`;
-
-export const Link = styled(CS)`
-  text-decoration: underline;
-`;
-
-// old: to be removed
-export const H1C = styled.Text<StyleProps>`
-  ${base}
-  font-family: 'HK Grotesk, Sans-Serif';
-  font-weight: bold;
-  font-size: 30px;
-  line-height: 38px;
-`;
-
-export const CMX = styled.Text<StyleProps>`
-  ${base}
-  font-family: 'HK Grotesk, Sans-Serif';
-  font-size: 15px;
-  ${(p) => (p.letterSpacing ? `letter-spacing: ${p.letterSpacing}px;` : "")}
 `;
