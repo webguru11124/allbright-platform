@@ -1,4 +1,4 @@
-import colours from "@/utils/ui/colours";
+import colours from "@/theme";
 import React from "react";
 import Svg, { Path, SvgProps } from "react-native-svg";
 

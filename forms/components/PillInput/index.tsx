@@ -1,7 +1,6 @@
-import colours from "@/utils/ui/colours";
-import { Device } from "@/utils/ui/device";
 import React, { FunctionComponent } from "react";
 import styled from "styled-components/native";
+import colours from "@/theme";
 
 interface PillInputProps {
   name: string;
@@ -56,17 +55,14 @@ S.Container = styled.TouchableOpacity<StyleProps>`
     background: ${colours.pillTeal};
   `}
 
-  @media(min-width: ${Device.mobile}) {
-    height: 30px;
 
     ${(p) =>
-      p.$isSquare &&
-      `
+    p.$isSquare &&
+    `
     height: 100px;
     width: 100px;
     padding: 10px;
   `}
-  }
 `;
 
 S.Label = styled.View<StyleProps>`
@@ -82,15 +78,11 @@ S.Label = styled.View<StyleProps>`
     font-size: 1.1rem;
   `}
 
-  @media (min-width: ${Device.mobile}) {
-    font-size: 1.6rem;
-
-    ${(p) =>
-      p.$isSquare &&
-      `
+  ${(p) =>
+    p.$isSquare &&
+    `
     font-size: 1.3rem;
   `}
-  }
 `;
 
 export default PillInput;

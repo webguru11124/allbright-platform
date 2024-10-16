@@ -1,6 +1,7 @@
 import goals from "@/utils/data/goals";
 import React, { FunctionComponent } from "react";
 import { useGoalState } from "@/forms/hooks/useGoalState";
+
 import GoalsSelection from "./GoalsSelection";
 
 interface GoalsSectionProps {

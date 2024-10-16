@@ -1,6 +1,5 @@
 import { fireEvent, renderRouter, screen } from "expo-router/testing-library";
 import { Text } from "react-native";
-
 import Link from "@/components/Link";
 import Providers from "@/utils/providers";
 

@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components/native";
 import { CM, H4 } from "@/components/Typography";
-import colours from "@/utils/ui/colours";
-import Button from "../Button";
 import { ArrowRight } from "@/components/Icons";
-import ProfilePhotoInput from "../ProfilePhotoInput";
-import TickBox from "../TickBox";
 import { LocalImageType } from "@/types/files/localImage";
 import { View } from "react-native";
+import Button from "@/forms/components/Button";
+import ProfilePhotoInput from "@/forms/components/ProfilePhotoInput";
+import TickBox from "@/forms/components/TickBox";
+import colours from "@/theme";
 
 interface ProfilePhotoUploadSectionProps {
   handleProfileWantedToggle: (value: string | boolean) => void;

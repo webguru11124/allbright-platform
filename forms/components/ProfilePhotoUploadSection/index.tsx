@@ -3,6 +3,7 @@ import {
   ProfileImage,
   useProfilePhotoUploadSection,
 } from "@/forms/hooks/useProfilePhotoUploadSection";
+
 import ProfilePhotoUploadSection from "./ProfilePhotoUploadSection";
 
 interface ProfilePhotoUploadSectionProps {

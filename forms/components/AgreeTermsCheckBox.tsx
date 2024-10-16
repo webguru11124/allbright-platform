@@ -1,7 +1,6 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Linking, TextInputProps } from "react-native";
 import styled from "styled-components/native";
-
 import { CS } from "@/components/Typography";
 import { Links } from "@/constants/Links";
 import withTheme from "@/hocs/withTheme";

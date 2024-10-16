@@ -1,6 +1,5 @@
 import { router } from "expo-router";
 import Joi from "joi";
-
 import { RegisterInput, registrationAdaptor } from "@/forms/adaptors";
 import useFormWithPassConf from "@/forms/hooks/useFormWithPassConf";
 import {

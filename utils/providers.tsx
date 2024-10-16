@@ -1,11 +1,9 @@
 import { MediaQueryProvider } from "@/contexts/MediaQueryContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
 import { DefaultTheme, PaperDefaultTheme } from "@/theme";
 import { ThemeProvider } from "@react-navigation/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { RootSiblingParent } from "react-native-root-siblings";
-
 import { PaperProvider } from "react-native-paper";
 
 type Props = {

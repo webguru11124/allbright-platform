@@ -1,5 +1,4 @@
 import { renderRouter, screen } from "expo-router/testing-library";
-
 import PublicProfile from "@/features/Onboarding/PublicProfile";
 import Welcome from "@/features/Onboarding/Welcome";
 import Providers from "@/utils/providers";

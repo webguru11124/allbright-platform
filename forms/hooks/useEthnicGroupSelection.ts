@@ -13,10 +13,10 @@ export const useEthnicGroups = (setField: (value: any[]) => void) => {
     ).length;
 
   const onEthnicGroupsChange = (elm: any) => {
-    let selectedGroups = [...ethnicGroupsState];
+    const selectedGroups = [...ethnicGroupsState];
     const otherHasValue = elm.title === "Other" && elm.value.length > 0;
     const isChecked =
-      !!selectedGroups.filter((e) => e.title === elm.title).length ||
+      selectedGroups.filter((e) => e.title === elm.title).length ||
       otherHasValue;
 
     if (isChecked && !otherHasValue) {
@@ -27,12 +27,12 @@ export const useEthnicGroups = (setField: (value: any[]) => void) => {
       setEthnicGroupsState([elm]);
       setField([elm]);
     } else {
-      selectedGroups = selectedGroups.filter(
+      const filteredSelectedGroups = selectedGroups.filter(
         (item) => item.title !== elm.title
       );
-      selectedGroups.push(elm);
-      setEthnicGroupsState(selectedGroups);
-      setField(selectedGroups);
+      filteredSelectedGroups.push(elm);
+      setEthnicGroupsState(filteredSelectedGroups);
+      setField(filteredSelectedGroups);
     }
   };
 

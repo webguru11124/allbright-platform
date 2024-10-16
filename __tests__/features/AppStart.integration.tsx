@@ -1,5 +1,4 @@
 import { fireEvent, renderRouter, screen } from "expo-router/testing-library";
-
 import AppStart from "@/features/AppStart";
 import Providers from "@/utils/providers";
 

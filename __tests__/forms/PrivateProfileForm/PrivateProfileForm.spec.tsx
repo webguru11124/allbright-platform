@@ -1,7 +1,11 @@
 import { act, fireEvent, render } from "@testing-library/react-native";
-
 import PrivateProfileForm from "@/forms/PrivateProfileForm/PrivateProfileForm";
 import Providers from "@/utils/providers";
+import { faker } from "@faker-js/faker/.";
+import {
+  convertDateToInputString,
+  parseDateString,
+} from "@/__mocks__/test-utils";
 
 describe("PrivateProfileForm", () => {
   const props = {
@@ -29,6 +33,10 @@ describe("PrivateProfileForm", () => {
   };
 
   describe("calls changeTextFuncs", () => {
+    function changeBirthDate(date: string) {
+      const dateOfBirth = screen.getByTestId("PrivateProfileForm:DateOfBirth");
+      fireEvent.changeText(dateOfBirth, date);
+    }
     let screen: any;
 
     beforeEach(() => {
@@ -39,19 +47,12 @@ describe("PrivateProfileForm", () => {
     });
 
     it("when the dateOfBirth input is updated", () => {
-      const expected = "1/1/2000";
-      const input = screen.getByTestId("PrivateProfileForm:DateOfBirth");
+      const randomBirthDate = faker.date.birthdate();
+      const dateInput = convertDateToInputString(randomBirthDate);
+      changeBirthDate(dateInput);
 
-      act(() => {
-        fireEvent.changeText(input, expected);
-      });
-
-      // Format the expected date to match the received format
-      const formattedExpected = new Date(expected).toISOString();
-
-      // Directly compare the formatted date string
       expect(props.changeTextFuncs.dateOfBirth).toHaveBeenCalledWith(
-        new Date(formattedExpected)
+        parseDateString(dateInput)
       );
     });
 

@@ -1,7 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { act, fireEvent } from "@testing-library/react-native";
 import { renderRouter, screen, waitFor } from "expo-router/testing-library";
-
 import api from "@/lib/api";
 import Providers from "@/utils/providers";
 import UserClient from "@/utils/client/user/UserClient";
@@ -11,6 +10,10 @@ import UKSalaries from "@/utils/data/salary";
 import organisationSize from "@/utils/data/organisationSize";
 import { ethnicGroups } from "@/utils/data/ethnicGroups";
 import { interests } from "@/utils/data/interests";
+import {
+  convertDateToInputString,
+  parseDateString,
+} from "@/__mocks__/test-utils";
 
 jest.mock("@/lib/api");
 jest.mock("@/utils/client/user/UserClient");
@@ -27,6 +30,11 @@ describe("PrivateProfileForm", () => {
     const checkbox = screen.getByTestId(`ethnic-group-option-${ethnicGroup}`);
     fireEvent.press(checkbox);
   }
+  function changeBirthDate(date: string) {
+    const dateOfBirth = screen.getByTestId("PrivateProfileForm:DateOfBirth");
+    fireEvent.changeText(dateOfBirth, date);
+  }
+
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -51,8 +59,7 @@ describe("PrivateProfileForm", () => {
     const randomeEthnicGroups = faker.helpers.arrayElements(
       ethnicGroups.slice(1, -1)
     );
-    const randomBirthDate = "1/1/2000";
-    const formattedBirthDate = new Date(randomBirthDate);
+    const randomBirthDate = faker.date.birthdate();
 
     randomInterests.forEach((interest) => selectInterest(interest as string));
     randomeEthnicGroups.forEach((ethnicGroup) =>
@@ -65,10 +72,8 @@ describe("PrivateProfileForm", () => {
       screen.getByText("Size of organization"),
       randomOrgnizationSize
     );
-    fireEvent.changeText(
-      screen.getByTestId("PrivateProfileForm:DateOfBirth"),
-      randomBirthDate
-    );
+    const dateInput = convertDateToInputString(randomBirthDate);
+    changeBirthDate(dateInput);
 
     mockedApi.post.mockResolvedValueOnce({});
 
@@ -82,7 +87,7 @@ describe("PrivateProfileForm", () => {
         organisationSize: randomOrgnizationSize,
         interests: randomInterests,
         ethnicGroups: randomeEthnicGroups,
-        dateOfBirth: formattedBirthDate,
+        dateOfBirth: parseDateString(dateInput),
       });
       expect(screen).toHavePathname("/onboarding/profile-goals");
     });

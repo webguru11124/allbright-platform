@@ -1,13 +1,12 @@
 import { SafeAreaView } from "react-native";
-
 import Space from "@/components/Space";
 import AgreeTermsCheckBox from "@/forms/components/AgreeTermsCheckBox";
 import Button from "@/forms/components/Button";
 import CountryPicker from "@/forms/components/CountryPicker";
 import TextInput from "@/forms/components/TextInput";
-import MarketingAgreedCheckBox from "../components/MarketingAgreedCheckBox";
-import ThirdPartyAgreedCheckBox from "../components/ThirdPartyAgreedCheckBox";
-import { FormProps } from "../types/forms.types";
+import MarketingAgreedCheckBox from "@/forms/components/MarketingAgreedCheckBox";
+import ThirdPartyAgreedCheckBox from "@/forms/components/ThirdPartyAgreedCheckBox";
+import { FormProps } from "@/forms/types/forms.types";
 
 export const RegisterForm = ({
   inputs,

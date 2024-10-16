@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { interests } from "@/utils/data/interests";
 import { useInterestState } from "@/forms/hooks/useInterestState";
+
 import InterestsSelection from "./InterestsSelection";
 
 interface InterestsSectionProps {

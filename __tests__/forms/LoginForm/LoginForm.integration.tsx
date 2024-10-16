@@ -1,7 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { act, renderRouter, screen } from "expo-router/testing-library";
-
 import { fireBlurEvent } from "@/__mocks__/test-utils";
 import LoginForm from "@/forms/LoginForm";
 import api from "@/lib/api";

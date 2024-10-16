@@ -1,11 +1,11 @@
 import { cities } from "@/utils/data/cities";
 import goals from "@/utils/data/goals";
 import { jobLevels } from "@/utils/data/jobLevels";
-import { ProfileImage } from "../hooks/useProfilePhotoUploadSection";
 import { InterestTitles } from "@/utils/data/interests";
 import { jobStatus } from "@/utils/data/jobStatus";
 import organisationSize from "@/utils/data/organisationSize";
 import { ethnicGroups } from "@/utils/data/ethnicGroups";
+import { ProfileImage } from "@/forms/hooks/useProfilePhotoUploadSection";
 
 export type RegisterInput = {
   first_name: string;

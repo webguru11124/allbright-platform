@@ -1,15 +1,13 @@
 import { SafeAreaView } from "react-native";
-
 import Space from "@/components/Space";
 import Button from "@/forms/components/Button";
 import CityPicker from "@/forms/components/CityPicker";
 import JobLevelPicker from "@/forms/components/JobLevelPicker";
-import IndustryPicker from "../components/IndustryPicker";
-import TextInput from "../components/TextInput";
-import GoalsSelection from "../components/GoalsSelection";
-import ProfilePhotoUploadSection from "../components/ProfilePhotoUploadSection";
-
-import { FormProps } from "../types/forms.types";
+import IndustryPicker from "@/forms/components/IndustryPicker";
+import TextInput from "@/forms/components/TextInput";
+import GoalsSelection from "@/forms/components/GoalsSelection";
+import ProfilePhotoUploadSection from "@/forms/components/ProfilePhotoUploadSection";
+import { FormProps } from "@/forms/types/forms.types";
 
 const placeholderBiography =
   "Example: As a female CEO, I'm committed to leading with vision and impact. Alongside championing diversity and innovation, my passion for travel fuels my global perspective. Let's connect to empower each other in the world of leadership and swap adventure stories! ✈️ \n(500 characters max)";

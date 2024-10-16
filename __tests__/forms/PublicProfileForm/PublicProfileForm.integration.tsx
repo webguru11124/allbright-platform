@@ -2,7 +2,6 @@ import { faker } from "@faker-js/faker";
 import { act, fireEvent } from "@testing-library/react-native";
 import { renderRouter, screen, waitFor } from "expo-router/testing-library";
 import * as ImagePicker from "expo-image-picker";
-
 import PublicProfileForm from "@/forms/PublicProfileForm";
 import api from "@/lib/api";
 import Providers from "@/utils/providers";

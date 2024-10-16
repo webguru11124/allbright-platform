@@ -1,7 +1,8 @@
 import { DatePickerInputProps as RNPaperDatePickerInputProps } from "react-native-paper-dates/lib/typescript/Date/DatePickerInput.shared";
 import { DatePickerInput as RNPaperDatePickerInput } from "react-native-paper-dates";
 import styled from "styled-components/native";
-import FormFieldContainer from "../FormFieldContainer";
+import FormFieldContainer from "@/forms/components/FormFieldContainer";
+
 type DatePickerInputProps = Omit<
   RNPaperDatePickerInputProps,
   "value" | "error"
@@ -31,6 +32,7 @@ const DatePickerInput = ({ value, error, ...props }: DatePickerInputProps) => {
             props.style,
           ]}
           error={true}
+          locale="uk-UA"
         />
       </InputContainer>
     </FormFieldContainer>

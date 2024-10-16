@@ -1,5 +1,4 @@
 import { Slot } from "expo-router";
-
 import IsAuthenticated from "@/components/IsAuthenticated";
 import Providers from "@/utils/providers";
 

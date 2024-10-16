@@ -1,6 +1,5 @@
 import { View } from "react-native";
 import styled from "styled-components/native";
-
 import IconAllBright from "@/components/IconAllbright";
 
 export default function Header() {

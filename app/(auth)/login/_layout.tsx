@@ -1,5 +1,4 @@
 import { Stack } from "expo-router";
-
 import HeaderBackButton from "@/components/HeaderBackButton";
 import useTheme from "@/hooks/useTheme";
 

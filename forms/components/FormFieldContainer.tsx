@@ -22,7 +22,7 @@ const Container = styled.View<StyleProps>`
   border-width: 3px;
   border-color: transparent;
   ${(p) =>
-    !!p.error &&
+    Boolean(p.error) === true &&
     `
     border-color: red;
     border-radius: 5px;

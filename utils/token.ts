@@ -1,6 +1,7 @@
+import * as constants from "@/constants/Storage";
+import * as asyncStorage from "@/lib/asyncStorage";
+
 import { parseJwt } from ".";
-import * as constants from "../constants/Storage";
-import * as asyncStorage from "../lib/asyncStorage";
 
 export async function setToken(token: string) {
   return await asyncStorage.setItem(constants.ACCESS_TOKEN, token);

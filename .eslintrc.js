@@ -26,5 +26,28 @@ module.exports = {
         endOfLine: "auto",
       },
     ],
+    "import/order": [
+      "error",
+      {
+        groups: [["builtin", "external", "internal"]],
+        "newlines-between": "always",
+      },
+    ],
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        patterns: ["../*"],
+      },
+    ],
+  },
+  settings: {
+    "import/resolver": {
+      typescript: {
+        alwaysTryTypes: true, // always try to resolve types under `@types` directory even it doesn't contain any source code, like `@types/unist`
+        project: "./tsconfig.json", // Specify the path to your project's tsconfig.json file
+      },
+    },
   },
 };

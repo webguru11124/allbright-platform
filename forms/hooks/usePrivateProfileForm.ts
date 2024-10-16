@@ -1,9 +1,9 @@
 import * as React from "react";
-import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
-import { privateProfileAdaptor, PrivateProfileInput } from "../adaptors";
-import { useRouter } from "expo-router";
-import useForm from "./useForm";
 import Joi from "joi";
+import { useRouter } from "expo-router";
+import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
+import { privateProfileAdaptor, PrivateProfileInput } from "@/forms/adaptors";
+import useForm from "@/forms/hooks/useForm";
 
 const usePrivateProfileForm = (
   privateProfileSchema: Joi.PartialSchemaMap<any>
