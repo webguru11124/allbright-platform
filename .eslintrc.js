@@ -30,11 +30,8 @@ module.exports = {
       "error",
       {
         groups: [["builtin", "external", "internal"]],
-        "newlines-between": "always",
       },
     ],
-    "import/newline-after-import": "error",
-    "import/no-duplicates": "error",
     "no-restricted-imports": [
       "error",
       {

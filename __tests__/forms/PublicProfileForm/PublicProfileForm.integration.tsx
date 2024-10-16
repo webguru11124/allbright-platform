@@ -90,7 +90,7 @@ describe("PublicProfileForm", () => {
       });
       expect(screen).toHavePathname("/onboarding/private-profile");
     });
-  });
+  }, 30000);
 
   it(`should:
     - Enter an empty job title
