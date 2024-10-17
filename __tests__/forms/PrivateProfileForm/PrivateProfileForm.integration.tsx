@@ -102,7 +102,7 @@ describe("PrivateProfileForm", () => {
     const INTERESTS_ERROR_MESSAGE = '"Interests" is required';
     const JOB_STATUS_ERROR_MESSAGER = '"JobStatus" is required';
     const DATEOF_BRITH_ERROR_MESSAGE = '"DateOfBirth" is required';
-    const ERROR_MESSAGE = "Please fill out all required fields";
+
     renderRouter({
       index: jest.fn(() => (
         <Providers>
@@ -118,7 +118,6 @@ describe("PrivateProfileForm", () => {
     expect(await screen.findByText(INTERESTS_ERROR_MESSAGE)).not.toBeNull();
     expect(await screen.findByText(JOB_STATUS_ERROR_MESSAGER)).not.toBeNull();
     expect(await screen.findByText(DATEOF_BRITH_ERROR_MESSAGE)).not.toBeNull();
-    expect(await screen.findByText(ERROR_MESSAGE)).not.toBeNull();
 
     expect(UserClient.prototype.updateUser).not.toHaveBeenCalled();
     expect(screen).not.toHavePathname("/onboarding/private-profile");

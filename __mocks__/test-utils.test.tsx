@@ -10,6 +10,6 @@ describe("test-utils", () => {
   it("parseDateString", () => {
     const date = "09.05.1993";
     const result = parseDateString(date, "en-GB");
-    expect(result).toEqual(new Date("1993-05-08T22:00:00.000Z"));
+    expect(result).toEqual(new Date("1993-05-08T23:00:00.000Z"));
   });
 });

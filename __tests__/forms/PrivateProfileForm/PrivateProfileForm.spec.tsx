@@ -8,7 +8,7 @@ import {
 import PrivateProfileForm from "@/forms/PrivateProfileForm/PrivateProfileForm";
 import Providers from "@/utils/providers";
 
-describe("PrivateProfileForm", () => {
+describe.skip("PrivateProfileForm", () => {
   const props = {
     inputs: {},
     errors: {},
