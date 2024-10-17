@@ -1,5 +1,5 @@
-import { Pressable, StyleSheet, Animated } from "react-native";
 import { useRef } from "react";
+import { Animated, Pressable, StyleSheet } from "react-native";
 
 import { Colors } from "@/constants/Colors";
 // import RecommendationArticle from "./RecommendationArticle";
@@ -11,11 +11,11 @@ import { Colors } from "@/constants/Colors";
 import {
   ArticleRecommendationModel,
   ConnectionRecommendationModel,
-  // RecommendationType,
-  MentorshipRecommendationModel,
-  LessonRecommendationModel,
   EventRecommendationModel,
   GroupRecommendationModel,
+  LessonRecommendationModel,
+  // RecommendationType,
+  MentorshipRecommendationModel,
   PromotionRecommendationModel,
 } from "@/types/Recommendations";
 

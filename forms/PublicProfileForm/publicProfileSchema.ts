@@ -1,7 +1,8 @@
 import Joi from "joi";
-import { jobLevels } from "@/utils/data/jobLevels";
-import { onboardingIndustries } from "@/utils/data/industries";
+
 import goals from "@/utils/data/goals";
+import { onboardingIndustries } from "@/utils/data/industries";
+import { jobLevels } from "@/utils/data/jobLevels";
 
 export const publicProfileSchema = {
   city: Joi.string().max(60).required().messages({

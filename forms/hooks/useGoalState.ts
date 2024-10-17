@@ -1,5 +1,6 @@
-import goals from "@/utils/data/goals";
 import React from "react";
+
+import goals from "@/utils/data/goals";
 
 interface useGoalsProps {
   goals?: (typeof goals)[number][];

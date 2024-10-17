@@ -1,6 +1,7 @@
 import { Link } from "expo-router";
 import { Pressable } from "react-native";
 import styled from "styled-components/native";
+
 import { CS } from "@/components/Typography";
 
 const RegisterLink = () => {

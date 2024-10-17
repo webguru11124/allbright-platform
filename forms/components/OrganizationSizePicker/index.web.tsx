@@ -1,5 +1,6 @@
-import Picker from "@/forms/components/Picker";
 import { NativeSyntheticEvent, NativeTouchEvent } from "react-native";
+
+import Picker from "@/forms/components/Picker";
 import { pickerAdaptor as organizationSize } from "@/utils/data/organisationSize";
 
 type Props = {

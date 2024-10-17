@@ -1,10 +1,11 @@
 import React from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
+import { CS, H5 } from "@/components/Typography";
 import { Colors } from "@/constants/Colors";
-import { CS, H5 } from "../Typography";
-import Badge from "./Badge";
 import { MentorshipRecommendationModel } from "@/types/Recommendations";
+
+import Badge from "./Badge";
 
 const RecommendationMentorship: React.FC<MentorshipRecommendationModel> = (
   props

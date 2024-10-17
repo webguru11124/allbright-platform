@@ -1,12 +1,13 @@
-import { Tick } from "@/components/Icons";
-import { CL, CM, H5 } from "@/components/Typography";
-import { ethnicGroups } from "@/utils/data/ethnicGroups";
 import React, { FunctionComponent, useContext } from "react";
 import styled, { css } from "styled-components/native";
+
+import { Tick } from "@/components/Icons/index";
+import { CL, CM, H5 } from "@/components/Typography";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
-import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 import FormFieldContainer from "@/forms/components/FormFieldContainer";
+import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 import colours from "@/theme";
+import { ethnicGroups } from "@/utils/data/ethnicGroups";
 
 type StyleProps = {
   checked?: boolean;

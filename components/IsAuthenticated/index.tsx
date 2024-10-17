@@ -1,6 +1,7 @@
-import { getToken } from "@/utils/token";
-import React from "react";
 import { router } from "expo-router";
+import React from "react";
+
+import { getToken } from "@/utils/token";
 
 type Props = {
   children: React.ReactNode;

@@ -1,8 +1,9 @@
-import { CXL, H2 } from "@/components/Typography";
 import React from "react";
 import { Animated, SafeAreaView, StatusBar, View } from "react-native";
 import styled from "styled-components/native";
+
 import Space from "@/components/Space";
+import { CXL, H2 } from "@/components/Typography";
 import BackgroundImageMasonry from "@/features/AppStart/partials/BackgroundImageMasonry";
 import EntryButtons from "@/features/AppStart/partials/EntryButtons";
 import { AppStartProps, AppStartStyleProps } from "@/features/AppStart/types";

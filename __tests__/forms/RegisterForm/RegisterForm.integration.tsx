@@ -1,12 +1,13 @@
 import { faker } from "@faker-js/faker";
 import { fireEvent, waitFor } from "@testing-library/react-native";
 import { act, renderRouter, screen } from "expo-router/testing-library";
+
 import { fireBlurEvent } from "@/__mocks__/test-utils";
 import RegisterForm from "@/forms/RegisterForm";
 import api from "@/lib/api";
+import countries from "@/utils/data/countries";
 import Providers from "@/utils/providers";
 import * as tokenFns from "@/utils/token";
-import countries from "@/utils/data/countries";
 
 jest.mock("@/lib/api");
 const mockedApi = api as jest.Mocked<typeof api>;

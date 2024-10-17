@@ -1,12 +1,13 @@
-import { pickerAdaptor as jobLevels } from "@/utils/data/jobLevels";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useMemo, useState } from "react";
 import { Alert, Modal, TextInputProps } from "react-native";
 import styled from "styled-components/native";
+
 import Space from "@/components/Space";
 import { CM, CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
 import { recommendationColour } from "@/theme";
+import { pickerAdaptor as jobLevels } from "@/utils/data/jobLevels";
 
 type Props = Omit<TextInputProps, "onBlur"> & {
   onChangeText: Function;

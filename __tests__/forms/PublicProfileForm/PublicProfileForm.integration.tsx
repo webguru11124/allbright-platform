@@ -1,15 +1,16 @@
 import { faker } from "@faker-js/faker";
 import { act, fireEvent } from "@testing-library/react-native";
-import { renderRouter, screen, waitFor } from "expo-router/testing-library";
 import * as ImagePicker from "expo-image-picker";
+import { renderRouter, screen, waitFor } from "expo-router/testing-library";
+
+import { fireBlurEvent } from "@/__mocks__/test-utils";
 import PublicProfileForm from "@/forms/PublicProfileForm";
 import api from "@/lib/api";
-import Providers from "@/utils/providers";
+import UserClient from "@/utils/client/user/UserClient";
+import goals from "@/utils/data/goals";
 import { onboardingIndustries } from "@/utils/data/industries";
 import { jobLevels } from "@/utils/data/jobLevels";
-import goals from "@/utils/data/goals";
-import UserClient from "@/utils/client/user/UserClient";
-import { fireBlurEvent } from "@/__mocks__/test-utils";
+import Providers from "@/utils/providers";
 
 jest.mock("@/lib/api");
 jest.mock("@/utils/client/user/UserClient");

@@ -1,4 +1,5 @@
 import Joi from "joi";
+
 import countries from "@/utils/data/countries";
 
 export const registerSchema = {

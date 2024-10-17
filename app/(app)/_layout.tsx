@@ -1,5 +1,6 @@
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
+
 import useRootLayout from "@/hooks/useRootLayout";
 import Providers from "@/utils/providers";
 

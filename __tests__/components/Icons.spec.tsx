@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react-native";
 import { View } from "react-native";
-import { IconCamera, ArrowRight } from "@/components/Icons";
+
+import { ArrowRight, IconCamera } from "@/components/Icons";
 
 describe("IconCamera", () => {
   it(`should:

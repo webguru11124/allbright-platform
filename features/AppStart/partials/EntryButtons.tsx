@@ -1,8 +1,9 @@
-import { CM } from "@/components/Typography";
 import React from "react";
 import { Animated } from "react-native";
+
 import Link from "@/components/Link";
 import Space from "@/components/Space";
+import { CM } from "@/components/Typography";
 import { EntryButtonsProps } from "@/features/AppStart/types";
 import { recommendationColour } from "@/theme";
 

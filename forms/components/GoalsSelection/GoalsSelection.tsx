@@ -1,11 +1,12 @@
-import { CL } from "@/components/Typography";
-import { MediaQueryContext } from "@/contexts/MediaQueryContext";
-import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
-import goals from "@/utils/data/goals";
 import React, { FunctionComponent, useContext } from "react";
 import styled, { css } from "styled-components/native";
-import TickBox from "@/forms/components/TickBox";
+
+import { CL } from "@/components/Typography";
+import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import FormFieldContainer from "@/forms/components/FormFieldContainer";
+import TickBox from "@/forms/components/TickBox";
+import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
+import goals from "@/utils/data/goals";
 
 type StyleProps = {
   maxWidth: (val: number) => boolean;

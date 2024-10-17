@@ -1,6 +1,7 @@
-import { CS } from "@/components/Typography";
 import { View } from "react-native";
 import styled from "styled-components/native";
+
+import { CS } from "@/components/Typography";
 
 type Props = {
   children: React.ReactNode;

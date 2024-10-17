@@ -1,8 +1,9 @@
 import styled from "styled-components/native";
-import { CM, H2Rox } from "@/components/Typography";
+
 import Link from "@/components/Link";
-import { recommendationColour } from "@/theme";
+import { CM, H2Rox } from "@/components/Typography";
 import { OnboadingPageLayout } from "@/features/Onboarding/layout";
+import { recommendationColour } from "@/theme";
 
 export default function WelcomeScreen() {
   const returningUser = false;

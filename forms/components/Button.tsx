@@ -1,5 +1,6 @@
-import { ButtonProps, ActivityIndicator } from "react-native";
+import { ActivityIndicator, ButtonProps } from "react-native";
 import styled from "styled-components/native";
+
 import { CM } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
 

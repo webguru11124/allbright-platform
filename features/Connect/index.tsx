@@ -1,6 +1,7 @@
 import { View } from "react-native";
-import { CM } from "@/components/Typography";
+
 import Link from "@/components/Link";
+import { CM } from "@/components/Typography";
 
 export default function Connect() {
   return (
