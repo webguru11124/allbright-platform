@@ -5,8 +5,8 @@ module.exports = {
     node: true,
     jest: true, // Use 'jest: true' instead of 'jest/globals'
   },
-  extends: ["expo", "prettier"],
-  plugins: ["prettier"],
+  extends: ["expo", "prettier"], // Add this line
+  plugins: ["prettier", "simple-import-sort"],
   rules: {
     "prettier/prettier": [
       "error",
@@ -26,13 +26,9 @@ module.exports = {
         endOfLine: "auto",
       },
     ],
-    "import/order": [
-      "error",
-      {
-        groups: [["builtin", "external", "internal"]],
-        "newlines-between": "always",
-      },
-    ],
+    "import/order": "off", // Disable the import/order rule
+    "simple-import-sort/imports": "error", // Enable simple-import-sort
+    "simple-import-sort/exports": "error", // Enable simple-import-sort for exports
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
     "no-restricted-imports": [
@@ -41,6 +37,7 @@ module.exports = {
         patterns: ["../*"],
       },
     ],
+    "@typescript-eslint/ban-types": "off", // Ensure this rule is present
   },
   settings: {
     "import/resolver": {
