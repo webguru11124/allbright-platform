@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
+
+import { CS, H5 } from "@/components/Typography";
 import { Colors } from "@/constants/Colors";
 import { RecommendedArticle } from "@/types/article/Article";
-import { CS, H5 } from "@/components/Typography";
 
 import Badge from "./Badge";
 import Divider from "./Divider";

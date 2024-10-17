@@ -1,10 +1,11 @@
+import { useRouter } from "expo-router";
 import * as Joi from "joi";
 import * as React from "react";
-import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
-import { useRouter } from "expo-router";
-import { LocalImageType } from "@/types/files/localImage";
+
 import { publicProfileAdaptor, PublicProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
+import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
+import { LocalImageType } from "@/types/files/localImage";
 
 const usePublicProfileForm = (
   privateProfileSchema: Joi.PartialSchemaMap<any>

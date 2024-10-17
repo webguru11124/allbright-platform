@@ -1,9 +1,10 @@
+import { fireEvent, render, screen } from "@testing-library/react-native";
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react-native";
-import goals from "@/utils/data/goals";
-import GoalsSectionContainer from "@/forms/components/GoalsSelection";
-import Providers from "@/utils/providers";
 import { ReactTestInstance } from "react-test-renderer";
+
+import GoalsSectionContainer from "@/forms/components/GoalsSelection";
+import goals from "@/utils/data/goals";
+import Providers from "@/utils/providers";
 
 describe("GoalsSectionContainer", () => {
   const updateFieldMock = jest.fn();

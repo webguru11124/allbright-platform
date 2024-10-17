@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components/native";
 import { Image } from "react-native";
+import styled from "styled-components/native";
+
 import { IconCamera } from "@/components/Icons";
 import colours from "@/theme";
 

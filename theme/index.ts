@@ -5,8 +5,8 @@ import {
   DefaultTheme as NativeDefaultTheme,
 } from "@react-navigation/native";
 import {
-  MD2LightTheme as DefaultPaperTheme,
   MD2DarkTheme as DarkPaperTheme,
+  MD2LightTheme as DefaultPaperTheme,
 } from "react-native-paper";
 
 const colours = {

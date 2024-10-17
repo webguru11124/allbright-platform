@@ -3,6 +3,7 @@ import _ from "lodash";
 import React, { ReactNode } from "react";
 import { Platform, View } from "react-native";
 import styled from "styled-components/native";
+
 import * as T from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
 

@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import React from "react";
+
 import { AppStartImgProps } from "@/features/AppStart/types";
 
 const AppStartImg: React.FC<AppStartImgProps> = ({

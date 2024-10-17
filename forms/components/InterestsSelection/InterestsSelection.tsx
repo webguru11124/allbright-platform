@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components/native";
-import { interests } from "@/utils/data/interests";
+
 import { CL } from "@/components/Typography";
-import PillInput from "@/forms/components/PillInput";
 import FormFieldContainer from "@/forms/components/FormFieldContainer";
+import PillInput from "@/forms/components/PillInput";
+import { interests } from "@/utils/data/interests";
 
 type StyleProps = {
   error?: string;

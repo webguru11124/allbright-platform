@@ -1,19 +1,20 @@
 import { faker } from "@faker-js/faker";
 import { act, fireEvent } from "@testing-library/react-native";
 import { renderRouter, screen, waitFor } from "expo-router/testing-library";
-import api from "@/lib/api";
-import Providers from "@/utils/providers";
-import UserClient from "@/utils/client/user/UserClient";
-import PrivateProfileForm from "@/forms/PrivateProfileForm";
-import { jobStatus } from "@/utils/data/jobStatus";
-import UKSalaries from "@/utils/data/salary";
-import organisationSize from "@/utils/data/organisationSize";
-import { ethnicGroups } from "@/utils/data/ethnicGroups";
-import { interests } from "@/utils/data/interests";
+
 import {
   convertDateToInputString,
   parseDateString,
 } from "@/__mocks__/test-utils";
+import PrivateProfileForm from "@/forms/PrivateProfileForm";
+import api from "@/lib/api";
+import UserClient from "@/utils/client/user/UserClient";
+import { ethnicGroups } from "@/utils/data/ethnicGroups";
+import { interests } from "@/utils/data/interests";
+import { jobStatus } from "@/utils/data/jobStatus";
+import organisationSize from "@/utils/data/organisationSize";
+import UKSalaries from "@/utils/data/salary";
+import Providers from "@/utils/providers";
 
 jest.mock("@/lib/api");
 jest.mock("@/utils/client/user/UserClient");

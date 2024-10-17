@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+
 import RegisterLink from "@/features/Auth/partials/RegisterLink";
 import LoginForm from "@/forms/LoginForm";
 

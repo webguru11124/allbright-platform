@@ -1,5 +1,5 @@
-import { UserModel } from "@/types/user";
 import api from "@/lib/api";
+import { UserModel } from "@/types/user";
 import { getUserId } from "@/utils/token";
 
 class UserClient {

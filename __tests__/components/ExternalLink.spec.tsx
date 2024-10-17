@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react-native";
+
 import { ExternalLink } from "@/components/ExternalLink";
 
 describe("ExternalLink", () => {

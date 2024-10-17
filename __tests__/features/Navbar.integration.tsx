@@ -1,5 +1,6 @@
 import { fireEvent, renderRouter, screen } from "expo-router/testing-library";
 import { View } from "react-native";
+
 import Navbar from "@/features/Navbar";
 import Providers from "@/utils/providers";
 

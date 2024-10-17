@@ -1,13 +1,14 @@
 import { SafeAreaView } from "react-native";
+
 import Space from "@/components/Space";
 import Button from "@/forms/components/Button";
-import { FormProps } from "@/forms/types/forms.types";
+import DatePickerInput from "@/forms/components/DatePickerInput";
+import EthnicGroupsSection from "@/forms/components/EthnicGroupSelection";
 import InterestsSection from "@/forms/components/InterestsSelection";
 import JobStatusPicker from "@/forms/components/JobStatusPicker";
-import SalaryPicker from "@/forms/components/SalaryPicker";
-import EthnicGroupsSection from "@/forms/components/EthnicGroupSelection";
 import OrganizationSizePicker from "@/forms/components/OrganizationSizePicker";
-import DatePickerInput from "@/forms/components/DatePickerInput";
+import SalaryPicker from "@/forms/components/SalaryPicker";
+import { FormProps } from "@/forms/types/forms.types";
 
 const PrivateProfileForm = ({
   inputs,

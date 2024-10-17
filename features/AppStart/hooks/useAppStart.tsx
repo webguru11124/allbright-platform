@@ -1,10 +1,11 @@
 import { useCallback, useContext, useEffect, useRef } from "react";
 import { Animated } from "react-native";
 import DeviceInfo from "react-native-device-info";
+
 import * as Imgs from "@/assets/images/app-start/_index";
+import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import { STORE } from "@/features/AppStart/constants";
 import { StoreItem } from "@/features/AppStart/types";
-import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 
 export default function useAppStart() {
   const { minWidth } = useContext<MediaQuery>(MediaQueryContext);

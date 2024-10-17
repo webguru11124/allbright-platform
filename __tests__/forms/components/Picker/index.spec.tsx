@@ -1,8 +1,9 @@
+import { render } from "@testing-library/react-native";
 import React from "react";
+
 import Picker from "@/forms/components/Picker/index";
 import { pickerAdaptor as items } from "@/utils/data/industries";
 import Providers from "@/utils/providers";
-import { render } from "@testing-library/react-native";
 
 describe("Picker (Web)", () => {
   const mockOnValueChange = jest.fn();

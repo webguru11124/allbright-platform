@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+
 import { CS } from "@/components/Typography";
 
 type BadgeProps = {

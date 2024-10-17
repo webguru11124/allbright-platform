@@ -1,6 +1,7 @@
-import RegisterForm from "@/forms/RegisterForm";
 import styled from "styled-components/native";
+
 import LoginLink from "@/features/Auth/partials/LoginLink";
+import RegisterForm from "@/forms/RegisterForm";
 
 const Register = () => {
   return (

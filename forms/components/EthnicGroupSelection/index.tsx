@@ -1,6 +1,7 @@
+import React, { FunctionComponent } from "react";
+
 import { useEthnicGroups } from "@/forms/hooks/useEthnicGroupSelection";
 import { ethnicGroups } from "@/utils/data/ethnicGroups";
-import React, { FunctionComponent } from "react";
 
 import EthnicGroupsSection from "./EthnicGroupSelection";
 

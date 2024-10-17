@@ -1,4 +1,5 @@
 import { DimensionValue } from "react-native";
+
 import { AppStartImgProps } from "@/features/AppStart/types";
 
 const useAppStartImg = ({

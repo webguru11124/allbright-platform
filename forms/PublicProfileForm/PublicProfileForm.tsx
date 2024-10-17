@@ -1,12 +1,13 @@
 import { SafeAreaView } from "react-native";
+
 import Space from "@/components/Space";
 import Button from "@/forms/components/Button";
 import CityPicker from "@/forms/components/CityPicker";
-import JobLevelPicker from "@/forms/components/JobLevelPicker";
-import IndustryPicker from "@/forms/components/IndustryPicker";
-import TextInput from "@/forms/components/TextInput";
 import GoalsSelection from "@/forms/components/GoalsSelection";
+import IndustryPicker from "@/forms/components/IndustryPicker";
+import JobLevelPicker from "@/forms/components/JobLevelPicker";
 import ProfilePhotoUploadSection from "@/forms/components/ProfilePhotoUploadSection";
+import TextInput from "@/forms/components/TextInput";
 import { FormProps } from "@/forms/types/forms.types";
 
 const placeholderBiography =

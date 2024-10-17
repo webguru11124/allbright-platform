@@ -1,10 +1,11 @@
 import {
+  fireEvent,
   renderRouter,
   screen,
-  fireEvent,
   waitFor,
 } from "expo-router/testing-library";
 import { View } from "react-native";
+
 import Login from "@/features/Auth/Login";
 import Register from "@/features/Auth/Register";
 import Providers from "@/utils/providers";

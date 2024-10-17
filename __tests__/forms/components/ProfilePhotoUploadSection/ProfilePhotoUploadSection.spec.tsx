@@ -1,7 +1,8 @@
+import { fireEvent, screen } from "expo-router/testing-library";
+
 import { render } from "@/__mocks__/test-utils";
 import ProfilePhotoUploadSection from "@/forms/components/ProfilePhotoUploadSection/ProfilePhotoUploadSection";
 import { LocalImageType } from "@/types/files/localImage";
-import { fireEvent, screen } from "expo-router/testing-library";
 
 describe("ProfilePhotoUploadSection", () => {
   const mockPickProfileImage = jest.fn();

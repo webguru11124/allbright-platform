@@ -1,7 +1,7 @@
 import {
-  registrationAdaptor,
   RegisterInput,
   RegisterOutput,
+  registrationAdaptor,
 } from "@/forms/adaptors";
 
 type TestItem = {

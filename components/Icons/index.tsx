@@ -1,6 +1,7 @@
-import colours from "@/theme";
 import React from "react";
 import Svg, { Path, SvgProps } from "react-native-svg";
+
+import colours from "@/theme";
 
 type Props = SvgProps & {
   width?: number;
