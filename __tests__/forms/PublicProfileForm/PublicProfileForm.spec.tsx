@@ -1,5 +1,4 @@
 import { fireEvent, render } from "@testing-library/react-native";
-
 import PublicProfileForm from "@/forms/PublicProfileForm/PublicProfileForm";
 import Providers from "@/utils/providers";
 import { faker } from "@faker-js/faker";
@@ -58,8 +57,8 @@ describe("PublicProfileForm", () => {
 
     it("when the jobTitle input is updated", () => {
       const expectedJobTitle = faker.person.jobTitle();
-      const emailInput = screen.getByTestId("PublicProfileForm:JobTitle");
-      fireEvent.changeText(emailInput, expectedJobTitle);
+      const input = screen.getByTestId("PublicProfileForm:JobTitle");
+      fireEvent.changeText(input, expectedJobTitle);
       expect(props.changeTextFuncs.job_title).toHaveBeenCalledWith(
         expectedJobTitle
       );
@@ -67,8 +66,8 @@ describe("PublicProfileForm", () => {
 
     it("when the companyName input is updated", () => {
       const expectedCompanyName = faker.company.name();
-      const passwordInput = screen.getByTestId("PublicProfileForm:CompanyName");
-      fireEvent.changeText(passwordInput, expectedCompanyName);
+      const input = screen.getByTestId("PublicProfileForm:CompanyName");
+      fireEvent.changeText(input, expectedCompanyName);
       expect(props.changeTextFuncs.company_name).toHaveBeenCalledWith(
         expectedCompanyName
       );

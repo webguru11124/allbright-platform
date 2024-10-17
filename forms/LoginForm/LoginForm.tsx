@@ -1,9 +1,8 @@
 import { SafeAreaView } from "react-native";
-
 import Space from "@/components/Space";
 import Button from "@/forms/components/Button";
 import TextInput from "@/forms/components/TextInput";
-import { FormProps } from "../types/forms.types";
+import { FormProps } from "@/forms/types/forms.types";
 
 export const LoginForm = ({
   inputs,

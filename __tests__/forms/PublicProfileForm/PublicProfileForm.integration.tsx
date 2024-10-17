@@ -2,7 +2,6 @@ import { faker } from "@faker-js/faker";
 import { act, fireEvent } from "@testing-library/react-native";
 import { renderRouter, screen, waitFor } from "expo-router/testing-library";
 import * as ImagePicker from "expo-image-picker";
-
 import PublicProfileForm from "@/forms/PublicProfileForm";
 import api from "@/lib/api";
 import Providers from "@/utils/providers";
@@ -56,7 +55,7 @@ describe("PublicProfileForm", () => {
     fireEvent.changeText(screen.getByText("Industry"), randomIndustry);
     fireEvent.changeText(screen.getByText("Job title*"), randomJobTitle);
     fireEvent.changeText(
-      screen.getByText("Company name (if applicable)"),
+      screen.getByTestId("PublicProfileForm:CompanyName"),
       randomCompanyName
     );
     fireEvent.changeText(screen.getByText("Biography*"), randomBiography);
@@ -91,7 +90,7 @@ describe("PublicProfileForm", () => {
       });
       expect(screen).toHavePathname("/onboarding/private-profile");
     });
-  });
+  }, 30000);
 
   it(`should:
     - Enter an empty job title

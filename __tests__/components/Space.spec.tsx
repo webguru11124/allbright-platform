@@ -1,6 +1,5 @@
 import { render } from "@testing-library/react-native";
 import { View } from "react-native";
-
 import Space from "@/components/Space";
 
 describe("Space", () => {

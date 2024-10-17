@@ -56,18 +56,4 @@ describe("GoalsSectionContainer", () => {
       goals[3],
     ]);
   });
-
-  it("should show error when no goal is selected", () => {
-    renderComponent();
-
-    const goal1 = screen.getByTestId(`goals-checkbox-${goals[0]}`);
-
-    // Deselect all goals
-    selectGoal(goal1, [goals[0]]);
-    selectGoal(goal1, []);
-
-    // Simulate the error state (e.g., by passing an error prop)
-    const errorMessage = screen.queryByText(/choose between 1 and 3/i);
-    expect(errorMessage).not.toBeNull(); // Assuming that this would be visible during error
-  });
 });

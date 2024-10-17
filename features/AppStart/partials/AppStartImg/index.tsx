@@ -1,7 +1,7 @@
 import React from "react";
-
 import { AppStartImgProps } from "@/features/AppStart/types";
-import useAppStartImg from "../../hooks/useAppStartImg";
+import useAppStartImg from "@/features/AppStart/hooks/useAppStartImg";
+
 import AppStartImg from "./AppStartImg";
 
 const AppStartImgContainer = ({

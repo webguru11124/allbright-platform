@@ -1,10 +1,10 @@
 import { CM } from "@/components/Typography";
 import React from "react";
 import { Animated } from "react-native";
-
 import Link from "@/components/Link";
 import Space from "@/components/Space";
 import { EntryButtonsProps } from "@/features/AppStart/types";
+import { recommendationColour } from "@/theme";
 
 const EntryButtons = ({ nameAnim }: EntryButtonsProps) => {
   return (
@@ -13,16 +13,16 @@ const EntryButtons = ({ nameAnim }: EntryButtonsProps) => {
       <Space height={10} />
       <Link
         href="/login"
-        background={"rgb(58, 59, 61)"}
+        background={recommendationColour.btBgColor}
         isSecondary={true}>
-        <CM color={"rgb(228, 230, 235)"}>Log in</CM>
+        <CM color={recommendationColour.btColor}>Log in</CM>
       </Link>
       <Space height={10} />
       <Link
         href="/onboarding/welcome"
-        background={"rgb(58, 59, 61)"}
+        background={recommendationColour.btBgColor}
         isSecondary={true}>
-        <CM color={"rgb(228, 230, 235)"}>Onboarding</CM>
+        <CM color={recommendationColour.btColor}>Onboarding</CM>
       </Link>
     </Animated.View>
   );

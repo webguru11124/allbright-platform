@@ -1,5 +1,4 @@
 import { fireEvent, render } from "@testing-library/react-native";
-
 import RegisterForm from "@/forms/RegisterForm/RegisterForm";
 import Providers from "@/utils/providers";
 import { faker } from "@faker-js/faker";

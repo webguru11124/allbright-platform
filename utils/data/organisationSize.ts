@@ -1,4 +1,4 @@
-export default [
+export const organisationSize = [
   "Myself only",
   "2 - 10 employees",
   "11 - 50 employees",
@@ -9,3 +9,11 @@ export default [
   "5001 - 10000 employees",
   "10001 employees +",
 ] as const;
+
+export default organisationSize;
+
+export const pickerAdaptor = organisationSize.map((item) => ({
+  key: item,
+  label: item,
+  value: item,
+}));

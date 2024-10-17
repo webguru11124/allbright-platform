@@ -4,9 +4,9 @@ import {
 } from "@react-native-picker/picker";
 import { NativeSyntheticEvent, NativeTouchEvent } from "react-native";
 import styled from "styled-components/native";
-
 import { CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
+import { recommendationColour } from "@/theme";
 
 type Props = PickerProps & {
   selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
@@ -73,7 +73,7 @@ const StyledPicker = styled(NativePicker)<StyleProps>`
   border-color: ${(p) => (p.error ? "red" : "tranparent")};
   border-width: ${(p) => (p.error ? 3 : 0)}px;
   font-size: 14px;
-  color: rgb(73, 101, 140);
+  color: ${recommendationColour.textColor};
 `;
 
 export default withTheme(Picker);

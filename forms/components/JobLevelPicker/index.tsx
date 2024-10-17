@@ -3,10 +3,10 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useMemo, useState } from "react";
 import { Alert, Modal, TextInputProps } from "react-native";
 import styled from "styled-components/native";
-
 import Space from "@/components/Space";
 import { CM, CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
+import { recommendationColour } from "@/theme";
 
 type Props = Omit<TextInputProps, "onBlur"> & {
   onChangeText: Function;
@@ -82,7 +82,9 @@ const JobLevelPicker = ({
         theme={theme}
         onPress={() => setModalVisible(true)}
         error={error}>
-        <CM color={"rgb(73, 101, 140)"}>{displayValue || placeholder}</CM>
+        <CM color={recommendationColour.textColor}>
+          {displayValue || placeholder}
+        </CM>
         <MaterialIcons
           name={"arrow-drop-down"}
           size={24}
@@ -160,7 +162,7 @@ const StyledPressable = styled.Pressable<{ error: string | undefined }>`
   border-color: ${(p) => (Boolean(p.error) ? "red" : "transparent")};
   border-width: ${(p) => (Boolean(p.error) ? 3 : 0)}px;
   border-radius: 5px;
-  color: rgb(73, 101, 140);
+  color: ${recommendationColour.textColor};
 `;
 
 export default withTheme(JobLevelPicker);

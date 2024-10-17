@@ -1,7 +1,11 @@
 import { cities } from "@/utils/data/cities";
 import goals from "@/utils/data/goals";
 import { jobLevels } from "@/utils/data/jobLevels";
-import { ProfileImage } from "../hooks/useProfilePhotoUploadSection";
+import { InterestTitles } from "@/utils/data/interests";
+import { jobStatus } from "@/utils/data/jobStatus";
+import organisationSize from "@/utils/data/organisationSize";
+import { ethnicGroups } from "@/utils/data/ethnicGroups";
+import { ProfileImage } from "@/forms/hooks/useProfilePhotoUploadSection";
 
 export type RegisterInput = {
   first_name: string;
@@ -40,6 +44,15 @@ export const registrationAdaptor = (postBody: RegisterInput) => ({
   thirdPartyAgreed: postBody.thirdPartyAgreed,
 });
 
+export type PrivateProfileInput = {
+  interests: InterestTitles;
+  jobStatus: (typeof jobStatus)[number] | null;
+  salary: string;
+  organisationSize: (typeof organisationSize)[number] | null;
+  dateOfBirth: Date;
+  ethnicGroups: (typeof ethnicGroups)[number][];
+};
+
 export type PublicProfileInput = {
   city: (typeof cities)[number]["city"];
   job_title: string;
@@ -73,3 +86,23 @@ export const publicProfileAdaptor = (
   goals: postBody.goals,
   bio: postBody.user_biography,
 });
+
+export const privateProfileAdaptor = (
+  postBody: PrivateProfileInput
+): PrivateProfileOutput => ({
+  interests: postBody.interests,
+  jobStatus: postBody.jobStatus,
+  salary: postBody.salary,
+  organisationSize: postBody.organisationSize,
+  dateOfBirth: postBody.dateOfBirth,
+  ethnicGroups: postBody.ethnicGroups,
+});
+
+export type PrivateProfileOutput = {
+  interests: InterestTitles;
+  jobStatus: (typeof jobStatus)[number] | null;
+  salary: string;
+  organisationSize: (typeof organisationSize)[number] | null;
+  dateOfBirth: Date;
+  ethnicGroups: (typeof ethnicGroups)[number][];
+};

@@ -1,7 +1,11 @@
 import { cities } from "@/utils/data/cities";
+import { ethnicGroups } from "@/utils/data/ethnicGroups";
 import goals from "@/utils/data/goals";
 import industries from "@/utils/data/industries";
+import { InterestTitles } from "@/utils/data/interests";
 import { jobLevels } from "@/utils/data/jobLevels";
+import { jobStatus } from "@/utils/data/jobStatus";
+import organisationSize from "@/utils/data/organisationSize";
 
 export const Roles = ["Free", "Plus", "Alliance", "Administrator"] as const;
 
@@ -17,11 +21,11 @@ export type UserModel = {
   displayPhoto?: boolean;
   roles: (typeof Roles)[number][];
   createdAt: number;
-  // salary: (typeof salary)[number] | null;
-  // jobStatus: (typeof jobStatus)[number] | null;
+  salary: string;
+  jobStatus: (typeof jobStatus)[number] | null;
   dateOfBirth: Date | null;
-  // organisationSize: (typeof organisationSize)[number] | null;
-  // ethnicGroups?: (typeof ethnicGroups)[number][];
+  organisationSize: (typeof organisationSize)[number] | null;
+  ethnicGroups?: (typeof ethnicGroups)[number][];
   // careerGoals: CareerGoalType["id"][] | null;
   agreedToPledge: boolean;
   savedCourses?: string[];
@@ -97,7 +101,7 @@ export type UserModel = {
   pg?: number;
   importSource?: string;
   registerForMarketingEmails?: boolean;
-  // interests?: InterestTitles;
+  interests?: InterestTitles;
   region?: ["UK", "US", "AUS", "HK"];
   viewedOnboardingIntroStep?: boolean;
   country?: string;

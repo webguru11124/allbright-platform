@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react-native";
-
 import IconAllbright from "@/components/IconAllbright";
 
 describe("IconAllbright", () => {
