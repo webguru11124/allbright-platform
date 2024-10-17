@@ -1,6 +1,5 @@
 import { Pressable, StyleSheet, Animated } from "react-native";
 import { useRef } from "react";
-
 import { Colors } from "@/constants/Colors";
 // import RecommendationArticle from "./RecommendationArticle";
 // import RecommendationEvent from "./RecommendationEvent";

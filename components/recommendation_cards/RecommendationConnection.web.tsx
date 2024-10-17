@@ -1,11 +1,11 @@
 import { StyleSheet, View, Image } from "react-native";
-
 import { Colors } from "@/constants/Colors";
-import { CS, H5 } from "../Typography";
-import Divider from "./Divider";
-import Badge from "./Badge";
 import React from "react";
 import { ConnectionRecommendationModel } from "@/types/Recommendations";
+import { CS, H5 } from "@/components/Typography";
+
+import Divider from "./Divider";
+import Badge from "./Badge";
 
 const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (
   props

@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Image } from "react-native";
-
 import { Colors } from "@/constants/Colors";
-import { CS, H5 } from "../Typography";
+import { GroupRecommendationModel } from "@/types/Recommendations";
+import { CS, H5 } from "@/components/Typography";
+
 import Divider from "./Divider";
 import Badge from "./Badge";
-import { GroupRecommendationModel } from "@/types/Recommendations";
 
 const RecommendationGroup: React.FC<GroupRecommendationModel> = (props) => {
   const styles = StyleSheet.create({

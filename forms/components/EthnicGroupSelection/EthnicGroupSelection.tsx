@@ -1,4 +1,3 @@
-import { Tick } from "@/components/Icons";
 import { CL, CM, H5 } from "@/components/Typography";
 import { ethnicGroups } from "@/utils/data/ethnicGroups";
 import React, { FunctionComponent, useContext } from "react";
@@ -7,6 +6,7 @@ import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 import FormFieldContainer from "@/forms/components/FormFieldContainer";
 import colours from "@/theme";
+import { Tick } from "@/components/Icons/index";
 
 type StyleProps = {
   checked?: boolean;
@@ -106,7 +106,7 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (
   );
 };
 
-const S = () => {};
+const S = () => { };
 
 S.Container = styled.View`
   display: flex;
@@ -204,7 +204,7 @@ S.TextInput = styled.TextInput<StyleProps>`
     `}
 `;
 
-S.OptionLabel = styled(CL)<StyleProps>`
+S.OptionLabel = styled(CL) <StyleProps>`
   cursor: pointer;
   font-weight: 500;
 

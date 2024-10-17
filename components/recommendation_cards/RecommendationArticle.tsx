@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Image } from "react-native";
-
 import { Colors } from "@/constants/Colors";
-import { CS, H5 } from "../Typography";
+import { RecommendedArticle } from "@/types/article/Article";
+import { CS, H5 } from "@/components/Typography";
+
 import Badge from "./Badge";
 import Divider from "./Divider";
-import { RecommendedArticle } from "@/types/article/Article";
 
 const RecommendationArticle: React.FC<RecommendedArticle> = (props) => {
   const styles = StyleSheet.create({
