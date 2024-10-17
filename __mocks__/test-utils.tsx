@@ -21,12 +21,12 @@ export const convertDateToInputString = (
   date: Date,
   locale: string = "en-GB"
 ): string => {
-  return DateTime.fromJSDate(date).setLocale(locale).toFormat("dd.MM.yyyy");
+  return DateTime.fromJSDate(date).setLocale(locale).toFormat("dd/MM/yyyy");
 };
 
 export const parseDateString = (
   dateString: string,
   locale: string = "en-GB"
 ): Date => {
-  return DateTime.fromFormat(dateString, "dd.MM.yyyy", { locale }).toJSDate();
+  return DateTime.fromFormat(dateString, "dd/MM/yyyy", { locale }).toJSDate();
 };
