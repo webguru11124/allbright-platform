@@ -18,7 +18,7 @@ const RecommendationMentorship: React.FC<MentorshipRecommendationModel> = (
     imageContainer: {
       position: "relative",
       overflow: "hidden",
-      height: 300,
+      height: 400,
     },
     nameContainer: {
       paddingLeft: 20,

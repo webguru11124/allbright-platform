@@ -1,18 +1,16 @@
+import React from "react";
 import { StyleSheet, View, Image } from "react-native";
 
 import { Colors } from "@/constants/Colors";
 import { CS, H5 } from "../Typography";
 import Divider from "./Divider";
 import Badge from "./Badge";
-import React from "react";
-import { ConnectionRecommendationModel } from "@/types/Recommendations";
+import { GroupRecommendationModel } from "@/types/Recommendations";
 
-const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (
-  props
-) => {
+const RecommendationGroup: React.FC<GroupRecommendationModel> = (props) => {
   const styles = StyleSheet.create({
     container: {
-      padding: 15,
+      padding: 20,
     },
     image: {
       width: "100%",
@@ -20,9 +18,6 @@ const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (
     },
     imageContainer: {
       position: "relative",
-      alignSelf: "center",
-      borderRadius: 100,
-      width: "70%",
       aspectRatio: 1,
       overflow: "hidden",
     },
@@ -42,20 +37,17 @@ const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (
         />
       </View>
       <Badge
-        colour={Colors.light.teal}
-        text="Connection"
+        colour={Colors.light.purple}
+        text="Group"
         textColour="white"
       />
       <View style={styles.textContent}>
-        <H5>
-          {props.firstName} {props.lastName}
-        </H5>
-        <CS>{props.jobTitle}</CS>
-        <CS>{props.location}</CS>
-        <Divider colour={Colors.light.teal} />
+        <H5>{props.name}</H5>
+        <Divider colour={Colors.light.purple} />
+        <CS>{props.description}</CS>
       </View>
     </View>
   );
 };
 
-export default RecommendationConnection;
+export default RecommendationGroup;

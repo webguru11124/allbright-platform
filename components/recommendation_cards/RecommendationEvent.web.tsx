@@ -5,14 +5,12 @@ import { CS, H5 } from "../Typography";
 import Divider from "./Divider";
 import Badge from "./Badge";
 import React from "react";
-import { ConnectionRecommendationModel } from "@/types/Recommendations";
+import { EventRecommendationModel } from "@/types/Recommendations";
 
-const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (
-  props
-) => {
+const RecommendationEventCard: React.FC<EventRecommendationModel> = (props) => {
   const styles = StyleSheet.create({
     container: {
-      padding: 15,
+      padding: 20,
     },
     image: {
       width: "100%",
@@ -20,10 +18,7 @@ const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (
     },
     imageContainer: {
       position: "relative",
-      alignSelf: "center",
-      borderRadius: 100,
-      width: "70%",
-      aspectRatio: 1,
+      aspectRatio: 1.5,
       overflow: "hidden",
     },
     textContent: {
@@ -42,20 +37,17 @@ const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (
         />
       </View>
       <Badge
-        colour={Colors.light.teal}
-        text="Connection"
-        textColour="white"
+        colour={Colors.light.green}
+        text="Event"
       />
       <View style={styles.textContent}>
-        <H5>
-          {props.firstName} {props.lastName}
-        </H5>
-        <CS>{props.jobTitle}</CS>
-        <CS>{props.location}</CS>
-        <Divider colour={Colors.light.teal} />
+        <H5>{props.title}</H5>
+        <CS>{props.location} • Oct 23rd</CS>
+        <Divider colour={Colors.light.green} />
+        <CS>{props.description}</CS>
       </View>
     </View>
   );
 };
 
-export default RecommendationConnection;
+export default RecommendationEventCard;

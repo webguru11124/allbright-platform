@@ -12,7 +12,7 @@ const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (
 ) => {
   const styles = StyleSheet.create({
     container: {
-      padding: 15,
+      padding: 20,
     },
     image: {
       width: "100%",

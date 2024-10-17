@@ -10,7 +10,7 @@ import { EventRecommendationModel } from "@/types/Recommendations";
 const RecommendationEventCard: React.FC<EventRecommendationModel> = (props) => {
   const styles = StyleSheet.create({
     container: {
-      padding: 20,
+      padding: 15,
     },
     image: {
       width: "100%",

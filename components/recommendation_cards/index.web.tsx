@@ -2,16 +2,16 @@ import { Pressable, StyleSheet, Animated } from "react-native";
 import { useRef } from "react";
 
 import { Colors } from "@/constants/Colors";
-import RecommendationArticle from "./RecommendationArticle";
-import RecommendationEvent from "./RecommendationEvent";
-import RecommendationConnection from "./RecommendationConnection";
-import RecommendationCourse from "./RecommendationCourse";
-import RecommendationGroup from "./RecommendationGroup";
-import RecommendationMentorship from "./RecommendationMentorship";
+// import RecommendationArticle from "./RecommendationArticle";
+// import RecommendationEvent from "./RecommendationEvent";
+// import RecommendationConnection from "./RecommendationConnection";
+// import RecommendationCourse from "./RecommendationCourse";
+// import RecommendationGroup from "./RecommendationGroup";
+// import RecommendationMentorship from "./RecommendationMentorship";
 import {
   ArticleRecommendationModel,
   ConnectionRecommendationModel,
-  RecommendationType,
+  // RecommendationType,
   MentorshipRecommendationModel,
   LessonRecommendationModel,
   EventRecommendationModel,
@@ -46,13 +46,10 @@ const RecommendationCard = (props: RecommendationCardProps) => {
       borderRadius: 5,
       borderWidth: 1,
       overflow: "hidden",
-      width: 250,
-
-      // FIX: Height needs to be fit-content
-
-      // height: "fit-content",
-      maxHeight: 400,
-      backgroundColor: "#F9F4F0",
+      width: "auto",
+      marginTop: 10,
+      marginRight: 10,
+      backgroundColor: Colors.light.shellOverlay,
       cursor: "pointer",
       transform: [{ scale: scaleValue }],
     },
@@ -73,11 +70,11 @@ const RecommendationCard = (props: RecommendationCardProps) => {
       backgroundColor: "green",
     },
     pressable: {
-      display: "flex",
+      // display: "flex",
       gap: 10,
     },
     textContent: {
-      display: "flex",
+      // display: "flex",
       gap: 5,
     },
   });
@@ -98,26 +95,28 @@ const RecommendationCard = (props: RecommendationCardProps) => {
     }).start();
   };
 
-  const getCardType = (category: RecommendationType) => {
-    switch (category) {
-      // FIX: Types failing
+  // const getCardType = (category: RecommendationType) => {
+  //   switch (
+  //     category
+  // FIX: Types failing
 
-      // case "articles":
-      //   return <RecommendationArticle {...props} />;
-      // case "connections":
-      //   return <RecommendationConnection {...props} />;
-      // case "courses":
-      //   return <RecommendationCourse {...props} />;
-      // case "events":
-      //   return <RecommendationEvent {...props} />;
-      // case "groups":
-      //   return <RecommendationGroup {...props} />;
-      // case "mentorships":
-      //   return <RecommendationMentorship {...props} />;
-      default:
-        return null;
-    }
-  };
+  // case "articles":
+  //   return <RecommendationArticle {...props} />;
+  // case "connections":
+  //   return <RecommendationConnection {...props} />;
+  // case "courses":
+  //   return <RecommendationCourse {...props} />;
+  // case "events":
+  //   return <RecommendationEvent {...props} />;
+  // case "groups":
+  //   return <RecommendationGroup {...props} />;
+  // case "mentorships":
+  //   return <RecommendationMentorship {...props} />;
+  // default:
+  //   return null;
+  //   ) {
+  //   }
+  // };
 
   return (
     <Animated.View style={styles.cardContainer}>
@@ -126,7 +125,7 @@ const RecommendationCard = (props: RecommendationCardProps) => {
         onHoverOut={scaleDown}
         onPress={() => console.log("CARD CLICKED")}
         style={styles.pressable}>
-        {getCardType(props.category)}
+        {/* {getCardType(props.category)} */}
       </Pressable>
     </Animated.View>
   );

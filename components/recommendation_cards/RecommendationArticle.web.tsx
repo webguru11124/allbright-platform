@@ -1,18 +1,16 @@
+import React from "react";
 import { StyleSheet, View, Image } from "react-native";
 
 import { Colors } from "@/constants/Colors";
 import { CS, H5 } from "../Typography";
-import Divider from "./Divider";
 import Badge from "./Badge";
-import React from "react";
-import { ConnectionRecommendationModel } from "@/types/Recommendations";
+import Divider from "./Divider";
+import { ArticleRecommendationModel } from "@/types/Recommendations";
 
-const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (
-  props
-) => {
+const RecommendationArticle: React.FC<ArticleRecommendationModel> = (props) => {
   const styles = StyleSheet.create({
     container: {
-      padding: 15,
+      padding: 20,
     },
     image: {
       width: "100%",
@@ -20,9 +18,6 @@ const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (
     },
     imageContainer: {
       position: "relative",
-      alignSelf: "center",
-      borderRadius: 100,
-      width: "70%",
       aspectRatio: 1,
       overflow: "hidden",
     },
@@ -38,24 +33,20 @@ const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
-          source={require("../../assets/images/test-image.jpg")}
+          source={require("@/assets/images/test-image.jpg")}
         />
       </View>
       <Badge
-        colour={Colors.light.teal}
-        text="Connection"
-        textColour="white"
+        colour={Colors.light.yellow}
+        text="Article"
       />
       <View style={styles.textContent}>
-        <H5>
-          {props.firstName} {props.lastName}
-        </H5>
-        <CS>{props.jobTitle}</CS>
-        <CS>{props.location}</CS>
-        <Divider colour={Colors.light.teal} />
+        <H5>{props.title}</H5>
+        <CS>By {props.author}</CS>
+        <Divider colour={Colors.light.yellow} />
       </View>
     </View>
   );
 };
 
-export default RecommendationConnection;
+export default RecommendationArticle;

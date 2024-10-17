@@ -10,7 +10,7 @@ import { GroupRecommendationModel } from "@/types/Recommendations";
 const RecommendationGroup: React.FC<GroupRecommendationModel> = (props) => {
   const styles = StyleSheet.create({
     container: {
-      padding: 20,
+      padding: 15,
     },
     image: {
       width: "100%",

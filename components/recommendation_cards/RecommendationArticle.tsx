@@ -5,12 +5,12 @@ import { Colors } from "@/constants/Colors";
 import { CS, H5 } from "../Typography";
 import Badge from "./Badge";
 import Divider from "./Divider";
-import { ArticleRecommendationModel } from "@/types/Recommendations";
+import { RecommendedArticle } from "@/types/article/Article";
 
-const RecommendationArticle: React.FC<ArticleRecommendationModel> = (props) => {
+const RecommendationArticle: React.FC<RecommendedArticle> = (props) => {
   const styles = StyleSheet.create({
     container: {
-      padding: 20,
+      padding: 15,
     },
     image: {
       width: "100%",
