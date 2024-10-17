@@ -19,7 +19,7 @@ describe("AppStart", () => {
   afterEach(() => jest.clearAllMocks());
 
   it(`should:
-      - render the AppStartScreen
+      - render the AppStart feature
     `, () => {
     expect(screen.getByText(/Welcome to AllBright./)).not.toBeNull();
     expect(

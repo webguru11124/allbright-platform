@@ -63,21 +63,8 @@ const ImageWrapper = styled.View`
   position: relative;
   width: 100%;
   aspect-ratio: 2/1;
-
-  @supports not (aspect-ratio: 2/1) {
-    &::before {
-      float: left;
-      padding-top: 50%;
-      content: "";
-    }
-
-    &::after {
-      display: block;
-      content: "";
-      clear: both;
-    }
-  }
 `;
+
 const StyledImage = styled.Image`
   width: 100%;
   height: 100%;
