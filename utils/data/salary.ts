@@ -31,3 +31,9 @@ export const getSalariesByCountry = (country?: string) => {
 };
 
 export default UKSalaries;
+
+export const pickerAdaptor = UKSalaries.map((item) => ({
+  key: item,
+  label: item,
+  value: item,
+}));

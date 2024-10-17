@@ -1,7 +1,8 @@
 import styled from "styled-components/native";
-import { OnboadingPageLayout } from "../layout";
 import { CM, H2Rox } from "@/components/Typography";
 import Link from "@/components/Link";
+import { recommendationColour } from "@/theme";
+import { OnboadingPageLayout } from "@/features/Onboarding/layout";
 
 export default function WelcomeScreen() {
   const returningUser = false;
@@ -42,9 +43,9 @@ export default function WelcomeScreen() {
 
         <Link
           href="/onboarding/public-profile"
-          background={"rgb(58, 59, 61)"}
+          background={recommendationColour.btBgColor}
           isSecondary={true}>
-          <CM color={"rgb(228, 230, 235)"}>Start</CM>
+          <CM color={recommendationColour.btColor}>Start</CM>
         </Link>
       </Main>
     </OnboadingPageLayout>

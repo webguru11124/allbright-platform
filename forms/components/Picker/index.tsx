@@ -9,10 +9,10 @@ import {
   TextInputProps,
 } from "react-native";
 import styled from "styled-components/native";
-
 import { CS } from "@/components/Typography";
 import TextInput from "@/forms/components/TextInput";
 import withTheme from "@/hocs/withTheme";
+import { recommendationColour } from "@/theme";
 
 type Props = Omit<PickerProps, "selectedValue"> & {
   selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
@@ -129,7 +129,7 @@ const StyledCS = styled(CS)`
   padding-top: 15px;
   border-radius: 5px;
   font-size: 16px;
-  color: rgb(73, 101, 140);
+  color: ${recommendationColour.textColor};
 `;
 
 export default withTheme(Picker);

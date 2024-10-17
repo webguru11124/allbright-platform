@@ -1,6 +1,5 @@
 import { TextInputProps, TextStyle } from "react-native";
 import { FloatingLabelInput } from "react-native-floating-label-input";
-
 import { CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
 
@@ -28,7 +27,6 @@ const TextInput = ({
             outline: "none",
             minHeight: 50,
             fontSize: 16,
-            textAlignVertical: "top",
           } as TextStyle
         }
         containerStyles={{
@@ -42,7 +40,7 @@ const TextInput = ({
         animationDuration={150}
         onChangeText={onChangeText}
         customLabelStyles={{ topBlurred: rest.multiline ? -90 : undefined }}
-        labelStyles={{ paddingTop: 0, textAlignVertical: "top" }}
+        labelStyles={{ paddingTop: 0 }}
         onBlur={onBlur}
         {...rest}
       />

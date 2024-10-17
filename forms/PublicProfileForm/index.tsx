@@ -1,4 +1,5 @@
-import usePublicProfileForm from "../hooks/usePublicProfileForm";
+import usePublicProfileForm from "@/forms/hooks/usePublicProfileForm";
+
 import PublicProfileForm from "./PublicProfileForm";
 import publicProfileSchema from "./publicProfileSchema";
 

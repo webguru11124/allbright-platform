@@ -1,10 +1,11 @@
-import { CL, CS } from "@/components/Typography";
+import { CL } from "@/components/Typography";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 import goals from "@/utils/data/goals";
 import React, { FunctionComponent, useContext } from "react";
 import styled, { css } from "styled-components/native";
-import TickBox from "../TickBox";
+import TickBox from "@/forms/components/TickBox";
+import FormFieldContainer from "@/forms/components/FormFieldContainer";
 
 type StyleProps = {
   maxWidth: (val: number) => boolean;
@@ -24,10 +25,8 @@ const GoalsSection: FunctionComponent<GoalsSectionProps> = ({
   const { maxWidth } = useContext<MediaQuery>(MediaQueryContext);
   return (
     <>
-      <Container
-        error={error}
-        maxWidth={maxWidth}>
-        <CL>Why do you want to meet others? Choose between 1 and 3</CL>
+      <CL>Why do you want to meet others? Choose between 1 and to 3</CL>
+      <FormFieldContainer error={error}>
         <GoalsContainer maxWidth={maxWidth}>
           {goals.map((goal) => (
             <TickBox
@@ -40,23 +39,10 @@ const GoalsSection: FunctionComponent<GoalsSectionProps> = ({
             />
           ))}
         </GoalsContainer>
-      </Container>
-      {error && <CS color="red">{error}</CS>}
+      </FormFieldContainer>
     </>
   );
 };
-
-const Container = styled.View<StyleProps>`
-  padding: 10px 0;
-
-  ${(p) =>
-    !!p.error &&
-    `
-    border-width: 3px;
-    border-color: red;
-    border-radius: 5px;
-  `}
-`;
 
 const GoalsContainer = styled.View<StyleProps>`
   padding: 15px 0 0 0;

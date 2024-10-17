@@ -1,7 +1,6 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { TextInputProps } from "react-native";
 import styled from "styled-components/native";
-
 import { CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
 

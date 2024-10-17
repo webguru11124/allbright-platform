@@ -1,4 +1,5 @@
-import useLoginForm from "../hooks/useLoginForm";
+import useLoginForm from "@/forms/hooks/useLoginForm";
+
 import LoginForm from "./LoginForm";
 import loginSchema from "./loginSchema";
 

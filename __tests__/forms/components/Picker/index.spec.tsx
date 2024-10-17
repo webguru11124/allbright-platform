@@ -1,5 +1,4 @@
 import React from "react";
-
 import Picker from "@/forms/components/Picker/index";
 import { pickerAdaptor as items } from "@/utils/data/industries";
 import Providers from "@/utils/providers";

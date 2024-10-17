@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react-native";
 import { View } from "react-native";
-
 import * as Typography from "@/components/Typography";
 
 describe.each([

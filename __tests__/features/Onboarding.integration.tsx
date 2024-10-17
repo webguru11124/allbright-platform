@@ -1,5 +1,4 @@
 import { renderRouter, screen } from "expo-router/testing-library";
-
 import PublicProfile from "@/features/Onboarding/PublicProfile";
 import Welcome from "@/features/Onboarding/Welcome";
 import Providers from "@/utils/providers";
@@ -57,7 +56,7 @@ describe("Onboarding", () => {
         /section 1: public profile/i,
         /step 1 of 3/i,
         /This information will be publicly visible on your AllBright profile. Try to provide information that will help the right people connect with you on the platform./i,
-        /why do you want to meet others\? choose between 1 and 3/i,
+        /why do you want to meet others\? choose between 1 and to 3/i,
         /Please ensure it is of just yourself and no one else./i,
         /i do not wish to use a photo/i,
         /biography/i,

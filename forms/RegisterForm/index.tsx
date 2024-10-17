@@ -1,4 +1,5 @@
-import useRegisterForm from "../hooks/useRegisterForm";
+import useRegisterForm from "@/forms/hooks/useRegisterForm";
+
 import RegisterForm from "./RegisterForm";
 import registerSchema from "./registerSchema";
 

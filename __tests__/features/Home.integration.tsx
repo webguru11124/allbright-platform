@@ -1,5 +1,4 @@
 import { renderRouter, screen } from "expo-router/testing-library";
-
 import Home from "@/features/Home";
 import Providers from "@/utils/providers";
 
