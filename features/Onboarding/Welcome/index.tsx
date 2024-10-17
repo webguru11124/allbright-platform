@@ -60,7 +60,6 @@ const Main = styled.View`
   flex-direction: column;
   justify-content: flex-start;
 `;
-
 const ImageWrapper = styled.View`
   position: relative;
   width: 100%;
@@ -74,7 +73,6 @@ const StyledImage = styled.Image`
   justify-content: center;
   align-items: center;
 `;
-
 const Section = styled.View`
   flex-direction: column;
   gap: 15px;

@@ -1,10 +1,13 @@
 import Link from "@/components/Link";
-import { View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+
+import RecommendationsMasonryGrid from "@/components/recommendation_cards/RecommendationsMasonryGrid";
 
 export default function Home() {
   return (
-    <View>
+    <ScrollView>
+      <RecommendationsMasonryGrid />
       <Link href="/">Go Back</Link>
-    </View>
+    </ScrollView>
   );
 }
