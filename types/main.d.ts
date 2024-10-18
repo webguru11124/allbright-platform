@@ -1,4 +1,5 @@
 import { GestureResponderEvent, MouseEvent } from "react-native";
+
 import { DefaultTheme } from "@/theme";
 
 declare global {

@@ -12,6 +12,7 @@ import {
   RecommendationModel,
   RecommendationType,
 } from "@/types/Recommendations";
+
 import RecommendationArticle from "./RecommendationArticle";
 import RecommendationConnection from "./RecommendationConnection";
 import RecommendationCourse from "./RecommendationCourse";

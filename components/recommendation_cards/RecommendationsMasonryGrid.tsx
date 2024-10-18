@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 
 import RecommendationCard from "@/components/recommendation_cards/index";
 import { DUMMY_RECS } from "@/constants/DummyRecommendations";
-
 import { RecommendationModel } from "@/types/Recommendations";
 
 const RecommendationsMasonryGrid = () => {

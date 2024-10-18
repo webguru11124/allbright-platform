@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import styled, { css } from "styled-components/native";
+
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
+import RegisterLink from "@/features/Auth/partials/RegisterLink";
 import LoginForm from "@/forms/LoginForm";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
-import RegisterLink from "@/features/Auth/partials/RegisterLink";
 
 type StyleProps = {
   maxWidth: (val: number) => boolean;

@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import {
   act,
   fireEvent,
@@ -5,9 +6,9 @@ import {
   screen,
 } from "expo-router/testing-library";
 import { Button, View } from "react-native";
+
 import IsAuthenticated from "@/components/IsAuthenticated";
 import * as utilsToken from "@/utils/token";
-import { useRouter } from "expo-router";
 
 jest.mock("@/utils/token");
 

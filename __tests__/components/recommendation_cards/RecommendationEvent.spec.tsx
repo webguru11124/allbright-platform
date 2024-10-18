@@ -1,8 +1,10 @@
 import "@testing-library/jest-dom";
-import React from "react";
+
 import { render, screen } from "@testing-library/react-native";
+import React from "react";
 
 import RecommendationEvent from "@/components/recommendation_cards/RecommendationEvent";
+
 import { eventTestData } from "./RecommendationCard.spec";
 
 describe("RecommendationEvent", () => {

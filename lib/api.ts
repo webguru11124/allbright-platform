@@ -1,6 +1,7 @@
 import axios from "axios";
-import config from "@/config";
 import { Platform } from "react-native";
+
+import config from "@/config";
 
 const headers = {
   "Content-Type": "application/json",

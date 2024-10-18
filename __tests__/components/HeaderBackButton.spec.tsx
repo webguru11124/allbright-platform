@@ -1,8 +1,9 @@
 import { fireEvent, renderRouter, screen } from "expo-router/testing-library";
+import { View } from "react-native";
+
 import HeaderBackButton from "@/components/HeaderBackButton";
 import Link from "@/components/Link";
 import Providers from "@/utils/providers";
-import { View } from "react-native";
 
 describe("HeaderBackButton", () => {
   const BUTTON_TEXT = "Click Me!";

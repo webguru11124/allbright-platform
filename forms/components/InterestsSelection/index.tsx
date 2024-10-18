@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
-import { interests } from "@/utils/data/interests";
+
 import { useInterestState } from "@/forms/hooks/useInterestState";
+import { interests } from "@/utils/data/interests";
 
 import InterestsSelection from "./InterestsSelection";
 

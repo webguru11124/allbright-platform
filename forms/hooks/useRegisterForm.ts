@@ -1,5 +1,7 @@
 import { router } from "expo-router";
 import Joi from "joi";
+import { useCallback, useEffect, useState } from "react";
+
 import { RegisterInput, registrationAdaptor } from "@/forms/adaptors";
 import useFormWithPassConf from "@/forms/hooks/useFormWithPassConf";
 import {
@@ -9,7 +11,6 @@ import {
   useSignIn,
 } from "@/hooks/resources/useAuth";
 import { setToken } from "@/utils/token";
-import { useCallback, useEffect, useState } from "react";
 
 enum State {
   IDLE = 1,

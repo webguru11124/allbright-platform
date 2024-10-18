@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom";
-import React from "react";
+
 import { render } from "@testing-library/react-native";
+import React from "react";
 
 import RecommendationCard from "@/components/recommendation_cards";
 import {

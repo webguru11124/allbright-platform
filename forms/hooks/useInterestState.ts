@@ -1,5 +1,6 @@
-import { interests } from "@/utils/data/interests";
 import React from "react";
+
+import { interests } from "@/utils/data/interests";
 
 interface useInterestStateProps {
   interests?: (typeof interests)[number][];

@@ -1,5 +1,6 @@
 import { TextInputProps, TextStyle } from "react-native";
 import { FloatingLabelInput } from "react-native-floating-label-input";
+
 import { CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
 

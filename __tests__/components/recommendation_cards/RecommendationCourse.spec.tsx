@@ -1,8 +1,10 @@
 import "@testing-library/jest-dom";
-import React from "react";
+
 import { render, screen } from "@testing-library/react-native";
+import React from "react";
 
 import RecommendationCourse from "@/components/recommendation_cards/RecommendationCourse";
+
 import { courseTestData } from "./RecommendationCard.spec";
 
 describe("RecommendationCourse", () => {

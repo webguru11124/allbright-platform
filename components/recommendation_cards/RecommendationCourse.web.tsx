@@ -1,11 +1,12 @@
-import { StyleSheet, View, Image } from "react-native";
-
-import { Colors } from "@/constants/Colors";
-import { CS, H5 } from "../Typography";
-import Divider from "./Divider";
-import Badge from "./Badge";
 import React from "react";
+import { Image, StyleSheet, View } from "react-native";
+
+import { CS, H5 } from "@/components/Typography";
+import { Colors } from "@/constants/Colors";
 import { LessonRecommendationModel } from "@/types/Recommendations";
+
+import Badge from "./Badge";
+import Divider from "./Divider";
 
 const RecommendationCourse: React.FC<LessonRecommendationModel> = (props) => {
   const styles = StyleSheet.create({

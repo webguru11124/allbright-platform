@@ -2,9 +2,9 @@ import MasonryList from "@react-native-seoul/masonry-list";
 import { StyleSheet, useWindowDimensions } from "react-native";
 
 import RecommendationCard from "@/components/recommendation_cards/index";
+import { Breakpoints } from "@/constants/DeviceBreakpoints";
 import { DUMMY_RECS } from "@/constants/DummyRecommendations";
 import { RecommendationModel } from "@/types/Recommendations";
-import { Breakpoints } from "@/constants/DeviceBreakpoints";
 
 const RecommendationsMasonryGrid = () => {
   const window = useWindowDimensions();

@@ -1,8 +1,9 @@
+import { fireEvent, render, screen } from "@testing-library/react-native";
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react-native";
-import Providers from "@/utils/providers";
-import { ethnicGroups } from "@/utils/data/ethnicGroups";
+
 import EthnicGroupsSectionContainer from "@/forms/components/EthnicGroupSelection";
+import { ethnicGroups } from "@/utils/data/ethnicGroups";
+import Providers from "@/utils/providers";
 
 describe("EthnicGroupsSectionContainer", () => {
   const setFieldMock = jest.fn();

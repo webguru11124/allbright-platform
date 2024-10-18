@@ -1,7 +1,8 @@
-import { LocalImageType } from "@/types/files/localImage";
 import { act, renderHook, waitFor } from "@testing-library/react-native";
-import { useProfilePhotoUploadSection } from "@/forms/hooks/useProfilePhotoUploadSection";
+
 import { useImagePicker } from "@/forms/hooks/useImagePicker";
+import { useProfilePhotoUploadSection } from "@/forms/hooks/useProfilePhotoUploadSection";
+import { LocalImageType } from "@/types/files/localImage";
 
 jest.mock("@/forms/hooks/useImagePicker");
 

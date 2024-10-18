@@ -1,13 +1,14 @@
 import * as ImagePicker from "expo-image-picker";
 import {
-  fireEvent,
-  waitFor,
-  screen,
   cleanup,
+  fireEvent,
+  screen,
+  waitFor,
 } from "expo-router/testing-library";
+
+import { render } from "@/__mocks__/test-utils";
 import ProfilePhotoUploadSectionContainer from "@/forms/components/ProfilePhotoUploadSection";
 import { LocalImageType } from "@/types/files/localImage";
-import { render } from "@/__mocks__/test-utils";
 
 jest.mock("expo-image-picker", () => ({
   launchImageLibraryAsync: jest.fn(),

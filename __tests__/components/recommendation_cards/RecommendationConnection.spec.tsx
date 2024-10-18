@@ -1,8 +1,10 @@
 import "@testing-library/jest-dom";
-import React from "react";
+
 import { render, screen } from "@testing-library/react-native";
+import React from "react";
 
 import RecommendationConnection from "@/components/recommendation_cards/RecommendationConnection";
+
 import { connectionTestData } from "./RecommendationCard.spec";
 
 describe("RecommendationConnection", () => {

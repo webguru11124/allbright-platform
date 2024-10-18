@@ -1,9 +1,10 @@
-import * as React from "react";
-import Joi from "joi";
 import { useRouter } from "expo-router";
-import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
+import Joi from "joi";
+import * as React from "react";
+
 import { privateProfileAdaptor, PrivateProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
+import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 
 const usePrivateProfileForm = (
   privateProfileSchema: Joi.PartialSchemaMap<any>
@@ -32,8 +33,8 @@ const usePrivateProfileForm = (
       const user = privateProfileAdaptor(input);
 
       await mutateUpdateUserAsync(user);
-
-      router.replace("/onboarding/profile-goals");
+    // TODO: Update route when page is ready
+      // router.replace("/onboarding/profile-goals");
     } catch (error: any) {
       showErrorMessage(error.message);
     } finally {

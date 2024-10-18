@@ -1,6 +1,7 @@
-import useFormWithPassConf from "@/forms/hooks/useFormWithPassConf";
 import { act, renderHook } from "@testing-library/react-native";
 import Joi from "joi";
+
+import useFormWithPassConf from "@/forms/hooks/useFormWithPassConf";
 
 const schema = {
   first_name: Joi.string().min(1).required(),

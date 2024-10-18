@@ -1,7 +1,8 @@
+import { faker } from "@faker-js/faker";
 import { fireEvent, render } from "@testing-library/react-native";
+
 import PublicProfileForm from "@/forms/PublicProfileForm/PublicProfileForm";
 import Providers from "@/utils/providers";
-import { faker } from "@faker-js/faker";
 
 describe("PublicProfileForm", () => {
   const props = {

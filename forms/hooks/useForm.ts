@@ -1,9 +1,10 @@
-import useTheme from "@/hooks/useTheme";
 import Joi from "joi";
 import _ from "lodash";
 import { useMemo, useState } from "react";
 import { Platform } from "react-native";
 import Toast from "react-native-root-toast";
+
+import useTheme from "@/hooks/useTheme";
 
 export type Settings = {
   omit?: string[];

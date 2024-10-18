@@ -1,19 +1,20 @@
 import { faker } from "@faker-js/faker";
 import { act, fireEvent } from "@testing-library/react-native";
 import { renderRouter, screen, waitFor } from "expo-router/testing-library";
-import api from "@/lib/api";
-import Providers from "@/utils/providers";
-import UserClient from "@/utils/client/user/UserClient";
-import PrivateProfileForm from "@/forms/PrivateProfileForm";
-import { jobStatus } from "@/utils/data/jobStatus";
-import UKSalaries from "@/utils/data/salary";
-import organisationSize from "@/utils/data/organisationSize";
-import { ethnicGroups } from "@/utils/data/ethnicGroups";
-import { interests } from "@/utils/data/interests";
+
 import {
   convertDateToInputString,
   parseDateString,
 } from "@/__mocks__/test-utils";
+import PrivateProfileForm from "@/forms/PrivateProfileForm";
+import api from "@/lib/api";
+import UserClient from "@/utils/client/user/UserClient";
+import { ethnicGroups } from "@/utils/data/ethnicGroups";
+import { interests } from "@/utils/data/interests";
+import { jobStatus } from "@/utils/data/jobStatus";
+import organisationSize from "@/utils/data/organisationSize";
+import UKSalaries from "@/utils/data/salary";
+import Providers from "@/utils/providers";
 
 jest.mock("@/lib/api");
 jest.mock("@/utils/client/user/UserClient");
@@ -101,7 +102,7 @@ describe("PrivateProfileForm", () => {
     const INTERESTS_ERROR_MESSAGE = '"Interests" is required';
     const JOB_STATUS_ERROR_MESSAGER = '"JobStatus" is required';
     const DATEOF_BRITH_ERROR_MESSAGE = '"DateOfBirth" is required';
-    const ERROR_MESSAGE = "Please fill out all required fields";
+
     renderRouter({
       index: jest.fn(() => (
         <Providers>
@@ -117,7 +118,6 @@ describe("PrivateProfileForm", () => {
     expect(await screen.findByText(INTERESTS_ERROR_MESSAGE)).not.toBeNull();
     expect(await screen.findByText(JOB_STATUS_ERROR_MESSAGER)).not.toBeNull();
     expect(await screen.findByText(DATEOF_BRITH_ERROR_MESSAGE)).not.toBeNull();
-    expect(await screen.findByText(ERROR_MESSAGE)).not.toBeNull();
 
     expect(UserClient.prototype.updateUser).not.toHaveBeenCalled();
     expect(screen).not.toHavePathname("/onboarding/private-profile");

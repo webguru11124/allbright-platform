@@ -1,7 +1,7 @@
-import PrivateProfileForm from "@/forms/PrivateProfileForm";
 import { CM, H3, H5 } from "@/components/Typography";
-import colours from "@/theme";
 import { OnboadingPageLayout } from "@/features/Onboarding/layout";
+import PrivateProfileForm from "@/forms/PrivateProfileForm";
+import colours from "@/theme";
 
 const PrivateProfile = () => {
   return (

@@ -5,8 +5,8 @@ module.exports = {
     node: true,
     jest: true, // Use 'jest: true' instead of 'jest/globals'
   },
-  extends: ["expo", "prettier"],
-  plugins: ["prettier"],
+  extends: ["expo", "prettier"], // Add this line
+  plugins: ["prettier", "simple-import-sort"],
   rules: {
     "prettier/prettier": [
       "error",
@@ -26,23 +26,22 @@ module.exports = {
         endOfLine: "auto",
       },
     ],
-    "import/order": [
-      "error",
-      {
-        groups: [["builtin", "external", "internal"]],
-      },
-    ],
+    "import/order": "off", // Disable the import/order rule
+    "simple-import-sort/imports": "error", // Enable simple-import-sort
+    "simple-import-sort/exports": "error", // Enable simple-import-sort for exports
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
     "no-restricted-imports": [
       "error",
       {
         patterns: ["../*"],
       },
     ],
+    "@typescript-eslint/ban-types": "off", // Ensure this rule is present
   },
   settings: {
     "import/resolver": {
       typescript: {
-        alwaysTryTypes: true, // always try to resolve types under `@types` directory even it doesn't contain any source code, like `@types/unist`
         project: "./tsconfig.json", // Specify the path to your project's tsconfig.json file
       },
     },

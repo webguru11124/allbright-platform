@@ -1,5 +1,6 @@
-import useMediaQuery from "@/hooks/useMediaQuery";
 import { createContext } from "react";
+
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 export const MediaQueryContext = createContext<MediaQuery>({} as MediaQuery);
 

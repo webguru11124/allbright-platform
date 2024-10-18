@@ -1,8 +1,9 @@
+import { fireEvent, render, screen } from "@testing-library/react-native";
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react-native";
+
 import InterestsSection from "@/forms/components/InterestsSelection";
-import Providers from "@/utils/providers";
 import { interests } from "@/utils/data/interests";
+import Providers from "@/utils/providers";
 
 describe("InterestsSection", () => {
   const updateFieldMock = jest.fn();
