@@ -1,34 +1,25 @@
-import { Pressable, StyleSheet, Animated } from "react-native";
 import { useRef } from "react";
+import { Animated, Pressable, StyleSheet } from "react-native";
 
 import { Colors } from "@/constants/Colors";
-// import RecommendationArticle from "./RecommendationArticle";
-// import RecommendationEvent from "./RecommendationEvent";
-// import RecommendationConnection from "./RecommendationConnection";
-// import RecommendationCourse from "./RecommendationCourse";
-// import RecommendationGroup from "./RecommendationGroup";
-// import RecommendationMentorship from "./RecommendationMentorship";
 import {
   ArticleRecommendationModel,
   ConnectionRecommendationModel,
-  // RecommendationType,
-  MentorshipRecommendationModel,
-  LessonRecommendationModel,
   EventRecommendationModel,
   GroupRecommendationModel,
-  PromotionRecommendationModel,
+  LessonRecommendationModel,
+  MentorshipRecommendationModel,
+  RecommendationModel,
+  RecommendationType,
 } from "@/types/Recommendations";
+import RecommendationArticle from "./RecommendationArticle";
+import RecommendationConnection from "./RecommendationConnection";
+import RecommendationCourse from "./RecommendationCourse";
+import RecommendationEvent from "./RecommendationEvent";
+import RecommendationGroup from "./RecommendationGroup";
+import RecommendationMentorship from "./RecommendationMentorship";
 
-type RecommendationCardProps =
-  | ConnectionRecommendationModel
-  | MentorshipRecommendationModel
-  | LessonRecommendationModel
-  | EventRecommendationModel
-  | GroupRecommendationModel
-  | ArticleRecommendationModel
-  | PromotionRecommendationModel;
-
-const RecommendationCard = (props: RecommendationCardProps) => {
+const RecommendationCard = (props: RecommendationModel) => {
   const scaleValue = useRef(new Animated.Value(1)).current;
   const styles = StyleSheet.create({
     badge: {
@@ -95,28 +86,36 @@ const RecommendationCard = (props: RecommendationCardProps) => {
     }).start();
   };
 
-  // const getCardType = (category: RecommendationType) => {
-  //   switch (
-  //     category
-  // FIX: Types failing
-
-  // case "articles":
-  //   return <RecommendationArticle {...props} />;
-  // case "connections":
-  //   return <RecommendationConnection {...props} />;
-  // case "courses":
-  //   return <RecommendationCourse {...props} />;
-  // case "events":
-  //   return <RecommendationEvent {...props} />;
-  // case "groups":
-  //   return <RecommendationGroup {...props} />;
-  // case "mentorships":
-  //   return <RecommendationMentorship {...props} />;
-  // default:
-  //   return null;
-  //   ) {
-  //   }
-  // };
+  const getCardType = (category: RecommendationType) => {
+    switch (category) {
+      case "articles":
+        return (
+          <RecommendationArticle {...(props as ArticleRecommendationModel)} />
+        );
+      case "connections":
+        return (
+          <RecommendationConnection
+            {...(props as ConnectionRecommendationModel)}
+          />
+        );
+      case "courses":
+        return (
+          <RecommendationCourse {...(props as LessonRecommendationModel)} />
+        );
+      case "events":
+        return <RecommendationEvent {...(props as EventRecommendationModel)} />;
+      case "groups":
+        return <RecommendationGroup {...(props as GroupRecommendationModel)} />;
+      case "mentorships":
+        return (
+          <RecommendationMentorship
+            {...(props as MentorshipRecommendationModel)}
+          />
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <Animated.View style={styles.cardContainer}>
@@ -125,7 +124,7 @@ const RecommendationCard = (props: RecommendationCardProps) => {
         onHoverOut={scaleDown}
         onPress={() => console.log("CARD CLICKED")}
         style={styles.pressable}>
-        {/* {getCardType(props.category)} */}
+        {getCardType(props.category)}
       </Pressable>
     </Animated.View>
   );
