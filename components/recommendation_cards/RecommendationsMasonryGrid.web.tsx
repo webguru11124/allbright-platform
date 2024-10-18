@@ -31,7 +31,7 @@ const RecommendationsMasonryGrid = () => {
 
   return (
     <MasonryList
-      data={[...DUMMY_RECS, ...DUMMY_RECS]}
+      data={DUMMY_RECS}
       keyExtractor={(item): string => item.id}
       numColumns={calculateColumns(window.width)}
       renderItem={({ item }) => (
