@@ -1,4 +1,4 @@
-import { useRouter } from "expo-router";
+import { Href, useRouter } from "expo-router";
 import Joi from "joi";
 import * as React from "react";
 
@@ -33,8 +33,7 @@ const usePrivateProfileForm = (
       const user = privateProfileAdaptor(input);
 
       await mutateUpdateUserAsync(user);
-    // TODO: Update route when page is ready
-      // router.replace("/onboarding/profile-goals");
+      router.replace("/onboarding/profile-goals" as Href);
     } catch (error: any) {
       showErrorMessage(error.message);
     } finally {
