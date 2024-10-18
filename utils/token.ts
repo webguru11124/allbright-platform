@@ -13,5 +13,5 @@ export async function getToken() {
 
 export async function getUserId() {
   const jsonPayload = parseJwt(await getToken());
-  return await jsonPayload.sub;
+  return await jsonPayload.uid;
 }
