@@ -29,9 +29,9 @@ interface StyleProps {
   $isSquare?: boolean;
 }
 
-const S = () => {};
+const S = () => { };
 
-S.Container = styled.TouchableOpacity<StyleProps>`
+S.Container = styled.Pressable<StyleProps>`
   align-items: center;
   justify-content: center;
   position: relative;
@@ -56,7 +56,6 @@ S.Container = styled.TouchableOpacity<StyleProps>`
     background: ${colours.pillTeal};
   `}
 
-
     ${(p) =>
     p.$isSquare &&
     `
@@ -79,11 +78,6 @@ S.Label = styled.View<StyleProps>`
     font-size: 1.1rem;
   `}
 
-  ${(p) =>
-    p.$isSquare &&
-    `
-    font-size: 1.3rem;
-  `}
 `;
 
 export default PillInput;

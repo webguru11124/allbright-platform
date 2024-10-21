@@ -6,6 +6,7 @@ import { InterestTitles } from "@/utils/data/interests";
 import { jobLevels } from "@/utils/data/jobLevels";
 import { jobStatus } from "@/utils/data/jobStatus";
 import organisationSize from "@/utils/data/organisationSize";
+import allCareerGoals, { CareerGoalType } from "@/utils/data/careerGoals";
 
 export type RegisterInput = {
   first_name: string;
@@ -97,6 +98,18 @@ export const privateProfileAdaptor = (
   dateOfBirth: postBody.dateOfBirth,
   ethnicGroups: postBody.ethnicGroups,
 });
+
+export const profileGoalsAdapter = (postBody: ProfileGoalsInput): ProfileGoalsOutput => ({
+  careerGoals: allCareerGoals.filter(goal => postBody.careerGoals.includes(goal.id)),
+});
+
+export type ProfileGoalsOutput = {
+  careerGoals: CareerGoalType[];
+};
+
+export type ProfileGoalsInput = {
+  careerGoals: CareerGoalType["id"][]
+};
 
 export type PrivateProfileOutput = {
   interests: InterestTitles;
