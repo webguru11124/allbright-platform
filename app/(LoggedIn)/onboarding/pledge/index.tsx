@@ -1,5 +1,5 @@
-import PrifileGoalsScreen from "@/features/Onboarding/ProfileGoals";
+import PledgeScreen from "@/features/Onboarding/Pledge";
 
 export default function PrifileGoals() {
-  return <PrifileGoalsScreen />;
+  return <PledgeScreen />;
 }

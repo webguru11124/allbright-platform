@@ -2,7 +2,7 @@ import { useRouter } from "expo-router";
 import Joi from "joi";
 import * as React from "react";
 
-import { profileGoalsAdapter, ProfileGoalsInput } from "@/forms/adaptors";
+import { pledgeAdapter, PledgeInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 
@@ -27,11 +27,11 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
       if (!validateAllInputs())
         throw new Error("Please fill out all required fields");
       setLoading(true);
-      const input = postBody as ProfileGoalsInput;
-      const user = profileGoalsAdapter(input);
+      const input = postBody;
+      const user = pledgeAdapter(input as PledgeInput);
 
       await mutateUpdateUserAsync(user);
-      router.replace("/onboarding/pledge");
+      router.replace("/onboarding/complete");
     } catch (error: any) {
       showErrorMessage(error.message);
     } finally {

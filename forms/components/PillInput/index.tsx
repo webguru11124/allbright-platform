@@ -29,7 +29,7 @@ interface StyleProps {
   $isSquare?: boolean;
 }
 
-const S = () => { };
+const S = () => {};
 
 S.Container = styled.Pressable<StyleProps>`
   align-items: center;
@@ -77,7 +77,6 @@ S.Label = styled.View<StyleProps>`
     font-weight: 500;
     font-size: 1.1rem;
   `}
-
 `;
 
 export default PillInput;
