@@ -31,7 +31,7 @@ interface StyleProps {
 
 const S = () => {};
 
-S.Container = styled.TouchableOpacity<StyleProps>`
+S.Container = styled.Pressable<StyleProps>`
   align-items: center;
   justify-content: center;
   position: relative;
@@ -56,7 +56,6 @@ S.Container = styled.TouchableOpacity<StyleProps>`
     background: ${colours.pillTeal};
   `}
 
-
     ${(p) =>
     p.$isSquare &&
     `
@@ -77,12 +76,6 @@ S.Label = styled.View<StyleProps>`
     padding: 0;
     font-weight: 500;
     font-size: 1.1rem;
-  `}
-
-  ${(p) =>
-    p.$isSquare &&
-    `
-    font-size: 1.3rem;
   `}
 `;
 
