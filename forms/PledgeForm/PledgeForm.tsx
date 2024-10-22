@@ -15,12 +15,6 @@ const PledgeForm = ({
 }: FormProps) => (
   <SafeAreaView>
     <S.Row>
-      {/* <RxCheckbox
-        onChange={onChangeHandler}
-        isChecked={profile.agreedToPledge}
-        name="pledge"
-        labelText="I have read and agree to the rules"
-      /> */}
       <TickBox
         testID="PledgeForm:AgreedToPledge"
         onChange={changeTextFuncs.agreedToPledge}

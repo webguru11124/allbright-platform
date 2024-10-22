@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import styled from "styled-components/native";
 
 import { CM, H3 } from "@/components/Typography";
 import { OnboadingPageLayout } from "@/features/Onboarding/layout";
@@ -21,32 +20,5 @@ const Welcome: FunctionComponent = () => {
   );
 };
 
-const S = () => { };
-
-S.ImageWrap = styled.View`
-  position: relative;
-  width: 100%;
-  aspect-ratio: 2/1;
-
-  @supports not (aspect-ratio: 2/1) {
-    &::before {
-      float: left;
-      padding-top: 50%;
-      content: "";
-    }
-
-    &::after {
-      display: block;
-      content: "";
-      clear: both;
-    }
-  }
-`;
-S.ContentWrap = styled.View`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  padding: 10px 0;
-`;
 
 export default Welcome;
