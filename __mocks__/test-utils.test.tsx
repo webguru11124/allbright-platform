@@ -6,9 +6,9 @@ describe("test-utils", () => {
   it("convertDateToInputString", () => {
     const date = DateTime.fromObject(
       { year: 1999, month: 4, day: 8 },
-      { zone: "Europe/Paris" }
+      { locale: "fr" }
     ).toJSDate();
-    const result = convertDateToInputString(date);
+    const result = convertDateToInputString(date, "fr");
     expect(result).toBe("08/04/1999");
   });
 
@@ -17,7 +17,7 @@ describe("test-utils", () => {
     const result = parseDateString(date);
     const expectedDate = DateTime.fromObject(
       { year: 1993, month: 5, day: 9 },
-      { zone: "Europe/Paris" }
+      { locale: "fr" }
     ).toJSDate();
     expect(result).toEqual(expectedDate);
   });

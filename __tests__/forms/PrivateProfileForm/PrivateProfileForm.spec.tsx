@@ -8,6 +8,8 @@ import {
 import PrivateProfileForm from "@/forms/PrivateProfileForm/PrivateProfileForm";
 import Providers from "@/utils/providers";
 
+jest.useFakeTimers();
+
 describe("PrivateProfileForm", () => {
   const props = {
     inputs: {},
