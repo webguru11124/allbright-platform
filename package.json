@@ -19,6 +19,7 @@
     "preset": "jest-expo",
     "setupFiles": [
       "./node_modules/react-native-gesture-handler/jestSetup.js",
+      "./node_modules/@react-native-google-signin/google-signin/jest/build/jest/setup.js",
       "./__mocks__/jestSetup.ts"
     ],
     "transformIgnorePatterns": [
