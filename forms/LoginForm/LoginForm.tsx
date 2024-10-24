@@ -2,6 +2,7 @@ import { SafeAreaView } from "react-native";
 
 import Space from "@/components/Space";
 import Button from "@/forms/components/Button";
+import GoogleSignIn from "@/forms/components/GoogleSignIn";
 import TextInput from "@/forms/components/TextInput";
 import { FormProps } from "@/forms/types/forms.types";
 
@@ -40,6 +41,8 @@ export const LoginForm = ({
         onChangeText={changeTextFuncs.password}
         testID="LoginForm:Password"
       />
+      <Space height={50} />
+      <GoogleSignIn />
       <Space height={50} />
       <Button
         disabled={!isFormValid}

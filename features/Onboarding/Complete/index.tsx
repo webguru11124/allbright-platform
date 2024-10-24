@@ -20,5 +20,4 @@ const Welcome: FunctionComponent = () => {
   );
 };
 
-
 export default Welcome;
