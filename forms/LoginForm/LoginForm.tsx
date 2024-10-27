@@ -14,7 +14,8 @@ export const LoginForm = ({
   isFormValid,
   isPending,
   onPress,
-}: FormProps) => {
+  onGoogleSignIn,
+}: FormProps & { onGoogleSignIn: (idToken: string) => void }) => {
   return (
     <SafeAreaView>
       <TextInput
@@ -42,7 +43,7 @@ export const LoginForm = ({
         testID="LoginForm:Password"
       />
       <Space height={50} />
-      <GoogleSignIn />
+      <GoogleSignIn handleToken={onGoogleSignIn} />
       <Space height={50} />
       <Button
         disabled={!isFormValid}

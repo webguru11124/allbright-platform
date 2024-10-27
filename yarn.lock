@@ -3072,6 +3072,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-google-signin/google-signin@npm:^13.1.0":
+  version: 13.1.0
+  resolution: "@react-native-google-signin/google-signin@npm:13.1.0"
+  peerDependencies:
+    expo: ">=50.0.0"
+    react: "*"
+    react-dom: "*"
+    react-native: "*"
+  peerDependenciesMeta:
+    expo:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/f3e4032e8c5ef36c180f17a5c01cd054c0ea732def808f06871a768204bfdc5a3cdcbc3fa6f1d57aa564b5adb71cf861a3420f5c48d10e2ed9a0e6556adc498b
+  languageName: node
+  linkType: hard
+
 "@react-native-picker/picker@npm:^2.8.0":
   version: 2.8.1
   resolution: "@react-native-picker/picker@npm:2.8.1"
@@ -3419,6 +3436,16 @@ __metadata:
   dependencies:
     nanoid: "npm:^3.1.23"
   checksum: 10c0/5b58014cf29bb71c7dc01201e271d55f0ecfe6d38d064179eeff0fc0b5cb739d4d9906eb133f100d25fc674c72c24aa65d5f6bfc3d036d79f7c5d1936391c605
+  languageName: node
+  linkType: hard
+
+"@react-oauth/google@npm:^0.12.1":
+  version: 0.12.1
+  resolution: "@react-oauth/google@npm:0.12.1"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/fe23e3c0a4d0b9999fcd7b932b1a42bf94fdab526473931d780d08742455b8861fc647857b3b491e258ecef4a407dbf7321440c0d00890e23059d487795f92fb
   languageName: node
   linkType: hard
 
@@ -4438,9 +4465,11 @@ __metadata:
     "@expo/vector-icons": "npm:^14.0.2"
     "@faker-js/faker": "npm:^9.0.0"
     "@react-native-async-storage/async-storage": "npm:1.23.1"
+    "@react-native-google-signin/google-signin": "npm:^13.1.0"
     "@react-native-picker/picker": "npm:^2.8.0"
     "@react-native-seoul/masonry-list": "npm:^1.4.2"
     "@react-navigation/native": "npm:^6.0.2"
+    "@react-oauth/google": "npm:^0.12.1"
     "@tanstack/react-query": "npm:^5.53.1"
     "@testing-library/jest-dom": "npm:^6.6.1"
     "@testing-library/react-native": "npm:^12.6.1"

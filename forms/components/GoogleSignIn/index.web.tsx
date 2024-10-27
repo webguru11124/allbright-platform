@@ -5,10 +5,14 @@ import config from "@/config";
 declare global {
   interface Window {
     gapi: any;
+    handleGoogleSignInCallback: (response: any) => void;
   }
 }
+interface Props {
+  handleToken: (token: string) => void;
+}
 
-const GoogleSignIn = () => {
+const GoogleSignIn = (props: Props) => {
   const [isInProgress, setIsInProgress] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
@@ -22,6 +26,7 @@ const GoogleSignIn = () => {
           window.gapi.auth2
             .init({
               client_id: config.GOOGLE_CLIENT_ID,
+              callback: handleCallback,
             })
             .then(() => {
               setLoaded(true);
@@ -39,34 +44,23 @@ const GoogleSignIn = () => {
     };
 
     document.body.appendChild(scriptTag);
+    window.handleGoogleSignInCallback = handleCallback;
   }, []);
 
-  const handleSignIn = async () => {
-    setIsInProgress(true);
-
-    if (loaded && window.gapi) {
-      const auth2 = window.gapi.auth2.getAuthInstance();
-      try {
-        const user = await auth2.signIn();
-        console.log(user.getBasicProfile());
-      } catch (error) {
-        console.error("Error during sign-in:", error);
-      }
-    } else {
-      console.error("Google API not loaded");
-    }
-
-    setIsInProgress(false);
+  const handleCallback = (response: any) => {
+    console.log(response);
+    props.handleToken(response.credential);
   };
 
   return (
     <div>
       <div
         id="g_id_onload"
-        data-client_id="627789850522-ag0dpop3o79mmqhk4n8r9hbs6m3vt7d1.apps.googleusercontent.com"
+        data-client_id={config.GOOGLE_CLIENT_ID}
         data-context="signin"
         data-ux_mode="popup"
-        data-login_uri="http://localhost:8081"
+        data-callback="handleGoogleSignInCallback"
+        data-nonce=""
         data-itp_support="true"></div>
 
       <div

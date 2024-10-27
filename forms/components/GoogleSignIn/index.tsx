@@ -5,7 +5,11 @@ import {
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
-const GoogleSignIn = () => {
+interface Props {
+  handleToken: (token: string) => void;
+}
+
+const GoogleSignIn = (props: Props) => {
   const [isInProgress, setIsInProgress] = useState(false);
 
   const handleSignIn = async () => {
