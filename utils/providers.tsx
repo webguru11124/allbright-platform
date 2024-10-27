@@ -8,11 +8,14 @@ import { RootSiblingParent } from "react-native-root-siblings";
 
 import { MediaQueryProvider } from "@/contexts/MediaQueryContext";
 import { DefaultTheme, PaperDefaultTheme } from "@/theme";
+import config from "@/config";
 
 type Props = {
   children: React.ReactNode;
 };
-GoogleSignin.configure();
+GoogleSignin.configure({ offlineAccess: true, 
+  webClientId:config.GOOGLE_CLIENT_ID,
+});
 const Providers = ({ children }: Props) => {
   return (
     <QueryClientProvider client={new QueryClient()}>

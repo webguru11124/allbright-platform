@@ -1,5 +1,7 @@
 import {
   GoogleSignin,
+  statusCodes,
+  isErrorWithCode,
   GoogleSigninButton,
 } from "@react-native-google-signin/google-signin";
 import React, { useState } from "react";
@@ -19,6 +21,7 @@ const GoogleSignIn = (props: Props) => {
       const userInfo = await GoogleSignin.signIn();
       console.log(userInfo);
     } catch (error) {
+      console.log(isErrorWithCode(error));
       console.error(error);
     } finally {
       setIsInProgress(false);

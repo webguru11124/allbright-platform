@@ -31,7 +31,7 @@ export default {
       favicon: "./assets/images/favicon.png",
       backgroundColor: "#F9F4F0",
     },
-    plugins: ["expo-router"],
+    plugins: ["expo-router", "@react-native-google-signin/google-signin"],
     experiments: {
       typedRoutes: true,
     },
