@@ -17,7 +17,7 @@ const EmailPasswordSignin = ({ onPress }: { onPress: GestureEvent }) => {
 };
 
 const StyledButton = styled(Button)`
-  width: 304px;
+  width: 396px;
   height: 45px;
   margin-bottom: 8px;
   border-radius: 4px;

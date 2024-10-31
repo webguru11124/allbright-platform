@@ -21,7 +21,7 @@ const LinkedInSignin = ({ onPress }: { onPress: GestureEvent }) => {
 };
 
 const StyledButton = styled(Button)`
-  width: 304px;
+  width: 396px;
   height: 45px;
   margin-top: 8px;
   background-color: #0077b5;
