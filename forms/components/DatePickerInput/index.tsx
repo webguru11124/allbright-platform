@@ -33,7 +33,7 @@ const DatePickerInput = ({ value, error, ...props }: DatePickerInputProps) => {
             props.style,
           ]}
           error={true}
-          locale="uk-UA"
+          locale="en-GB"
         />
       </InputContainer>
     </FormFieldContainer>

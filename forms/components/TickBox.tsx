@@ -1,5 +1,5 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { TextInputProps } from "react-native";
+import { TextInputProps, View } from "react-native";
 import styled from "styled-components/native";
 
 import { CS } from "@/components/Typography";
@@ -13,13 +13,13 @@ type Props = Omit<TextInputProps, "onBlur" | "value" | "onChange"> & {
   value: boolean;
 };
 
-const TickBox = ({ theme, onChange, error, value, label, testID }: Props) => {
+const TickBox = ({ onChange, error, value, label, testID }: Props) => {
   const onPress = () => {
     onChange(!value);
   };
 
   return (
-    <>
+    <View>
       <TickContainer
         testID={testID}
         onPress={onPress}>
@@ -35,7 +35,7 @@ const TickBox = ({ theme, onChange, error, value, label, testID }: Props) => {
         <CS>{label}</CS>
       </TickContainer>
       {error && <CS color="red">{error}</CS>}
-    </>
+    </View>
   );
 };
 

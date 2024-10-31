@@ -1,11 +1,17 @@
+import { DateTime } from "luxon";
+
 import { convertDateToInputString, parseDateString } from "./test-utils";
 
 describe("test-utils", () => {
   it("convertDateToInputString", () => {
-    const date = new Date("1999-04-08T00:00:00.000Z");
-    const result = convertDateToInputString(date, "en-GB");
-    expect(result).toBe("08.04.1999");
+    const date = DateTime.fromObject(
+      { year: 1999, month: 4, day: 8 },
+      { locale: "fr" }
+    ).toJSDate();
+    const result = convertDateToInputString(date, "fr");
+    expect(result).toBe("08/04/1999");
   });
+
 
   // FIXME: hours fail when testing in different timezones
   it.skip("parseDateString", () => {

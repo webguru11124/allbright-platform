@@ -8,7 +8,9 @@ import {
 import PrivateProfileForm from "@/forms/PrivateProfileForm/PrivateProfileForm";
 import Providers from "@/utils/providers";
 
-describe.skip("PrivateProfileForm", () => {
+jest.useFakeTimers();
+
+describe("PrivateProfileForm", () => {
   const props = {
     inputs: {},
     errors: {},

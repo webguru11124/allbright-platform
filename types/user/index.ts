@@ -1,3 +1,4 @@
+import { CareerGoalType } from "@/utils/data/careerGoals";
 import { cities } from "@/utils/data/cities";
 import { ethnicGroups } from "@/utils/data/ethnicGroups";
 import goals from "@/utils/data/goals";
@@ -26,7 +27,7 @@ export type UserModel = {
   dateOfBirth: Date | null;
   organisationSize: (typeof organisationSize)[number] | null;
   ethnicGroups?: (typeof ethnicGroups)[number][];
-  // careerGoals: CareerGoalType["id"][] | null;
+  careerGoals: CareerGoalType[] | null;
   agreedToPledge: boolean;
   savedCourses?: string[];
   articles?: string[];

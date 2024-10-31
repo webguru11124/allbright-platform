@@ -1,4 +1,5 @@
 import { ProfileImage } from "@/forms/hooks/useProfilePhotoUploadSection";
+import allCareerGoals, { CareerGoalType } from "@/utils/data/careerGoals";
 import { cities } from "@/utils/data/cities";
 import { ethnicGroups } from "@/utils/data/ethnicGroups";
 import goals from "@/utils/data/goals";
@@ -97,6 +98,30 @@ export const privateProfileAdaptor = (
   dateOfBirth: postBody.dateOfBirth,
   ethnicGroups: postBody.ethnicGroups,
 });
+
+export const profileGoalsAdapter = (
+  postBody: ProfileGoalsInput
+): ProfileGoalsOutput => ({
+  careerGoals: allCareerGoals.filter((goal) =>
+    postBody.careerGoals.includes(goal.id)
+  ),
+});
+
+export const pledgeAdapter = (postBody: PledgeInput) => ({
+  agreedToPledge: postBody.agreedToPledge,
+});
+
+export type PledgeInput = {
+  agreedToPledge: boolean;
+};
+
+export type ProfileGoalsOutput = {
+  careerGoals: CareerGoalType[];
+};
+
+export type ProfileGoalsInput = {
+  careerGoals: CareerGoalType["id"][];
+};
 
 export type PrivateProfileOutput = {
   interests: InterestTitles;
