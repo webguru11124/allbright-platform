@@ -1,9 +1,10 @@
 import React from "react";
-import { View } from "react-native";
 import styled from "styled-components/native";
 
-import Button from "@/forms/components/Button";
+import EmailPasswordSignIn from "@/forms/components/EmailPasswordSignin";
+import FacebookSignIn from "@/forms/components/FacebookSignIn";
 import GoogleSignIn from "@/forms/components/GoogleSignIn";
+import LinkedInSignIn from "@/forms/components/LinkedinSignIn";
 
 interface Props {
   onEmailPasswordSignUp: () => void;
@@ -35,19 +36,10 @@ export const RegisterOAuthButtons = (props: Props) => {
 
   return (
     <Container>
-      <StyledButton onPress={handleEmailPasswordSignUp}>
-        Sign in with Email/Password
-      </StyledButton>
-
+      <EmailPasswordSignIn onPress={handleEmailPasswordSignUp} />
       <GoogleSignIn handleToken={handleGoogleSignUp} />
-
-      <StyledButton onPress={handleFacebookSignUp}>
-        Sign in with Facebook
-      </StyledButton>
-
-      <StyledButton onPress={handleLinkedInSignUp}>
-        Sign in with LinkedIn
-      </StyledButton>
+      <FacebookSignIn onPress={handleFacebookSignUp} />
+      <LinkedInSignIn onPress={handleLinkedInSignUp} />
     </Container>
   );
 };
@@ -57,11 +49,6 @@ const Container = styled.View`
   justify-content: center;
   align-items: center;
   padding: 16px;
-`;
-
-const StyledButton = styled(Button)`
-  margin-vertical: 8px;
-  width: 100%;
 `;
 
 export default RegisterOAuthButtons;
