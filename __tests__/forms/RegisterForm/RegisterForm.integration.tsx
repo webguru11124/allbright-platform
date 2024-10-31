@@ -3,6 +3,9 @@ import { fireEvent, waitFor } from "@testing-library/react-native";
 import { act, renderRouter, screen } from "expo-router/testing-library";
 
 import { fireBlurEvent } from "@/__mocks__/test-utils";
+import useRegisterPageSelection, {
+  viewMode,
+} from "@/forms/hooks/useRegisterPageSelection";
 import RegisterForm from "@/forms/RegisterForm";
 import api from "@/lib/api";
 import Providers from "@/utils/providers";
@@ -11,8 +14,17 @@ import * as tokenFns from "@/utils/token";
 jest.mock("@/lib/api");
 const mockedApi = api as jest.Mocked<typeof api>;
 
+jest.mock("@/forms/hooks/useRegisterPageSelection");
+
+const mockUseRegisterPageSelection = jest.mocked(useRegisterPageSelection);
+
+mockUseRegisterPageSelection.mockImplementation(() => [
+  "EMAIL_PASSWORD",
+  jest.fn() as (mode: viewMode) => void,
+]);
+
 describe("RegisterForm", () => {
-  beforeEach(() => {
+  afterEach(() => {
     jest.clearAllMocks();
   });
 
@@ -20,7 +32,7 @@ describe("RegisterForm", () => {
       - Enter valid data for the relevant form fields
       - Make a call to api.post which returns a bearer token
       - Call the setToken function
-      - Navigate to the '/home' route
+      - Navigate to the '/onboarding/register-profile' route
       `, async () => {
     const MOCK_TOKEN = "my-bearer-token";
     const tokenSpy = jest.spyOn(tokenFns, "setToken");
@@ -52,7 +64,7 @@ describe("RegisterForm", () => {
 
     await waitFor(() => {
       expect(tokenSpy).toHaveBeenCalledWith(MOCK_TOKEN);
-      expect(screen).toHavePathname("/home");
+      expect(screen).toHavePathname("/onboarding/register-profile");
     });
   });
 

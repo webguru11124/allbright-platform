@@ -56,18 +56,19 @@ describe("RegisterProfileForm", () => {
     onPress: jest.fn(),
   };
 
-  describe("calls changeTextFuncs", () => {
-    let screen: any;
+  // FIXME: 51-platform-registration-flow - Test skipped as cannot have describe block with no tests
+  // describe("calls changeTextFuncs", () => {
+  //   let screen: any;
 
-    beforeEach(() => {
-      screen = render(
-        <Providers>
-          <RegisterProfileForm {...props} />
-        </Providers>
-      );
-      jest.clearAllMocks();
-    });
-  });
+  //   beforeEach(() => {
+  //     screen = render(
+  //       <Providers>
+  //         <RegisterProfileForm {...props} />
+  //       </Providers>
+  //     );
+  //     jest.clearAllMocks();
+  //   });
+  // });
 
   describe("displays errors", () => {
     let screen: any;
@@ -80,13 +81,12 @@ describe("RegisterProfileForm", () => {
       );
     });
 
-    it("when an email error exists", () => {
+    it("when an first_name error exists", () => {
       const updatedProps = {
         ...props,
         errors: {
           ...props.errors,
-          email: "The email field is required",
-          password: undefined,
+          first_name: "The first_name field is required",
         },
       };
 
@@ -96,16 +96,15 @@ describe("RegisterProfileForm", () => {
         </Providers>
       );
 
-      expect(screen.queryByText(updatedProps.errors.email)).not.toBeNull();
+      expect(screen.queryByText(updatedProps.errors.first_name)).not.toBeNull();
     });
 
-    it("when password error exists", () => {
+    it("when last_name error exists", () => {
       const updatedProps = {
         ...props,
         errors: {
           ...props.errors,
-          email: undefined,
-          password: "The password field is required",
+          last_name: "The last_name field is required",
         },
       };
 
@@ -115,7 +114,7 @@ describe("RegisterProfileForm", () => {
         </Providers>
       );
 
-      expect(screen.queryByText(updatedProps.errors.password)).not.toBeNull();
+      expect(screen.queryByText(updatedProps.errors.last_name)).not.toBeNull();
     });
   });
 

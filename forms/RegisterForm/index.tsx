@@ -8,6 +8,7 @@ import registerSchema from "./registerSchema";
 export const RegisterFormContainer = ({ ...rest }) => {
   const props = useRegisterForm(registerSchema);
   const [mode, setMode] = useRegisterPageSelection();
+
   if (mode === "EMAIL_PASSWORD") {
     return (
       <RegisterForm
