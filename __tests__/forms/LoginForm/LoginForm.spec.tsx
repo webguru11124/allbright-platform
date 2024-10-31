@@ -25,6 +25,7 @@ describe("LoginForm", () => {
     isFormValid: false,
     isPending: false,
     onPress: jest.fn(),
+    onGoogleSignIn: jest.fn(),
   };
 
   describe("calls changeTextFuncs", () => {

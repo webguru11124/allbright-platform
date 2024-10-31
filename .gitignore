@@ -21,3 +21,6 @@ expo-env.d.ts
 
 .env.local
 .vercel
+
+google-services.json
+GoogleService-Info.plist

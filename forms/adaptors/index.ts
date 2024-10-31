@@ -76,6 +76,24 @@ export type PublicProfileOutput = {
   imageSrc?: string | null;
 };
 
+export type RegisterProfileInput = {
+  first_name: string;
+  last_name: string;
+  country: string;
+  termsAgreed: boolean;
+  marketingAgreed: boolean;
+  thirdPartyAgreed: boolean;
+};
+
+export type RegisterProfileOutput = {
+  firstName: string;
+  lastName: string;
+  country: string;
+  termsAgreed: boolean;
+  marketingAgreed: boolean;
+  thirdPartyAgreed: boolean;
+};
+
 export const publicProfileAdaptor = (
   postBody: PublicProfileInput
 ): PublicProfileOutput => ({
@@ -86,6 +104,17 @@ export const publicProfileAdaptor = (
   jobIndustry: postBody.industry,
   goals: postBody.goals,
   bio: postBody.user_biography,
+});
+
+export const registerProfileAdaptor = (
+  postBody: RegisterProfileInput
+): RegisterProfileOutput => ({
+  firstName: postBody.first_name,
+  lastName: postBody.last_name,
+  country: postBody.country,
+  termsAgreed: postBody.termsAgreed,
+  marketingAgreed: postBody.marketingAgreed,
+  thirdPartyAgreed: postBody.thirdPartyAgreed,
 });
 
 export const privateProfileAdaptor = (

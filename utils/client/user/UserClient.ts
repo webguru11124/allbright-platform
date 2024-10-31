@@ -6,12 +6,9 @@ class UserClient {
   public async findUserById(userId: string): Promise<UserModel | undefined> {
     if (!userId) return Promise.reject("Invalid User Id");
 
-    const { data } = (await api.post("/api/user/get-by-id", { id: [userId] }))
-      .data;
+    const { data } = await api.get(`/v1/users/${userId}`);
 
-    if (Array.isArray(data) && data.length === 1) {
-      return data[0];
-    }
+    return data;
   }
 
   public async updateUser(user: Partial<UserModel>): Promise<boolean> {
