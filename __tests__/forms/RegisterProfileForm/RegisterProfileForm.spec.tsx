@@ -67,7 +67,6 @@ describe("RegisterProfileForm", () => {
       );
       jest.clearAllMocks();
     });
-
   });
 
   describe("displays errors", () => {

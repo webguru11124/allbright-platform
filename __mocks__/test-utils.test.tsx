@@ -12,7 +12,6 @@ describe("test-utils", () => {
     expect(result).toBe("08/04/1999");
   });
 
-
   // FIXME: hours fail when testing in different timezones
   it.skip("parseDateString", () => {
     const date = "09.05.1993";
