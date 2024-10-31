@@ -24,7 +24,8 @@ const Badge = (props: BadgeProps) => {
   return (
     <CS
       style={styles.badge}
-      color={props.textColour}>
+      color={props.textColour}
+      testID="badge">
       {props.text}
     </CS>
   );

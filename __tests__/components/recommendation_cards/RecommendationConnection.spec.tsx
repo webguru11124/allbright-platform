@@ -1,28 +1,21 @@
-// import "@testing-library/jest-dom";
-// import React from "react";
-// import { render, screen } from "@testing-library/react-native";
+import "@testing-library/jest-dom";
 
-// import RecommendationConnection from "@/components/recommendation_cards/RecommendationConnection";
+import { render, screen } from "@testing-library/react-native";
+import React from "react";
+
+import RecommendationConnection from "@/components/recommendation_cards/RecommendationConnection";
+
+import { connectionTestData } from "./RecommendationCard.spec";
 
 describe("RecommendationConnection", () => {
-  // const connectionData = {
-  //   category: "connections",
-  //   id: "string",
-  //   firstName: "Laura",
-  //   lastName: "Wallace",
-  //   imageSrc: "string",
-  //   lastActiveAt: 0,
-  //   location: "Manchester, United Kingdom",
-  //   jobTitle: "CRM Manager",
-  //   jobCompany: "string",
-  //   displayPhoto: "string",
-  //   isMentee: false,
-  //   isMentor: false,
-  // };
-
-  it.skip("renders correct connection data", () => {
-    // render(<RecommendationConnection {...connectionData}/>);
-    // expect(screen.getByText(connectionData.title)).toBeInTheDocument;
-    // expect(screen.getByText(connectionData.author)).toBeInTheDocument;
+  it("renders correct connection data", () => {
+    render(<RecommendationConnection {...connectionTestData} />);
+    expect(
+      screen.getByText(
+        `${connectionTestData.firstName} ${connectionTestData.lastName}`
+      )
+    ).toBeTruthy();
+    expect(screen.getByText(connectionTestData.jobTitle)).toBeTruthy();
+    expect(screen.getByText(connectionTestData.location)).toBeTruthy();
   });
 });
