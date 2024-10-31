@@ -6,15 +6,16 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { PaperProvider } from "react-native-paper";
 import { RootSiblingParent } from "react-native-root-siblings";
 
+import config from "@/config";
 import { MediaQueryProvider } from "@/contexts/MediaQueryContext";
 import { DefaultTheme, PaperDefaultTheme } from "@/theme";
-import config from "@/config";
 
 type Props = {
   children: React.ReactNode;
 };
-GoogleSignin.configure({ offlineAccess: true, 
-  webClientId:config.GOOGLE_CLIENT_ID,
+GoogleSignin.configure({
+  // offlineAccess: true,
+  webClientId: config.GOOGLE_CLIENT_ID,
 });
 const Providers = ({ children }: Props) => {
   return (

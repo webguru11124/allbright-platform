@@ -1,35 +1,59 @@
 import { faker } from "@faker-js/faker";
 import { fireEvent, render } from "@testing-library/react-native";
 
-import RegisterForm from "@/forms/RegisterForm/RegisterForm";
+import RegisterProfileForm from "@/forms/RegisterProfileForm/RegisterProfileForm";
 import Providers from "@/utils/providers";
 
-describe("RegisterForm", () => {
+describe("RegisterProfileForm", () => {
   const props = {
     inputs: {
+      first_name: undefined,
+      last_name: undefined,
       email: undefined,
       password: undefined,
       password_confirmation: undefined,
+      city: undefined,
+      country: undefined,
+      termsAgreed: "false",
+      marketingAgreed: "false",
+      thirdPartyAgreed: "false",
     },
     errors: {
+      first_name: undefined,
+      last_name: undefined,
       email: undefined,
       password: undefined,
       password_confirmation: undefined,
+      city: undefined,
+      country: undefined,
+      termsAgreed: undefined,
+      marketingAgreed: undefined,
+      thirdPartyAgreed: undefined,
     },
     blurFuncs: {
+      first_name: jest.fn(),
+      last_name: jest.fn(),
       email: jest.fn(),
       password: jest.fn(),
       password_confirmation: jest.fn(),
+      city: jest.fn(),
+      country: jest.fn(),
     },
     changeTextFuncs: {
+      first_name: jest.fn(),
+      last_name: jest.fn(),
       email: jest.fn(),
       password: jest.fn(),
       password_confirmation: jest.fn(),
+      city: jest.fn(),
+      country: jest.fn(),
+      termsAgreed: jest.fn(),
+      marketingAgreed: jest.fn(),
+      thirdPartyAgreed: jest.fn(),
     },
     isFormValid: false,
     isPending: false,
     onPress: jest.fn(),
-    onBackPress: jest.fn(),
   };
 
   describe("calls changeTextFuncs", () => {
@@ -38,27 +62,12 @@ describe("RegisterForm", () => {
     beforeEach(() => {
       screen = render(
         <Providers>
-          <RegisterForm {...props} />
+          <RegisterProfileForm {...props} />
         </Providers>
       );
       jest.clearAllMocks();
     });
 
-    it("when the email input is updated", () => {
-      const expectedEmail = faker.internet.email();
-      const emailInput = screen.getByText("Email");
-      fireEvent.changeText(emailInput, expectedEmail);
-      expect(props.changeTextFuncs.email).toHaveBeenCalledWith(expectedEmail);
-    });
-
-    it("when the password input is updated", () => {
-      const expectedPassword = faker.internet.password();
-      const passwordInput = screen.getByText("Password");
-      fireEvent.changeText(passwordInput, expectedPassword);
-      expect(props.changeTextFuncs.password).toHaveBeenCalledWith(
-        expectedPassword
-      );
-    });
   });
 
   describe("displays errors", () => {
@@ -67,7 +76,7 @@ describe("RegisterForm", () => {
     beforeEach(() => {
       screen = render(
         <Providers>
-          <RegisterForm {...props} />
+          <RegisterProfileForm {...props} />
         </Providers>
       );
     });
@@ -84,7 +93,7 @@ describe("RegisterForm", () => {
 
       screen.rerender(
         <Providers>
-          <RegisterForm {...updatedProps} />
+          <RegisterProfileForm {...updatedProps} />
         </Providers>
       );
 
@@ -103,7 +112,7 @@ describe("RegisterForm", () => {
 
       screen.rerender(
         <Providers>
-          <RegisterForm {...updatedProps} />
+          <RegisterProfileForm {...updatedProps} />
         </Providers>
       );
 
@@ -117,7 +126,7 @@ describe("RegisterForm", () => {
     beforeEach(() => {
       screen = render(
         <Providers>
-          <RegisterForm {...props} />
+          <RegisterProfileForm {...props} />
         </Providers>
       );
     });
@@ -135,7 +144,7 @@ describe("RegisterForm", () => {
 
       screen.rerender(
         <Providers>
-          <RegisterForm {...updatedProps} />
+          <RegisterProfileForm {...updatedProps} />
         </Providers>
       );
 

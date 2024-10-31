@@ -71,7 +71,7 @@ const useRegisterForm = (
   );
 
   const navigateToHome = useCallback(() => {
-    router.replace("/home");
+    router.replace("/onboarding/register-profile");
   }, []);
 
   useEffect(() => {

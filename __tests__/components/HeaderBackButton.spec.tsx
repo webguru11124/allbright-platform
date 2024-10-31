@@ -23,10 +23,10 @@ describe("HeaderBackButton", () => {
   }
 
   beforeEach(() => {
-    renderRouter(
+    return renderRouter(
       {
         index: MockComponent,
-        "/screen-1": HeaderBackButton,
+        "/screen-1": () => <HeaderBackButton />,
       },
       { wrapper: Providers }
     );

@@ -1,10 +1,14 @@
 import styled from "styled-components/native";
 
+import { useUserProfile } from "@/hooks/resources/useUserProfile";
+
 export const OnboadingPageLayout = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
+  // id
+  // const user = useUserProfile();
   return (
     <Main>
       <Container>

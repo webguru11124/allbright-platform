@@ -1,12 +1,13 @@
 import useRegisterForm from "@/forms/hooks/useRegisterForm";
 import useRegisterPageSelection from "@/forms/hooks/useRegisterPageSelection";
+import useRegisterProfileForm from "@/forms/hooks/useRegisterProfileForm";
+import RegisterOAuthButtons from "@/forms/RegisterForm/RegisterOAuthButtons";
 
-import RegisterForm from "./RegisterForm";
-import RegisterOAuthButtons from "./RegisterOAuthButtons";
-import registerSchema from "./registerSchema";
+import RegisterForm from "./RegisterProfileForm";
+import registerSchema from "./registerProfileSchema";
 
 export const RegisterFormContainer = ({ ...rest }) => {
-  const props = useRegisterForm(registerSchema);
+  const props = useRegisterProfileForm(registerSchema);
   const [mode, setMode] = useRegisterPageSelection();
   if (mode === "EMAIL_PASSWORD") {
     return (

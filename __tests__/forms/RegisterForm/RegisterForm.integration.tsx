@@ -5,7 +5,6 @@ import { act, renderRouter, screen } from "expo-router/testing-library";
 import { fireBlurEvent } from "@/__mocks__/test-utils";
 import RegisterForm from "@/forms/RegisterForm";
 import api from "@/lib/api";
-import countries from "@/utils/data/countries";
 import Providers from "@/utils/providers";
 import * as tokenFns from "@/utils/token";
 
@@ -38,24 +37,11 @@ describe("RegisterForm", () => {
 
     const PASSWORD = faker.internet.password();
 
-    fireEvent.changeText(
-      screen.getByText("First Name"),
-      faker.person.firstName()
-    );
-    fireEvent.changeText(
-      screen.getByText("Last Name"),
-      faker.person.lastName()
-    );
     fireEvent.changeText(screen.getByText("Email"), faker.internet.email());
-    fireEvent.changeText(screen.getByText("City"), faker.location.city());
-    fireEvent.changeText(
-      screen.getByText("Country"),
-      faker.helpers.arrayElement(countries).Code
-    );
+
     fireEvent.changeText(screen.getByText("Password"), PASSWORD);
     fireEvent.changeText(screen.getByText("Confirm Password"), PASSWORD);
     fireEvent.changeText(screen.getByText("Email"), faker.internet.email());
-    fireEvent.press(screen.getByTestId("RegisterForm:TermsAgreed"));
 
     mockedApi.post.mockResolvedValueOnce({ data: { success: true } });
     mockedApi.post.mockResolvedValueOnce({ data: MOCK_TOKEN });
@@ -71,23 +57,15 @@ describe("RegisterForm", () => {
   });
 
   it(`should:
-    - Enter an empty first name
-    - Enter an empty last name
     - Enter an incorrectly formatted email address
     - Enter a password that isn't long enough
-    - Display the first_name error message
-    - Display the last_name error message
     - Display the email error message
     - Display the password error message
     - Not allow submitting of form
     `, async () => {
-    const FIRST_NAME = "";
-    const LAST_NAME = "";
     const EMAIL = "not-an-email-address";
     const PASS = "123";
 
-    const EXPECTED_FIRST_NAME = `"First_name" is not allowed to be empty`;
-    const EXPECTED_LAST_NAME = `"Last_name" is not allowed to be empty`;
     const EXPECTED_EMAIL = `"Email" must be a valid email`;
     const EXPECTED_PASS = `"Password" length must be at least 4 characters long`;
 
@@ -100,17 +78,9 @@ describe("RegisterForm", () => {
     });
 
     expect(screen).toHavePathname("/");
-
-    await fireBlurEvent(
-      screen.getByTestId("RegisterForm:FirstName"),
-      FIRST_NAME
-    );
-    await fireBlurEvent(screen.getByTestId("RegisterForm:LastName"), LAST_NAME);
     await fireBlurEvent(screen.getByTestId("RegisterForm:Email"), EMAIL);
     await fireBlurEvent(screen.getByTestId("RegisterForm:Password"), PASS);
 
-    expect(await screen.findByText(EXPECTED_FIRST_NAME)).not.toBeNull();
-    expect(await screen.findByText(EXPECTED_LAST_NAME)).not.toBeNull();
     expect(await screen.findByText(EXPECTED_EMAIL)).not.toBeNull();
     expect(await screen.findByText(EXPECTED_PASS)).not.toBeNull();
 
