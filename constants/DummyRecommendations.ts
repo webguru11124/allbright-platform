@@ -11,7 +11,7 @@ export const DUMMY_RECS = [
         url: "",
       },
     },
-    id: "",
+    id: "articleID",
     name: "",
     sys: {
       id: "",
@@ -23,7 +23,7 @@ export const DUMMY_RECS = [
   },
   {
     category: "events",
-    id: "string",
+    id: "eventID",
     cardImage: "string",
     description:
       "Does public speaking leave you filled with dread? You’re not alone. Join us for an event that will reframe your presentation narrative Present with Purpose, led by voice and communication coach Arabella...",
@@ -36,7 +36,7 @@ export const DUMMY_RECS = [
   },
   {
     category: "connections",
-    id: "string",
+    id: "connectionID",
     firstName: "Laura",
     lastName: "Wallace",
     imageSrc: "string",
@@ -50,7 +50,7 @@ export const DUMMY_RECS = [
   },
   {
     category: "courses",
-    id: "",
+    id: "courseID",
     sys: {
       id: "string",
     },
@@ -81,7 +81,7 @@ export const DUMMY_RECS = [
   },
   {
     category: "groups",
-    id: "string",
+    id: "groupID",
     name: "EvolveHer",
     description:
       "Bringing together like-minded women to connect, share and learn.",
@@ -94,7 +94,7 @@ export const DUMMY_RECS = [
   },
   {
     category: "mentorships",
-    id: "string",
+    id: "mentorshipID",
     firstName: "Laura",
     lastName: "Wallace",
     imageSrc: "string",

@@ -10,6 +10,14 @@ export type RecommendationType =
   | "mentorships"
   | "promotion";
 
+export type RecommendationModel =
+  | ConnectionRecommendationModel
+  | MentorshipRecommendationModel
+  | LessonRecommendationModel
+  | EventRecommendationModel
+  | GroupRecommendationModel
+  | ArticleRecommendationModel
+  | PromotionRecommendationModel;
 export interface APIRecommendationStructure {
   connections: ConnectionRecommendationModel[];
   groups: GroupRecommendationModel[];

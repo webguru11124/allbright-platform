@@ -3,12 +3,12 @@ import { Image, StyleSheet, View } from "react-native";
 
 import { CS, H5 } from "@/components/Typography";
 import { Colors } from "@/constants/Colors";
-import { RecommendedArticle } from "@/types/article/Article";
+import { ArticleRecommendationModel } from "@/types/Recommendations";
 
 import Badge from "./Badge";
 import Divider from "./Divider";
 
-const RecommendationArticle: React.FC<RecommendedArticle> = (props) => {
+const RecommendationArticle: React.FC<ArticleRecommendationModel> = (props) => {
   const styles = StyleSheet.create({
     container: {
       padding: 15,
