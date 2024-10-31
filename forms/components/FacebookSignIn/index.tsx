@@ -22,7 +22,7 @@ const FacebookSignIn = ({ onPress }: { onPress: GestureEvent }) => {
 const StyledButton = styled(Button)`
   width: 396px;
   height: 45px;
-  margin-vertical: 8px;
+  margin-top: 8px;
   background-color: #5890ff;
   border-radius: 4px;
   text-align: center;
