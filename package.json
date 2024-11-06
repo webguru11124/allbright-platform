@@ -27,7 +27,7 @@
     ]
   },
   "engines": {
-    "node": "^20"
+    "node": "^22"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",

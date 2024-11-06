@@ -83,15 +83,14 @@ export type RegisterProfileInput = {
   termsAgreed: boolean;
   marketingAgreed: boolean;
   thirdPartyAgreed: boolean;
+  city?: (typeof cities)[number]["city"];
 };
 
 export type RegisterProfileOutput = {
   firstName: string;
   lastName: string;
   country: string;
-  termsAgreed: boolean;
-  marketingAgreed: boolean;
-  thirdPartyAgreed: boolean;
+  city?: (typeof cities)[number]["city"];
 };
 
 export const publicProfileAdaptor = (
@@ -112,9 +111,7 @@ export const registerProfileAdaptor = (
   firstName: postBody.first_name,
   lastName: postBody.last_name,
   country: postBody.country,
-  termsAgreed: postBody.termsAgreed,
-  marketingAgreed: postBody.marketingAgreed,
-  thirdPartyAgreed: postBody.thirdPartyAgreed,
+  city: postBody.city,
 });
 
 export const privateProfileAdaptor = (

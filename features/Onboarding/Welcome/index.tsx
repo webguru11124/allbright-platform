@@ -43,7 +43,7 @@ export default function WelcomeScreen() {
         </Section>
 
         <Link
-          href="/onboarding/public-profile"
+          href="/onboarding/register-profile"
           background={recommendationColour.btBgColor}
           isSecondary={true}>
           <CM color={recommendationColour.btColor}>Start</CM>

@@ -5,9 +5,6 @@ import { onboardingIndustries } from "@/utils/data/industries";
 import { jobLevels } from "@/utils/data/jobLevels";
 
 export const publicProfileSchema = {
-  city: Joi.string().max(60).required().messages({
-    "any.required": "Please pick a city from the list",
-  }),
   job_level: Joi.string()
     .valid(...jobLevels)
     .required()

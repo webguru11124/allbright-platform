@@ -1,9 +1,9 @@
 import { SafeAreaView } from "react-native";
-import styled from "styled-components/native";
 
 import Space from "@/components/Space";
 import AgreeTermsCheckBox from "@/forms/components/AgreeTermsCheckBox";
 import Button from "@/forms/components/Button";
+import CityPicker from "@/forms/components/CityPicker";
 import CountryPicker from "@/forms/components/CountryPicker";
 import MarketingAgreedCheckBox from "@/forms/components/MarketingAgreedCheckBox";
 import TextInput from "@/forms/components/TextInput";
@@ -42,18 +42,6 @@ export const RegisterProfileForm = ({
       testID="RegisterProfileForm:LastName"
     />
     <Space height={10} />
-    <Space height={10} />
-    <TextInput
-      placeholder="City"
-      inputMode="text"
-      textContentType="addressCity"
-      value={inputs.city}
-      error={errors.city}
-      onBlur={blurFuncs.city}
-      onChangeText={changeTextFuncs.city}
-      testID="RegisterProfileForm:City"
-    />
-    <Space height={10} />
     <CountryPicker
       placeholder="Country"
       value={inputs.country}
@@ -61,6 +49,16 @@ export const RegisterProfileForm = ({
       onBlur={blurFuncs.country}
       onChangeText={changeTextFuncs.country}
       testID="RegisterProfileForm:Country"
+    />
+    <Space height={10} />
+    <CityPicker
+      placeholder="City"
+      value={inputs.city}
+      error={errors.city}
+      onBlur={blurFuncs.city}
+      onChangeText={changeTextFuncs.city}
+      testID="PublicProfileForm:City"
+      selectedCountry={inputs.country}
     />
     <Space height={10} />
     <AgreeTermsCheckBox
@@ -87,11 +85,8 @@ export const RegisterProfileForm = ({
       isLoading={isPending}
       onPress={onPress}
       testID="RegisterProfileForm:Submit">
-      Submit
+      Next
     </Button>
   </SafeAreaView>
 );
-const BackButtonContainer = styled.View`
-  align-items: start;
-`;
 export default RegisterProfileForm;

@@ -2,7 +2,6 @@ import {
   GoogleSignin,
   GoogleSigninButton,
   isErrorWithCode,
-  statusCodes,
 } from "@react-native-google-signin/google-signin";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";

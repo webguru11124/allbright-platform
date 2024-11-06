@@ -1,6 +1,6 @@
 import { router } from "expo-router";
 import Joi from "joi";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { RegisterInput, registrationAdaptor } from "@/forms/adaptors";
 import useFormWithPassConf from "@/forms/hooks/useFormWithPassConf";
@@ -31,18 +31,16 @@ const useRegisterForm = (
     changeTextFuncs,
     isFormValid,
     showErrorMessage,
-  } = useFormWithPassConf(registerSchema, {
-    default: { marketingAgreed: false, thirdPartyAgreed: false },
-  });
+  } = useFormWithPassConf(registerSchema);
 
   const { mutate: mutateRegister, isPending: isPendingRegister } =
     useRegister();
 
   const { mutate: mutateSignin, isPending: isPendingSignIn } = useSignIn();
 
-  const onPress = () => {
-    if (isFormValid) setState(State.REGISTER);
-  };
+  // const onPress = () => {
+  //   if (isFormValid) setState(State.REGISTER);
+  // };
 
   const register = useCallback(
     () =>
@@ -53,9 +51,12 @@ const useRegisterForm = (
             if (data.success) setState(State.SIGNIN);
           },
           onError: (error: any) => showErrorMessage(error.message),
+          onSettled: () => {
+            registerCalled.current = false;
+          },
         }
       ),
-    [mutateRegister, postBody, showErrorMessage]
+    [postBody, showErrorMessage, mutateRegister]
   );
 
   const signin = useCallback(
@@ -66,6 +67,9 @@ const useRegisterForm = (
           setState(State.SUCCESS);
         },
         onError: (error: any) => showErrorMessage(error.message),
+        onSettled: () => {
+          signinCalled.current = false;
+        },
       }),
     [mutateSignin, postBody, showErrorMessage]
   );
@@ -74,13 +78,21 @@ const useRegisterForm = (
     router.replace("/onboarding/register-profile");
   }, []);
 
+  const registerCalled = React.useRef(false);
+  const signinCalled = React.useRef(false);
   useEffect(() => {
     switch (state) {
       case State.REGISTER:
-        if (isPendingRegister === false) register();
+        if (!registerCalled.current && !isPendingRegister) {
+          registerCalled.current = true;
+          register();
+        }
         break;
       case State.SIGNIN:
-        if (isPendingSignIn === false) signin();
+        if (!signinCalled.current && !isPendingSignIn) {
+          signinCalled.current = true;
+          signin();
+        }
         break;
       case State.SUCCESS:
         navigateToHome();
@@ -89,9 +101,9 @@ const useRegisterForm = (
   }, [
     isPendingRegister,
     isPendingSignIn,
-    navigateToHome,
     register,
     signin,
+    navigateToHome,
     state,
   ]);
 
@@ -102,7 +114,7 @@ const useRegisterForm = (
     changeTextFuncs,
     isFormValid,
     isPending: isPendingRegister || isPendingSignIn,
-    onPress,
+    onPress: register,
   };
 };
 

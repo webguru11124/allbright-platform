@@ -2,7 +2,6 @@ import { SafeAreaView } from "react-native";
 
 import Space from "@/components/Space";
 import Button from "@/forms/components/Button";
-import CityPicker from "@/forms/components/CityPicker";
 import GoalsSelection from "@/forms/components/GoalsSelection";
 import IndustryPicker from "@/forms/components/IndustryPicker";
 import JobLevelPicker from "@/forms/components/JobLevelPicker";
@@ -22,14 +21,6 @@ const PublicProfileForm = ({
   onPress,
 }: FormProps) => (
   <SafeAreaView>
-    <CityPicker
-      placeholder="City"
-      value={inputs.city}
-      error={errors.city}
-      onBlur={blurFuncs.city}
-      onChangeText={changeTextFuncs.city}
-      testID="PublicProfileForm:City"
-    />
     <Space height={10} />
     <TextInput
       label="Job title*"

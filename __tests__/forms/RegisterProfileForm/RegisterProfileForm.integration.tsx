@@ -1,31 +1,24 @@
 import { faker } from "@faker-js/faker";
-import { fireEvent, waitFor } from "@testing-library/react-native";
-import { act, renderRouter, screen } from "expo-router/testing-library";
+import {
+  act,
+  fireEvent,
+  renderRouter,
+  screen,
+  waitFor,
+} from "expo-router/testing-library";
 
 import { fireBlurEvent } from "@/__mocks__/test-utils";
-import useRegisterPageSelection, {
-  viewMode,
-} from "@/forms/hooks/useRegisterPageSelection";
-import RegisterForm from "@/forms/RegisterForm";
+import RegisterProfileForm from "@/forms/RegisterProfileForm";
 import api from "@/lib/api";
+import UserClient from "@/utils/client/user/UserClient";
 import countries from "@/utils/data/countries";
 import Providers from "@/utils/providers";
-import * as tokenFns from "@/utils/token";
 
 jest.mock("@/lib/api");
+jest.mock("@/utils/client/user/UserClient");
 const mockedApi = api as jest.Mocked<typeof api>;
 
-jest.mock("@/forms/hooks/useRegisterPageSelection");
-
-const mockUseRegisterPageSelection = jest.mocked(useRegisterPageSelection);
-
-mockUseRegisterPageSelection.mockImplementation(() => [
-  "EMAIL_PASSWORD",
-  jest.fn() as (mode: viewMode) => void,
-]);
-
-// FIXME: 51-platform-registration-flow - Test skipped as RegisterProfileForm is being refactored
-describe.skip("RegisterForm", () => {
+describe("RegisterProfileForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -34,45 +27,48 @@ describe.skip("RegisterForm", () => {
       - Enter valid data for the relevant form fields
       - Make a call to api.post which for updating the profile
       `, async () => {
-    const MOCK_TOKEN = "my-bearer-token";
-    const tokenSpy = jest.spyOn(tokenFns, "setToken");
-
     renderRouter({
       index: jest.fn(() => (
         <Providers>
-          <RegisterForm />
+          <RegisterProfileForm />
         </Providers>
       )),
     });
 
     expect(screen).toHavePathname("/");
+    const randomCountry = faker.helpers.arrayElement(countries).Code;
+    const randomCity = faker.location.city();
+    const randomFirstName = faker.person.firstName();
+    const randomLastName = faker.person.lastName();
 
     fireEvent.changeText(
-      screen.getByText("First Name"),
-      faker.person.firstName()
+      screen.getByTestId("RegisterProfileForm:FirstName"),
+      randomFirstName
     );
     fireEvent.changeText(
-      screen.getByText("Last Name"),
-      faker.person.lastName()
+      screen.getByTestId("RegisterProfileForm:LastName"),
+      randomLastName
     );
-    fireEvent.changeText(screen.getByText("City"), faker.location.city());
-    fireEvent.changeText(
-      screen.getByText("Country"),
-      faker.helpers.arrayElement(countries).Code
-    );
-    fireEvent.changeText(screen.getByText("Email"), faker.internet.email());
+    fireEvent.changeText(screen.getByText("Country"), randomCountry);
+    fireEvent.changeText(screen.getByText("City"), randomCity);
     fireEvent.press(screen.getByTestId("RegisterProfileForm:TermsAgreed"));
+    fireEvent.press(screen.getByTestId("RegisterProfileForm:MarketingAgreed"));
+    fireEvent.press(screen.getByTestId("RegisterProfileForm:ThirdPartyAgreed"));
 
     mockedApi.post.mockResolvedValueOnce({ data: { success: true } });
-    mockedApi.post.mockResolvedValueOnce({ data: MOCK_TOKEN });
 
-    await act(() => {
-      fireEvent.press(screen.getByText("Submit"));
+    await act(async () => {
+      fireEvent.press(screen.getByTestId("RegisterProfileForm:Submit"));
     });
 
     await waitFor(() => {
-      expect(tokenSpy).toHaveBeenCalledWith(MOCK_TOKEN);
-      expect(screen).toHavePathname("/public-profile");
+      expect(UserClient.prototype.updateUser).toHaveBeenCalledWith({
+        firstName: randomFirstName,
+        lastName: randomLastName,
+        country: randomCountry,
+        city: randomCity,
+      });
+      expect(screen).toHavePathname("/onboarding/public-profile");
     });
   });
 
@@ -86,28 +82,34 @@ describe.skip("RegisterForm", () => {
     const FIRST_NAME = "";
     const LAST_NAME = "";
 
-    const EXPECTED_FIRST_NAME = `"First_name" is not allowed to be empty`;
+    const EXPECTED_FIRST_NAME = `"First_name" is  not allowed to be empty`;
     const EXPECTED_LAST_NAME = `"Last_name" is not allowed to be empty`;
 
     renderRouter({
       index: jest.fn(() => (
         <Providers>
-          <RegisterForm />
+          <RegisterProfileForm />
         </Providers>
       )),
     });
 
     expect(screen).toHavePathname("/");
 
-    await fireBlurEvent(screen.getByTestId("RegisterForm:LastName"), LAST_NAME);
-
+    await fireBlurEvent(
+      screen.getByTestId("RegisterProfileForm:FirstName"),
+      FIRST_NAME
+    );
+    await fireBlurEvent(
+      screen.getByTestId("RegisterProfileForm:LastName"),
+      LAST_NAME
+    );
     expect(await screen.findByText(EXPECTED_FIRST_NAME)).not.toBeNull();
     expect(await screen.findByText(EXPECTED_LAST_NAME)).not.toBeNull();
 
     await act(() => {
-      fireEvent.press(screen.getByText("Submit"));
+      fireEvent.press(screen.getByText("Next"));
     });
 
-    expect(screen).not.toHavePathname("/home");
+    expect(screen).not.toHavePathname("/onboarding/public-profile");
   });
 });

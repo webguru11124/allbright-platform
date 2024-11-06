@@ -7,7 +7,6 @@ import Providers from "@/utils/providers";
 describe("PublicProfileForm", () => {
   const props = {
     inputs: {
-      city: undefined,
       industry: undefined,
       job_level: undefined,
       company_name: undefined,
@@ -15,7 +14,6 @@ describe("PublicProfileForm", () => {
       user_biography: undefined,
     },
     errors: {
-      city: undefined,
       industry: undefined,
       job_level: undefined,
       company_name: undefined,
@@ -23,7 +21,6 @@ describe("PublicProfileForm", () => {
       user_biography: undefined,
     },
     blurFuncs: {
-      city: jest.fn(),
       industry: jest.fn(),
       job_level: jest.fn(),
       company_name: jest.fn(),
@@ -32,7 +29,6 @@ describe("PublicProfileForm", () => {
       goals: jest.fn(),
     },
     changeTextFuncs: {
-      city: jest.fn(),
       industry: jest.fn(),
       job_level: jest.fn(),
       company_name: jest.fn(),
@@ -84,24 +80,6 @@ describe("PublicProfileForm", () => {
           <PublicProfileForm {...props} />
         </Providers>
       );
-    });
-
-    it("when an city error exists", () => {
-      const updatedProps = {
-        ...props,
-        errors: {
-          ...props.errors,
-          city: "The City field is required",
-        },
-      };
-
-      screen.rerender(
-        <Providers>
-          <PublicProfileForm {...updatedProps} />
-        </Providers>
-      );
-
-      expect(screen.queryByText(updatedProps.errors.city)).not.toBeNull();
     });
 
     it("when jobTitle error exists", () => {

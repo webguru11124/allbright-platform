@@ -2,13 +2,8 @@ import { useRouter } from "expo-router";
 import * as Joi from "joi";
 import * as React from "react";
 
-import {
-  publicProfileAdaptor,
-  PublicProfileInput,
-  registerProfileAdaptor,
-} from "@/forms/adaptors";
+import { registerProfileAdaptor } from "@/forms/adaptors";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
-import { LocalImageType } from "@/types/files/localImage";
 
 import useForm from "./useForm";
 
@@ -24,9 +19,7 @@ const useRegisterProfileForm = (
     isFormValid,
     validateAllInputs,
     showErrorMessage,
-  } = useForm(registerProfileSchema, {
-    default: {},
-  });
+  } = useForm(registerProfileSchema);
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
@@ -42,7 +35,7 @@ const useRegisterProfileForm = (
 
       await mutateUpdateUserAsync(user);
 
-      router.replace("/onboarding/private-profile");
+      router.replace("/onboarding/public-profile");
     } catch (error: any) {
       showErrorMessage(error.message);
     } finally {

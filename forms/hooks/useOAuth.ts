@@ -7,8 +7,7 @@ import { useShowToast } from "./useShowToast";
 
 export const useOAuth = () => {
   const router = useRouter();
-  const { mutate: googleSignIn, isPending: isPendingGoogleSignIn } =
-    useGoogleSignIn();
+  const { mutate: googleSignIn } = useGoogleSignIn();
 
   const { showErrorMessage } = useShowToast();
 

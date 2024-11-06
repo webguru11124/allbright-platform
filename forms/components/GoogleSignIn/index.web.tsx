@@ -12,10 +12,16 @@ interface Props {
   handleToken: (token: string) => void;
 }
 
-const GoogleSignIn = (props: Props) => {
-  const [isInProgress, setIsInProgress] = useState(false);
-  const [loaded, setLoaded] = useState(false);
+const GoogleSignIn = ({ handleToken }: Props) => {
+  const [, setLoaded] = useState(false);
 
+  const handleCallback = React.useCallback(
+    (response: any) => {
+      console.log(response);
+      handleToken(response.credential);
+    },
+    [handleToken]
+  );
   useEffect(() => {
     const scriptTag = document.createElement("script");
     scriptTag.src = "https://accounts.google.com/gsi/client";
@@ -45,12 +51,7 @@ const GoogleSignIn = (props: Props) => {
 
     document.body.appendChild(scriptTag);
     window.handleGoogleSignInCallback = handleCallback;
-  }, []);
-
-  const handleCallback = (response: any) => {
-    console.log(response);
-    props.handleToken(response.credential);
-  };
+  }, [handleCallback]);
 
   return (
     <div>

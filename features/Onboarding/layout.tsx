@@ -1,17 +1,21 @@
 import styled from "styled-components/native";
 
-import { useUserProfile } from "@/hooks/resources/useUserProfile";
+import HeaderBackButton from "@/components/HeaderBackButton";
 
-export const OnboadingPageLayout = ({
-  children,
-}: {
+interface Props {
+  onBackPress?: () => void;
   children: React.ReactNode;
-}) => {
+}
+
+export const OnboadingPageLayout = ({ children, onBackPress }: Props) => {
   // id
   // const user = useUserProfile();
   return (
     <Main>
       <Container>
+        <HeaderButtonsContainer>
+          {onBackPress && <HeaderBackButton onBackPress={onBackPress} />}
+        </HeaderButtonsContainer>
         <ContentWrap>{children}</ContentWrap>
       </Container>
     </Main>
@@ -33,4 +37,11 @@ const ContentWrap = styled.View`
   flex-direction: column;
   gap: 10px;
   flex: 1;
+`;
+
+const HeaderButtonsContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px;
 `;

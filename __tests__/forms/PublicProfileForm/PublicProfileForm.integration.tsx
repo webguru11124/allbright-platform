@@ -43,7 +43,6 @@ describe("PublicProfileForm", () => {
     });
 
     expect(screen).toHavePathname("/");
-    const randomCity = faker.location.city();
     const randomIndustry = onboardingIndustries[0];
     const randomJobLevel = jobLevels[0];
     const randomCompanyName = faker.company.name();
@@ -51,7 +50,6 @@ describe("PublicProfileForm", () => {
     const randomBiography = faker.lorem.sentences(5);
     const randomGoals = goals.slice(0, 3);
 
-    fireEvent.changeText(screen.getByText("City"), randomCity);
     fireEvent.changeText(screen.getByText("Job Level"), randomJobLevel);
     fireEvent.changeText(screen.getByText("Industry"), randomIndustry);
     fireEvent.changeText(screen.getByText("Job title*"), randomJobTitle);
@@ -80,7 +78,6 @@ describe("PublicProfileForm", () => {
 
     await waitFor(() => {
       expect(UserClient.prototype.updateUser).toHaveBeenCalledWith({
-        city: randomCity,
         jobTitle: randomJobTitle,
         jobLevel: randomJobLevel,
         jobIndustry: randomIndustry,
@@ -91,7 +88,7 @@ describe("PublicProfileForm", () => {
       });
       expect(screen).toHavePathname("/onboarding/private-profile");
     });
-  }, 30000);
+  });
 
   it(`should:
     - Enter an empty job title
@@ -130,7 +127,6 @@ describe("PublicProfileForm", () => {
     - Show error message
     - Not allowing making api request)
     `, async () => {
-    const CITY_ERROR_MESSAGE = "Please pick a city from the list";
     const JOB_TITLE_ERROR_MESSAGE = "Please enter a job title";
     const JOB_LEVEL_ERROR_MESSAGE = "Please pick a job level from the list";
     const INDUSTRY_ERROR_MESSAGE = "Please pick an industry from the list";
@@ -148,7 +144,6 @@ describe("PublicProfileForm", () => {
     await act(() => {
       fireEvent.press(screen.getByTestId("PublicProfileForm:Submit"));
     });
-    expect(await screen.findByText(CITY_ERROR_MESSAGE)).not.toBeNull();
     expect(await screen.findByText(JOB_TITLE_ERROR_MESSAGE)).not.toBeNull();
     expect(await screen.findByText(JOB_LEVEL_ERROR_MESSAGE)).not.toBeNull();
     expect(await screen.findByText(INDUSTRY_ERROR_MESSAGE)).not.toBeNull();
