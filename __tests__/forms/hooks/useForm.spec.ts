@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react-native";
 import Joi from "joi";
-import _, { lastIndexOf } from "lodash";
+import _ from "lodash";
 
 import useForm from "@/forms/hooks/useForm";
 
@@ -63,9 +63,10 @@ describe("useForms", () => {
         const { result } = renderHook(() =>
           useForm(baseSchema, {
             default: {
-              firstName: "Steve", lastName: "Help!",
+              firstName: "Steve",
+              lastName: "Help!",
               email: "sdf@sdf.com",
-              password: "abc"
+              password: "abc",
             },
           })
         );
@@ -75,7 +76,7 @@ describe("useForms", () => {
             firstName: "Steve",
             lastName: "Help!",
             email: "sdf@sdf.com",
-            password: "abc"
+            password: "abc",
           });
         });
       });

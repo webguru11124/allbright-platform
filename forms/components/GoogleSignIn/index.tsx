@@ -9,7 +9,7 @@ import config from "@/config";
 import GoogleSignIn from "./GoogleSignin";
 
 interface Props {
-  handleToken: (token: string) => void;
+  handleToken: (token: string) => Promise<void>;
   isSignin: boolean;
 }
 GoogleSignin.configure({
@@ -26,7 +26,7 @@ const GoogleSignInContainer = (props: Props) => {
       await GoogleSignin.signIn();
       const accessToken = (await GoogleSignin.getTokens()).accessToken;
 
-      if (accessToken) props.handleToken(accessToken);
+      if (accessToken) await props.handleToken(accessToken);
       else throw new Error("accessToken not found");
     } catch (error) {
       if (isErrorWithCode(error)) {
