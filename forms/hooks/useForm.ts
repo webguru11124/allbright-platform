@@ -21,18 +21,21 @@ const useForm = (
   const schema = Joi.object(baseSchema);
   const schemaKeys = Object.keys(baseSchema || {});
   const schemaInputs = _.chain(schemaKeys)
-      .map((key) => [key, (settings?.default as Record<string, any>)?.[key]])
-      .fromPairs()
-      .value();
+    .map((key) => [key, (settings?.default as Record<string, any>)?.[key]])
+    .fromPairs()
+    .value();
 
   const [inputs, setInputs] = useState<typeof schemaInputs>(schemaInputs);
   const [errors, setErrors] = useState<typeof schemaInputs>(schemaInputs);
   const [touched, setTouched] = useState<typeof schemaInputs>(schemaInputs);
 
-  const reset = React.useCallback((values: Partial<typeof schemaInputs> = {}) => {
-    const newInputs = { ...inputs, ...values };
-    setInputs(newInputs);
-  }, [inputs]);
+  const reset = React.useCallback(
+    (values: Partial<typeof schemaInputs> = {}) => {
+      const newInputs = { ...inputs, ...values };
+      setInputs(newInputs);
+    },
+    [inputs]
+  );
 
   const updateInputs = ({ name, value }: EventType) =>
     setInputs((prev) => ({ ...prev, [name]: value }));

@@ -27,7 +27,7 @@ const usePublicProfileForm = (
   } = useForm(publicProfileSchema, {});
   React.useEffect(() => {
     if (user) reset(user);
-  }, [user, reset]);
+  }, [user]);
 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
