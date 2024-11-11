@@ -1,11 +1,17 @@
 import MaterialIcons from "@expo/vector-icons/FontAwesome";
 import React from "react";
-import { Text } from "react-native";
+import { Platform, Text } from "react-native";
 import styled from "styled-components/native";
 
 import Button from "@/forms/components/Button";
 
-const FacebookSignIn = ({ onPress }: { onPress: GestureEvent }) => {
+const FacebookSignIn = ({
+  onPress,
+  isSignin,
+}: {
+  onPress: GestureEvent;
+  isSignin: boolean;
+}) => {
   return (
     <StyledButton onPress={onPress}>
       <VerticalCenter>
@@ -15,7 +21,7 @@ const FacebookSignIn = ({ onPress }: { onPress: GestureEvent }) => {
           color={"white"}
         />
         <Text>
-          Login with <Bold>Facebook</Bold>
+          {isSignin ? "Sign in" : "Sign up"} with <Bold>Facebook</Bold>
         </Text>
       </VerticalCenter>
     </StyledButton>
@@ -23,7 +29,7 @@ const FacebookSignIn = ({ onPress }: { onPress: GestureEvent }) => {
 };
 
 const StyledButton = styled(Button)`
-  width: 304px;
+  width: ${Platform.OS !== "web" ? "304px" : "396px"};
   height: 45px;
   margin-top: 8px;
   background-color: #5890ff;

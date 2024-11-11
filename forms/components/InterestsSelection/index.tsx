@@ -8,13 +8,18 @@ import InterestsSelection from "./InterestsSelection";
 interface InterestsSectionProps {
   updateField: (value: (typeof interests)[number][]) => void;
   error?: string;
+  field?: string[];
 }
 
 const InterestsSection: FunctionComponent<InterestsSectionProps> = ({
   updateField,
   error,
+  field = [],
 }) => {
-  const props = useInterestState({ updateField: updateField });
+  const props = useInterestState({
+    interests: field,
+    updateField: updateField,
+  });
 
   return (
     <InterestsSelection

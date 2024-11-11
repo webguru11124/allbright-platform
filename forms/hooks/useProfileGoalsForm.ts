@@ -4,9 +4,12 @@ import * as React from "react";
 
 import { profileGoalsAdapter, ProfileGoalsInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
+import { useUserProfile } from "@/hooks/resources/useUserProfile";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 
 const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
+  const { data: user } = useUserProfile();
+
   const {
     inputs,
     errors,
@@ -14,12 +17,17 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
     changeTextFuncs,
     postBody,
     isFormValid,
+    reset,
     validateAllInputs,
     showErrorMessage,
   } = useForm(careerGoalsSchema);
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
+
+  React.useEffect(() => {
+    if (user) reset(user);
+  }, [user, reset]);
 
   const onPress = async () => {
     try {

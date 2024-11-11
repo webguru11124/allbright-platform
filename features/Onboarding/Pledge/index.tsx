@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 
 import { CS, CXL, H4 } from "@/components/Typography";
-import { OnboadingPageLayout } from "@/features/Onboarding/layout";
+import { OnboadingPageLayout } from "@/features/Onboarding/OnboardingLayout";
 import PledgeForm from "@/forms/PledgeForm";
 import colours from "@/theme";
 import pledge from "@/utils/data/pledge";

@@ -12,6 +12,11 @@ export const useCareerGoalState = ({
 }: useGoalsProps) => {
   const [goalsState, setGoalsState] =
     React.useState<CareerGoalType["id"][]>(defaultGoals);
+
+  React.useEffect(() => {
+    if (defaultGoals.length > 0) setGoalsState(defaultGoals);
+  }, [defaultGoals]);
+
   const goalIsSelected = (goal: CareerGoalType) =>
     goalsState?.includes(goal?.id);
 

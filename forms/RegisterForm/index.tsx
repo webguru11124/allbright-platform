@@ -1,8 +1,8 @@
 import useRegisterForm from "@/forms/hooks/useRegisterForm";
 import useRegisterPageSelection from "@/forms/hooks/useRegisterPageSelection";
+import OAuthForm from "@/forms/OAuthForm";
 
 import RegisterForm from "./RegisterForm";
-import RegisterOAuthButtons from "./RegisterOAuthButtons";
 import registerSchema from "./registerSchema";
 
 export const RegisterFormContainer = ({ ...rest }) => {
@@ -21,11 +21,10 @@ export const RegisterFormContainer = ({ ...rest }) => {
     );
   } else if (mode === "OAUTH_BUTTONS") {
     return (
-      <RegisterOAuthButtons
-        onEmailPasswordSignUp={() => setMode("EMAIL_PASSWORD")}
-        onGoogleSignUp={() => console.log("Google sign-up")}
-        onFacebookSignUp={() => console.log("Facebook sign-up")}
-        onLinkedInSignUp={() => console.log("LinkedIn sign-up")}
+      <OAuthForm
+        onEmailPasswordSignUp={() => {
+          setMode("EMAIL_PASSWORD");
+        }}
       />
     );
   }

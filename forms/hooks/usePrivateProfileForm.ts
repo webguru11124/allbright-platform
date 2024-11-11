@@ -4,21 +4,30 @@ import * as React from "react";
 
 import { privateProfileAdaptor, PrivateProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
+import { useUserProfile } from "@/hooks/resources/useUserProfile";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 
 const usePrivateProfileForm = (
   privateProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
+  const { data: user } = useUserProfile();
+
   const {
     inputs,
     errors,
     blurFuncs,
     changeTextFuncs,
     postBody,
+    reset,
     isFormValid,
     validateAllInputs,
     showErrorMessage,
   } = useForm(privateProfileSchema);
+
+  React.useEffect(() => {
+    if (user) reset(user);
+  }, [user, reset]);
+
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();

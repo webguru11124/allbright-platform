@@ -3,6 +3,7 @@ import * as Joi from "joi";
 import * as React from "react";
 
 import { publicProfileAdaptor, PublicProfileInput } from "@/forms/adaptors";
+import { useUserProfile } from "@/hooks/resources/useUserProfile";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 import { LocalImageType } from "@/types/files/localImage";
 
@@ -11,6 +12,8 @@ import useForm from "./useForm";
 const usePublicProfileForm = (
   publicProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
+  const { data: user } = useUserProfile();
+
   const {
     inputs,
     errors,
@@ -18,16 +21,14 @@ const usePublicProfileForm = (
     changeTextFuncs,
     postBody,
     isFormValid,
+    reset,
     validateAllInputs,
     showErrorMessage,
-  } = useForm(publicProfileSchema, {
-    default: {
-      profile_image: {
-        state: LocalImageType.FILE_UNSET,
-        file: null,
-      } as any,
-    },
-  });
+  } = useForm(publicProfileSchema, {});
+  React.useEffect(() => {
+    if (user) reset(user);
+  }, [user, reset]);
+
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();

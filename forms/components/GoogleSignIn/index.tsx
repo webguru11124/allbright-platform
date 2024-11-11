@@ -1,51 +1,49 @@
 import {
   GoogleSignin,
-  GoogleSigninButton,
   isErrorWithCode,
 } from "@react-native-google-signin/google-signin";
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+
+import config from "@/config";
+
+import GoogleSignIn from "./GoogleSignin";
 
 interface Props {
   handleToken: (token: string) => void;
+  isSignin: boolean;
 }
-
-const GoogleSignIn = (props: Props) => {
+GoogleSignin.configure({
+  offlineAccess: true,
+  webClientId: config.GOOGLE_CLIENT_ID,
+});
+const GoogleSignInContainer = (props: Props) => {
   const [isInProgress, setIsInProgress] = useState(false);
 
   const handleSignIn = async () => {
     setIsInProgress(true);
     try {
       await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      console.log(userInfo);
+      await GoogleSignin.signIn();
+      const accessToken = (await GoogleSignin.getTokens()).accessToken;
+
+      if (accessToken) props.handleToken(accessToken);
+      else throw new Error("accessToken not found");
     } catch (error) {
-      console.log(isErrorWithCode(error));
-      console.error(error);
+      if (isErrorWithCode(error)) {
+        throw new Error(error.code);
+      }
     } finally {
       setIsInProgress(false);
     }
   };
 
   return (
-    <View style={styles.container}>
-      <GoogleSigninButton
-        size={GoogleSigninButton.Size.Wide}
-        color={GoogleSigninButton.Color.Dark}
-        onPress={handleSignIn}
-        disabled={isInProgress}
-      />
-    </View>
+    <GoogleSignIn
+      isSignin={props.isSignin}
+      onPress={handleSignIn}
+      loading={isInProgress}
+    />
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    maxHeight: 45,
-  },
-});
-
-export default GoogleSignIn;
+export default GoogleSignInContainer;

@@ -1,20 +1,22 @@
+import { router } from "expo-router";
 import styled from "styled-components/native";
 
 import HeaderBackButton from "@/components/HeaderBackButton";
 
 interface Props {
-  onBackPress?: () => void;
   children: React.ReactNode;
 }
 
-export const OnboadingPageLayout = ({ children, onBackPress }: Props) => {
-  // id
-  // const user = useUserProfile();
+export const OnboadingPageLayout = ({ children }: Props) => {
   return (
     <Main>
       <Container>
         <HeaderButtonsContainer>
-          {onBackPress && <HeaderBackButton onBackPress={onBackPress} />}
+          <HeaderBackButton
+            onBackPress={() => {
+              router.back();
+            }}
+          />
         </HeaderButtonsContainer>
         <ContentWrap>{children}</ContentWrap>
       </Container>

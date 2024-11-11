@@ -8,8 +8,8 @@ import Providers from "@/utils/providers";
 describe("RegisterProfileForm", () => {
   const props = {
     inputs: {
-      first_name: undefined,
-      last_name: undefined,
+      firstName: undefined,
+      lastName: undefined,
       city: undefined,
       country: undefined,
       termsAgreed: undefined,
@@ -17,8 +17,8 @@ describe("RegisterProfileForm", () => {
       thirdPartyAgreed: undefined,
     },
     errors: {
-      first_name: undefined,
-      last_name: undefined,
+      firstName: undefined,
+      lastName: undefined,
       city: undefined,
       country: undefined,
       termsAgreed: undefined,
@@ -26,14 +26,14 @@ describe("RegisterProfileForm", () => {
       thirdPartyAgreed: undefined,
     },
     blurFuncs: {
-      first_name: jest.fn(),
-      last_name: jest.fn(),
+      firstName: jest.fn(),
+      lastName: jest.fn(),
       city: jest.fn(),
       country: jest.fn(),
     },
     changeTextFuncs: {
-      first_name: jest.fn(),
-      last_name: jest.fn(),
+      firstName: jest.fn(),
+      lastName: jest.fn(),
       city: jest.fn(),
       country: jest.fn(),
       termsAgreed: jest.fn(),
@@ -55,22 +55,23 @@ describe("RegisterProfileForm", () => {
           <RegisterProfileForm {...props} />
         </Providers>
       );
+      jest.clearAllMocks();
     });
 
-    it("when the first_name input is updated", () => {
+    it("when the firstName input is updated", () => {
       const expectedFirstName = faker.person.firstName();
       const firstNameInput = screen.getByText("First Name");
       fireEvent.changeText(firstNameInput, expectedFirstName);
-      expect(props.changeTextFuncs.first_name).toHaveBeenCalledWith(
+      expect(props.changeTextFuncs.firstName).toHaveBeenCalledWith(
         expectedFirstName
       );
     });
 
-    it("when the last_name input is updated", () => {
+    it("when the lastName input is updated", () => {
       const expectedLastName = faker.person.lastName();
       const lastNameInput = screen.getByText("Last Name");
       fireEvent.changeText(lastNameInput, expectedLastName);
-      expect(props.changeTextFuncs.last_name).toHaveBeenCalledWith(
+      expect(props.changeTextFuncs.lastName).toHaveBeenCalledWith(
         expectedLastName
       );
     });
@@ -127,12 +128,12 @@ describe("RegisterProfileForm", () => {
       );
     });
 
-    it("when an first_name error exists", () => {
+    it("when an firstName error exists", () => {
       const updatedProps = {
         ...props,
         errors: {
           ...props.errors,
-          first_name: "The first_name field is required",
+          firstName: "The firstName field is required",
         },
       };
 
@@ -142,15 +143,15 @@ describe("RegisterProfileForm", () => {
         </Providers>
       );
 
-      expect(screen.queryByText(updatedProps.errors.first_name)).not.toBeNull();
+      expect(screen.queryByText(updatedProps.errors.firstName)).not.toBeNull();
     });
 
-    it("when last_name error exists", () => {
+    it("when lastName error exists", () => {
       const updatedProps = {
         ...props,
         errors: {
           ...props.errors,
-          last_name: "The last_name field is required",
+          lastName: "The lastName field is required",
         },
       };
 
@@ -160,40 +161,7 @@ describe("RegisterProfileForm", () => {
         </Providers>
       );
 
-      expect(screen.queryByText(updatedProps.errors.last_name)).not.toBeNull();
-    });
-  });
-
-  describe("enables the submit button when isFormValid is true", () => {
-    let screen: any;
-
-    beforeEach(() => {
-      screen = render(
-        <Providers>
-          <RegisterProfileForm {...props} />
-        </Providers>
-      );
-    });
-
-    it("when an email is focussed, then unfocussed", () => {
-      const submit = screen.getByText("Next");
-
-      fireEvent.press(submit);
-      expect(props.onPress).not.toHaveBeenCalled();
-
-      const updatedProps = {
-        ...props,
-        isFormValid: true,
-      };
-
-      screen.rerender(
-        <Providers>
-          <RegisterProfileForm {...updatedProps} />
-        </Providers>
-      );
-
-      fireEvent.press(submit);
-      expect(props.onPress).toHaveBeenCalled();
+      expect(screen.queryByText(updatedProps.errors.lastName)).not.toBeNull();
     });
   });
 });

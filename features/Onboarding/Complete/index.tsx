@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 
 import { CM, H3 } from "@/components/Typography";
-import { OnboadingPageLayout } from "@/features/Onboarding/layout";
+import { OnboadingPageLayout } from "@/features/Onboarding/OnboardingLayout";
 import Button from "@/forms/components/Button";
 
 const Welcome: FunctionComponent = () => {

@@ -24,10 +24,10 @@ export const RegisterProfileForm = ({
       placeholder="First Name"
       inputMode="text"
       textContentType="name"
-      value={inputs.first_name}
-      error={errors.first_name}
-      onBlur={blurFuncs.first_name}
-      onChangeText={changeTextFuncs.first_name}
+      value={inputs.firstName}
+      error={errors.firstName}
+      onBlur={blurFuncs.firstName}
+      onChangeText={changeTextFuncs.firstName}
       testID="RegisterProfileForm:FirstName"
     />
     <Space height={10} />
@@ -35,10 +35,10 @@ export const RegisterProfileForm = ({
       placeholder="Last Name"
       inputMode="text"
       textContentType="name"
-      value={inputs.last_name}
-      error={errors.last_name}
-      onBlur={blurFuncs.last_name}
-      onChangeText={changeTextFuncs.last_name}
+      value={inputs.lastName}
+      error={errors.lastName}
+      onBlur={blurFuncs.lastName}
+      onChangeText={changeTextFuncs.lastName}
       testID="RegisterProfileForm:LastName"
     />
     <Space height={10} />
@@ -81,7 +81,6 @@ export const RegisterProfileForm = ({
     />
     <Space height={10} />
     <Button
-      disabled={!isFormValid}
       isLoading={isPending}
       onPress={onPress}
       testID="RegisterProfileForm:Submit">

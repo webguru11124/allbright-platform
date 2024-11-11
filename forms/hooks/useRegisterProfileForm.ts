@@ -2,7 +2,8 @@ import { useRouter } from "expo-router";
 import * as Joi from "joi";
 import * as React from "react";
 
-import { registerProfileAdaptor } from "@/forms/adaptors";
+import { registerProfileAdaptor, RegisterProfileInput } from "@/forms/adaptors";
+import { useUserProfile } from "@/hooks/resources/useUserProfile";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 
 import useForm from "./useForm";
@@ -10,6 +11,8 @@ import useForm from "./useForm";
 const useRegisterProfileForm = (
   registerProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
+  const { data: user } = useUserProfile();
+
   const {
     inputs,
     errors,
@@ -18,8 +21,14 @@ const useRegisterProfileForm = (
     postBody,
     isFormValid,
     validateAllInputs,
+    reset,
     showErrorMessage,
   } = useForm(registerProfileSchema);
+
+  React.useEffect(() => {
+    if (user) reset(user);
+  }, [user, reset]);
+
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
@@ -30,7 +39,7 @@ const useRegisterProfileForm = (
       if (!validateAllInputs())
         throw new Error("Please fill out all required fields");
       setLoading(true);
-      const input = postBody as any;
+      const input = postBody as RegisterProfileInput;
       let user = registerProfileAdaptor(input);
 
       await mutateUpdateUserAsync(user);

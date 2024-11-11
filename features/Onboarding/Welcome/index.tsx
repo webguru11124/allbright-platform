@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 
 import Link from "@/components/Link";
 import { CM, H2Rox } from "@/components/Typography";
-import { OnboadingPageLayout } from "@/features/Onboarding/layout";
+import { OnboadingPageLayout } from "@/features/Onboarding/OnboardingLayout";
 import { recommendationColour } from "@/theme";
 
 export default function WelcomeScreen() {

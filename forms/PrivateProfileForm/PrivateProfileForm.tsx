@@ -22,6 +22,7 @@ const PrivateProfileForm = ({
     <InterestsSection
       updateField={changeTextFuncs.interests}
       error={errors.interests}
+      field={inputs.interests}
     />
     <Space height={10} />
     <JobStatusPicker
@@ -52,6 +53,7 @@ const PrivateProfileForm = ({
     />
     <Space height={10} />
     <EthnicGroupsSection
+      field={inputs.ethnicGroups ?? []}
       setField={changeTextFuncs.ethnicGroups}
       error={errors.ethnicGroups}
     />

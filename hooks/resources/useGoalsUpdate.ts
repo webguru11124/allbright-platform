@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import UserClient from "@/utils/client/user/UserClient";
 
-export const useUserUpdate = () => {
+export const useCareerGoalsUpdate = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["updateUser"],

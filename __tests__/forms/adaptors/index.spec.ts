@@ -14,8 +14,8 @@ describe.each<TestItem>([
   {
     description: "",
     inputs: {
-      first_name: "Steve",
-      last_name: "Jobs",
+      firstName: "Steve",
+      lastName: "Jobs",
       email: "steve@jobs.com",
       city: "London",
       country: "US",

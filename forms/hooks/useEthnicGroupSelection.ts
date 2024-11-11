@@ -1,7 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export const useEthnicGroups = (setField: (value: any[]) => void) => {
-  const [ethnicGroupsState, setEthnicGroupsState] = useState<any[]>([]);
+export const useEthnicGroups = ({
+  field = [],
+  setField,
+}: {
+  field: any[];
+  setField: (value: any[]) => void;
+}) => {
+  const [ethnicGroupsState, setEthnicGroupsState] = useState<any[]>(field);
+
+  useEffect(() => {
+    if (field.length > 0) setEthnicGroupsState(field);
+  }, [field]);
 
   const checkIfChecked = (elm: any) =>
     !!ethnicGroupsState.filter((item) => item.title === elm.title).length;

@@ -1,11 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
 
+import { UserModel } from "@/types/user";
 import UserClient from "@/utils/client/user/UserClient";
+import { getUserId } from "@/utils/token";
 
-export const useUserProfile = (id: string) => {
-  return useQuery({
-    queryKey: ["user", id],
-    queryFn: () => new UserClient().findUserById(id),
-    enabled: !!id,
+export const useUserProfile = () => {
+  const { data: user } = useQuery({
+    queryKey: ["user"],
+    queryFn: async () => {
+      const id = await getUserId();
+      if (!id) return null;
+      return await new UserClient().findUserById(id!);
+    },
+    select: (data: UserModel | undefined | null) => ({
+      ...data,
+      ethnicGroups: data?.ethnicGroups ?? [],
+      careerGoals: data?.careerGoals ?? [],
+      goals: data?.goals ?? [],
+    }),
   });
+
+  return {
+    data: user,
+  };
 };

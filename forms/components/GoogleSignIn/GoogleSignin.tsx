@@ -1,21 +1,31 @@
 import MaterialIcons from "@expo/vector-icons/FontAwesome";
 import React from "react";
-import { Text } from "react-native";
+import { Platform, Text } from "react-native";
 import styled from "styled-components/native";
 
 import Button from "@/forms/components/Button";
 
-const FacebookSignIn = ({ onPress }: { onPress: GestureEvent }) => {
+const GoogleSignIn = ({
+  onPress,
+  loading,
+  isSignin,
+}: {
+  onPress: GestureEvent;
+  loading: boolean;
+  isSignin: boolean;
+}) => {
   return (
-    <StyledButton onPress={onPress}>
+    <StyledButton
+      onPress={onPress}
+      isLoading={loading}>
       <VerticalCenter>
-        <FacebookIcon
-          name={"facebook-square"}
+        <GoogleIcon
+          name={"google"}
           size={24}
           color={"white"}
         />
         <Text>
-          Login with <Bold>Facebook</Bold>
+          {isSignin ? "Sign in" : "Sign up"} with <Bold>Google</Bold>
         </Text>
       </VerticalCenter>
     </StyledButton>
@@ -23,10 +33,10 @@ const FacebookSignIn = ({ onPress }: { onPress: GestureEvent }) => {
 };
 
 const StyledButton = styled(Button)`
-  width: 396px;
+  width: ${Platform.OS !== "web" ? "304px" : "396px"};
   height: 45px;
   margin-top: 8px;
-  background-color: #5890ff;
+  background-color: #4285f4;
   border-radius: 4px;
   text-align: center;
 `;
@@ -37,7 +47,7 @@ const VerticalCenter = styled.View`
   align-items: center;
 `;
 
-const FacebookIcon = styled(MaterialIcons)`
+const GoogleIcon = styled(MaterialIcons)`
   margin-right: 10px;
 `;
 
@@ -45,4 +55,4 @@ const Bold = styled.Text`
   font-weight: 800;
 `;
 
-export default FacebookSignIn;
+export default GoogleSignIn;

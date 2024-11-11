@@ -82,8 +82,8 @@ describe("RegisterProfileForm", () => {
     const FIRST_NAME = "";
     const LAST_NAME = "";
 
-    const EXPECTED_FIRST_NAME = `"First_name" is  not allowed to be empty`;
-    const EXPECTED_LAST_NAME = `"Last_name" is not allowed to be empty`;
+    const EXPECTED_FIRST_NAME = `"FirstName" is  not allowed to be empty`;
+    const EXPECTED_LAST_NAME = `"LastName" is not allowed to be empty`;
 
     renderRouter({
       index: jest.fn(() => (

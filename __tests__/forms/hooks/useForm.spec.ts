@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react-native";
 import Joi from "joi";
-import _ from "lodash";
+import _, { lastIndexOf } from "lodash";
 
 import useForm from "@/forms/hooks/useForm";
 
@@ -62,16 +62,15 @@ describe("useForms", () => {
       it("adds default values to the provided properties", () => {
         const { result } = renderHook(() =>
           useForm(baseSchema, {
-            default: { first_name: "Steve", password: "Help!" },
+            default: { firstName: "Steve", lastName: "Help!" },
           })
         );
 
         waitFor(() => {
           expect(result.current.inputs).toStrictEqual({
-            first_name: "Steve",
-            last_name: undefined,
+            firstName: "Steve",
+            lastName: undefined,
             email: undefined,
-            password: "Help!",
           });
         });
       });

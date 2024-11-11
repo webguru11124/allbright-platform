@@ -6,19 +6,20 @@ import { ethnicGroups } from "@/utils/data/ethnicGroups";
 import EthnicGroupsSection from "./EthnicGroupSelection";
 
 interface EthnicGroupsSectionProps {
+  field?: (typeof ethnicGroups)[number][];
   setField: (value: (typeof ethnicGroups)[number][]) => void;
   error?: string;
 }
 
 const EthnicGroupsSectionContainer: FunctionComponent<
   EthnicGroupsSectionProps
-> = (props) => {
+> = ({ field = [], setField, error }) => {
   const { checkIfChecked, checkIfDisabled, onEthnicGroupsChange } =
-    useEthnicGroups(props.setField);
+    useEthnicGroups({ field: field, setField: setField });
 
   return (
     <EthnicGroupsSection
-      error={props.error}
+      error={error}
       checkIfChecked={checkIfChecked}
       checkIfDisabled={checkIfDisabled}
       onEthnicGroupsChange={onEthnicGroupsChange}
