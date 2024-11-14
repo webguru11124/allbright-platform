@@ -3,7 +3,7 @@ import { OnboadingPageLayout } from "@/features/Onboarding/OnboardingLayout";
 import RegisterProfileForm from "@/forms/RegisterProfileForm";
 import colours from "@/theme";
 
-const PublicProfile = () => {
+const RegisterProfile = () => {
   return (
     <OnboadingPageLayout>
       <H3>Section 1: Register Profile</H3>
@@ -18,4 +18,4 @@ const PublicProfile = () => {
   );
 };
 
-export default PublicProfile;
+export default RegisterProfile;

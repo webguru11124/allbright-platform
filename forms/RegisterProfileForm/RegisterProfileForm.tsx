@@ -15,7 +15,6 @@ export const RegisterProfileForm = ({
   errors,
   blurFuncs,
   changeTextFuncs,
-  isFormValid,
   isPending,
   onPress,
 }: FormProps & { onBackPress?: () => void }) => (

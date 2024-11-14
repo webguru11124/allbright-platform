@@ -1,11 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 
 import { UserModel } from "@/types/user";
 import UserClient from "@/utils/client/user/UserClient";
 import { getUserId } from "@/utils/token";
 
 export const useUserProfile = () => {
-  const { data: user } = useQuery({
+  const { data: user } = useSuspenseQuery({
     queryKey: ["user"],
     queryFn: async () => {
       const id = await getUserId();

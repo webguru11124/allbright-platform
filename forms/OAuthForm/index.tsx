@@ -28,7 +28,7 @@ export const OAuthForm = (props: Props) => {
       />
       <FacebookSignIn
         isSignin={!isSignup}
-        onPress={facebookLogin}
+        handleToken={facebookLogin}
       />
       <LinkedInSignIn
         isSignin={!isSignup}
