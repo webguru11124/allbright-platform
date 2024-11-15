@@ -2,7 +2,7 @@ import { router } from "expo-router";
 import Joi from "joi";
 
 import useForm from "@/forms/hooks/useForm";
-import { Login, useGoogleSignIn, useSignIn } from "@/hooks/resources/useAuth";
+import { Login, useSignIn } from "@/hooks/resources/useAuth";
 import { setToken } from "@/utils/token";
 
 const useLoginForm = (loginSchema: Joi.PartialSchemaMap<any> | undefined) => {
@@ -18,9 +18,6 @@ const useLoginForm = (loginSchema: Joi.PartialSchemaMap<any> | undefined) => {
 
   const { mutate: signIn, isPending } = useSignIn();
 
-  const { mutate: googleSignIn, isPending: isPendingGoogleSignIn } =
-    useGoogleSignIn();
-
   const onPress = () => {
     if (isFormValid) {
       signIn(postBody as Login, {
@@ -33,26 +30,14 @@ const useLoginForm = (loginSchema: Joi.PartialSchemaMap<any> | undefined) => {
     }
   };
 
-  const onGoogleSignIn = (token: string) => {
-    console.log("call api", token);
-    googleSignIn(token, {
-      onSuccess: (response) => {
-        setToken(response.data as unknown as string);
-        router.replace("/home");
-      },
-      onError: (error: any) => showErrorMessage(error.message),
-    });
-  };
-
   return {
     inputs,
     errors,
     blurFuncs,
     changeTextFuncs,
     isFormValid,
-    isPending: isPending || isPendingGoogleSignIn,
+    isPending: isPending,
     onPress,
-    onGoogleSignIn,
   };
 };
 

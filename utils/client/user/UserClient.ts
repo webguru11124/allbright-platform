@@ -1,5 +1,6 @@
 import api from "@/lib/api";
 import { UserModel } from "@/types/user";
+import { CareerGoalType } from "@/utils/data/careerGoals";
 import { getUserId } from "@/utils/token";
 
 class UserClient {
@@ -25,6 +26,20 @@ class UserClient {
       });
       return response.data;
     }
+  }
+
+  public async getUserGoals() {
+    const userId = await getUserId();
+    if (!userId) return Promise.reject("Invalid User Id");
+    const { data } = await api.get(`/v1/users/${userId}/goals`);
+    return data;
+  }
+
+  public async updateUserGoals(goals: CareerGoalType[]) {
+    const userId = await getUserId();
+    if (!userId) return Promise.reject("Invalid User Id");
+    const response = await api.put(`/v1/users/${userId}/goals`, { goals });
+    return response.data;
   }
 }
 export default UserClient;

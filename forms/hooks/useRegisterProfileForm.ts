@@ -2,19 +2,17 @@ import { useRouter } from "expo-router";
 import * as Joi from "joi";
 import * as React from "react";
 
-import {
-  publicProfileAdaptor,
-  PublicProfileInput,
-  registerProfileAdaptor,
-} from "@/forms/adaptors";
+import { registerProfileAdaptor, RegisterProfileInput } from "@/forms/adaptors";
+import { useUserProfile } from "@/hooks/resources/useUserProfile";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
-import { LocalImageType } from "@/types/files/localImage";
 
 import useForm from "./useForm";
 
 const useRegisterProfileForm = (
   registerProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
+  const { data: user } = useUserProfile();
+
   const {
     inputs,
     errors,
@@ -23,10 +21,14 @@ const useRegisterProfileForm = (
     postBody,
     isFormValid,
     validateAllInputs,
+    reset,
     showErrorMessage,
-  } = useForm(registerProfileSchema, {
-    default: {},
-  });
+  } = useForm(registerProfileSchema);
+
+  React.useEffect(() => {
+    if (user) reset(user);
+  }, [user]);
+
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
@@ -37,12 +39,12 @@ const useRegisterProfileForm = (
       if (!validateAllInputs())
         throw new Error("Please fill out all required fields");
       setLoading(true);
-      const input = postBody as any;
-      let user = registerProfileAdaptor(input);
+      const input = postBody as RegisterProfileInput;
+      const output = registerProfileAdaptor(input);
 
-      await mutateUpdateUserAsync(user);
+      await mutateUpdateUserAsync({ ...output });
 
-      router.replace("/onboarding/private-profile");
+      router.replace("/onboarding/public-profile");
     } catch (error: any) {
       showErrorMessage(error.message);
     } finally {

@@ -1,6 +1,5 @@
 import { CareerGoalType } from "@/utils/data/careerGoals";
 import { cities } from "@/utils/data/cities";
-import { ethnicGroups } from "@/utils/data/ethnicGroups";
 import goals from "@/utils/data/goals";
 import industries from "@/utils/data/industries";
 import { InterestTitles } from "@/utils/data/interests";
@@ -26,7 +25,7 @@ export type UserModel = {
   jobStatus: (typeof jobStatus)[number] | null;
   dateOfBirth: Date | null;
   organisationSize: (typeof organisationSize)[number] | null;
-  ethnicGroups?: (typeof ethnicGroups)[number][];
+  ethnicGroups?: string[];
   careerGoals: CareerGoalType[] | null;
   agreedToPledge: boolean;
   savedCourses?: string[];

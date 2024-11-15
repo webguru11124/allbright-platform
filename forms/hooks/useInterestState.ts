@@ -12,6 +12,10 @@ export const useInterestState = ({
 }: useInterestStateProps) => {
   const [interestsState, setInterestState] =
     React.useState<(typeof interests)[number][]>(defaultinterests);
+
+  React.useEffect(() => {
+    if (defaultinterests.length > 0) setInterestState(defaultinterests);
+  }, [defaultinterests]);
   const interestIsSelected = (interest: (typeof interests)[number]) =>
     interestsState?.includes(interest);
 

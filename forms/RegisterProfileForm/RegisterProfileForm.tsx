@@ -1,9 +1,9 @@
 import { SafeAreaView } from "react-native";
-import styled from "styled-components/native";
 
 import Space from "@/components/Space";
 import AgreeTermsCheckBox from "@/forms/components/AgreeTermsCheckBox";
 import Button from "@/forms/components/Button";
+import CityPicker from "@/forms/components/CityPicker";
 import CountryPicker from "@/forms/components/CountryPicker";
 import MarketingAgreedCheckBox from "@/forms/components/MarketingAgreedCheckBox";
 import TextInput from "@/forms/components/TextInput";
@@ -15,7 +15,6 @@ export const RegisterProfileForm = ({
   errors,
   blurFuncs,
   changeTextFuncs,
-  isFormValid,
   isPending,
   onPress,
 }: FormProps & { onBackPress?: () => void }) => (
@@ -24,10 +23,10 @@ export const RegisterProfileForm = ({
       placeholder="First Name"
       inputMode="text"
       textContentType="name"
-      value={inputs.first_name}
-      error={errors.first_name}
-      onBlur={blurFuncs.first_name}
-      onChangeText={changeTextFuncs.first_name}
+      value={inputs.firstName}
+      error={errors.firstName}
+      onBlur={blurFuncs.firstName}
+      onChangeText={changeTextFuncs.firstName}
       testID="RegisterProfileForm:FirstName"
     />
     <Space height={10} />
@@ -35,23 +34,11 @@ export const RegisterProfileForm = ({
       placeholder="Last Name"
       inputMode="text"
       textContentType="name"
-      value={inputs.last_name}
-      error={errors.last_name}
-      onBlur={blurFuncs.last_name}
-      onChangeText={changeTextFuncs.last_name}
+      value={inputs.lastName}
+      error={errors.lastName}
+      onBlur={blurFuncs.lastName}
+      onChangeText={changeTextFuncs.lastName}
       testID="RegisterProfileForm:LastName"
-    />
-    <Space height={10} />
-    <Space height={10} />
-    <TextInput
-      placeholder="City"
-      inputMode="text"
-      textContentType="addressCity"
-      value={inputs.city}
-      error={errors.city}
-      onBlur={blurFuncs.city}
-      onChangeText={changeTextFuncs.city}
-      testID="RegisterProfileForm:City"
     />
     <Space height={10} />
     <CountryPicker
@@ -61,6 +48,16 @@ export const RegisterProfileForm = ({
       onBlur={blurFuncs.country}
       onChangeText={changeTextFuncs.country}
       testID="RegisterProfileForm:Country"
+    />
+    <Space height={10} />
+    <CityPicker
+      placeholder="City"
+      value={inputs.city}
+      error={errors.city}
+      onBlur={blurFuncs.city}
+      onChangeText={changeTextFuncs.city}
+      testID="PublicProfileForm:City"
+      selectedCountry={inputs.country}
     />
     <Space height={10} />
     <AgreeTermsCheckBox
@@ -83,15 +80,11 @@ export const RegisterProfileForm = ({
     />
     <Space height={10} />
     <Button
-      disabled={!isFormValid}
       isLoading={isPending}
       onPress={onPress}
       testID="RegisterProfileForm:Submit">
-      Submit
+      Next
     </Button>
   </SafeAreaView>
 );
-const BackButtonContainer = styled.View`
-  align-items: start;
-`;
 export default RegisterProfileForm;

@@ -1,7 +1,7 @@
 import { Dictionary } from "lodash";
 
 export type FormProps = {
-  inputs: Dictionary<string | undefined>;
+  inputs: Dictionary<string | undefined | any>;
   errors: Dictionary<string | undefined>;
   blurFuncs: Dictionary<SyntheticEvent>;
   changeTextFuncs: Dictionary<SyntheticEvent>;

@@ -8,3 +8,22 @@ jest.mock("react-native-device-info", () => {
     hasNotch: () => false,
   };
 });
+
+jest.mock("react-native-fbsdk-next");
+
+jest.mock("@react-native-google-signin/google-signin", () => {
+  return {
+    GoogleSignin: {
+      configure: jest.fn(),
+      hasPlayServices: jest.fn().mockResolvedValue(true),
+      signIn: jest.fn().mockResolvedValue({
+        idToken: "mock-id-token",
+        user: {
+          email: "test@example.com",
+          id: "123",
+        },
+      }),
+      signOut: jest.fn().mockResolvedValue(null),
+    },
+  };
+});

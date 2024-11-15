@@ -12,6 +12,10 @@ export const useGoalState = ({
 }: useGoalsProps) => {
   const [goalsState, setGoalsState] =
     React.useState<(typeof goals)[number][]>(defaultGoals);
+
+  React.useEffect(() => {
+    if (defaultGoals.length > 0) setGoalsState(defaultGoals);
+  }, [defaultGoals]);
   const goalIsSelected = (goal: (typeof goals)[number]) =>
     goalsState?.includes(goal);
 

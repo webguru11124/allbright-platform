@@ -5,8 +5,8 @@ import _ from "lodash";
 import useForm from "@/forms/hooks/useForm";
 
 const baseSchema = {
-  first_name: Joi.string().min(1).required(),
-  last_name: Joi.string().min(1).required(),
+  firstName: Joi.string().min(1).required(),
+  lastName: Joi.string().min(1).required(),
   email: Joi.string()
     .email({ tlds: { allow: false } })
     .required(),
@@ -14,8 +14,8 @@ const baseSchema = {
 };
 
 const obj = {
-  first_name: undefined,
-  last_name: undefined,
+  firstName: undefined,
+  lastName: undefined,
   email: undefined,
   password: undefined,
 };
@@ -62,16 +62,21 @@ describe("useForms", () => {
       it("adds default values to the provided properties", () => {
         const { result } = renderHook(() =>
           useForm(baseSchema, {
-            default: { first_name: "Steve", password: "Help!" },
+            default: {
+              firstName: "Steve",
+              lastName: "Help!",
+              email: "sdf@sdf.com",
+              password: "abc",
+            },
           })
         );
 
         waitFor(() => {
           expect(result.current.inputs).toStrictEqual({
-            first_name: "Steve",
-            last_name: undefined,
-            email: undefined,
-            password: "Help!",
+            firstName: "Steve",
+            lastName: "Help!",
+            email: "sdf@sdf.com",
+            password: "abc",
           });
         });
       });

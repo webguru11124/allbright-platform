@@ -9,8 +9,8 @@ import { jobStatus } from "@/utils/data/jobStatus";
 import organisationSize from "@/utils/data/organisationSize";
 
 export type RegisterInput = {
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   city: string;
   country: string;
@@ -34,8 +34,8 @@ export type RegisterOutput = {
 };
 
 export const registrationAdaptor = (postBody: RegisterInput) => ({
-  firstName: postBody.first_name,
-  lastName: postBody.last_name,
+  firstName: postBody.firstName,
+  lastName: postBody.lastName,
   email: postBody.email,
   city: postBody.city,
   country: postBody.country,
@@ -56,12 +56,12 @@ export type PrivateProfileInput = {
 
 export type PublicProfileInput = {
   city: (typeof cities)[number]["city"];
-  job_title: string;
-  company_name: string;
-  job_level: (typeof jobLevels)[number];
-  industry: string;
+  jobTitle: string;
+  jobCompany: string;
+  jobLevel: (typeof jobLevels)[number];
+  jobIndustry: string;
   goals: (typeof goals)[number][];
-  user_biography: string;
+  bio: string;
   profile_image: ProfileImage;
 };
 
@@ -77,44 +77,41 @@ export type PublicProfileOutput = {
 };
 
 export type RegisterProfileInput = {
-  first_name: string;
-  last_name: string;
-  country: string;
-  termsAgreed: boolean;
-  marketingAgreed: boolean;
-  thirdPartyAgreed: boolean;
-};
-
-export type RegisterProfileOutput = {
   firstName: string;
   lastName: string;
   country: string;
   termsAgreed: boolean;
   marketingAgreed: boolean;
   thirdPartyAgreed: boolean;
+  city?: (typeof cities)[number]["city"];
+};
+
+export type RegisterProfileOutput = {
+  firstName: string;
+  lastName: string;
+  country: string;
+  city?: (typeof cities)[number]["city"];
 };
 
 export const publicProfileAdaptor = (
   postBody: PublicProfileInput
 ): PublicProfileOutput => ({
   city: postBody.city,
-  jobTitle: postBody.job_title,
-  jobCompany: postBody.company_name,
-  jobLevel: postBody.job_level,
-  jobIndustry: postBody.industry,
+  jobTitle: postBody.jobTitle,
+  jobCompany: postBody.jobCompany,
+  jobLevel: postBody.jobLevel,
+  jobIndustry: postBody.jobIndustry,
   goals: postBody.goals,
-  bio: postBody.user_biography,
+  bio: postBody.bio,
 });
 
 export const registerProfileAdaptor = (
   postBody: RegisterProfileInput
 ): RegisterProfileOutput => ({
-  firstName: postBody.first_name,
-  lastName: postBody.last_name,
+  firstName: postBody.firstName,
+  lastName: postBody.lastName,
   country: postBody.country,
-  termsAgreed: postBody.termsAgreed,
-  marketingAgreed: postBody.marketingAgreed,
-  thirdPartyAgreed: postBody.thirdPartyAgreed,
+  city: postBody.city,
 });
 
 export const privateProfileAdaptor = (
@@ -125,7 +122,7 @@ export const privateProfileAdaptor = (
   salary: postBody.salary,
   organisationSize: postBody.organisationSize,
   dateOfBirth: postBody.dateOfBirth,
-  ethnicGroups: postBody.ethnicGroups,
+  ethnicGroups: postBody.ethnicGroups.map((e) => e.value),
 });
 
 export const profileGoalsAdapter = (
@@ -158,5 +155,5 @@ export type PrivateProfileOutput = {
   salary: string;
   organisationSize: (typeof organisationSize)[number] | null;
   dateOfBirth: Date;
-  ethnicGroups: (typeof ethnicGroups)[number][];
+  ethnicGroups: string[];
 };

@@ -27,9 +27,9 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
         throw new Error("Please fill out all required fields");
       setLoading(true);
       const input = postBody;
-      const user = pledgeAdapter(input as PledgeInput);
+      const output = pledgeAdapter(input as PledgeInput);
 
-      await mutateUpdateUserAsync(user);
+      await mutateUpdateUserAsync({ ...output });
       router.replace("/onboarding/complete");
     } catch (error: any) {
       showErrorMessage(error.message);

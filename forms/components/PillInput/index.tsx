@@ -65,7 +65,7 @@ S.Container = styled.Pressable<StyleProps>`
   `}
 `;
 
-S.Label = styled.View<StyleProps>`
+S.Label = styled.Text<StyleProps>`
   padding: 0 20px;
   z-index: 1;
   font-size: 1.4rem;

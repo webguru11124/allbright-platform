@@ -1,7 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export const useEthnicGroups = (setField: (value: any[]) => void) => {
-  const [ethnicGroupsState, setEthnicGroupsState] = useState<any[]>([]);
+import { ethnicGroups } from "@/utils/data/ethnicGroups";
+
+type FieldsType = (typeof ethnicGroups)[number];
+
+export const useEthnicGroups = ({
+  field = [],
+  setField,
+}: {
+  field: FieldsType[];
+  setField: (value: FieldsType[]) => void;
+}) => {
+  const [ethnicGroupsState, setEthnicGroupsState] =
+    useState<FieldsType[]>(field);
+
+  useEffect(() => {
+    if (field.length > 0) setEthnicGroupsState(field);
+  }, [field]);
 
   const checkIfChecked = (elm: any) =>
     !!ethnicGroupsState.filter((item) => item.title === elm.title).length;
@@ -25,7 +40,6 @@ export const useEthnicGroups = (setField: (value: any[]) => void) => {
       setField(newGroups);
     } else if (elm.title === "Prefer not to say") {
       setEthnicGroupsState([elm]);
-      setField([elm]);
     } else {
       const filteredSelectedGroups = selectedGroups.filter(
         (item) => item.title !== elm.title

@@ -1,48 +1,56 @@
-import MaterialIcons from "@expo/vector-icons/FontAwesome";
+import * as AuthSession from "expo-auth-session";
+import * as WebBrowser from "expo-web-browser";
 import React from "react";
-import { Text } from "react-native";
-import styled from "styled-components/native";
 
-import Button from "@/forms/components/Button";
+import config from "@/config";
 
-const FacebookSignIn = ({ onPress }: { onPress: GestureEvent }) => {
+import FacebookSignIn from "./FacebookSignin";
+
+WebBrowser.maybeCompleteAuthSession();
+
+const CLIENT_ID = config.FACEBOOK_APP_ID!;
+const REDIRECT_URI = AuthSession.makeRedirectUri({
+  scheme: "allbright-platform",
+});
+const DISCOVERY = {
+  authorizationEndpoint: "https://www.facebook.com/v12.0/dialog/oauth",
+  tokenEndpoint: "https://graph.facebook.com/v12.0/oauth/access_token",
+};
+interface Props {
+  handleToken: (token: string) => Promise<void>;
+  isSignin: boolean;
+}
+const FacebookSignInContainer = (props: Props) => {
+  const [, , promptAsync] = AuthSession.useAuthRequest(
+    {
+      clientId: CLIENT_ID,
+      redirectUri: REDIRECT_URI,
+      scopes: ["public_profile", "email"],
+      responseType: "token",
+      usePKCE: false,
+    },
+    DISCOVERY
+  );
+  const [loading, setLoading] = React.useState(false);
+
+  const handlePress = async () => {
+    const response = await promptAsync();
+    if (response?.type === "success") {
+      const { access_token } = response.params;
+      // Handle the access token, e.g., send it to your backend for verification
+      setLoading(true);
+      props.handleToken(access_token).finally(() => {
+        setLoading(false);
+      });
+    }
+  };
   return (
-    <StyledButton onPress={onPress}>
-      <VerticalCenter>
-        <FacebookIcon
-          name={"facebook-square"}
-          size={24}
-          color={"white"}
-        />
-        <Text>
-          Login with <Bold>Facebook</Bold>
-        </Text>
-      </VerticalCenter>
-    </StyledButton>
+    <FacebookSignIn
+      isSignin={props.isSignin}
+      onPress={handlePress}
+      loading={loading}
+    />
   );
 };
 
-const StyledButton = styled(Button)`
-  width: 396px;
-  height: 45px;
-  margin-top: 8px;
-  background-color: #5890ff;
-  border-radius: 4px;
-  text-align: center;
-`;
-
-const VerticalCenter = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const FacebookIcon = styled(MaterialIcons)`
-  margin-right: 10px;
-`;
-
-const Bold = styled.Text`
-  font-weight: 800;
-`;
-
-export default FacebookSignIn;
+export default FacebookSignInContainer;

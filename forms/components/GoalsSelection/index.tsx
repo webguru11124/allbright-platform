@@ -8,13 +8,15 @@ import GoalsSelection from "./GoalsSelection";
 interface GoalsSectionProps {
   updateField: (value: (typeof goals)[number][]) => void;
   error?: string;
+  field?: (typeof goals)[number][];
 }
 
 const GoalsSectionContainer: FunctionComponent<GoalsSectionProps> = ({
   updateField,
+  field = [],
   error,
 }) => {
-  const props = useGoalState({ updateField: updateField });
+  const props = useGoalState({ goals: field, updateField: updateField });
   return (
     <GoalsSelection
       {...props}

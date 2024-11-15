@@ -1,4 +1,4 @@
-import { renderRouter, screen } from "expo-router/testing-library";
+import { renderRouter, screen, waitFor } from "expo-router/testing-library";
 
 import PublicProfile from "@/features/Onboarding/PublicProfile";
 import Welcome from "@/features/Onboarding/Welcome";
@@ -16,7 +16,7 @@ describe("Onboarding", () => {
 
     it(`should:
     - render the Welcome feature
-    `, () => {
+    `, async () => {
       const expectedText = [
         /welcome to allbright/i,
         /let's get started on personalising your experience/i,
@@ -26,8 +26,9 @@ describe("Onboarding", () => {
         /will remain private. This information will never be shared with anyone else./i,
         / allBright will use it to tailor your experience on the platform./i,
       ];
-
-      expect(screen.getByText(expectedText[0])).not.toBeNull();
+      await waitFor(() => {
+        expect(screen.getByText(expectedText[0])).not.toBeNull();
+      });
       expect(screen.getByText(expectedText[1])).not.toBeNull();
       expect(screen.getByText(expectedText[2])).not.toBeNull();
       expect(screen.getByText(expectedText[3])).not.toBeNull();
@@ -52,7 +53,7 @@ describe("Onboarding", () => {
 
     it(`should:
     - render the PublicProfile feature
-    `, () => {
+    `, async () => {
       const expectedText = [
         /section 1: public profile/i,
         /step 1 of 3/i,
@@ -62,8 +63,9 @@ describe("Onboarding", () => {
         /i do not wish to use a photo/i,
         /biography/i,
       ];
-
-      expect(screen.getByText(expectedText[0])).not.toBeNull();
+      await waitFor(() => {
+        expect(screen.getByText(expectedText[0])).not.toBeNull();
+      });
       expect(screen.getByText(expectedText[1])).not.toBeNull();
       expect(screen.getByText(expectedText[2])).not.toBeNull();
       expect(screen.getByText(expectedText[3])).not.toBeNull();

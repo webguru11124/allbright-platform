@@ -3,12 +3,8 @@ import styled from "styled-components/native";
 
 import HeaderBackButton from "@/components/HeaderBackButton";
 import Space from "@/components/Space";
-import AgreeTermsCheckBox from "@/forms/components/AgreeTermsCheckBox";
 import Button from "@/forms/components/Button";
-import CountryPicker from "@/forms/components/CountryPicker";
-import MarketingAgreedCheckBox from "@/forms/components/MarketingAgreedCheckBox";
 import TextInput from "@/forms/components/TextInput";
-import ThirdPartyAgreedCheckBox from "@/forms/components/ThirdPartyAgreedCheckBox";
 import { FormProps } from "@/forms/types/forms.types";
 
 export const RegisterForm = ({
@@ -25,28 +21,6 @@ export const RegisterForm = ({
     <BackButtonContainer>
       <HeaderBackButton onBackPress={onBackPress} />
     </BackButtonContainer>
-    {/* <TextInput
-      placeholder="First Name"
-      inputMode="text"
-      textContentType="name"
-      value={inputs.first_name}
-      error={errors.first_name}
-      onBlur={blurFuncs.first_name}
-      onChangeText={changeTextFuncs.first_name}
-      testID="RegisterForm:FirstName"
-    />
-    <Space height={10} />
-    <TextInput
-      placeholder="Last Name"
-      inputMode="text"
-      textContentType="name"
-      value={inputs.last_name}
-      error={errors.last_name}
-      onBlur={blurFuncs.last_name}
-      onChangeText={changeTextFuncs.last_name}
-      testID="RegisterForm:LastName"
-    />
-    <Space height={10} /> */}
     <TextInput
       placeholder="Email"
       inputMode="email"
@@ -57,26 +31,6 @@ export const RegisterForm = ({
       onChangeText={changeTextFuncs.email}
       testID="RegisterForm:Email"
     />
-    {/* <Space height={10} />
-    <TextInput
-      placeholder="City"
-      inputMode="text"
-      textContentType="addressCity"
-      value={inputs.city}s
-      error={errors.city}
-      onBlur={blurFuncs.city}
-      onChangeText={changeTextFuncs.city}
-      testID="RegisterForm:City"
-    />
-    <Space height={10} />
-    <CountryPicker
-      placeholder="Country"
-      value={inputs.country}
-      error={errors.country}
-      onBlur={blurFuncs.country}
-      onChangeText={changeTextFuncs.country}
-      testID="RegisterForm:Country"
-    /> */}
     <Space height={10} />
     <TextInput
       secureTextEntry={true}
@@ -102,25 +56,6 @@ export const RegisterForm = ({
       testID="RegisterForm:PasswordConfirmation"
     />
     <Space height={10} />
-    {/* <AgreeTermsCheckBox
-      value={inputs.termsAgreed}
-      error={errors.termsAgreed}
-      onChangeText={changeTextFuncs.termsAgreed}
-      testID="RegisterForm:TermsAgreed"
-    />
-    <MarketingAgreedCheckBox
-      value={inputs.marketingAgreed}
-      error={errors.marketingAgreed}
-      onChangeText={changeTextFuncs.marketingAgreed}
-      testID="RegisterForm:MarketingAgreed"
-    />
-    <ThirdPartyAgreedCheckBox
-      value={inputs.thirdPartyAgreed}
-      error={errors.thirdPartyAgreed}
-      onChangeText={changeTextFuncs.thirdPartyAgreed}
-      testID="RegisterForm:ThirdPartyAgreed"
-    />
-    <Space height={10} /> */}
     <Button
       disabled={!isFormValid}
       isLoading={isPending}

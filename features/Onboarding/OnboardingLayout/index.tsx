@@ -1,18 +1,17 @@
+import { Suspense } from "react";
 import styled from "styled-components/native";
 
-import { useUserProfile } from "@/hooks/resources/useUserProfile";
-
-export const OnboadingPageLayout = ({
-  children,
-}: {
+interface Props {
   children: React.ReactNode;
-}) => {
-  // id
-  // const user = useUserProfile();
+}
+
+export const OnboadingPageLayout = ({ children }: Props) => {
   return (
     <Main>
       <Container>
-        <ContentWrap>{children}</ContentWrap>
+        <ContentWrap>
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </ContentWrap>
       </Container>
     </Main>
   );
@@ -33,4 +32,13 @@ const ContentWrap = styled.View`
   flex-direction: column;
   gap: 10px;
   flex: 1;
+`;
+
+const Loading = styled.ActivityIndicator.attrs(() => ({
+  size: "large",
+  color: "#0000ff",
+}))`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `;

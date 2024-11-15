@@ -4,7 +4,7 @@ import Picker from "@/forms/components/Picker";
 import { pickerAdaptor as jobLevels } from "@/utils/data/jobLevels";
 
 type Props = {
-  selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
+  value: NativeSyntheticEvent<NativeTouchEvent>;
   placeholder: string;
   onChangeText: (itemValue: unknown, itemIndex: number) => void;
   onBlur: SyntheticEvent;
@@ -12,7 +12,7 @@ type Props = {
 };
 
 const JobLevelPicker = ({
-  selectedValue,
+  value,
   placeholder,
   onChangeText,
   onBlur,
@@ -21,7 +21,7 @@ const JobLevelPicker = ({
   return (
     <Picker
       placeholder={placeholder}
-      selectedValue={selectedValue}
+      selectedValue={value}
       onValueChange={onChangeText}
       items={jobLevels}
       error={error}

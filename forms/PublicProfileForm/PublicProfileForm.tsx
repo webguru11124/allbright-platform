@@ -2,7 +2,6 @@ import { SafeAreaView } from "react-native";
 
 import Space from "@/components/Space";
 import Button from "@/forms/components/Button";
-import CityPicker from "@/forms/components/CityPicker";
 import GoalsSelection from "@/forms/components/GoalsSelection";
 import IndustryPicker from "@/forms/components/IndustryPicker";
 import JobLevelPicker from "@/forms/components/JobLevelPicker";
@@ -22,24 +21,16 @@ const PublicProfileForm = ({
   onPress,
 }: FormProps) => (
   <SafeAreaView>
-    <CityPicker
-      placeholder="City"
-      value={inputs.city}
-      error={errors.city}
-      onBlur={blurFuncs.city}
-      onChangeText={changeTextFuncs.city}
-      testID="PublicProfileForm:City"
-    />
     <Space height={10} />
     <TextInput
       label="Job title*"
       placeholderTextColor={"#ddd"}
       inputMode="text"
       textContentType="jobTitle"
-      value={inputs.job_title}
-      error={errors.job_title}
-      onBlur={blurFuncs.job_title}
-      onChangeText={changeTextFuncs.job_title}
+      value={inputs.jobTitle}
+      error={errors.jobTitle}
+      onBlur={blurFuncs.jobTitle}
+      onChangeText={changeTextFuncs.jobTitle}
       testID="PublicProfileForm:JobTitle"
     />
     <Space height={10} />
@@ -48,32 +39,33 @@ const PublicProfileForm = ({
       placeholderTextColor={"#ddd"}
       inputMode="text"
       textContentType="none"
-      value={inputs.company_name}
-      error={errors.company_name}
-      onBlur={blurFuncs.company_name}
-      onChangeText={changeTextFuncs.company_name}
+      value={inputs.jobCompany}
+      error={errors.jobCompany}
+      onBlur={blurFuncs.jobCompany}
+      onChangeText={changeTextFuncs.jobCompany}
       testID="PublicProfileForm:CompanyName"
     />
     <Space height={10} />
     <JobLevelPicker
       placeholder="Job Level"
-      value={inputs.job_level}
-      error={errors.job_level}
-      onBlur={blurFuncs.job_level}
-      onChangeText={changeTextFuncs.job_level}
+      value={inputs.jobLevel}
+      error={errors.jobLevel}
+      onBlur={blurFuncs.jobLevel}
+      onChangeText={changeTextFuncs.jobLevel}
       testID="PublicProfileForm:JobLevel"
     />
     <Space height={10} />
     <IndustryPicker
       placeholder="Industry"
-      value={inputs.industry}
-      error={errors.industry}
-      onBlur={blurFuncs.industry}
-      onChangeText={changeTextFuncs.industry}
+      value={inputs.jobIndustry}
+      error={errors.jobIndustry}
+      onBlur={blurFuncs.jobIndustry}
+      onChangeText={changeTextFuncs.jobIndustry}
       testID="PublicProfileForm:Industry"
     />
     <Space height={10} />
     <GoalsSelection
+      field={inputs.goals}
       updateField={changeTextFuncs.goals}
       error={errors.goals}
     />
@@ -90,10 +82,10 @@ const PublicProfileForm = ({
       textContentType="none"
       multiline
       numberOfLines={10}
-      value={inputs.user_biography}
-      error={errors.user_biography}
-      onBlur={blurFuncs.user_biography}
-      onChangeText={changeTextFuncs.user_biography}
+      value={inputs.bio}
+      error={errors.bio}
+      onBlur={blurFuncs.bio}
+      onChangeText={changeTextFuncs.bio}
       testID="PublicProfileForm:UserBiography"
     />
     <Space height={10} />

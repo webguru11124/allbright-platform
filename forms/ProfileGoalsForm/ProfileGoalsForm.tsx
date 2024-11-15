@@ -9,10 +9,12 @@ const ProfileGoalsForm = ({
   errors,
   changeTextFuncs,
   isPending,
+  inputs,
   onPress,
 }: FormProps) => (
   <SafeAreaView>
     <CareerGoalsSelection
+      field={inputs.careerGoals}
       updateField={changeTextFuncs.careerGoals}
       error={errors.careerGoals}
     />

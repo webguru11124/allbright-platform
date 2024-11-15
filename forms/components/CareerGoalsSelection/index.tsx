@@ -5,12 +5,19 @@ import CareerGoalsSelection from "./CareerGoalsSelection";
 
 interface Props {
   updateField: (value: CareerGoalType["id"][]) => void;
+  field?: CareerGoalType["id"][];
   error?: string;
 }
-const CareerGoalsSelectionContainer = ({ error, updateField }: Props) => {
+const CareerGoalsSelectionContainer = ({
+  error,
+  field = [],
+  updateField,
+}: Props) => {
   const { goalIsSelected, setGoalsStateHandler } = useCareerGoalState({
+    goals: field,
     updateField,
   });
+
   return (
     <CareerGoalsSelection
       goalIsSelected={goalIsSelected}

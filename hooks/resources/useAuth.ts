@@ -6,6 +6,7 @@ import api from "@/lib/api";
 const SIGNIN_URL = "/v1/auth/signin";
 const REGISTER_URL = "/v1/auth/register/allbright_free";
 const GOOGLE_SIGN_IN_URL = "/v1/auth/google-signin";
+const GOOGLE_SIGN_UP_URL = "/v1/auth/google-signup";
 
 export type Login = {
   email: string;
@@ -27,16 +28,19 @@ const signinFn = async (loginData: Login) => {
 const googleSignInFn = async (token: string) =>
   api.post(GOOGLE_SIGN_IN_URL, { idToken: token });
 
+const googleSignUpFn = async (token: string) =>
+  api.post(GOOGLE_SIGN_UP_URL, { idToken: token });
+
 export const useSignIn = () =>
   useMutation({
     mutationKey: ["signin"],
     mutationFn: signinFn,
   });
 
-export const useGoogleSignIn = () =>
+export const useGoogleSignIn = (isSignup?: boolean) =>
   useMutation({
     mutationKey: ["google-signin"],
-    mutationFn: googleSignInFn,
+    mutationFn: isSignup ? googleSignUpFn : googleSignInFn,
   });
 
 const registerFn = (registrationData: Register) =>

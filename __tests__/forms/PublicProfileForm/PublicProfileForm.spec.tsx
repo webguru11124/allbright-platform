@@ -7,37 +7,33 @@ import Providers from "@/utils/providers";
 describe("PublicProfileForm", () => {
   const props = {
     inputs: {
-      city: undefined,
       industry: undefined,
-      job_level: undefined,
-      company_name: undefined,
-      job_title: undefined,
-      user_biography: undefined,
+      jobLevel: undefined,
+      jobCompany: undefined,
+      jobTitle: undefined,
+      bio: undefined,
     },
     errors: {
-      city: undefined,
       industry: undefined,
-      job_level: undefined,
-      company_name: undefined,
-      job_title: undefined,
-      user_biography: undefined,
+      jobLevel: undefined,
+      jobCompany: undefined,
+      jobTitle: undefined,
+      bio: undefined,
     },
     blurFuncs: {
-      city: jest.fn(),
       industry: jest.fn(),
-      job_level: jest.fn(),
-      company_name: jest.fn(),
-      job_title: jest.fn(),
-      user_biography: jest.fn(),
+      jobLevel: jest.fn(),
+      jobCompany: jest.fn(),
+      jobTitle: jest.fn(),
+      bio: jest.fn(),
       goals: jest.fn(),
     },
     changeTextFuncs: {
-      city: jest.fn(),
       industry: jest.fn(),
-      job_level: jest.fn(),
-      company_name: jest.fn(),
-      job_title: jest.fn(),
-      user_biography: jest.fn(),
+      jobLevel: jest.fn(),
+      jobCompany: jest.fn(),
+      jobTitle: jest.fn(),
+      bio: jest.fn(),
       goals: jest.fn(),
       profile_image: jest.fn(),
     },
@@ -60,17 +56,17 @@ describe("PublicProfileForm", () => {
       const expectedJobTitle = faker.person.jobTitle();
       const input = screen.getByTestId("PublicProfileForm:JobTitle");
       fireEvent.changeText(input, expectedJobTitle);
-      expect(props.changeTextFuncs.job_title).toHaveBeenCalledWith(
+      expect(props.changeTextFuncs.jobTitle).toHaveBeenCalledWith(
         expectedJobTitle
       );
     });
 
-    it("when the companyName input is updated", () => {
-      const expectedCompanyName = faker.company.name();
+    it("when the jobCompany input is updated", () => {
+      const expectedjobCompany = faker.company.name();
       const input = screen.getByTestId("PublicProfileForm:CompanyName");
-      fireEvent.changeText(input, expectedCompanyName);
-      expect(props.changeTextFuncs.company_name).toHaveBeenCalledWith(
-        expectedCompanyName
+      fireEvent.changeText(input, expectedjobCompany);
+      expect(props.changeTextFuncs.jobCompany).toHaveBeenCalledWith(
+        expectedjobCompany
       );
     });
   });
@@ -86,30 +82,12 @@ describe("PublicProfileForm", () => {
       );
     });
 
-    it("when an city error exists", () => {
-      const updatedProps = {
-        ...props,
-        errors: {
-          ...props.errors,
-          city: "The City field is required",
-        },
-      };
-
-      screen.rerender(
-        <Providers>
-          <PublicProfileForm {...updatedProps} />
-        </Providers>
-      );
-
-      expect(screen.queryByText(updatedProps.errors.city)).not.toBeNull();
-    });
-
     it("when jobTitle error exists", () => {
       const updatedProps = {
         ...props,
         errors: {
           ...props.errors,
-          job_title: "The job title field is required",
+          jobTitle: "The job title field is required",
         },
       };
 
@@ -119,7 +97,7 @@ describe("PublicProfileForm", () => {
         </Providers>
       );
 
-      expect(screen.queryByText(updatedProps.errors.job_title)).not.toBeNull();
+      expect(screen.queryByText(updatedProps.errors.jobTitle)).not.toBeNull();
     });
   });
 });

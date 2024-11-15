@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 
 import Link from "@/components/Link";
 import { CM, H2Rox } from "@/components/Typography";
-import { OnboadingPageLayout } from "@/features/Onboarding/layout";
+import { OnboadingPageLayout } from "@/features/Onboarding/OnboardingLayout";
 import { recommendationColour } from "@/theme";
 
 export default function WelcomeScreen() {
@@ -43,7 +43,7 @@ export default function WelcomeScreen() {
         </Section>
 
         <Link
-          href="/onboarding/public-profile"
+          href="/onboarding/register-profile"
           background={recommendationColour.btBgColor}
           isSecondary={true}>
           <CM color={recommendationColour.btColor}>Start</CM>

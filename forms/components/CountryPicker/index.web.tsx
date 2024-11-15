@@ -4,7 +4,7 @@ import Picker from "@/forms/components/Picker";
 import { pickerAdaptor as countries } from "@/utils/data/countries";
 
 type Props = {
-  selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
+  value: NativeSyntheticEvent<NativeTouchEvent>;
   placeholder: string;
   onChangeText: (itemValue: unknown, itemIndex: number) => void;
   onBlur: SyntheticEvent;
@@ -12,7 +12,7 @@ type Props = {
 };
 
 const CountryPicker = ({
-  selectedValue,
+  value,
   placeholder,
   onChangeText,
   onBlur,
@@ -21,7 +21,7 @@ const CountryPicker = ({
   return (
     <Picker
       placeholder={placeholder}
-      selectedValue={selectedValue}
+      selectedValue={value}
       onValueChange={onChangeText}
       items={countries}
       error={error}

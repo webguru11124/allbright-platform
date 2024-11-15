@@ -1,5 +1,5 @@
 import { CM, H3, H5 } from "@/components/Typography";
-import { OnboadingPageLayout } from "@/features/Onboarding/layout";
+import { OnboadingPageLayout } from "@/features/Onboarding/OnboardingLayout";
 import PrivateProfileForm from "@/forms/PrivateProfileForm";
 import colours from "@/theme";
 

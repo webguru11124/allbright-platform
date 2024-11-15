@@ -5,16 +5,13 @@ import { onboardingIndustries } from "@/utils/data/industries";
 import { jobLevels } from "@/utils/data/jobLevels";
 
 export const publicProfileSchema = {
-  city: Joi.string().max(60).required().messages({
-    "any.required": "Please pick a city from the list",
-  }),
-  job_level: Joi.string()
+  jobLevel: Joi.string()
     .valid(...jobLevels)
     .required()
     .messages({
       "*": "Please pick a job level from the list",
     }),
-  industry: Joi.string()
+  jobIndustry: Joi.string()
     .valid(...onboardingIndustries)
     .required()
     .messages({
@@ -31,11 +28,11 @@ export const publicProfileSchema = {
       "array.includes": "Invalid goal selected.",
       "any.required": "You must select at least one goal.",
     }),
-  company_name: Joi.string().allow(null),
-  job_title: Joi.string().required().messages({
+  jobCompany: Joi.string().allow(null),
+  jobTitle: Joi.string().required().messages({
     "*": "Please enter a job title",
   }),
-  user_biography: Joi.string().required().min(10).max(500).messages({
+  bio: Joi.string().required().min(10).max(500).messages({
     "string.empty": "Biography is required",
     "string.min": "Biography must be at least 10 characters long",
     "string.max": "Biography must be less than or equal to 500 characters long",

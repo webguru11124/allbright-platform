@@ -10,7 +10,7 @@ import withTheme from "@/hocs/withTheme";
 import { recommendationColour } from "@/theme";
 
 type Props = PickerProps & {
-  selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
+  value: NativeSyntheticEvent<NativeTouchEvent>;
   onValueChange: (itemValue: unknown, itemIndex: number) => void;
   onBlur: SyntheticEvent;
   items: {
@@ -30,7 +30,7 @@ type StyleProps = {
 };
 
 const Picker = ({
-  selectedValue,
+  value,
   onValueChange,
   onBlur,
   items,
@@ -42,7 +42,7 @@ const Picker = ({
   return (
     <>
       <StyledPicker
-        selectedValue={selectedValue}
+        selectedValue={value}
         onValueChange={onValueChange}
         backgroundcolor={theme.colors.inputs.background}
         error={error}

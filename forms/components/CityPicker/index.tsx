@@ -7,13 +7,17 @@ import Space from "@/components/Space";
 import { CM, CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
 import { recommendationColour } from "@/theme";
+import OnboardingClient from "@/utils/client/user/OnboardingClient";
 import { pickerAdaptor as cities } from "@/utils/data/cities";
+import countries from "@/utils/data/countries";
 
 type Props = Omit<TextInputProps, "onBlur"> & {
   onChangeText: Function;
   error: string | undefined;
   onBlur: Function;
   theme: Theme;
+  selectedCountry?: (typeof countries)[number]["Name"] | null;
+  disabled?: boolean;
 };
 
 const CityPicker = ({
@@ -22,9 +26,18 @@ const CityPicker = ({
   placeholder,
   onBlur,
   error,
+  selectedCountry,
   value,
+  disabled,
 }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const filteredCities = useMemo(() => {
+    if (!selectedCountry) return cities;
+    const countryCities = new OnboardingClient().getCities(selectedCountry);
+    return cities.filter((item) =>
+      countryCities.find((city) => city === item.value)
+    );
+  }, [selectedCountry]);
 
   const handleChangeText = (value: string) => {
     onChangeText(value);
@@ -34,9 +47,9 @@ const CityPicker = ({
   const displayValue = useMemo(
     () =>
       Boolean(value)
-        ? cities.find((item) => item.value === value)?.label
+        ? filteredCities.find((item) => item.value === value)?.label
         : undefined,
-    [value]
+    [value, filteredCities]
   );
 
   const onCloseButtonPress = () => {
@@ -58,7 +71,9 @@ const CityPicker = ({
           <ModalView>
             <TitleContainer>
               <Title>City</Title>
-              <CloseButton onPress={onCloseButtonPress}>
+              <CloseButton
+                onPress={onCloseButtonPress}
+                disabled={disabled}>
                 <MaterialIcons
                   name={"close"}
                   size={24}

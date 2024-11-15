@@ -16,11 +16,8 @@ describe("ProfileGoalsForm", () => {
     const goal = screen.getByTestId(`interests-checkbox-${careerGoal.title}`);
     fireEvent.press(goal);
   }
-  it(`Should:
-        - Enter valid data for the relevant form fields
-        - Make a call to api.post which update user profile
-        - Navigate to the pledge route
-        `, async () => {
+  beforeEach(async () => {
+    (UserClient.prototype.getUserGoals as jest.Mock).mockResolvedValue([]);
     renderRouter({
       index: jest.fn(() => (
         <Providers>
@@ -29,6 +26,18 @@ describe("ProfileGoalsForm", () => {
       )),
     });
     expect(screen).toHavePathname("/");
+    await waitFor(() => {
+      expect(screen.getByTestId("ProfileGoalsForm:Submit")).not.toBeNull();
+    });
+  });
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+  it(`Should:
+        - Enter valid data for the relevant form fields
+        - Make a call to api.post which update user profile
+        - Navigate to the pledge route
+        `, async () => {
     selectGoal(allCareerGoals[0]);
     selectGoal(allCareerGoals[1]);
     selectGoal(allCareerGoals[2]);
@@ -38,9 +47,11 @@ describe("ProfileGoalsForm", () => {
     });
 
     await waitFor(() => {
-      expect(UserClient.prototype.updateUser).toHaveBeenCalledWith({
-        careerGoals: [allCareerGoals[0], allCareerGoals[1], allCareerGoals[2]],
-      });
+      expect(UserClient.prototype.updateUserGoals).toHaveBeenCalledWith([
+        allCareerGoals[0],
+        allCareerGoals[1],
+        allCareerGoals[2],
+      ]);
       expect(screen).toHavePathname("/onboarding/pledge");
     });
   });
@@ -48,14 +59,6 @@ describe("ProfileGoalsForm", () => {
         - Select less 3 career goals
         - Press submit button
         - Display error message`, async () => {
-    renderRouter({
-      index: jest.fn(() => (
-        <Providers>
-          <ProfileGoalsFormContainer />
-        </Providers>
-      )),
-    });
-    expect(screen).toHavePathname("/");
     selectGoal(allCareerGoals[0]);
     mockedApi.post.mockResolvedValueOnce({});
     fireEvent.press(screen.getByTestId("ProfileGoalsForm:Submit"));

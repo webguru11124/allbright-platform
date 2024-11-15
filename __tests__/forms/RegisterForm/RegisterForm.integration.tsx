@@ -75,12 +75,6 @@ describe("RegisterForm", () => {
     - Display the password error message
     - Not allow submitting of form
     `, async () => {
-    const EMAIL = "not-an-email-address";
-    const PASS = "123";
-
-    const EXPECTED_EMAIL = `"Email" must be a valid email`;
-    const EXPECTED_PASS = `"Password" length must be at least 4 characters long`;
-
     renderRouter({
       index: jest.fn(() => (
         <Providers>
@@ -90,6 +84,13 @@ describe("RegisterForm", () => {
     });
 
     expect(screen).toHavePathname("/");
+
+    const EMAIL = "not-an-email-address";
+    const PASS = "123";
+
+    const EXPECTED_EMAIL = `"Email" must be a valid email`;
+    const EXPECTED_PASS = `"Password" length must be at least 4 characters long`;
+
     await fireBlurEvent(screen.getByTestId("RegisterForm:Email"), EMAIL);
     await fireBlurEvent(screen.getByTestId("RegisterForm:Password"), PASS);
 

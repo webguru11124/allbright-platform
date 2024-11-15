@@ -3,6 +3,7 @@ import * as Joi from "joi";
 import * as React from "react";
 
 import { publicProfileAdaptor, PublicProfileInput } from "@/forms/adaptors";
+import { useUserProfile } from "@/hooks/resources/useUserProfile";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 import { LocalImageType } from "@/types/files/localImage";
 
@@ -11,6 +12,8 @@ import useForm from "./useForm";
 const usePublicProfileForm = (
   publicProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
+  const { data: user } = useUserProfile();
+
   const {
     inputs,
     errors,
@@ -18,16 +21,14 @@ const usePublicProfileForm = (
     changeTextFuncs,
     postBody,
     isFormValid,
+    reset,
     validateAllInputs,
     showErrorMessage,
-  } = useForm(publicProfileSchema, {
-    default: {
-      profile_image: {
-        state: LocalImageType.FILE_UNSET,
-        file: null,
-      } as any,
-    },
-  });
+  } = useForm(publicProfileSchema, {});
+  React.useEffect(() => {
+    if (user) reset(user);
+  }, [user]);
+
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
@@ -39,21 +40,19 @@ const usePublicProfileForm = (
         throw new Error("Please fill out all required fields");
       setLoading(true);
       const input = postBody as PublicProfileInput;
-      let user = publicProfileAdaptor(input);
+      const output = publicProfileAdaptor(input);
+      let imageSrc = null;
       if (
         input.profile_image.state === LocalImageType.FILE_SET &&
         input.profile_image.file !== null
       ) {
-        user = {
-          ...user,
-          imageSrc: input.profile_image.file,
-        };
+        imageSrc = input.profile_image.file;
       }
 
       if (input.profile_image.state === LocalImageType.FILE_UNSET) {
-        user = { ...user, imageSrc: null };
+        imageSrc = null;
       }
-      await mutateUpdateUserAsync(user);
+      await mutateUpdateUserAsync({ ...output, imageSrc });
 
       router.replace("/onboarding/private-profile");
     } catch (error: any) {

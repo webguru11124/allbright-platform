@@ -4,21 +4,30 @@ import * as React from "react";
 
 import { privateProfileAdaptor, PrivateProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
+import { useUserProfile } from "@/hooks/resources/useUserProfile";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 
 const usePrivateProfileForm = (
   privateProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
+  const { data: user } = useUserProfile();
+
   const {
     inputs,
     errors,
     blurFuncs,
     changeTextFuncs,
     postBody,
+    reset,
     isFormValid,
     validateAllInputs,
     showErrorMessage,
   } = useForm(privateProfileSchema);
+
+  React.useEffect(() => {
+    if (user) reset(user);
+  }, [user]);
+
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
@@ -30,9 +39,9 @@ const usePrivateProfileForm = (
         throw new Error("Please fill out all required fields");
       setLoading(true);
       const input = postBody as PrivateProfileInput;
-      const user = privateProfileAdaptor(input);
+      const output = privateProfileAdaptor(input);
 
-      await mutateUpdateUserAsync(user);
+      await mutateUpdateUserAsync({ ...output });
       router.replace("/onboarding/profile-goals" as Href);
     } catch (error: any) {
       showErrorMessage(error.message);

@@ -1,48 +1,44 @@
-import MaterialIcons from "@expo/vector-icons/FontAwesome";
 import React from "react";
-import { Text } from "react-native";
-import styled from "styled-components/native";
+import { AccessToken, LoginManager } from "react-native-fbsdk-next";
 
-import Button from "@/forms/components/Button";
+import FacebookSignIn from "./FacebookSignin";
 
-const FacebookSignIn = ({ onPress }: { onPress: GestureEvent }) => {
+interface Props {
+  handleToken: (token: string) => Promise<void>;
+  isSignin: boolean;
+}
+const FacebookSignInContainer = (props: Props) => {
+  const [loading, setLoading] = React.useState(false);
+  const handleFacebookLogin = async () => {
+    try {
+      const result = await LoginManager.logInWithPermissions([
+        "public_profile",
+        "email",
+      ]);
+      if (result.isCancelled) {
+        console.log("Login cancelled");
+      } else {
+        const data = await AccessToken.getCurrentAccessToken();
+        if (data) {
+          console.log("Access Token:", data.accessToken.toString());
+
+          setLoading(true);
+          await props.handleToken(data.accessToken.toString());
+          setLoading(false);
+        }
+      }
+    } catch (error) {
+      console.log("Login fail with error: " + error);
+    }
+  };
+
   return (
-    <StyledButton onPress={onPress}>
-      <VerticalCenter>
-        <FacebookIcon
-          name={"facebook-square"}
-          size={24}
-          color={"white"}
-        />
-        <Text>
-          Login with <Bold>Facebook</Bold>
-        </Text>
-      </VerticalCenter>
-    </StyledButton>
+    <FacebookSignIn
+      isSignin={props.isSignin}
+      onPress={handleFacebookLogin}
+      loading={loading}
+    />
   );
 };
 
-const StyledButton = styled(Button)`
-  width: 304px;
-  height: 45px;
-  margin-top: 8px;
-  background-color: #5890ff;
-  border-radius: 4px;
-  text-align: center;
-`;
-
-const VerticalCenter = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const FacebookIcon = styled(MaterialIcons)`
-  margin-right: 10px;
-`;
-
-const Bold = styled.Text`
-  font-weight: 800;
-`;
-
-export default FacebookSignIn;
+export default FacebookSignInContainer;

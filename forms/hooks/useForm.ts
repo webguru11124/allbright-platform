@@ -1,6 +1,6 @@
 import Joi from "joi";
 import _ from "lodash";
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Platform } from "react-native";
 import Toast from "react-native-root-toast";
 
@@ -8,7 +8,7 @@ import useTheme from "@/hooks/useTheme";
 
 export type Settings = {
   omit?: string[];
-  default?: { [key: string]: string | number | boolean };
+  default?: any;
 };
 
 type EventType = { name: string; value: string | boolean };
@@ -21,13 +21,21 @@ const useForm = (
   const schema = Joi.object(baseSchema);
   const schemaKeys = Object.keys(baseSchema || {});
   const schemaInputs = _.chain(schemaKeys)
-    .map((key) => [key, settings?.default?.[key]])
+    .map((key) => [key, (settings?.default as Record<string, any>)?.[key]])
     .fromPairs()
     .value();
 
   const [inputs, setInputs] = useState<typeof schemaInputs>(schemaInputs);
   const [errors, setErrors] = useState<typeof schemaInputs>(schemaInputs);
   const [touched, setTouched] = useState<typeof schemaInputs>(schemaInputs);
+
+  const reset = React.useCallback(
+    (values: Partial<typeof schemaInputs> = {}) => {
+      const newInputs = { ...inputs, ...values };
+      setInputs(newInputs);
+    },
+    [inputs]
+  );
 
   const updateInputs = ({ name, value }: EventType) =>
     setInputs((prev) => ({ ...prev, [name]: value }));
@@ -130,6 +138,7 @@ const useForm = (
     touched,
     blurFuncs,
     changeTextFuncs,
+    reset,
     isFormValid,
     validateAllInputs,
     showSuccessMessage,
