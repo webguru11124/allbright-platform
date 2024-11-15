@@ -40,21 +40,19 @@ const usePublicProfileForm = (
         throw new Error("Please fill out all required fields");
       setLoading(true);
       const input = postBody as PublicProfileInput;
-      let user = publicProfileAdaptor(input);
+      const output = publicProfileAdaptor(input);
+      let imageSrc = null;
       if (
         input.profile_image.state === LocalImageType.FILE_SET &&
         input.profile_image.file !== null
       ) {
-        user = {
-          ...user,
-          imageSrc: input.profile_image.file,
-        };
+        imageSrc = input.profile_image.file;
       }
 
       if (input.profile_image.state === LocalImageType.FILE_UNSET) {
-        user = { ...user, imageSrc: null };
+        imageSrc = null
       }
-      await mutateUpdateUserAsync(user);
+      await mutateUpdateUserAsync({  ...output, imageSrc });
 
       router.replace("/onboarding/private-profile");
     } catch (error: any) {

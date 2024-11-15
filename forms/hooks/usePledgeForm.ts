@@ -5,6 +5,7 @@ import * as React from "react";
 import { pledgeAdapter, PledgeInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
+import { useUserProfile } from "@/hooks/resources/useUserProfile";
 
 const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
   const {
@@ -20,6 +21,7 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
+  const { data: user } = useUserProfile();
 
   const onPress = async () => {
     try {
@@ -27,9 +29,9 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
         throw new Error("Please fill out all required fields");
       setLoading(true);
       const input = postBody;
-      const user = pledgeAdapter(input as PledgeInput);
+      const output = pledgeAdapter(input as PledgeInput);
 
-      await mutateUpdateUserAsync(user);
+      await mutateUpdateUserAsync({ ...output});
       router.replace("/onboarding/complete");
     } catch (error: any) {
       showErrorMessage(error.message);

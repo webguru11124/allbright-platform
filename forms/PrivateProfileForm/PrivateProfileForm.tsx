@@ -53,7 +53,7 @@ const PrivateProfileForm = ({
     />
     <Space height={10} />
     <EthnicGroupsSection
-      field={inputs.ethnicGroups ?? []}
+      field={inputs.ethnicGroups}
       setField={changeTextFuncs.ethnicGroups}
       error={errors.ethnicGroups}
     />

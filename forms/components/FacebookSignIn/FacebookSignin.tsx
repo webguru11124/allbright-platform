@@ -15,7 +15,8 @@ const FacebookSignIn = ({
   loading: boolean;
 }) => {
   return (
-    <StyledButton onPress={onPress}
+    <StyledButton
+      onPress={onPress}
       isLoading={loading}>
       <VerticalCenter>
         <FacebookIcon

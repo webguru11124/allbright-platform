@@ -11,10 +11,11 @@ import { DefaultTheme, PaperDefaultTheme } from "@/theme";
 type Props = {
   children: React.ReactNode;
 };
+const client=new QueryClient();
 
 const Providers = ({ children }: Props) => {
   return (
-    <QueryClientProvider client={new QueryClient()}>
+    <QueryClientProvider client={client}>
       <ThemeProvider value={DefaultTheme}>
         <GestureHandlerRootView style={{ flex: 1 }}>
           <MediaQueryProvider>

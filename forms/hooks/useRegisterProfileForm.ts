@@ -40,9 +40,9 @@ const useRegisterProfileForm = (
         throw new Error("Please fill out all required fields");
       setLoading(true);
       const input = postBody as RegisterProfileInput;
-      let user = registerProfileAdaptor(input);
+      const output = registerProfileAdaptor(input);
 
-      await mutateUpdateUserAsync(user);
+      await mutateUpdateUserAsync({ ...output });
 
       router.replace("/onboarding/public-profile");
     } catch (error: any) {

@@ -4,11 +4,9 @@ import * as React from "react";
 
 import { profileGoalsAdapter, ProfileGoalsInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
-import { useUserProfile } from "@/hooks/resources/useUserProfile";
-import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
+import { useUpdateUserGoals, useUserGoals } from "@/hooks/resources/useUserGoals";
 
 const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
-  const { data: user } = useUserProfile();
 
   const {
     inputs,
@@ -21,13 +19,15 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
     validateAllInputs,
     showErrorMessage,
   } = useForm(careerGoalsSchema);
-  const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
+  const { mutateAsync: mutateUpdateUserGoalsAsync } = useUpdateUserGoals();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
 
+  const { careerGoals } = useUserGoals();
+
   React.useEffect(() => {
-    if (user) reset(user);
-  }, [user, reset]);
+    if (careerGoals) reset({ careerGoals: careerGoals.map(goal => goal.id) });
+  }, [careerGoals]);
 
   const onPress = async () => {
     try {
@@ -35,9 +35,9 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
         throw new Error("Please fill out all required fields");
       setLoading(true);
       const input = postBody as ProfileGoalsInput;
-      const user = profileGoalsAdapter(input);
+      const goals = profileGoalsAdapter(input);
 
-      await mutateUpdateUserAsync(user);
+      await mutateUpdateUserGoalsAsync(goals.careerGoals);
       router.replace("/onboarding/pledge");
     } catch (error: any) {
       showErrorMessage(error.message);

@@ -26,7 +26,7 @@ const usePrivateProfileForm = (
 
   React.useEffect(() => {
     if (user) reset(user);
-  }, [user, reset]);
+  }, [user]);
 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
@@ -39,9 +39,9 @@ const usePrivateProfileForm = (
         throw new Error("Please fill out all required fields");
       setLoading(true);
       const input = postBody as PrivateProfileInput;
-      const user = privateProfileAdaptor(input);
+      const output = privateProfileAdaptor(input);
 
-      await mutateUpdateUserAsync(user);
+      await mutateUpdateUserAsync({ ...output });
       router.replace("/onboarding/profile-goals" as Href);
     } catch (error: any) {
       showErrorMessage(error.message);
@@ -49,6 +49,7 @@ const usePrivateProfileForm = (
       setLoading(false);
     }
   };
+  console.log(inputs.ethnicGroups)
 
   return {
     inputs,

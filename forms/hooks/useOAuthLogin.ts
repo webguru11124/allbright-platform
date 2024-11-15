@@ -37,7 +37,7 @@ const useOAuthLogin = (isSignup?: boolean) => {
     }
   };
 
-  const facebookLogin = async (token:string) => {};
+  const facebookLogin = async (token: string) => {};
 
   const linkedinLogin = () => {};
   return {
