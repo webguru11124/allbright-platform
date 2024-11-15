@@ -20,8 +20,7 @@ const mockedApi = api as jest.Mocked<typeof api>;
 
 describe("RegisterProfileForm", () => {
   beforeEach(async () => {
-    (UserClient.prototype.findUserById as jest.Mock).mockResolvedValue({
-    });
+    (UserClient.prototype.findUserById as jest.Mock).mockResolvedValue({});
     renderRouter({
       index: jest.fn(() => (
         <Providers>
@@ -46,16 +45,15 @@ describe("RegisterProfileForm", () => {
       - Enter valid data for the relevant form fields
       - Make a call to api.post which for updating the profile
       `, async () => {
-
     const randomCountry = faker.helpers.arrayElement(countries).Code;
     const randomCity = faker.location.city();
     const randomFirstName = faker.person.firstName();
     const randomLastName = faker.person.lastName();
-    expect(screen.getByTestId("RegisterProfileForm:FirstName")).not.toBeNull()
+    expect(screen.getByTestId("RegisterProfileForm:FirstName")).not.toBeNull();
     fireEvent.changeText(
       screen.getByTestId("RegisterProfileForm:FirstName"),
       randomFirstName
-    )
+    );
 
     fireEvent.changeText(
       screen.getByTestId("RegisterProfileForm:LastName"),
@@ -91,13 +89,11 @@ describe("RegisterProfileForm", () => {
     - Display the last_name error message
     - Not allow submitting of form
     `, async () => {
-
     const FIRST_NAME = "";
     const LAST_NAME = "";
 
     const EXPECTED_FIRST_NAME = `"FirstName" is  not allowed to be empty`;
     const EXPECTED_LAST_NAME = `"LastName" is not allowed to be empty`;
-
 
     await fireBlurEvent(
       screen.getByTestId("RegisterProfileForm:FirstName"),

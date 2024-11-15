@@ -29,7 +29,10 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
   const { careerGoals } = useUserGoals();
 
   React.useEffect(() => {
-    if (careerGoals) reset({ careerGoals: careerGoals.map((goal: CareerGoalType) => goal.id) });
+    if (careerGoals)
+      reset({
+        careerGoals: careerGoals.map((goal: CareerGoalType) => goal.id),
+      });
   }, [careerGoals]);
 
   const onPress = async () => {

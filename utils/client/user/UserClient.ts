@@ -35,12 +35,11 @@ class UserClient {
     return data;
   }
 
-  public async updateUserGoals( goals: CareerGoalType[]) {
+  public async updateUserGoals(goals: CareerGoalType[]) {
     const userId = await getUserId();
     if (!userId) return Promise.reject("Invalid User Id");
     const response = await api.put(`/v1/users/${userId}/goals`, { goals });
     return response.data;
   }
-
 }
 export default UserClient;

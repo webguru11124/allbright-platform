@@ -1,8 +1,8 @@
 import { router } from "expo-router";
+import { Suspense } from "react";
 import styled from "styled-components/native";
 
 import HeaderBackButton from "@/components/HeaderBackButton";
-import { Suspense } from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -19,8 +19,9 @@ export const OnboadingPageLayout = ({ children }: Props) => {
             }}
           />
         </HeaderButtonsContainer>
-        <ContentWrap>   
-          <Suspense fallback={<Loading />}>{children}</Suspense></ContentWrap>
+        <ContentWrap>
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </ContentWrap>
       </Container>
     </Main>
   );

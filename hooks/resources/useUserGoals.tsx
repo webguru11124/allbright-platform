@@ -16,8 +16,6 @@ export const useUserGoals = () => {
 export const useUpdateUserGoals = () => {
   return useMutation({
     mutationKey: ["updateUserGoals"],
-    mutationFn: new UserClient().updateUserGoals
+    mutationFn: new UserClient().updateUserGoals,
   });
 };
-
-

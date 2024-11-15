@@ -39,8 +39,7 @@ describe("PrivateProfileForm", () => {
 
   beforeEach(async () => {
     jest.clearAllMocks();
-    (UserClient.prototype.findUserById as jest.Mock).mockResolvedValue({
-    });
+    (UserClient.prototype.findUserById as jest.Mock).mockResolvedValue({});
     renderRouter({
       index: jest.fn(() => (
         <Providers>
@@ -52,7 +51,7 @@ describe("PrivateProfileForm", () => {
     expect(screen).toHavePathname("/");
 
     await waitFor(() => {
-      expect(screen.getByText("Job status*")).not.toBeNull()
+      expect(screen.getByText("Job status*")).not.toBeNull();
     });
   });
   it(`should:
@@ -60,8 +59,6 @@ describe("PrivateProfileForm", () => {
       - Make a call to api.post which update user profile
       - Navigate to the second onboarding route
       `, async () => {
-
-
     const randomInterests = faker.helpers.arrayElements(interests);
     const randomJobStatus = faker.helpers.arrayElement(jobStatus);
     const randomSalaryRange = faker.helpers.arrayElement(UKSalaries);

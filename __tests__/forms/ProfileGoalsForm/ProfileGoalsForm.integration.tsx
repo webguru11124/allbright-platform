@@ -38,7 +38,6 @@ describe("ProfileGoalsForm", () => {
         - Make a call to api.post which update user profile
         - Navigate to the pledge route
         `, async () => {
-
     selectGoal(allCareerGoals[0]);
     selectGoal(allCareerGoals[1]);
     selectGoal(allCareerGoals[2]);
@@ -48,9 +47,11 @@ describe("ProfileGoalsForm", () => {
     });
 
     await waitFor(() => {
-      expect(UserClient.prototype.updateUserGoals).toHaveBeenCalledWith(
-         [allCareerGoals[0], allCareerGoals[1], allCareerGoals[2]],
-      );
+      expect(UserClient.prototype.updateUserGoals).toHaveBeenCalledWith([
+        allCareerGoals[0],
+        allCareerGoals[1],
+        allCareerGoals[2],
+      ]);
       expect(screen).toHavePathname("/onboarding/pledge");
     });
   });
@@ -58,7 +59,6 @@ describe("ProfileGoalsForm", () => {
         - Select less 3 career goals
         - Press submit button
         - Display error message`, async () => {
-
     selectGoal(allCareerGoals[0]);
     mockedApi.post.mockResolvedValueOnce({});
     fireEvent.press(screen.getByTestId("ProfileGoalsForm:Submit"));
