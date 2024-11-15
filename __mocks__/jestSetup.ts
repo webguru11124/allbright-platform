@@ -9,6 +9,9 @@ jest.mock("react-native-device-info", () => {
   };
 });
 
+jest.mock('react-native-fbsdk-next');
+
+
 jest.mock("@react-native-google-signin/google-signin", () => {
   return {
     GoogleSignin: {

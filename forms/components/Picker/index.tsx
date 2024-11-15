@@ -27,6 +27,7 @@ type Props = Omit<PickerProps, "selectedValue"> & {
   }[];
   error: string | undefined;
   theme: Theme;
+  
 };
 
 type StyleProps = {

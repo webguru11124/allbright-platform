@@ -8,6 +8,7 @@ import {
   useUpdateUserGoals,
   useUserGoals,
 } from "@/hooks/resources/useUserGoals";
+import { CareerGoalType } from "@/utils/data/careerGoals";
 
 const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
   const {
@@ -28,7 +29,7 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
   const { careerGoals } = useUserGoals();
 
   React.useEffect(() => {
-    if (careerGoals) reset({ careerGoals: careerGoals.map((goal) => goal.id) });
+    if (careerGoals) reset({ careerGoals: careerGoals.map((goal: CareerGoalType) => goal.id) });
   }, [careerGoals]);
 
   const onPress = async () => {

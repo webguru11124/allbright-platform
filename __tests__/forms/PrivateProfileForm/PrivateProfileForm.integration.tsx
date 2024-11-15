@@ -18,6 +18,7 @@ import Providers from "@/utils/providers";
 
 jest.mock("@/lib/api");
 jest.mock("@/utils/client/user/UserClient");
+
 const mockedApi = api as jest.Mocked<typeof api>;
 
 describe("PrivateProfileForm", () => {
@@ -36,14 +37,10 @@ describe("PrivateProfileForm", () => {
     fireEvent.changeText(dateOfBirth, date);
   }
 
-  beforeEach(() => {
+  beforeEach(async () => {
     jest.clearAllMocks();
-  });
-  it(`should:
-      - Enter valid data for the relevant form fields
-      - Make a call to api.post which update user profile
-      - Navigate to the second onboarding route
-      `, async () => {
+    (UserClient.prototype.findUserById as jest.Mock).mockResolvedValue({
+    });
     renderRouter({
       index: jest.fn(() => (
         <Providers>
@@ -53,6 +50,18 @@ describe("PrivateProfileForm", () => {
     });
 
     expect(screen).toHavePathname("/");
+
+    await waitFor(() => {
+      expect(screen.getByText("Job status*")).not.toBeNull()
+    });
+  });
+  it(`should:
+      - Enter valid data for the relevant form fields
+      - Make a call to api.post which update user profile
+      - Navigate to the second onboarding route
+      `, async () => {
+
+
     const randomInterests = faker.helpers.arrayElements(interests);
     const randomJobStatus = faker.helpers.arrayElement(jobStatus);
     const randomSalaryRange = faker.helpers.arrayElement(UKSalaries);
@@ -103,15 +112,6 @@ describe("PrivateProfileForm", () => {
     const JOB_STATUS_ERROR_MESSAGER = '"JobStatus" is required';
     const DATEOF_BRITH_ERROR_MESSAGE = '"DateOfBirth" is required';
 
-    renderRouter({
-      index: jest.fn(() => (
-        <Providers>
-          <PrivateProfileForm />
-        </Providers>
-      )),
-    });
-
-    expect(screen).toHavePathname("/");
     await act(() => {
       fireEvent.press(screen.getByTestId("PrivateProfileForm:Submit"));
     });

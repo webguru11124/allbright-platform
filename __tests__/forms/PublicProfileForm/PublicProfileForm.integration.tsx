@@ -27,6 +27,8 @@ describe("PublicProfileForm", () => {
       assets: [{ uri: "image-uri" }],
     });
     jest.clearAllMocks();
+    (UserClient.prototype.findUserById as jest.Mock).mockResolvedValue({
+    });
   });
 
   it(`should:
@@ -43,6 +45,11 @@ describe("PublicProfileForm", () => {
     });
 
     expect(screen).toHavePathname("/");
+    
+    await waitFor(() => {
+      expect(screen.getByText("Job Level")).not.toBeNull();
+    });
+
     const randomIndustry = onboardingIndustries[0];
     const randomJobLevel = jobLevels[0];
     const randomCompanyName = faker.company.name();
@@ -107,6 +114,11 @@ describe("PublicProfileForm", () => {
       )),
     });
 
+    
+    await waitFor(() => {
+      expect(screen.getByText("Job Level")).not.toBeNull();
+    });
+    
     expect(screen).toHavePathname("/");
 
     await fireBlurEvent(

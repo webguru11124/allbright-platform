@@ -28,7 +28,6 @@ export const useEthnicGroups = ({
     ).length;
 
   const onEthnicGroupsChange = (elm: any) => {
-    console.log("elm", elm);
     const selectedGroups = [...ethnicGroupsState];
     const otherHasValue = elm.title === "Other" && elm.value.length > 0;
     const isChecked =

@@ -4,7 +4,7 @@ import Picker from "@/forms/components/Picker";
 import { pickerAdaptor as salary } from "@/utils/data/salary";
 
 type Props = {
-  selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
+  value: NativeSyntheticEvent<NativeTouchEvent>;
   placeholder: string;
   onChangeText: (itemValue: unknown, itemIndex: number) => void;
   onBlur: SyntheticEvent;
@@ -12,7 +12,7 @@ type Props = {
 };
 
 const SalaryPicker = ({
-  selectedValue,
+  value,
   placeholder,
   onChangeText,
   onBlur,
@@ -21,7 +21,7 @@ const SalaryPicker = ({
   return (
     <Picker
       placeholder={placeholder}
-      selectedValue={selectedValue}
+      selectedValue={value}
       onValueChange={onChangeText}
       items={salary}
       error={error}
