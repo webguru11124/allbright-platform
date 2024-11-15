@@ -11,7 +11,7 @@ import { DefaultTheme, PaperDefaultTheme } from "@/theme";
 type Props = {
   children: React.ReactNode;
 };
-const client=new QueryClient();
+const client = new QueryClient();
 
 const Providers = ({ children }: Props) => {
   return (

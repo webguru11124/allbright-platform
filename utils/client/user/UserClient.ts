@@ -11,7 +11,6 @@ class UserClient {
     return data;
   }
 
-
   public async updateUser(user: Partial<UserModel>): Promise<boolean> {
     const userId = await getUserId();
     if (!userId) return Promise.reject("Invalid User Id");

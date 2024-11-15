@@ -50,9 +50,9 @@ const usePublicProfileForm = (
       }
 
       if (input.profile_image.state === LocalImageType.FILE_UNSET) {
-        imageSrc = null
+        imageSrc = null;
       }
-      await mutateUpdateUserAsync({  ...output, imageSrc });
+      await mutateUpdateUserAsync({ ...output, imageSrc });
 
       router.replace("/onboarding/private-profile");
     } catch (error: any) {

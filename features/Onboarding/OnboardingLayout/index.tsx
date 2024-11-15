@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { Text } from "react-native";
 import styled from "styled-components/native";
 
 interface Props {
@@ -11,9 +10,7 @@ export const OnboadingPageLayout = ({ children }: Props) => {
     <Main>
       <Container>
         <ContentWrap>
-          <Suspense fallback={<Loading />}>
-            {children}
-          </Suspense>
+          <Suspense fallback={<Loading />}>{children}</Suspense>
         </ContentWrap>
       </Container>
     </Main>

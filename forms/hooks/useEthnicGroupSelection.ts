@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { ethnicGroups } from "@/utils/data/ethnicGroups";
-type FieldsType = (typeof ethnicGroups)[number];
 
+import { ethnicGroups } from "@/utils/data/ethnicGroups";
+
+type FieldsType = (typeof ethnicGroups)[number];
 
 export const useEthnicGroups = ({
   field = [],
@@ -10,7 +11,8 @@ export const useEthnicGroups = ({
   field: FieldsType[];
   setField: (value: FieldsType[]) => void;
 }) => {
-  const [ethnicGroupsState, setEthnicGroupsState] = useState<FieldsType[]>(field);
+  const [ethnicGroupsState, setEthnicGroupsState] =
+    useState<FieldsType[]>(field);
 
   useEffect(() => {
     if (field.length > 0) setEthnicGroupsState(field);
@@ -26,7 +28,7 @@ export const useEthnicGroups = ({
     ).length;
 
   const onEthnicGroupsChange = (elm: any) => {
-    console.log("elm", elm)
+    console.log("elm", elm);
     const selectedGroups = [...ethnicGroupsState];
     const otherHasValue = elm.title === "Other" && elm.value.length > 0;
     const isChecked =

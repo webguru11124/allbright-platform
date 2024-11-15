@@ -49,7 +49,7 @@ const usePrivateProfileForm = (
       setLoading(false);
     }
   };
-  console.log(inputs.ethnicGroups)
+  console.log(inputs.ethnicGroups);
 
   return {
     inputs,
