@@ -1,6 +1,8 @@
 import { Href, useRouter } from "expo-router";
 import Joi from "joi";
+import _ from "lodash";
 import * as React from "react";
+import { useState } from "react";
 
 import { privateProfileAdaptor, PrivateProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
@@ -11,6 +13,7 @@ const usePrivateProfileForm = (
   privateProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
   const { data: user } = useUserProfile();
+  const [currentUser, setCurrentUser] = useState(user);
 
   const {
     inputs,
@@ -25,8 +28,11 @@ const usePrivateProfileForm = (
   } = useForm(privateProfileSchema);
 
   React.useEffect(() => {
-    if (user) reset(user);
-  }, [user]);
+    if (_.isEqual(user, currentUser) === false) {
+      if (user) reset(user);
+      setCurrentUser(user);
+    }
+  }, [user, currentUser, reset]);
 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);

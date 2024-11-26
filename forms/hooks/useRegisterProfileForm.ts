@@ -1,17 +1,19 @@
 import { useRouter } from "expo-router";
 import * as Joi from "joi";
+import _ from "lodash";
 import * as React from "react";
+import { useEffect, useState } from "react";
 
 import { registerProfileAdaptor, RegisterProfileInput } from "@/forms/adaptors";
+import useForm from "@/forms/hooks/useForm";
 import { useUserProfile } from "@/hooks/resources/useUserProfile";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
-
-import useForm from "./useForm";
 
 const useRegisterProfileForm = (
   registerProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
   const { data: user } = useUserProfile();
+  const [currentUser, setCurrentUser] = useState(user);
 
   const {
     inputs,
@@ -25,9 +27,12 @@ const useRegisterProfileForm = (
     showErrorMessage,
   } = useForm(registerProfileSchema);
 
-  React.useEffect(() => {
-    if (user) reset(user);
-  }, [user]);
+  useEffect(() => {
+    if (_.isEqual(user, currentUser) === false) {
+      if (user) reset(user);
+      setCurrentUser(user);
+    }
+  }, [user, currentUser, reset]);
 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
