@@ -18,7 +18,8 @@ const IsAuthenticated = (props: Props) => {
         authenticationPaths.includes(pathname) === false &&
           router.navigate("/");
       } else {
-        router.navigate("/home");
+        authenticationPaths.includes(pathname) === true &&
+          router.navigate("/home");
       }
     };
 
