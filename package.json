@@ -11,9 +11,10 @@
     "web": "expo start --web",
     "test": "jest --max-old-space-size=8192 ",
     "test:watch": "jest --watchAll",
-    "lint": "eslint . --fix",
+    "lint:fix": "eslint . --fix",
     "prepare": "husky",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "doctor": "npx expo-doctor"
   },
   "jest": {
     "preset": "jest-expo",
@@ -28,7 +29,7 @@
     "maxWorkers": 2
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
