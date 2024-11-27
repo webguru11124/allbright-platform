@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 export default function Index() {
   return (
     <View>
-      <Text>Connect</Text>
+      <Text>Find a mentor</Text>
     </View>
   );
 }

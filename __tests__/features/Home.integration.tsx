@@ -21,6 +21,6 @@ describe("Home", () => {
   it(`should:
       - render the Home feature
     `, () => {
-    expect(screen.getByText(/go back/i)).not.toBeNull();
+    expect(screen.getAllByTestId(/badge/i).length).toBeGreaterThan(0);
   });
 });
