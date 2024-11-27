@@ -7,7 +7,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const authenticationPaths = ["/register", "/login"];
+const authenticationPaths = ["/", "/register", "/login"];
 
 const IsAuthenticated = (props: Props) => {
   const pathname = usePathname();
@@ -16,7 +16,7 @@ const IsAuthenticated = (props: Props) => {
       const token = await getToken();
       if (Boolean(token) === false) {
         authenticationPaths.includes(pathname) === false &&
-          router.navigate("/login");
+          router.navigate("/");
       } else {
         router.navigate("/home");
       }

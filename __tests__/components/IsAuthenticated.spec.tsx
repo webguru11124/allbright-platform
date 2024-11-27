@@ -19,7 +19,7 @@ const MockComponentInit = jest.fn(() => {
 
   const handlePress = () => {
     // @ts-ignore
-    router.push("/protected-route");
+    router.push("/home");
   };
 
   return (
@@ -43,7 +43,7 @@ describe("IconButton", () => {
     renderRouter({
       index: jest.fn(() => <MockComponentInit />),
       "/login": MockComponent,
-      "/protected-route": MockComponent,
+      "/home": MockComponent,
     });
   });
 
@@ -56,7 +56,7 @@ describe("IconButton", () => {
   });
 
   it(`should:
-    - call redirect to /login if authentication fails`, async () => {
+    - call redirect to / if authentication fails`, async () => {
     jest.spyOn(utilsToken, "getToken").mockResolvedValue(false);
 
     expect(screen.getByText(SEARCH_TEXT)).not.toBeNull();
@@ -65,11 +65,11 @@ describe("IconButton", () => {
       fireEvent.press(screen.getByText(SEARCH_TEXT));
     });
 
-    expect(screen).toHavePathname("/login");
+    expect(screen).toHavePathname("/");
   });
 
   it(`should:
-    - not call redirect to /login if authentication succeeds`, async () => {
+    - not call redirect to /home if authentication succeeds`, async () => {
     jest.spyOn(utilsToken, "getToken").mockResolvedValue(true);
 
     expect(screen.getByText(SEARCH_TEXT)).not.toBeNull();
@@ -78,6 +78,6 @@ describe("IconButton", () => {
       fireEvent.press(screen.getByText(SEARCH_TEXT));
     });
 
-    expect(screen).toHavePathname("/protected-route");
+    expect(screen).toHavePathname("/home");
   });
 });
