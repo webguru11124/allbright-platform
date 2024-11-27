@@ -1,19 +1,17 @@
 import { useRouter } from "expo-router";
 import * as Joi from "joi";
-import _ from "lodash";
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
+import { UserContext } from "@/contexts/UserContext";
 import { registerProfileAdaptor, RegisterProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
-import { useUserProfile } from "@/hooks/resources/useUserProfile";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 
 const useRegisterProfileForm = (
   registerProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
-  const { data: user } = useUserProfile();
-  const [currentUser, setCurrentUser] = useState(user);
+  const user = React.useContext<User>(UserContext);
 
   const {
     inputs,
@@ -28,11 +26,9 @@ const useRegisterProfileForm = (
   } = useForm(registerProfileSchema);
 
   useEffect(() => {
-    if (_.isEqual(user, currentUser) === false) {
-      if (user) reset(user);
-      setCurrentUser(user);
-    }
-  }, [user, currentUser, reset]);
+    if (user) reset(user);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
