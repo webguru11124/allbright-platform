@@ -23,6 +23,7 @@ const TextInput = ({
     <>
       <FloatingLabelInput
         label={label || placeholder || "Please enter"}
+        autoCapitalize="none"
         inputStyles={
           {
             outline: "none",
