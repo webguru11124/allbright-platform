@@ -2,17 +2,20 @@ import { createContext } from "react";
 
 import { useUserProfile } from "@/hooks/resources/useUserProfile";
 
-export const UserContext = createContext<User>({} as User);
+const initContext = { ...({} as User) };
+
+// TODO: Fix typescript issue
+export const UserContext = createContext<any>(initContext);
 
 type UserProviderProps = {
   children: React.ReactNode;
 };
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-  const { data } = useUserProfile();
+  const { data, refetch } = useUserProfile();
 
   return (
-    <UserContext.Provider value={data as unknown as User}>
+    <UserContext.Provider value={{ ...data, refetch }}>
       {children}
     </UserContext.Provider>
   );

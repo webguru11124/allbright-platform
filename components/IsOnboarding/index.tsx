@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { UserContext } from "@/contexts/UserContext";
 
@@ -8,10 +8,15 @@ type Props = {
 };
 
 const IsOnboarding = (props: Props) => {
-  const { agreedToPledge } = useContext<User>(UserContext);
+  const { agreedToPledge, refetch } = useContext<any>(UserContext);
 
-  React.useEffect(() => {
-    if (agreedToPledge === false) router.navigate("onboarding/welcome");
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
+
+  useEffect(() => {
+    if (Boolean(agreedToPledge) === false)
+      router.navigate("onboarding/welcome");
   }, [agreedToPledge]);
 
   return props.children;

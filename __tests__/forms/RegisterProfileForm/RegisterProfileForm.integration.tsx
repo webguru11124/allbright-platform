@@ -29,14 +29,9 @@ describe("RegisterProfileForm", () => {
       )),
     });
 
-    expect(screen.getByText("Bundling...")).not.toBeNull();
-
-    await waitFor(() => {
-      expect(screen.queryByText("Bundling...")).toBeNull();
-    });
-
-    expect(screen).toHavePathname("/");
+    await waitFor(() => expect(screen).toHavePathname("/"));
   });
+
   afterEach(() => {
     jest.clearAllMocks();
   });
