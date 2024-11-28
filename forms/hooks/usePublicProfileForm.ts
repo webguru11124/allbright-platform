@@ -65,7 +65,6 @@ const usePublicProfileForm = (
 
       router.replace("/onboarding/private-profile");
     } catch (error: any) {
-      console.error(error);
       showErrorMessage(error.message);
     } finally {
       setLoading(false);
