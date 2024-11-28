@@ -16,9 +16,9 @@ const client = new QueryClient();
 
 const Providers = ({ children }: Props) => {
   return (
-    <QueryClientProvider client={client}>
-      <ThemeProvider value={DefaultTheme}>
-        <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <QueryClientProvider client={client}>
+        <ThemeProvider value={DefaultTheme}>
           <UserProvider>
             <MediaQueryProvider>
               <PaperProvider
@@ -30,9 +30,9 @@ const Providers = ({ children }: Props) => {
               </PaperProvider>
             </MediaQueryProvider>
           </UserProvider>
-        </GestureHandlerRootView>
-      </ThemeProvider>
-    </QueryClientProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </GestureHandlerRootView>
   );
 };
 
