@@ -5,10 +5,11 @@ import styled from "styled-components/native";
 
 import Space from "@/components/Space";
 import { CM, CS } from "@/components/Typography";
+import TextInput from "@/forms/components/TextInput";
 import withTheme from "@/hocs/withTheme";
 import { recommendationColour } from "@/theme";
 import OnboardingClient from "@/utils/client/user/OnboardingClient";
-import { pickerAdaptor as cities } from "@/utils/data/cities";
+import { City } from "@/utils/data/cities";
 import countries from "@/utils/data/countries";
 
 type Props = Omit<TextInputProps, "onBlur"> & {
@@ -31,13 +32,20 @@ const CityPicker = ({
   disabled,
 }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const filteredCities = useMemo(() => {
-    if (!selectedCountry) return cities;
-    const countryCities = new OnboardingClient().getCities(selectedCountry);
-    return cities.filter((item) =>
-      countryCities.find((city) => city === item.value)
-    );
+  const [searchText, setSearchText] = useState<string | undefined>(undefined);
+  const cities: City[] = useMemo(() => {
+    return new OnboardingClient().getCities(selectedCountry);
   }, [selectedCountry]);
+
+  const filteredCities = useMemo(
+    () =>
+      searchText !== undefined
+        ? cities.filter((val) =>
+            val.key.toLowerCase().includes(searchText?.toLowerCase())
+          )
+        : cities,
+    [cities, searchText]
+  );
 
   const handleChangeText = (value: string) => {
     onChangeText(value);
@@ -47,14 +55,23 @@ const CityPicker = ({
   const displayValue = useMemo(
     () =>
       Boolean(value)
-        ? filteredCities.find((item) => item.value === value)?.label
+        ? cities.find((item) => item.value === value)?.label
         : undefined,
-    [value, filteredCities]
+    [value, cities]
+  );
+
+  const isDisabled = useMemo(
+    () => Boolean(selectedCountry) === false,
+    [selectedCountry]
   );
 
   const onCloseButtonPress = () => {
     onBlur();
     setModalVisible(!modalVisible);
+  };
+
+  const onChangeSearchValue = (val: string) => {
+    setSearchText(val);
   };
 
   return (
@@ -71,6 +88,15 @@ const CityPicker = ({
           <ModalView>
             <TitleContainer>
               <Title>City</Title>
+              <TextInputContainer>
+                <TextInput
+                  onChangeText={onChangeSearchValue}
+                  value={searchText}
+                  placeholder="Search..."
+                  error={undefined}
+                  onBlur={undefined}
+                />
+              </TextInputContainer>
               <CloseButton
                 onPress={onCloseButtonPress}
                 disabled={disabled}>
@@ -83,7 +109,7 @@ const CityPicker = ({
             </TitleContainer>
             <Space height={10} />
             <ItemContainer>
-              {cities.map((item) => (
+              {filteredCities.map((item) => (
                 <PressableItem
                   key={item.key}
                   onPress={() => handleChangeText(item.value)}>
@@ -95,10 +121,11 @@ const CityPicker = ({
         </CenteredView>
       </Modal>
       <StyledPressable
+        disabled={isDisabled}
         theme={theme}
         onPress={() => setModalVisible(true)}
         error={error}>
-        <CM color={recommendationColour.textColor}>
+        <CM color={isDisabled ? "#ddd" : recommendationColour.textColor}>
           {displayValue || placeholder}
         </CM>
         <MaterialIcons
@@ -133,6 +160,7 @@ const ModalView = styled.View`
 const TitleContainer = styled.View`
   width: 100%;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   border-bottom-width: 1px;
   border-bottom-color: #ddd;
@@ -179,6 +207,10 @@ const StyledPressable = styled.Pressable<{ error: string | undefined }>`
   border-width: ${(p) => (Boolean(p.error) ? 3 : 0)}px;
   border-radius: 5px;
   color: ${recommendationColour.textColor};
+`;
+
+const TextInputContainer = styled.View`
+  min-width: 200px;
 `;
 
 export default withTheme(CityPicker);

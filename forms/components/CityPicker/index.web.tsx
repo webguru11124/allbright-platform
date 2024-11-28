@@ -3,7 +3,7 @@ import { NativeSyntheticEvent, NativeTouchEvent } from "react-native";
 
 import Picker from "@/forms/components/Picker";
 import OnboardingClient from "@/utils/client/user/OnboardingClient";
-import { pickerAdaptor as cities } from "@/utils/data/cities";
+import { City } from "@/utils/data/cities";
 import countries from "@/utils/data/countries";
 
 type Props = {
@@ -25,12 +25,8 @@ const CityPicker = ({
   error,
   disabled,
 }: Props) => {
-  const filteredCities = useMemo(() => {
-    if (!selectedCountry) return cities;
-    const countryCities = new OnboardingClient().getCities(selectedCountry);
-    return cities.filter((item) =>
-      countryCities.find((city) => city === item.value)
-    );
+  const cities: City[] = useMemo(() => {
+    return new OnboardingClient().getCities(selectedCountry);
   }, [selectedCountry]);
 
   return (
@@ -38,7 +34,7 @@ const CityPicker = ({
       placeholder={placeholder}
       selectedValue={value}
       onValueChange={onChangeText}
-      items={filteredCities}
+      items={cities}
       error={error}
       onBlur={onBlur}
       enabled={!disabled}

@@ -53670,15 +53670,24 @@ export const cities = [
     code: "NL",
   },
 ] as const;
-export const pickerAdaptor = cities
-  .map<{ key: string; label: string; value: string }>((item) => ({
-    key: `${item.city} ${item.code}`,
-    label: `${item.city}, ${item.country}`,
-    value: item.city,
-  }))
-  .reduce<{ key: string; label: string; value: string }[]>((acc, current) => {
-    if (!acc.some((item) => item.key === current.key)) {
-      acc.push(current);
-    }
-    return acc;
-  }, []);
+
+export type RawCity = {
+  readonly city: string;
+  readonly country: string;
+  readonly code: string;
+};
+export type City = { key: string; label: string; value: string };
+
+export const pickerAdaptor = (input: RawCity[] = []): City[] =>
+  input
+    .map<City>((item) => ({
+      key: `${item.city} ${item.code}`,
+      label: `${item.city}, ${item.country}`,
+      value: item.city,
+    }))
+    .reduce<City[]>((acc, current) => {
+      if (!acc.some((item) => item.key === current.key)) {
+        acc.push(current);
+      }
+      return acc;
+    }, []);

@@ -35,7 +35,6 @@ const useRegisterProfileForm = (
   const router = useRouter();
 
   const onPress = async () => {
-    // TODO: Update handling error and sucess on mutate
     try {
       if (!validateAllInputs())
         throw new Error("Please fill out all required fields");
