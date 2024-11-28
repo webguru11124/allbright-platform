@@ -9,7 +9,7 @@
     "ios:simulator": "eas build --profile development-simulator --platform ios",
     "android:simulator": "eas build --platform android --profile development",
     "web": "expo start --web",
-    "test": "jest --max-old-space-size=8192 --detectOpenHandles",
+    "test": "jest --max-old-space-size=8192",
     "test:watch": "jest --watchAll",
     "lint:fix": "eslint . --fix",
     "prepare": "husky",
