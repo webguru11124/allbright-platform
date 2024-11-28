@@ -125,7 +125,7 @@ const CityPicker = ({
         theme={theme}
         onPress={() => setModalVisible(true)}
         error={error}>
-        <CM color={isDisabled ? "#ddd" : recommendationColour.textColor}>
+        <CM color={isDisabled ? "#ddd" : theme.colors.text}>
           {displayValue || placeholder}
         </CM>
         <MaterialIcons

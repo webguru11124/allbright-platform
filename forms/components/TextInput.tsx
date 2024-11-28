@@ -29,6 +29,7 @@ const TextInput = ({
             outline: "none",
             minHeight: 50,
             fontSize: 16,
+            color: theme.colors.text,
           } as TextStyle
         }
         containerStyles={{

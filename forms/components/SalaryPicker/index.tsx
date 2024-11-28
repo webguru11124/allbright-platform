@@ -83,9 +83,7 @@ const SalaryPicker = ({
         theme={theme}
         onPress={() => setModalVisible(true)}
         error={error}>
-        <CM color={recommendationColour.textColor}>
-          {displayValue || placeholder}
-        </CM>
+        <CM color={theme.colors.text}>{displayValue || placeholder}</CM>
         <MaterialIcons
           name={"arrow-drop-down"}
           size={24}

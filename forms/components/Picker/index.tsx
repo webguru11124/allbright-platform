@@ -13,7 +13,6 @@ import styled from "styled-components/native";
 import { CS } from "@/components/Typography";
 import TextInput from "@/forms/components/TextInput";
 import withTheme from "@/hocs/withTheme";
-import { recommendationColour } from "@/theme";
 
 type Props = Omit<PickerProps, "selectedValue"> & {
   selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
@@ -108,7 +107,9 @@ export const PickerInput = withTheme(
         />
       ) : (
         <Pressable onPress={onPress}>
-          <StyledCS backgroundColour={theme.colors.inputs.background}>
+          <StyledCS
+            backgroundColour={theme.colors.inputs.background}
+            color={theme.colors.text}>
             {displayValue}
           </StyledCS>
         </Pressable>
@@ -130,7 +131,7 @@ const StyledCS = styled(CS)`
   padding-top: 15px;
   border-radius: 5px;
   font-size: 16px;
-  color: ${recommendationColour.textColor};
+  color: ${(p) => p.color};
 `;
 
 export default withTheme(Picker);
