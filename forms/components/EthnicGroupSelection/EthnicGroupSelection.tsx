@@ -2,6 +2,7 @@ import React, { FunctionComponent, useContext } from "react";
 import styled, { css } from "styled-components/native";
 
 import { Tick } from "@/components/Icons/index";
+import Space from "@/components/Space";
 import { CL, CM, H5 } from "@/components/Typography";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import FormFieldContainer from "@/forms/components/FormFieldContainer";
@@ -41,7 +42,7 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (
       <CM>
         Inclusion is one of our priorities at AllBright and we are committed to
         creating an environment that is representative of all women.
-        <br />
+        <Space height={10} />
         This data will only be used to help us create a space that provides
         equity for all of our members.
       </CM>
