@@ -15,7 +15,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const { data, refetch } = useUserProfile();
 
   return (
-    <UserContext.Provider value={{ ...data, refetch }}>
+    <UserContext.Provider value={{ user: data, refetch }}>
       {children}
     </UserContext.Provider>
   );

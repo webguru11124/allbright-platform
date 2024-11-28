@@ -8,16 +8,18 @@ type Props = {
 };
 
 const IsOnboarding = (props: Props) => {
-  const { agreedToPledge, refetch } = useContext<any>(UserContext);
+  const { user, refetch } = useContext<{
+    user: User;
+    refetch: Function;
+  }>(UserContext);
 
   useEffect(() => {
     refetch();
   }, [refetch]);
 
   useEffect(() => {
-    if (Boolean(agreedToPledge) === false)
-      router.navigate("onboarding/welcome");
-  }, [agreedToPledge]);
+    if (user?.agreedToPledge === false) router.navigate("onboarding/welcome");
+  }, [user?.agreedToPledge]);
 
   return props.children;
 };

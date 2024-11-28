@@ -11,7 +11,9 @@ import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 const useRegisterProfileForm = (
   registerProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
-  const user = React.useContext<User>(UserContext);
+  const { user, refetch } = React.useContext<{ user: User; refetch: Function }>(
+    UserContext
+  );
 
   const {
     inputs,
@@ -26,9 +28,13 @@ const useRegisterProfileForm = (
   } = useForm(registerProfileSchema);
 
   useEffect(() => {
-    if (user) reset(user);
+    if (user) {
+      reset(user);
+    } else {
+      refetch();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [refetch, user]);
 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);

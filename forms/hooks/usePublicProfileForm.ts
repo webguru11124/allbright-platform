@@ -12,7 +12,9 @@ import { LocalImageType } from "@/types/files/localImage";
 const usePublicProfileForm = (
   publicProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
-  const user = React.useContext<User>(UserContext);
+  const { user, refetch } = React.useContext<{ user: User; refetch: Function }>(
+    UserContext
+  );
 
   const {
     inputs,
@@ -27,9 +29,13 @@ const usePublicProfileForm = (
   } = useForm(publicProfileSchema, {});
 
   useEffect(() => {
-    if (user) reset(user);
+    if (user) {
+      reset(user);
+    } else {
+      refetch();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [refetch, user]);
 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
@@ -45,19 +51,21 @@ const usePublicProfileForm = (
       const output = publicProfileAdaptor(input);
       let imageSrc = null;
       if (
-        input.profile_image.state === LocalImageType.FILE_SET &&
-        input.profile_image.file !== null
+        input.profile_image?.state === LocalImageType.FILE_SET &&
+        input.profile_image?.file !== null
       ) {
         imageSrc = input.profile_image.file;
       }
 
-      if (input.profile_image.state === LocalImageType.FILE_UNSET) {
+      if (input.profile_image?.state === LocalImageType.FILE_UNSET) {
         imageSrc = null;
       }
+
       await mutateUpdateUserAsync({ ...output, imageSrc });
 
       router.replace("/onboarding/private-profile");
     } catch (error: any) {
+      console.error(error);
       showErrorMessage(error.message);
     } finally {
       setLoading(false);

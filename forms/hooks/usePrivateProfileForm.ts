@@ -1,19 +1,18 @@
 import { Href, useRouter } from "expo-router";
 import Joi from "joi";
-import _ from "lodash";
 import * as React from "react";
-import { useState } from "react";
 
+import { UserContext } from "@/contexts/UserContext";
 import { privateProfileAdaptor, PrivateProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
-import { useUserProfile } from "@/hooks/resources/useUserProfile";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 
 const usePrivateProfileForm = (
   privateProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
-  const { data: user } = useUserProfile();
-  const [currentUser, setCurrentUser] = useState(user);
+  const { user, refetch } = React.useContext<{ user: User; refetch: Function }>(
+    UserContext
+  );
 
   const {
     inputs,
@@ -28,11 +27,13 @@ const usePrivateProfileForm = (
   } = useForm(privateProfileSchema);
 
   React.useEffect(() => {
-    if (_.isEqual(user, currentUser) === false) {
-      if (user) reset(user);
-      setCurrentUser(user);
+    if (user) {
+      reset(user);
+    } else {
+      refetch();
     }
-  }, [user, currentUser, reset]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refetch, user]);
 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
