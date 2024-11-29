@@ -16,8 +16,11 @@ const HeaderBackButton = ({ onBackPress, ...props }: Props) => {
       color={theme.colors.primary}
       size={36}
       onPress={() => {
-        if (onBackPress) onBackPress();
-        else router.back();
+        if (onBackPress) {
+          onBackPress();
+        } else {
+          router.back();
+        }
       }}
       testID={"HeaderBackButton"}
       {...props}

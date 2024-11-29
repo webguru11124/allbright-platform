@@ -33,6 +33,18 @@ export default {
     },
     plugins: [
       "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          backgroundColor: "#232323",
+          image: "./assets/images/favicon.png",
+          dark: {
+            image: "./assets/images/favicon.png",
+            backgroundColor: "#000000",
+          },
+          imageWidth: 200,
+        },
+      ],
       "@react-native-google-signin/google-signin",
       [
         "react-native-fbsdk-next",

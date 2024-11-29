@@ -5,7 +5,7 @@ export type Group = {
   headerImageUrl: string;
   deleted?: boolean;
   goals?: string[];
-  highlightColour?: string;
+  highlightColor?: string;
   isPrivate?: boolean;
   createdAt: number;
   updatedAt: number;

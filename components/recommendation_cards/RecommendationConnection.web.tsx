@@ -43,9 +43,9 @@ const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (
         />
       </View>
       <Badge
-        colour={Colors.light.teal}
+        backgroundColor={Colors.light.teal}
         text="Connection"
-        textColour="white"
+        color="white"
       />
       <View style={styles.textContent}>
         <H5>
@@ -53,7 +53,7 @@ const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (
         </H5>
         <CS>{props.jobTitle}</CS>
         <CS>{props.location}</CS>
-        <Divider colour={Colors.light.teal} />
+        <Divider color={Colors.light.teal} />
       </View>
     </View>
   );

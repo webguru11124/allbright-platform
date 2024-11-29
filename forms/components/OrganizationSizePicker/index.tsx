@@ -6,7 +6,7 @@ import styled from "styled-components/native";
 import Space from "@/components/Space";
 import { CM, CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
-import { recommendationColour } from "@/theme";
+import { recommendationColor } from "@/theme";
 import { pickerAdaptor as organizationSize } from "@/utils/data/organisationSize";
 
 type Props = Omit<TextInputProps, "onBlur"> & {
@@ -83,7 +83,7 @@ const OrganizationSizePicker = ({
         theme={theme}
         onPress={() => setModalVisible(true)}
         error={error}>
-        <CM color={recommendationColour.textColor}>
+        <CM color={recommendationColor.textColor}>
           {displayValue || placeholder}
         </CM>
         <MaterialIcons
@@ -163,7 +163,7 @@ const StyledPressable = styled.Pressable<{ error: string | undefined }>`
   border-color: ${(p) => (Boolean(p.error) ? "red" : "transparent")};
   border-width: ${(p) => (Boolean(p.error) ? 3 : 0)}px;
   border-radius: 5px;
-  color: ${recommendationColour.textColor};
+  color: ${recommendationColor.textColor};
 `;
 
 export default withTheme(OrganizationSizePicker);

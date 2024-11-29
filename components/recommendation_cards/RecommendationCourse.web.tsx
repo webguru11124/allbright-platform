@@ -38,14 +38,14 @@ const RecommendationCourse: React.FC<LessonRecommendationModel> = (props) => {
         />
       </View>
       <Badge
-        colour={Colors.light.orange}
+        backgroundColor={Colors.light.orange}
         text="Academy"
-        textColour="white"
+        color="white"
       />
       <View style={styles.textContent}>
         <H5>{props.lessonName}</H5>
         <CS>On Demand • {props.lessonActivitiesCollection.total} videos</CS>
-        <Divider colour={Colors.light.orange} />
+        <Divider color={Colors.light.orange} />
         <CS>{props.lessonIntroductionText}</CS>
       </View>
     </View>

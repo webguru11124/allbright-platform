@@ -2,15 +2,23 @@ import { Href, useRouter } from "expo-router";
 import Joi from "joi";
 import * as React from "react";
 
-import { privateProfileAdaptor, PrivateProfileInput } from "@/forms/adaptors";
+import { UserContext } from "@/contexts/UserContext";
+import {
+  ethnicGroupsAdapter,
+  privateProfileAdaptor,
+  PrivateProfileInput,
+} from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
-import { useUserProfile } from "@/hooks/resources/useUserProfile";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
+import { UserModel } from "@/types/user";
 
 const usePrivateProfileForm = (
   privateProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
-  const { data: user } = useUserProfile();
+  const { user, refetch } = React.useContext<{
+    user: Partial<UserModel> | undefined;
+    refetch: Function;
+  }>(UserContext);
 
   const {
     inputs,
@@ -25,8 +33,15 @@ const usePrivateProfileForm = (
   } = useForm(privateProfileSchema);
 
   React.useEffect(() => {
-    if (user) reset(user);
-  }, [user]);
+    if (user) {
+      reset(user);
+      if (user.ethnicGroups)
+        changeTextFuncs.ethnicGroups(ethnicGroupsAdapter(user.ethnicGroups));
+    } else {
+      refetch();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refetch, user]);
 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);

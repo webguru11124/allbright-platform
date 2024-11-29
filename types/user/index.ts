@@ -10,14 +10,14 @@ import organisationSize from "@/utils/data/organisationSize";
 export const Roles = ["Free", "Plus", "Alliance", "Administrator"] as const;
 
 export type UserModel = {
-  id: string;
+  id: string | undefined;
   firstName: string;
   lastName: string;
   name: string;
   email: string;
   stripeCustomerId: string;
   lastActiveAt: number;
-  businessCardColour: string;
+  businessCardColor: string;
   displayPhoto?: boolean;
   roles: (typeof Roles)[number][];
   createdAt: number;

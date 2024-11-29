@@ -45,7 +45,6 @@ describe("RegisterProfileForm", () => {
     onPress: jest.fn(),
   };
 
-  // FIXME: 51-platform-registration-flow - Test skipped as cannot have describe block with no tests
   describe("calls changeTextFuncs", () => {
     let screen: any;
 
@@ -74,13 +73,6 @@ describe("RegisterProfileForm", () => {
       expect(props.changeTextFuncs.lastName).toHaveBeenCalledWith(
         expectedLastName
       );
-    });
-
-    it("when the city input is updated", () => {
-      const expectedCity = faker.location.city();
-      const cityInput = screen.getByText("City");
-      fireEvent.changeText(cityInput, expectedCity);
-      expect(props.changeTextFuncs.city).toHaveBeenCalledWith(expectedCity);
     });
 
     it("when the country input is updated", () => {

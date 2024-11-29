@@ -1,19 +1,26 @@
 import { router } from "expo-router";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
-import { useUserProfile } from "@/hooks/resources/useUserProfile";
+import { UserContext } from "@/contexts/UserContext";
+import { UserModel } from "@/types/user";
 
 type Props = {
   children: React.ReactNode;
 };
 
 const IsOnboarding = (props: Props) => {
-  const { data } = useUserProfile();
-  React.useEffect(() => {
-    if (data) {
-      if (!data?.agreedToPledge) router.navigate("onboarding/welcome");
-    }
-  }, [data]);
+  const { user, refetch } = useContext<{
+    user: Partial<UserModel> | undefined;
+    refetch: Function;
+  }>(UserContext);
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
+
+  useEffect(() => {
+    if (user?.agreedToPledge === false) router.navigate("onboarding/welcome");
+  }, [user?.agreedToPledge]);
 
   return props.children;
 };

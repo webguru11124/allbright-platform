@@ -20,7 +20,11 @@ export default function Layout() {
         },
         headerTitle: "Onboarding",
         headerLeft: () => <HeaderBackButton />,
-      }}
-    />
+      }}>
+      <Stack.Screen
+        name="welcome/index"
+        options={{ headerLeft: undefined }}
+      />
+    </Stack>
   );
 }

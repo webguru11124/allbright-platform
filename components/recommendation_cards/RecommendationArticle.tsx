@@ -38,13 +38,13 @@ const RecommendationArticle: React.FC<ArticleRecommendationModel> = (props) => {
         />
       </View>
       <Badge
-        colour={Colors.light.yellow}
+        backgroundColor={Colors.light.yellow}
         text="Article"
       />
       <View style={styles.textContent}>
         <H5>{props.title}</H5>
         <CS>By {props.author}</CS>
-        <Divider colour={Colors.light.yellow} />
+        <Divider color={Colors.light.yellow} />
       </View>
     </View>
   );

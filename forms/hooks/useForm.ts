@@ -1,6 +1,6 @@
 import Joi from "joi";
 import _ from "lodash";
-import React, { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Platform } from "react-native";
 import Toast from "react-native-root-toast";
 
@@ -29,7 +29,7 @@ const useForm = (
   const [errors, setErrors] = useState<typeof schemaInputs>(schemaInputs);
   const [touched, setTouched] = useState<typeof schemaInputs>(schemaInputs);
 
-  const reset = React.useCallback(
+  const reset = useCallback(
     (values: Partial<typeof schemaInputs> = {}) => {
       const newInputs = { ...inputs, ...values };
       setInputs(newInputs);

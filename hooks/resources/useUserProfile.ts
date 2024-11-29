@@ -1,12 +1,12 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { UserModel } from "@/types/user";
 import UserClient from "@/utils/client/user/UserClient";
-import { ethnicGroups } from "@/utils/data/ethnicGroups";
 import { getUserId } from "@/utils/token";
 
-export const useUserProfile = () => {
-  const { data: user } = useSuspenseQuery({
+export const useUserProfile = () =>
+  useQuery({
+    enabled: false,
     queryKey: ["user"],
     queryFn: async () => {
       const id = await getUserId();
@@ -15,17 +15,8 @@ export const useUserProfile = () => {
     },
     select: (data: UserModel | undefined | null) => ({
       ...data,
-      ethnicGroups: data?.ethnicGroups
-        ? ethnicGroups.filter((group) =>
-            data.ethnicGroups?.includes(group.value)
-          )
-        : [],
+      ethnicGroups: data?.ethnicGroups ?? [],
       careerGoals: data?.careerGoals ?? [],
       goals: data?.goals ?? [],
     }),
   });
-
-  return {
-    data: user,
-  };
-};

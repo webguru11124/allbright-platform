@@ -3,7 +3,7 @@ import { Image } from "react-native";
 import styled from "styled-components/native";
 
 import { IconCamera } from "@/components/Icons";
-import colours from "@/theme";
+import colors from "@/theme";
 
 interface StyleProps {
   height?: string;
@@ -54,7 +54,7 @@ S.DisplayPhotoSection = styled.Pressable`
 `;
 
 S.DisplayPhoto = styled.View<StyleProps>`
-  background-color: ${colours.shellOverlay};
+  background-color: ${colors.shellOverlay};
   border-radius: 100px;
   cursor: pointer;
   height: ${(p) => (p.height ? p.height : "200px")};

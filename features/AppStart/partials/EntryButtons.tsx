@@ -5,7 +5,7 @@ import Link from "@/components/Link";
 import Space from "@/components/Space";
 import { CM } from "@/components/Typography";
 import { EntryButtonsProps } from "@/features/AppStart/types";
-import { recommendationColour } from "@/theme";
+import { recommendationColor } from "@/theme";
 
 const EntryButtons = ({ nameAnim }: EntryButtonsProps) => {
   return (
@@ -14,17 +14,11 @@ const EntryButtons = ({ nameAnim }: EntryButtonsProps) => {
       <Space height={10} />
       <Link
         href="/login"
-        background={recommendationColour.btBgColor}
+        background={recommendationColor.btBgColor}
         isSecondary={true}>
-        <CM color={recommendationColour.btColor}>Log in</CM>
+        <CM color={recommendationColor.btColor}>Log in</CM>
       </Link>
       <Space height={10} />
-      <Link
-        href="/onboarding/welcome"
-        background={recommendationColour.btBgColor}
-        isSecondary={true}>
-        <CM color={recommendationColour.btColor}>Onboarding</CM>
-      </Link>
     </Animated.View>
   );
 };

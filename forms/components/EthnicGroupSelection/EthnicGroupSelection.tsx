@@ -1,11 +1,10 @@
-import React, { FunctionComponent, useContext } from "react";
-import styled, { css } from "styled-components/native";
+import React, { FunctionComponent } from "react";
+import styled from "styled-components/native";
 
 import { Tick } from "@/components/Icons/index";
+import Space from "@/components/Space";
 import { CL, CM, H5 } from "@/components/Typography";
-import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import FormFieldContainer from "@/forms/components/FormFieldContainer";
-import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 import colours from "@/theme";
 import { ethnicGroups } from "@/utils/data/ethnicGroups";
 
@@ -14,7 +13,6 @@ type StyleProps = {
   disabled?: boolean;
   error?: boolean;
   other?: boolean;
-  maxWidth: (val: number) => boolean;
 };
 
 interface EthnicGroupsSectionProps {
@@ -33,7 +31,6 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (
 ) => {
   const { error, checkIfChecked, checkIfDisabled, onEthnicGroupsChange } =
     props;
-  const { maxWidth } = useContext<MediaQuery>(MediaQueryContext);
 
   return (
     <S.Container data-cy="ethnic-groups-container">
@@ -41,28 +38,24 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (
       <CM>
         Inclusion is one of our priorities at AllBright and we are committed to
         creating an environment that is representative of all women.
-        <br />
+        <Space height={10} />
         This data will only be used to help us create a space that provides
         equity for all of our members.
       </CM>
       <FormFieldContainer error={error}>
         {[...ethnicGroups].map((elm) => (
           <S.OptionContainer
-            maxWidth={maxWidth}
             key={elm.title}
             disabled={checkIfDisabled(elm)}>
             {elm.title === "Other" ? (
               <S.TextInput
-                maxWidth={maxWidth}
                 aria-disabled={checkIfDisabled(elm)}
                 aria-invalid={props.error}
                 disabled={checkIfDisabled(elm)}
                 id={elm.id}
                 placeholder={"Other (please specify)"}
                 placeholderTextColor={
-                  checkIfDisabled(elm)
-                    ? colours.charcoalFaded
-                    : colours.charcoal
+                  checkIfDisabled(elm) ? colours.charcoalFaded : colours.charcoal
                 }
                 checked={checkIfChecked(elm)}
                 onChangeText={(value) =>
@@ -84,11 +77,8 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (
                 checked={checkIfChecked(elm)}
                 onPress={() => onEthnicGroupsChange(elm)}
                 data-cy={`${elm.title}-option`}
-                testID={`ethnic-group-option-${elm.title}`}
-                maxWidth={maxWidth}>
-                <S.OptionLabel
-                  maxWidth={maxWidth}
-                  disabled={checkIfDisabled(elm)}>
+                testID={`ethnic-group-option-${elm.title}`}>
+                <S.OptionLabel disabled={checkIfDisabled(elm)}>
                   {elm.title}
                 </S.OptionLabel>
               </S.Checkbox>
@@ -130,9 +120,6 @@ S.OptionContainer = styled.View<StyleProps>`
   `}
 `;
 S.Checkbox = styled.Pressable<StyleProps>`
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   height: 45px;
   width: 100%;
   border: none;
@@ -143,8 +130,8 @@ S.Checkbox = styled.Pressable<StyleProps>`
   background: ${colours.white};
   color: ${colours.charcoal};
   justify-content: center;
-  padding-left: 20px;
   cursor: pointer;
+  padding-left: 20px;
 
   ${(p) =>
     p.checked &&
@@ -160,16 +147,8 @@ S.Checkbox = styled.Pressable<StyleProps>`
     cursor: default;
 
   `}
-
-  ${(props) =>
-    props.maxWidth(BREAKPOINT_TABLET) &&
-    css`
-      font-size: 1rem;
-    `}
 `;
 S.TextInput = styled.TextInput<StyleProps>`
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   height: 45px;
   width: 100%;
@@ -177,6 +156,7 @@ S.TextInput = styled.TextInput<StyleProps>`
   font-weight: 500;
   background: ${colours.white};
   color: ${colours.charcoal};
+
   cursor: pointer;
   padding-left: 20px;
 
@@ -191,24 +171,14 @@ S.TextInput = styled.TextInput<StyleProps>`
     `
     pointer-events: none;
     background: ${colours.shellOverlay};
-    cursor: default;
-
+   cursor: default;
   `}
-
   cursor: text;
   padding: 0 45px 0 20px;
-
-  ${(props) =>
-    props.maxWidth(BREAKPOINT_TABLET) &&
-    css`
-      font-size: 1rem;
-    `}
 `;
 
 S.OptionLabel = styled(CL)<StyleProps>`
-  cursor: pointer;
   font-weight: 500;
-
   ${(p) =>
     p.other &&
     `
@@ -216,13 +186,6 @@ S.OptionLabel = styled(CL)<StyleProps>`
     height: 0;
     overflow: hidden;
   `}
-
-  ${(props) =>
-    props.maxWidth(BREAKPOINT_TABLET) &&
-    css`
-      font-size: 1rem;
-    `}
-  
 
   ${(p) =>
     p.disabled &&

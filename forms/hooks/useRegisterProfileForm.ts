@@ -1,17 +1,21 @@
 import { useRouter } from "expo-router";
 import * as Joi from "joi";
 import * as React from "react";
+import { useEffect } from "react";
 
+import { UserContext } from "@/contexts/UserContext";
 import { registerProfileAdaptor, RegisterProfileInput } from "@/forms/adaptors";
-import { useUserProfile } from "@/hooks/resources/useUserProfile";
+import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
-
-import useForm from "./useForm";
+import { UserModel } from "@/types/user";
 
 const useRegisterProfileForm = (
   registerProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
-  const { data: user } = useUserProfile();
+  const { user, refetch } = React.useContext<{
+    user: Partial<UserModel> | undefined;
+    refetch: Function;
+  }>(UserContext);
 
   const {
     inputs,
@@ -25,16 +29,20 @@ const useRegisterProfileForm = (
     showErrorMessage,
   } = useForm(registerProfileSchema);
 
-  React.useEffect(() => {
-    if (user) reset(user);
-  }, [user]);
+  useEffect(() => {
+    if (user) {
+      reset(user);
+    } else {
+      refetch();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refetch, user]);
 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
 
   const onPress = async () => {
-    // TODO: Update handling error and sucess on mutate
     try {
       if (!validateAllInputs())
         throw new Error("Please fill out all required fields");

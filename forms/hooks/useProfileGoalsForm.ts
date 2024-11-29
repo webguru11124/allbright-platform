@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 import Joi from "joi";
-import * as React from "react";
+import _ from "lodash";
+import { useEffect, useState } from "react";
 
 import { profileGoalsAdapter, ProfileGoalsInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
@@ -23,17 +24,21 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
     showErrorMessage,
   } = useForm(careerGoalsSchema);
   const { mutateAsync: mutateUpdateUserGoalsAsync } = useUpdateUserGoals();
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const { careerGoals } = useUserGoals();
+  const [currentCareerGoals, setCurrentCareerGoals] = useState(careerGoals);
 
-  React.useEffect(() => {
-    if (careerGoals)
-      reset({
-        careerGoals: careerGoals.map((goal: CareerGoalType) => goal.id),
-      });
-  }, [careerGoals]);
+  useEffect(() => {
+    if (_.isEqual(careerGoals, currentCareerGoals) === false) {
+      if (careerGoals)
+        reset({
+          careerGoals: careerGoals.map((goal: CareerGoalType) => goal.id),
+        });
+      setCurrentCareerGoals(currentCareerGoals);
+    }
+  }, [careerGoals, currentCareerGoals, reset]);
 
   const onPress = async () => {
     try {

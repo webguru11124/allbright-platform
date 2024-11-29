@@ -1,34 +1,39 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, TextStyle, View } from "react-native";
 
 import { CS } from "@/components/Typography";
 
 type BadgeProps = {
-  colour: string;
+  backgroundColor: string;
+  color?: string;
   text: string;
-  textColour?: string;
 };
 
 const Badge = (props: BadgeProps) => {
-  const styles = StyleSheet.create({
-    badge: {
-      position: "absolute",
-      left: 10,
-      top: 0,
-      backgroundColor: props.colour,
-      paddingHorizontal: 8,
-      paddingVertical: 6,
-      fontWeight: 700,
-    },
-  });
-
+  const style = styles(props);
   return (
-    <CS
-      style={styles.badge}
-      color={props.textColour}
-      testID="badge">
-      {props.text}
-    </CS>
+    <View style={style.container}>
+      <CS
+        {...style.badge}
+        testID="badge">
+        {props.text}
+      </CS>
+    </View>
   );
 };
 
+const styles = (p: TextStyle) =>
+  StyleSheet.create({
+    container: {
+      position: "absolute",
+      left: 10,
+      top: 0,
+      paddingHorizontal: 8,
+      paddingVertical: 6,
+      backgroundColor: p.backgroundColor,
+    },
+    badge: {
+      fontWeight: 700,
+      color: p.color,
+    },
+  });
 export default Badge;

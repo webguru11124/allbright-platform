@@ -39,7 +39,9 @@ const AgreeTermsCheckBox = ({
         </TickWrapper>
         <CS>
           I agree to the AllBright{" "}
-          <Link onPress={() => Linking.openURL(Links.terms)}>Terms of Use</Link>
+          <Link onPress={() => Linking.openURL(Links.terms)}>
+            <CS textDecorationStyle={undefined}>Terms of Use</CS>
+          </Link>
         </CS>
       </TickContainer>
       {error && <CS color="red">{error}</CS>}
@@ -68,7 +70,7 @@ const TickWrapper = styled.View<{ error: string | undefined }>`
   align-items: center;
 `;
 
-const Link = styled(CS)`
+const Link = styled.Pressable`
   text-decoration: underline;
 `;
 

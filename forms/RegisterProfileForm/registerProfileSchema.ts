@@ -12,8 +12,8 @@ export const registerProfileSchema = {
       "*": "Please pick a country from the list",
     }),
   termsAgreed: Joi.boolean().invalid(false).required(),
-  marketingAgreed: Joi.boolean().required(),
-  thirdPartyAgreed: Joi.boolean().required(),
+  marketingAgreed: Joi.boolean().optional(),
+  thirdPartyAgreed: Joi.boolean().optional(),
 };
 
 export default registerProfileSchema;

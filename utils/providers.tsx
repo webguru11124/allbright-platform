@@ -6,6 +6,7 @@ import { PaperProvider } from "react-native-paper";
 import { RootSiblingParent } from "react-native-root-siblings";
 
 import { MediaQueryProvider } from "@/contexts/MediaQueryContext";
+import { UserProvider } from "@/contexts/UserContext";
 import { DefaultTheme, PaperDefaultTheme } from "@/theme";
 
 type Props = {
@@ -15,21 +16,23 @@ const client = new QueryClient();
 
 const Providers = ({ children }: Props) => {
   return (
-    <QueryClientProvider client={client}>
-      <ThemeProvider value={DefaultTheme}>
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <MediaQueryProvider>
-            <PaperProvider
-              theme={PaperDefaultTheme}
-              settings={{
-                rippleEffectEnabled: false,
-              }}>
-              <RootSiblingParent>{children}</RootSiblingParent>
-            </PaperProvider>
-          </MediaQueryProvider>
-        </GestureHandlerRootView>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <QueryClientProvider client={client}>
+        <ThemeProvider value={DefaultTheme}>
+          <UserProvider>
+            <MediaQueryProvider>
+              <PaperProvider
+                theme={PaperDefaultTheme}
+                settings={{
+                  rippleEffectEnabled: false,
+                }}>
+                <RootSiblingParent>{children}</RootSiblingParent>
+              </PaperProvider>
+            </MediaQueryProvider>
+          </UserProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </GestureHandlerRootView>
   );
 };
 

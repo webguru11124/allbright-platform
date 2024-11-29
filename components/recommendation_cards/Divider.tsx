@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 
 type DividerProps = {
-  colour: string;
+  color: string;
 };
 
 const Divider = (props: DividerProps) => {
@@ -10,7 +10,7 @@ const Divider = (props: DividerProps) => {
       marginVertical: 5,
       borderRadius: 2,
       height: 5,
-      backgroundColor: props.colour,
+      backgroundColor: props.color,
     },
   });
 

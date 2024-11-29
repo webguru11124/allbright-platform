@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import styled from "styled-components/native";
 
 import HeaderBackButton from "@/components/HeaderBackButton";
+import Loading from "@/components/Loading";
 
 interface Props {
   children: React.ReactNode;
@@ -49,13 +50,4 @@ const HeaderButtonsContainer = styled.View`
   justify-content: space-between;
   width: 100%;
   padding: 20px;
-`;
-
-const Loading = styled.ActivityIndicator.attrs(() => ({
-  size: "large",
-  color: "#0000ff",
-}))`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
 `;

@@ -1,5 +1,9 @@
-import Home from "@/features/Home";
+import { Text, View } from "react-native";
 
 export default function Index() {
-  return <Home />;
+  return (
+    <View>
+      <Text>Connect</Text>
+    </View>
+  );
 }

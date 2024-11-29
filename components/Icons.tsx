@@ -4,7 +4,7 @@ import Svg, { Path, SvgProps } from "react-native-svg";
 type Props = SvgProps & {
   width?: number;
   height?: number;
-  colour?: string;
+  color?: string;
   fill?: string;
 };
 
@@ -12,7 +12,7 @@ export function IconCamera(props: Props) {
   return (
     <Svg
       viewBox="0 0 36 32"
-      color={props.colour ?? "rgba(65, 65, 67, 1)"}
+      color={props.color ?? "rgba(65, 65, 67, 1)"}
       width={props.width ?? "20"}
       height={"20"}
       {...props}>
@@ -35,7 +35,7 @@ export function ArrowRight(props: Props) {
       {...props}>
       <Path
         d="M12.5 4.5L11.09 5.91L16.67 11.5H4.5V13.5H16.67L11.09 19.09L12.5 20.5L20.5 12.5L12.5 4.5Z"
-        fill={props.colour || props.fill || "white"}
+        fill={props.color || props.fill || "white"}
       />
     </Svg>
   );

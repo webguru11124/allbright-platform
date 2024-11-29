@@ -7,7 +7,6 @@ import styled from "styled-components/native";
 
 import { CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
-import { recommendationColour } from "@/theme";
 
 type Props = PickerProps & {
   value: NativeSyntheticEvent<NativeTouchEvent>;
@@ -26,6 +25,7 @@ type Props = PickerProps & {
 
 type StyleProps = {
   backgroundcolor: string;
+  color: string;
   error: string | undefined;
 };
 
@@ -44,6 +44,7 @@ const Picker = ({
       <StyledPicker
         selectedValue={value}
         onValueChange={onValueChange}
+        color={theme.colors.text}
         backgroundcolor={theme.colors.inputs.background}
         error={error}
         onBlur={onBlur}
@@ -73,8 +74,8 @@ const StyledPicker = styled(NativePicker)<StyleProps>`
   border-radius: 5px;
   border-color: ${(p) => (p.error ? "red" : "tranparent")};
   border-width: ${(p) => (p.error ? 3 : 0)}px;
-  font-size: 14px;
-  color: ${recommendationColour.textColor};
+  font-size: 16px;
+  color: ${(p) => p.color};
 `;
 
 export default withTheme(Picker);

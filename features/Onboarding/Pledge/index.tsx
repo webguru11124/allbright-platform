@@ -4,7 +4,6 @@ import styled from "styled-components/native";
 import { CS, CXL, H4 } from "@/components/Typography";
 import { OnboadingPageLayout } from "@/features/Onboarding/OnboardingLayout";
 import PledgeForm from "@/forms/PledgeForm";
-import colours from "@/theme";
 import pledge from "@/utils/data/pledge";
 
 interface StyledProps {
@@ -19,7 +18,6 @@ const Pledge = () => {
       <S.List>
         {pledge.map((item) => (
           <S.ListItem key={item}>
-            <BulletPoint />
             <S.CXL weight="500">{item}</S.CXL>
           </S.ListItem>
         ))}
@@ -29,16 +27,6 @@ const Pledge = () => {
     </OnboadingPageLayout>
   );
 };
-
-const BulletPoint = styled.View`
-  background: ${colours.plusLime};
-  height: 10px;
-  width: 10px;
-
-  margin-right: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-`;
 
 const S = () => {};
 S.CS = styled(CS)<StyledProps>`

@@ -6,14 +6,14 @@ import {
   NativeSyntheticEvent,
   NativeTouchEvent,
   Pressable,
+  StyleSheet,
   TextInputProps,
+  TextStyle,
 } from "react-native";
-import styled from "styled-components/native";
 
 import { CS } from "@/components/Typography";
 import TextInput from "@/forms/components/TextInput";
 import withTheme from "@/hocs/withTheme";
-import { recommendationColour } from "@/theme";
 
 type Props = Omit<PickerProps, "selectedValue"> & {
   selectedValue: NativeSyntheticEvent<NativeTouchEvent>;
@@ -29,11 +29,6 @@ type Props = Omit<PickerProps, "selectedValue"> & {
   theme: Theme;
 };
 
-type StyleProps = {
-  backgroundcolor: string;
-  error: string | undefined;
-};
-
 const Picker = ({
   selectedValue,
   placeholder,
@@ -44,13 +39,14 @@ const Picker = ({
   theme,
   ...props
 }: Props) => {
+  const style = styles({ backgroundColor: theme.colors.inputs.background });
   return (
     <>
-      <StyledPicker
+      <NativePicker
+        {...style.picker}
         selectedValue={selectedValue}
         onValueChange={onValueChange}
-        backgroundcolor={theme.colors.inputs.background}
-        error={error}
+        // error={error}
         onBlur={onBlur}
         {...props}>
         <NativePicker.Item
@@ -65,7 +61,7 @@ const Picker = ({
             value={value}
           />
         ))}
-      </StyledPicker>
+      </NativePicker>
       {error && <CS color="red">{error}</CS>}
     </>
   );
@@ -93,6 +89,11 @@ export const PickerInput = withTheme(
     ...props
   }: PickerInputProps) => {
     {
+      const style = styles({
+        backgroundColor: theme.colors.inputs.background,
+        color: theme.colors.text,
+      });
+
       return Boolean(input) === false || input === "undefined" ? (
         <TextInput
           placeholder={placeholder}
@@ -108,29 +109,23 @@ export const PickerInput = withTheme(
         />
       ) : (
         <Pressable onPress={onPress}>
-          <StyledCS backgroundColour={theme.colors.inputs.background}>
-            {displayValue}
-          </StyledCS>
+          <CS {...style.cs}>{displayValue}</CS>
         </Pressable>
       );
     }
   }
 );
 
-const StyledPicker = styled(NativePicker)<StyleProps>`
-  background-color: white;
-  height: 100%;
-  width: 100%;
-`;
-
-const StyledCS = styled(CS)`
-  height: 50px;
-  background-color: ${(p) => p.backgroundColour};
-  padding-left: 15px;
-  padding-top: 15px;
-  border-radius: 5px;
-  font-size: 16px;
-  color: ${recommendationColour.textColor};
-`;
+const styles = (p: TextStyle) =>
+  StyleSheet.create({
+    picker: {
+      height: "100%",
+      width: "100%",
+    },
+    cs: {
+      height: 50,
+      backgroundColor: p.backgroundColor,
+    },
+  });
 
 export default withTheme(Picker);

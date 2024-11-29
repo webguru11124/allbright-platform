@@ -42,9 +42,9 @@ const RecommendationMentorship: React.FC<MentorshipRecommendationModel> = (
         />
       </View>
       <Badge
-        colour={Colors.light.charcoal}
+        backgroundColor={Colors.light.charcoal}
         text="Mentorships"
-        textColour="white"
+        color="white"
       />
       <View style={styles.textContent}>
         <H5 color="white">
