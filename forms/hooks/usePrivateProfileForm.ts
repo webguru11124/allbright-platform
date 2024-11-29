@@ -3,7 +3,11 @@ import Joi from "joi";
 import * as React from "react";
 
 import { UserContext } from "@/contexts/UserContext";
-import { privateProfileAdaptor, PrivateProfileInput } from "@/forms/adaptors";
+import {
+  ethnicGroupsAdapter,
+  privateProfileAdaptor,
+  PrivateProfileInput,
+} from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 import { UserModel } from "@/types/user";
@@ -31,6 +35,8 @@ const usePrivateProfileForm = (
   React.useEffect(() => {
     if (user) {
       reset(user);
+      if (user.ethnicGroups)
+        changeTextFuncs.ethnicGroups(ethnicGroupsAdapter(user.ethnicGroups));
     } else {
       refetch();
     }
