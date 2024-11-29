@@ -16,10 +16,7 @@ interface InterestsSelectionProps {
   error?: string;
 }
 
-const InterestsSelection: FunctionComponent<InterestsSelectionProps> = ({
-  error,
-  ...props
-}) => {
+const InterestsSelection: FunctionComponent<InterestsSelectionProps> = ({ error, ...props }) => {
   return (
     <>
       <CL>Interests* (at least 1)</CL>

@@ -6,15 +6,7 @@ import { Login, useSignIn } from "@/hooks/resources/useAuth";
 import { setToken } from "@/utils/token";
 
 const useLoginForm = (loginSchema: Joi.PartialSchemaMap<any> | undefined) => {
-  const {
-    inputs,
-    postBody,
-    errors,
-    blurFuncs,
-    changeTextFuncs,
-    isFormValid,
-    showErrorMessage,
-  } = useForm(loginSchema);
+  const { inputs, postBody, errors, blurFuncs, changeTextFuncs, isFormValid, showErrorMessage } = useForm(loginSchema);
 
   const { mutate: signIn, isPending } = useSignIn();
 

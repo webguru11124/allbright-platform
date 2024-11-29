@@ -87,29 +87,17 @@ const RecommendationCard = (props: RecommendationModel) => {
   const getCardType = (category: RecommendationType) => {
     switch (category) {
       case "articles":
-        return (
-          <RecommendationArticle {...(props as ArticleRecommendationModel)} />
-        );
+        return <RecommendationArticle {...(props as ArticleRecommendationModel)} />;
       case "connections":
-        return (
-          <RecommendationConnection
-            {...(props as ConnectionRecommendationModel)}
-          />
-        );
+        return <RecommendationConnection {...(props as ConnectionRecommendationModel)} />;
       case "courses":
-        return (
-          <RecommendationCourse {...(props as LessonRecommendationModel)} />
-        );
+        return <RecommendationCourse {...(props as LessonRecommendationModel)} />;
       case "events":
         return <RecommendationEvent {...(props as EventRecommendationModel)} />;
       case "groups":
         return <RecommendationGroup {...(props as GroupRecommendationModel)} />;
       case "mentorships":
-        return (
-          <RecommendationMentorship
-            {...(props as MentorshipRecommendationModel)}
-          />
-        );
+        return <RecommendationMentorship {...(props as MentorshipRecommendationModel)} />;
       default:
         return null;
     }

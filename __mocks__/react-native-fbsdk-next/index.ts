@@ -3,7 +3,5 @@ export const LoginManager = {
 };
 
 export const AccessToken = {
-  getCurrentAccessToken: jest.fn(() =>
-    Promise.resolve({ accessToken: "mock-token" })
-  ),
+  getCurrentAccessToken: jest.fn(() => Promise.resolve({ accessToken: "mock-token" })),
 };

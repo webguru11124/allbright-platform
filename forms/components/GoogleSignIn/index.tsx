@@ -1,7 +1,4 @@
-import {
-  GoogleSignin,
-  isErrorWithCode,
-} from "@react-native-google-signin/google-signin";
+import { GoogleSignin, isErrorWithCode } from "@react-native-google-signin/google-signin";
 import React, { useState } from "react";
 
 import config from "@/config";

@@ -2,10 +2,7 @@ import { faker } from "@faker-js/faker";
 import { act, fireEvent } from "@testing-library/react-native";
 import { renderRouter, screen, waitFor } from "expo-router/testing-library";
 
-import {
-  convertDateToInputString,
-  parseDateString,
-} from "@/__mocks__/test-utils";
+import { convertDateToInputString, parseDateString } from "@/__mocks__/test-utils";
 import PrivateProfileForm from "@/forms/PrivateProfileForm";
 import api from "@/lib/api";
 import UserClient from "@/utils/client/user/UserClient";
@@ -23,9 +20,7 @@ const mockedApi = api as jest.Mocked<typeof api>;
 
 describe("PrivateProfileForm", () => {
   function selectInterest(interest: string) {
-    const interestElement = screen.getByTestId(
-      `interests-checkbox-${interest}`
-    );
+    const interestElement = screen.getByTestId(`interests-checkbox-${interest}`);
     fireEvent.press(interestElement);
   }
   function selectEthnicGroup(ethnicGroup: string) {
@@ -63,22 +58,15 @@ describe("PrivateProfileForm", () => {
     const randomJobStatus = faker.helpers.arrayElement(jobStatus);
     const randomSalaryRange = faker.helpers.arrayElement(UKSalaries);
     const randomOrgnizationSize = faker.helpers.arrayElement(organisationSize);
-    const randomeEthnicGroups = faker.helpers.arrayElements(
-      ethnicGroups.slice(1, -1)
-    );
+    const randomeEthnicGroups = faker.helpers.arrayElements(ethnicGroups.slice(1, -1));
     const randomBirthDate = faker.date.birthdate();
 
     randomInterests.forEach((interest) => selectInterest(interest as string));
-    randomeEthnicGroups.forEach((ethnicGroup) =>
-      selectEthnicGroup(ethnicGroup.title)
-    );
+    randomeEthnicGroups.forEach((ethnicGroup) => selectEthnicGroup(ethnicGroup.title));
 
     fireEvent.changeText(screen.getByText("Job status*"), randomJobStatus);
     fireEvent.changeText(screen.getByText("Salary band"), randomSalaryRange);
-    fireEvent.changeText(
-      screen.getByText("Size of organization"),
-      randomOrgnizationSize
-    );
+    fireEvent.changeText(screen.getByText("Size of organization"), randomOrgnizationSize);
     const dateInput = convertDateToInputString(randomBirthDate);
     changeBirthDate(dateInput);
 

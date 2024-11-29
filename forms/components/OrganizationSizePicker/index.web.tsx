@@ -11,13 +11,7 @@ type Props = {
   error: string | undefined;
 };
 
-const OrganizationSizePicker = ({
-  selectedValue,
-  placeholder,
-  onChangeText,
-  onBlur,
-  error,
-}: Props) => {
+const OrganizationSizePicker = ({ selectedValue, placeholder, onChangeText, onBlur, error }: Props) => {
   return (
     <Picker
       placeholder={placeholder}

@@ -11,13 +11,7 @@ type Props = {
   error: string | undefined;
 };
 
-const JobStatusPicker = ({
-  value,
-  placeholder,
-  onChangeText,
-  onBlur,
-  error,
-}: Props) => {
+const JobStatusPicker = ({ value, placeholder, onChangeText, onBlur, error }: Props) => {
   return (
     <Picker
       placeholder={placeholder}

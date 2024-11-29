@@ -10,14 +10,7 @@ import OrganizationSizePicker from "@/forms/components/OrganizationSizePicker";
 import SalaryPicker from "@/forms/components/SalaryPicker";
 import { FormProps } from "@/forms/types/forms.types";
 
-const PrivateProfileForm = ({
-  inputs,
-  errors,
-  blurFuncs,
-  changeTextFuncs,
-  isPending,
-  onPress,
-}: FormProps) => (
+const PrivateProfileForm = ({ inputs, errors, blurFuncs, changeTextFuncs, isPending, onPress }: FormProps) => (
   <SafeAreaView>
     <InterestsSection
       updateField={changeTextFuncs.interests}

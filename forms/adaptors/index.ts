@@ -93,9 +93,7 @@ export type RegisterProfileOutput = {
   city?: (typeof cities)[number]["city"];
 };
 
-export const publicProfileAdaptor = (
-  postBody: PublicProfileInput
-): PublicProfileOutput => ({
+export const publicProfileAdaptor = (postBody: PublicProfileInput): PublicProfileOutput => ({
   city: postBody.city,
   jobTitle: postBody.jobTitle,
   jobCompany: postBody.jobCompany,
@@ -105,18 +103,14 @@ export const publicProfileAdaptor = (
   bio: postBody.bio,
 });
 
-export const registerProfileAdaptor = (
-  postBody: RegisterProfileInput
-): RegisterProfileOutput => ({
+export const registerProfileAdaptor = (postBody: RegisterProfileInput): RegisterProfileOutput => ({
   firstName: postBody.firstName,
   lastName: postBody.lastName,
   country: postBody.country,
   city: postBody.city,
 });
 
-export const privateProfileAdaptor = (
-  postBody: PrivateProfileInput
-): PrivateProfileOutput => ({
+export const privateProfileAdaptor = (postBody: PrivateProfileInput): PrivateProfileOutput => ({
   interests: postBody.interests,
   jobStatus: postBody.jobStatus,
   salary: postBody.salary,
@@ -125,12 +119,8 @@ export const privateProfileAdaptor = (
   ethnicGroups: postBody.ethnicGroups.map((e) => e.value),
 });
 
-export const profileGoalsAdapter = (
-  postBody: ProfileGoalsInput
-): ProfileGoalsOutput => ({
-  careerGoals: allCareerGoals.filter((goal) =>
-    postBody.careerGoals.includes(goal.id)
-  ),
+export const profileGoalsAdapter = (postBody: ProfileGoalsInput): ProfileGoalsOutput => ({
+  careerGoals: allCareerGoals.filter((goal) => postBody.careerGoals.includes(goal.id)),
 });
 
 export const pledgeAdapter = (postBody: PledgeInput) => ({
@@ -158,9 +148,7 @@ export type PrivateProfileOutput = {
   ethnicGroups: string[];
 };
 
-export const ethnicGroupsAdapter = (
-  ethnics: string[]
-): (typeof ethnicGroups)[number][] => {
+export const ethnicGroupsAdapter = (ethnics: string[]): (typeof ethnicGroups)[number][] => {
   const ethnicGroupsData: (typeof ethnicGroups)[number][] = [];
   for (const ethnic of ethnics) {
     if (ethnic === "Prefer not to say") {

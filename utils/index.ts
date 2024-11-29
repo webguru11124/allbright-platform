@@ -41,10 +41,7 @@ export const clean = <T>(obj: T): Partial<T> => {
   return store;
 };
 
-export const exec = (
-  regex: RegExp,
-  text: string
-): { match: string; int: number; end: number }[] => {
+export const exec = (regex: RegExp, text: string): { match: string; int: number; end: number }[] => {
   const store: { match: string; int: number; end: number }[] = [];
   let match: RegExpExecArray | null;
 

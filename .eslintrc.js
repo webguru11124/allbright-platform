@@ -18,7 +18,7 @@ module.exports = {
         quoteProps: "as-needed",
         singleQuote: false,
         semi: true,
-        printWidth: 80,
+        printWidth: 120,
         useTabs: false,
         trailingComma: "es5",
         singleAttributePerLine: true,

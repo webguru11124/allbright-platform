@@ -1,10 +1,7 @@
 import { faker } from "@faker-js/faker/.";
 import { act, fireEvent, render } from "@testing-library/react-native";
 
-import {
-  convertDateToInputString,
-  parseDateString,
-} from "@/__mocks__/test-utils";
+import { convertDateToInputString, parseDateString } from "@/__mocks__/test-utils";
 import PrivateProfileForm from "@/forms/PrivateProfileForm/PrivateProfileForm";
 import Providers from "@/utils/providers";
 
@@ -54,18 +51,14 @@ describe("PrivateProfileForm", () => {
       const dateInput = convertDateToInputString(randomBirthDate);
       changeBirthDate(dateInput);
 
-      expect(props.changeTextFuncs.dateOfBirth).toHaveBeenCalledWith(
-        parseDateString(dateInput)
-      );
+      expect(props.changeTextFuncs.dateOfBirth).toHaveBeenCalledWith(parseDateString(dateInput));
     });
 
     it("when the jobStatus input is updated", () => {
       const expectedJobStatus = "Employed";
       const input = screen.getByText("Job status*");
       act(() => fireEvent.changeText(input, expectedJobStatus));
-      expect(props.changeTextFuncs.jobStatus).toHaveBeenCalledWith(
-        expectedJobStatus
-      );
+      expect(props.changeTextFuncs.jobStatus).toHaveBeenCalledWith(expectedJobStatus);
     });
   });
 
@@ -131,9 +124,7 @@ describe("PrivateProfileForm", () => {
         </Providers>
       );
 
-      expect(
-        screen.queryByText(updatedProps.errors.dateOfBirth)
-      ).not.toBeNull();
+      expect(screen.queryByText(updatedProps.errors.dateOfBirth)).not.toBeNull();
     });
   });
 });

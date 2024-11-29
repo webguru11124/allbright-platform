@@ -9,8 +9,8 @@ const PrivateProfile = () => {
       <H3>Section 1: Private Profile</H3>
       <H5 color={colors.teal}>Step 3 of 4</H5>
       <CM>
-        This information will never be shown to anyone except AllBright. We will
-        use it to tailor your experience on the platform.
+        This information will never be shown to anyone except AllBright. We will use it to tailor your experience on the
+        platform.
       </CM>
       <PrivateProfileForm />
     </OnboadingPageLayout>

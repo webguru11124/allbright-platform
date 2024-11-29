@@ -5,13 +5,7 @@ import styled from "styled-components/native";
 
 import Button from "@/forms/components/Button";
 
-const LinkedInSignin = ({
-  onPress,
-  isSignin,
-}: {
-  onPress: GestureEvent;
-  isSignin: boolean;
-}) => {
+const LinkedInSignin = ({ onPress, isSignin }: { onPress: GestureEvent; isSignin: boolean }) => {
   return (
     <StyledButton onPress={onPress}>
       <VerticalCenter>

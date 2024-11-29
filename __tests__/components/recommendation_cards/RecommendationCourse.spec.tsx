@@ -11,13 +11,7 @@ describe("RecommendationCourse", () => {
   it("renders correct course data", () => {
     render(<RecommendationCourse {...courseTestData} />);
     expect(screen.getByText(courseTestData.lessonName)).toBeTruthy();
-    expect(
-      screen.getByText(
-        `On Demand • ${courseTestData.lessonActivitiesCollection.total} videos`
-      )
-    ).toBeTruthy();
-    expect(
-      screen.getByText(courseTestData.lessonIntroductionText)
-    ).toBeTruthy();
+    expect(screen.getByText(`On Demand • ${courseTestData.lessonActivitiesCollection.total} videos`)).toBeTruthy();
+    expect(screen.getByText(courseTestData.lessonIntroductionText)).toBeTruthy();
   });
 });

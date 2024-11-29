@@ -16,14 +16,7 @@ type Props = Omit<TextInputProps, "onBlur"> & {
   theme: Theme;
 };
 
-const JobStatusPicker = ({
-  theme,
-  onChangeText,
-  placeholder,
-  onBlur,
-  error,
-  value,
-}: Props) => {
+const JobStatusPicker = ({ theme, onChangeText, placeholder, onBlur, error, value }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleChangeText = (value: string) => {
@@ -32,10 +25,7 @@ const JobStatusPicker = ({
   };
 
   const displayValue = useMemo(
-    () =>
-      Boolean(value)
-        ? jobStatus.find((item) => item.value === value)?.label
-        : undefined,
+    () => (Boolean(value) ? jobStatus.find((item) => item.value === value)?.label : undefined),
     [value]
   );
 

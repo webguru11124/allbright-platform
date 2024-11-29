@@ -7,26 +7,16 @@ import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 import { LocalImageType } from "@/types/files/localImage";
 
-const usePublicProfileForm = (
-  privateProfileSchema: Joi.PartialSchemaMap<any>
-) => {
-  const {
-    inputs,
-    errors,
-    blurFuncs,
-    changeTextFuncs,
-    postBody,
-    isFormValid,
-    validateAllInputs,
-    showErrorMessage,
-  } = useForm(privateProfileSchema, {
-    default: {
-      profile_image: {
-        state: LocalImageType.FILE_UNSET,
-        file: null,
-      } as any,
-    },
-  });
+const usePublicProfileForm = (privateProfileSchema: Joi.PartialSchemaMap<any>) => {
+  const { inputs, errors, blurFuncs, changeTextFuncs, postBody, isFormValid, validateAllInputs, showErrorMessage } =
+    useForm(privateProfileSchema, {
+      default: {
+        profile_image: {
+          state: LocalImageType.FILE_UNSET,
+          file: null,
+        } as any,
+      },
+    });
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
@@ -34,15 +24,11 @@ const usePublicProfileForm = (
   const onPress = async () => {
     // TODO: Update handling error and sucess on mutate
     try {
-      if (!validateAllInputs())
-        throw new Error("Please fill out all required fields");
+      if (!validateAllInputs()) throw new Error("Please fill out all required fields");
       setLoading(true);
       const input = postBody as PublicProfileInput;
       let user = publicProfileAdaptor(input);
-      if (
-        input.profile_image.state === LocalImageType.FILE_SET &&
-        input.profile_image.file !== null
-      ) {
+      if (input.profile_image.state === LocalImageType.FILE_SET && input.profile_image.file !== null) {
         user = {
           ...user,
           imageSrc: input.profile_image.file,

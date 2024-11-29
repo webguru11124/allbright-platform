@@ -16,14 +16,7 @@ type Props = Omit<TextInputProps, "onBlur"> & {
   theme: Theme;
 };
 
-const IndustryPicker = ({
-  theme,
-  onChangeText,
-  placeholder,
-  onBlur,
-  error,
-  value,
-}: Props) => {
+const IndustryPicker = ({ theme, onChangeText, placeholder, onBlur, error, value }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleChangeText = (value: string) => {
@@ -32,10 +25,7 @@ const IndustryPicker = ({
   };
 
   const displayValue = useMemo(
-    () =>
-      Boolean(value)
-        ? industries.find((item) => item.value === value)?.label
-        : undefined,
+    () => (Boolean(value) ? industries.find((item) => item.value === value)?.label : undefined),
     [value]
   );
 

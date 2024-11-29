@@ -25,11 +25,9 @@ const signinFn = async (loginData: Login) => {
   }
 };
 
-const googleSignInFn = async (token: string) =>
-  api.post(GOOGLE_SIGN_IN_URL, { idToken: token });
+const googleSignInFn = async (token: string) => api.post(GOOGLE_SIGN_IN_URL, { idToken: token });
 
-const googleSignUpFn = async (token: string) =>
-  api.post(GOOGLE_SIGN_UP_URL, { idToken: token });
+const googleSignUpFn = async (token: string) => api.post(GOOGLE_SIGN_UP_URL, { idToken: token });
 
 export const useSignIn = () =>
   useMutation({
@@ -43,8 +41,7 @@ export const useGoogleSignIn = (isSignup?: boolean) =>
     mutationFn: isSignup ? googleSignUpFn : googleSignInFn,
   });
 
-const registerFn = (registrationData: Register) =>
-  api.post(REGISTER_URL, registrationData);
+const registerFn = (registrationData: Register) => api.post(REGISTER_URL, registrationData);
 
 export const useRegister = () =>
   useMutation({

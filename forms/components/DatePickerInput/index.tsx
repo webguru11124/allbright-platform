@@ -4,10 +4,7 @@ import styled from "styled-components/native";
 
 import FormFieldContainer from "@/forms/components/FormFieldContainer";
 
-type DatePickerInputProps = Omit<
-  RNPaperDatePickerInputProps,
-  "value" | "error"
-> & {
+type DatePickerInputProps = Omit<RNPaperDatePickerInputProps, "value" | "error"> & {
   value: string;
   error?: string;
 };

@@ -11,11 +11,7 @@ interface Props {
   goalIsSelected: (careerGoal: CareerGoalType) => boolean;
   error?: string;
 }
-const CareerGoalsSelection = ({
-  error,
-  onSelectedHandler,
-  goalIsSelected,
-}: Props) => {
+const CareerGoalsSelection = ({ error, onSelectedHandler, goalIsSelected }: Props) => {
   return (
     <>
       <CM>Please choose 3 - 6</CM>

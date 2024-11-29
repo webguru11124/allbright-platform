@@ -4,10 +4,7 @@ import { convertDateToInputString, parseDateString } from "./test-utils";
 
 describe("test-utils", () => {
   it("convertDateToInputString", () => {
-    const date = DateTime.fromObject(
-      { year: 1999, month: 4, day: 8 },
-      { locale: "fr" }
-    ).toJSDate();
+    const date = DateTime.fromObject({ year: 1999, month: 4, day: 8 }, { locale: "fr" }).toJSDate();
     const result = convertDateToInputString(date, "fr");
     expect(result).toBe("08/04/1999");
   });

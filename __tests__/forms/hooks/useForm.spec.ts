@@ -41,9 +41,7 @@ describe("useForms", () => {
           password_confirmation: Joi.string().min(4).alphanum().required(),
         };
 
-        const { result } = renderHook(() =>
-          useForm(schema, { omit: ["password_confirmation"] })
-        );
+        const { result } = renderHook(() => useForm(schema, { omit: ["password_confirmation"] }));
 
         expect(result.current.inputs).toStrictEqual({
           email: undefined,

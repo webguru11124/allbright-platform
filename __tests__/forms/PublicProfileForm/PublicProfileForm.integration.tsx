@@ -59,25 +59,16 @@ describe("PublicProfileForm", () => {
     fireEvent.changeText(screen.getByText("Job Level"), randomJobLevel);
     fireEvent.changeText(screen.getByText("Industry"), randomIndustry);
     fireEvent.changeText(screen.getByText("Job title*"), randomJobTitle);
-    fireEvent.changeText(
-      screen.getByTestId("PublicProfileForm:CompanyName"),
-      randomCompanyName
-    );
+    fireEvent.changeText(screen.getByTestId("PublicProfileForm:CompanyName"), randomCompanyName);
     fireEvent.changeText(screen.getByText("Biography*"), randomBiography);
 
     fireEvent.press(screen.getByTestId(`goals-checkbox-${randomGoals[0]}`));
     fireEvent.press(screen.getByTestId(`goals-checkbox-${randomGoals[1]}`));
     fireEvent.press(screen.getByTestId(`goals-checkbox-${randomGoals[2]}`));
 
-    fireEvent.press(
-      screen.getByTestId("ProfilePhotoUploadSection:ArrowButton")
-    );
+    fireEvent.press(screen.getByTestId("ProfilePhotoUploadSection:ArrowButton"));
     mockedApi.post.mockResolvedValueOnce({});
-    await act(() =>
-      fireEvent.press(
-        screen.getByTestId("ProfilePhotoUploadSection:ArrowButton")
-      )
-    );
+    await act(() => fireEvent.press(screen.getByTestId("ProfilePhotoUploadSection:ArrowButton")));
     // Check that the button is not disabled before API call
     const submitButton = screen.getByTestId("PublicProfileForm:Submit");
     await act(() => fireEvent.press(submitButton));
@@ -119,10 +110,7 @@ describe("PublicProfileForm", () => {
 
     expect(screen).toHavePathname("/");
 
-    await fireBlurEvent(
-      screen.getByTestId("PublicProfileForm:JobTitle"),
-      JOB_TITLE
-    );
+    await fireBlurEvent(screen.getByTestId("PublicProfileForm:JobTitle"), JOB_TITLE);
 
     expect(await screen.findByText(EXPECTED_JOB_TITLE)).not.toBeNull();
     await act(() => {

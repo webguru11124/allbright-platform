@@ -11,11 +11,7 @@ interface InterestsSectionProps {
   field?: string[];
 }
 
-const InterestsSection: FunctionComponent<InterestsSectionProps> = ({
-  updateField,
-  error,
-  field = [],
-}) => {
+const InterestsSection: FunctionComponent<InterestsSectionProps> = ({ updateField, error, field = [] }) => {
   const props = useInterestState({
     interests: field,
     updateField: updateField,

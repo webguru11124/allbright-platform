@@ -1,13 +1,7 @@
 "use strict";
 
-import {
-  DarkTheme as NativeDarkTheme,
-  DefaultTheme as NativeDefaultTheme,
-} from "@react-navigation/native";
-import {
-  MD2DarkTheme as DarkPaperTheme,
-  MD2LightTheme as DefaultPaperTheme,
-} from "react-native-paper";
+import { DarkTheme as NativeDarkTheme, DefaultTheme as NativeDefaultTheme } from "@react-navigation/native";
+import { MD2DarkTheme as DarkPaperTheme, MD2LightTheme as DefaultPaperTheme } from "react-native-paper";
 
 const colors = {
   teal: "#00605C", // All primary buttons and CTAs
@@ -75,16 +69,7 @@ const colors = {
   stepForwardOrange: "#E88A79", // Orange used for Step Forward page
   stepForwardBlue: "#2B1C68", // Blue used for Step Forward page
 
-  plusColors: [
-    "#50968D",
-    "#617595",
-    "#886BB7",
-    "#834973",
-    "#955C5C",
-    "#D18D66",
-    "#D3B137",
-    "#6D8868",
-  ],
+  plusColors: ["#50968D", "#617595", "#886BB7", "#834973", "#955C5C", "#D18D66", "#D3B137", "#6D8868"],
 };
 const alertColors = {
   success: "#00605C",

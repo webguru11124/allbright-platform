@@ -9,9 +9,7 @@ export type ProfileImage = {
   file: string | null;
 };
 
-export const useProfilePhotoUploadSection = (
-  uploadProfileImage: (profileImage: ProfileImage) => void
-) => {
+export const useProfilePhotoUploadSection = (uploadProfileImage: (profileImage: ProfileImage) => void) => {
   const pickImageAsync = useImagePicker();
 
   const pickProfileImage = async () => {

@@ -4,9 +4,7 @@ const eighteenYearsAgo = new Date();
 eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18);
 
 const oneHundredAndTwentyYearsAgo = new Date();
-oneHundredAndTwentyYearsAgo.setFullYear(
-  oneHundredAndTwentyYearsAgo.getFullYear() - 120
-);
+oneHundredAndTwentyYearsAgo.setFullYear(oneHundredAndTwentyYearsAgo.getFullYear() - 120);
 
 export const profilePrivate = {
   interests: Joi.array().min(1).required(),

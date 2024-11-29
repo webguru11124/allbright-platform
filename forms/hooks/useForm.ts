@@ -13,10 +13,7 @@ export type Settings = {
 
 type EventType = { name: string; value: string | boolean };
 
-const useForm = (
-  baseSchema: Joi.PartialSchemaMap<any> | undefined,
-  settings: Settings = {}
-) => {
+const useForm = (baseSchema: Joi.PartialSchemaMap<any> | undefined, settings: Settings = {}) => {
   const theme = useTheme();
   const schema = Joi.object(baseSchema);
   const schemaKeys = Object.keys(baseSchema || {});
@@ -37,8 +34,7 @@ const useForm = (
     [inputs]
   );
 
-  const updateInputs = ({ name, value }: EventType) =>
-    setInputs((prev) => ({ ...prev, [name]: value }));
+  const updateInputs = ({ name, value }: EventType) => setInputs((prev) => ({ ...prev, [name]: value }));
 
   const validateInput = ({ name, value }: EventType) => {
     setTouched((prev) => ({ ...prev, [name]: true }));
@@ -47,9 +43,7 @@ const useForm = (
 
     setErrors((prev) => ({
       ...prev,
-      [name]: error
-        ? `${error.message.replace("value", name.slice(0, 1).toUpperCase() + name.slice(1))}`
-        : undefined,
+      [name]: error ? `${error.message.replace("value", name.slice(0, 1).toUpperCase() + name.slice(1))}` : undefined,
     }));
   };
 
@@ -57,9 +51,7 @@ const useForm = (
     const newErrors = _.mapValues(schemaInputs, (value, key) => {
       setTouched((prev) => ({ ...prev, [key]: true }));
       const { error } = schema.extract(key).validate(inputs[key]);
-      return error
-        ? `${error.message.replace("value", key.slice(0, 1).toUpperCase() + key.slice(1))}`
-        : undefined;
+      return error ? `${error.message.replace("value", key.slice(0, 1).toUpperCase() + key.slice(1))}` : undefined;
     });
 
     setErrors(newErrors);
@@ -84,22 +76,13 @@ const useForm = (
 
   const changeTextFuncs = _.chain(schemaInputs)
     .keys()
-    .map((key) => [
-      key,
-      (value: string) => onChangeText({ name: key, value: value }),
-    ])
+    .map((key) => [key, (value: string) => onChangeText({ name: key, value: value })])
     .fromPairs()
     .value();
 
-  const isFormValid = useMemo(
-    () => schema.validate(inputs).error === undefined,
-    [inputs, schema]
-  );
+  const isFormValid = useMemo(() => schema.validate(inputs).error === undefined, [inputs, schema]);
 
-  const postBody = useMemo(
-    () => (settings?.omit ? _.omit(inputs, settings.omit) : inputs),
-    [inputs, settings]
-  );
+  const postBody = useMemo(() => (settings?.omit ? _.omit(inputs, settings.omit) : inputs), [inputs, settings]);
 
   const showSuccessMessage = (message: string) => {
     showToastMessage(message, theme.colors.alert.success);

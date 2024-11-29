@@ -10,9 +10,7 @@ import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 import { LocalImageType } from "@/types/files/localImage";
 import { UserModel } from "@/types/user";
 
-const usePublicProfileForm = (
-  publicProfileSchema: Joi.PartialSchemaMap<any>
-) => {
+const usePublicProfileForm = (publicProfileSchema: Joi.PartialSchemaMap<any>) => {
   const { user, refetch } = React.useContext<{
     user: Partial<UserModel> | undefined;
     refetch: Function;
@@ -46,16 +44,12 @@ const usePublicProfileForm = (
   const onPress = async () => {
     // TODO: Update handling error and sucess on mutate
     try {
-      if (!validateAllInputs())
-        throw new Error("Please fill out all required fields");
+      if (!validateAllInputs()) throw new Error("Please fill out all required fields");
       setLoading(true);
       const input = postBody as PublicProfileInput;
       const output = publicProfileAdaptor(input);
       let imageSrc = null;
-      if (
-        input.profile_image?.state === LocalImageType.FILE_SET &&
-        input.profile_image?.file !== null
-      ) {
+      if (input.profile_image?.state === LocalImageType.FILE_SET && input.profile_image?.file !== null) {
         imageSrc = input.profile_image.file;
       }
 

@@ -19,9 +19,7 @@ describe("InterestsSection", () => {
   });
 
   function selectInterest(interest: string, expectation: string[]) {
-    const interestElement = screen.getByTestId(
-      `interests-checkbox-${interest}`
-    );
+    const interestElement = screen.getByTestId(`interests-checkbox-${interest}`);
     fireEvent.press(interestElement);
     expect(updateFieldMock).toHaveBeenCalledWith(expectation);
   }

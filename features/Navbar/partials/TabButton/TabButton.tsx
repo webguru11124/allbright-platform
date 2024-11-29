@@ -11,14 +11,7 @@ export type Props = {
   children: React.ReactNode;
 };
 
-const TabButton = ({
-  isActive,
-  widthAnim,
-  href,
-  onHoverIn,
-  onHoverOut,
-  children,
-}: Props) => (
+const TabButton = ({ isActive, widthAnim, href, onHoverIn, onHoverOut, children }: Props) => (
   <StyledPressable
     onHoverIn={onHoverIn}
     onHoverOut={onHoverOut}>

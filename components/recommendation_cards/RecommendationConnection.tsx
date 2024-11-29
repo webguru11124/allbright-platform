@@ -8,9 +8,7 @@ import { ConnectionRecommendationModel } from "@/types/Recommendations";
 import Badge from "./Badge";
 import Divider from "./Divider";
 
-const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (
-  props
-) => {
+const RecommendationConnection: React.FC<ConnectionRecommendationModel> = (props) => {
   const styles = StyleSheet.create({
     container: {
       padding: 15,

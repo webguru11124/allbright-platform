@@ -11,11 +11,7 @@ interface GoalsSectionProps {
   field?: (typeof goals)[number][];
 }
 
-const GoalsSectionContainer: FunctionComponent<GoalsSectionProps> = ({
-  updateField,
-  field = [],
-  error,
-}) => {
+const GoalsSectionContainer: FunctionComponent<GoalsSectionProps> = ({ updateField, field = [], error }) => {
   const props = useGoalState({ goals: field, updateField: updateField });
   return (
     <GoalsSelection

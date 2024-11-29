@@ -16,14 +16,7 @@ type Props = Omit<TextInputProps, "onBlur"> & {
   theme: Theme;
 };
 
-const OrganizationSizePicker = ({
-  theme,
-  onChangeText,
-  placeholder,
-  onBlur,
-  error,
-  value,
-}: Props) => {
+const OrganizationSizePicker = ({ theme, onChangeText, placeholder, onBlur, error, value }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleChangeText = (value: string) => {
@@ -32,10 +25,7 @@ const OrganizationSizePicker = ({
   };
 
   const displayValue = useMemo(
-    () =>
-      Boolean(value)
-        ? organizationSize.find((item) => item.value === value)?.label
-        : undefined,
+    () => (Boolean(value) ? organizationSize.find((item) => item.value === value)?.label : undefined),
     [value]
   );
 
@@ -83,9 +73,7 @@ const OrganizationSizePicker = ({
         theme={theme}
         onPress={() => setModalVisible(true)}
         error={error}>
-        <CM color={recommendationColor.textColor}>
-          {displayValue || placeholder}
-        </CM>
+        <CM color={recommendationColor.textColor}>{displayValue || placeholder}</CM>
         <MaterialIcons
           name={"arrow-drop-down"}
           size={24}

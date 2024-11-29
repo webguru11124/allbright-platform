@@ -65,10 +65,7 @@ const NavigationBar = ({ user }: Props) => (
     <TabImageContainer>
       <TabImage
         imageSrc={user?.imageSrc}
-        initials={
-          (user?.firstName?.slice(0, 1) || "A") +
-          (user?.lastName?.slice(0, 1) || "B")
-        }
+        initials={(user?.firstName?.slice(0, 1) || "A") + (user?.lastName?.slice(0, 1) || "B")}
       />
     </TabImageContainer>
   </NavigationBarContainer>

@@ -55,13 +55,10 @@ export const getAllItems = async () => {
   try {
     const keys = await AsyncStorage.getAllKeys();
     const items = await AsyncStorage.multiGet(keys);
-    return items.reduce<{ [key: string]: string }>(
-      (accumulator, [key, value]) => {
-        accumulator[key] = JSON.parse(value || "{}");
-        return accumulator;
-      },
-      {}
-    );
+    return items.reduce<{ [key: string]: string }>((accumulator, [key, value]) => {
+      accumulator[key] = JSON.parse(value || "{}");
+      return accumulator;
+    }, {});
   } catch (error) {
     console.error("Error getting all items:", error);
     return {};

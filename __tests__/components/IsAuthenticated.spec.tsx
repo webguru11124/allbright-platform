@@ -1,10 +1,5 @@
 import { useRouter } from "expo-router";
-import {
-  act,
-  fireEvent,
-  renderRouter,
-  screen,
-} from "expo-router/testing-library";
+import { act, fireEvent, renderRouter, screen } from "expo-router/testing-library";
 import { Button, View } from "react-native";
 
 import IsAuthenticated from "@/components/IsAuthenticated";

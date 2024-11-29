@@ -10,11 +10,7 @@ import { connectionTestData } from "./RecommendationCard.spec";
 describe("RecommendationConnection", () => {
   it("renders correct connection data", () => {
     render(<RecommendationConnection {...connectionTestData} />);
-    expect(
-      screen.getByText(
-        `${connectionTestData.firstName} ${connectionTestData.lastName}`
-      )
-    ).toBeTruthy();
+    expect(screen.getByText(`${connectionTestData.firstName} ${connectionTestData.lastName}`)).toBeTruthy();
     expect(screen.getByText(connectionTestData.jobTitle)).toBeTruthy();
     expect(screen.getByText(connectionTestData.location)).toBeTruthy();
   });

@@ -62,8 +62,6 @@ describe("ProfileGoalsForm", () => {
     selectGoal(allCareerGoals[0]);
     mockedApi.post.mockResolvedValueOnce({});
     fireEvent.press(screen.getByTestId("ProfileGoalsForm:Submit"));
-    expect(
-      screen.getByText(`"CareerGoals" must contain at least 3 items`)
-    ).toBeTruthy();
+    expect(screen.getByText(`"CareerGoals" must contain at least 3 items`)).toBeTruthy();
   });
 });

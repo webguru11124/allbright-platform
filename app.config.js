@@ -56,8 +56,7 @@ export default {
           advertiserIDCollectionEnabled: false,
           autoLogAppEventsEnabled: false,
           isAutoInitEnabled: true,
-          iosUserTrackingPermission:
-            "This identifier will be used to deliver personalized ads to you.",
+          iosUserTrackingPermission: "This identifier will be used to deliver personalized ads to you.",
         },
       ],
     ],

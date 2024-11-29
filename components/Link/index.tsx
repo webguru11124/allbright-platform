@@ -35,10 +35,7 @@ function Link(props: LinkProps) {
     if (props.isLoading) return <S.ActivityIndicator />;
 
     const arrayChildren = React.Children.toArray(props.children);
-    if (
-      arrayChildren.length > 0 &&
-      arrayChildren.every((el) => React.isValidElement(el))
-    ) {
+    if (arrayChildren.length > 0 && arrayChildren.every((el) => React.isValidElement(el))) {
       return props.children;
     }
 
@@ -58,9 +55,7 @@ function getFontColor(bgColor: string, theme: any) {
   const g = parseInt(color.substring(2, 4), 16);
   const b = parseInt(color.substring(4, 6), 16);
 
-  return r * 0.299 + g * 0.587 + b * 0.114 > 186
-    ? theme.colors.button.primary
-    : "white";
+  return r * 0.299 + g * 0.587 + b * 0.114 > 186 ? theme.colors.button.primary : "white";
 }
 
 const S = {
@@ -92,8 +87,7 @@ const S = {
 
   TinyContainer: styled(View)<ContainerProps>`
     border-radius: 24px;
-    background: ${(p) =>
-      p.isCta ? p.theme.colors.secondary : p.theme.bg.overlay};
+    background: ${(p) => (p.isCta ? p.theme.colors.secondary : p.theme.bg.overlay)};
     align-items: center;
     justify-content: center;
     padding: 10px 15px;

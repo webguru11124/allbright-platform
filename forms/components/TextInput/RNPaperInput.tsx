@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  TextInput as RNPaperTextInput,
-  TextInputProps,
-} from "react-native-paper";
+import { TextInput as RNPaperTextInput, TextInputProps } from "react-native-paper";
 import styled from "styled-components/native";
 
 import FormFieldContainer from "@/forms/components/FormFieldContainer";

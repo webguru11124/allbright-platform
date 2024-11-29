@@ -10,15 +10,7 @@ type Props = TextInputProps & {
   theme: Theme;
 };
 
-const TextInput = ({
-  theme,
-  error,
-  onBlur,
-  onChangeText,
-  placeholder,
-  label,
-  ...rest
-}: Props) => {
+const TextInput = ({ theme, error, onBlur, onChangeText, placeholder, label, ...rest }: Props) => {
   return (
     <>
       <FloatingLabelInput

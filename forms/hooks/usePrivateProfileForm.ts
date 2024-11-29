@@ -3,18 +3,12 @@ import Joi from "joi";
 import * as React from "react";
 
 import { UserContext } from "@/contexts/UserContext";
-import {
-  ethnicGroupsAdapter,
-  privateProfileAdaptor,
-  PrivateProfileInput,
-} from "@/forms/adaptors";
+import { ethnicGroupsAdapter, privateProfileAdaptor, PrivateProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 import { UserModel } from "@/types/user";
 
-const usePrivateProfileForm = (
-  privateProfileSchema: Joi.PartialSchemaMap<any>
-) => {
+const usePrivateProfileForm = (privateProfileSchema: Joi.PartialSchemaMap<any>) => {
   const { user, refetch } = React.useContext<{
     user: Partial<UserModel> | undefined;
     refetch: Function;
@@ -35,8 +29,7 @@ const usePrivateProfileForm = (
   React.useEffect(() => {
     if (user) {
       reset(user);
-      if (user.ethnicGroups)
-        changeTextFuncs.ethnicGroups(ethnicGroupsAdapter(user.ethnicGroups));
+      if (user.ethnicGroups) changeTextFuncs.ethnicGroups(ethnicGroupsAdapter(user.ethnicGroups));
     } else {
       refetch();
     }
@@ -50,8 +43,7 @@ const usePrivateProfileForm = (
   const onPress = async () => {
     // TODO: Update handling error and sucess on mutate
     try {
-      if (!validateAllInputs())
-        throw new Error("Please fill out all required fields");
+      if (!validateAllInputs()) throw new Error("Please fill out all required fields");
       setLoading(true);
       const input = postBody as PrivateProfileInput;
       const output = privateProfileAdaptor(input);

@@ -17,28 +17,20 @@ export default function WelcomeScreen() {
           />
         </ImageWrapper>
         <Section>
-          <H2Rox>
-            {returningUser ? "A bespoke experience" : "Welcome to AllBright"}
-          </H2Rox>
+          <H2Rox>{returningUser ? "A bespoke experience" : "Welcome to AllBright"}</H2Rox>
           <CMBold>
             {returningUser
               ? "AllBright is personalising your experience, for better suggestions of events, courses and connections. We invite you to check your profile is up to date."
               : "Let's get started on personalising your experience."}
           </CMBold>
           <CM>
-            <CMBold>
-              The first section will be visible on your public profile,{" "}
-            </CMBold>
+            <CMBold>The first section will be visible on your public profile, </CMBold>
             giving others a chance to get to know you better.
           </CM>
           <CM>
             Meanwhile, the following sections{" "}
-            <CMBold>
-              will remain private. This information will never be shared with
-              anyone else.
-            </CMBold>
-            &nbsp;AllBright will use it to tailor your experience on the
-            platform.
+            <CMBold>will remain private. This information will never be shared with anyone else.</CMBold>
+            &nbsp;AllBright will use it to tailor your experience on the platform.
           </CM>
         </Section>
 

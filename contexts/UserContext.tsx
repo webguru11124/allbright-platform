@@ -17,9 +17,5 @@ type UserProviderProps = {
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const { data, refetch } = useUserProfile();
 
-  return (
-    <UserContext.Provider value={{ user: data, refetch }}>
-      {children}
-    </UserContext.Provider>
-  );
+  return <UserContext.Provider value={{ user: data, refetch }}>{children}</UserContext.Provider>;
 };

@@ -19,10 +19,7 @@ interface GoalsSectionProps {
   error?: string;
 }
 
-const GoalsSection: FunctionComponent<GoalsSectionProps> = ({
-  error,
-  ...props
-}) => {
+const GoalsSection: FunctionComponent<GoalsSectionProps> = ({ error, ...props }) => {
   const { maxWidth } = useContext<MediaQuery>(MediaQueryContext);
   return (
     <>

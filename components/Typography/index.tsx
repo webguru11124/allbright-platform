@@ -6,50 +6,22 @@ type Props = TextStyle & {
   children: React.ReactNode;
 };
 
-export const H1 = (p: Props) => (
-  <Text style={[styles(p).h1, p.style]}>{p.children}</Text>
-);
-export const H2 = (p: Props) => (
-  <Text style={[styles(p).h2, p.style]}>{p.children}</Text>
-);
-export const H3 = (p: Props) => (
-  <Text style={[styles(p).h3, p.style]}>{p.children}</Text>
-);
-export const H4 = (p: Props) => (
-  <Text style={[styles(p).h4, p.style]}>{p.children}</Text>
-);
-export const H5 = (p: Props) => (
-  <Text style={[styles(p).h5, p.style]}>{p.children}</Text>
-);
-export const H6 = (p: Props) => (
-  <Text style={[styles(p).h6, p.style]}>{p.children}</Text>
-);
+export const H1 = (p: Props) => <Text style={[styles(p).h1, p.style]}>{p.children}</Text>;
+export const H2 = (p: Props) => <Text style={[styles(p).h2, p.style]}>{p.children}</Text>;
+export const H3 = (p: Props) => <Text style={[styles(p).h3, p.style]}>{p.children}</Text>;
+export const H4 = (p: Props) => <Text style={[styles(p).h4, p.style]}>{p.children}</Text>;
+export const H5 = (p: Props) => <Text style={[styles(p).h5, p.style]}>{p.children}</Text>;
+export const H6 = (p: Props) => <Text style={[styles(p).h6, p.style]}>{p.children}</Text>;
 
-export const H1Rox = (p: Props) => (
-  <Text style={[styles(p).h1Rox, p.style]}>{p.children}</Text>
-);
-export const H2Rox = (p: Props) => (
-  <Text style={[styles(p).h2Rox, p.style]}>{p.children}</Text>
-);
-export const H3Rox = (p: Props) => (
-  <Text style={[styles(p).h3Rox, p.style]}>{p.children}</Text>
-);
+export const H1Rox = (p: Props) => <Text style={[styles(p).h1Rox, p.style]}>{p.children}</Text>;
+export const H2Rox = (p: Props) => <Text style={[styles(p).h2Rox, p.style]}>{p.children}</Text>;
+export const H3Rox = (p: Props) => <Text style={[styles(p).h3Rox, p.style]}>{p.children}</Text>;
 
-export const CXXL = (p: Props) => (
-  <Text style={[styles(p).cxxl, p.style]}>{p.children}</Text>
-);
-export const CXL = (p: Props) => (
-  <Text style={[styles(p).cxl, p.style]}>{p.children}</Text>
-);
-export const CL = (p: Props) => (
-  <Text style={[styles(p).cl, p.style]}>{p.children}</Text>
-);
-export const CM = (p: Props) => (
-  <Text style={[styles(p).cm, p.style]}>{p.children}</Text>
-);
-export const CS = (p: Props) => (
-  <Text style={[styles(p).cs, p.style]}>{p.children}</Text>
-);
+export const CXXL = (p: Props) => <Text style={[styles(p).cxxl, p.style]}>{p.children}</Text>;
+export const CXL = (p: Props) => <Text style={[styles(p).cxl, p.style]}>{p.children}</Text>;
+export const CL = (p: Props) => <Text style={[styles(p).cl, p.style]}>{p.children}</Text>;
+export const CM = (p: Props) => <Text style={[styles(p).cm, p.style]}>{p.children}</Text>;
+export const CS = (p: Props) => <Text style={[styles(p).cs, p.style]}>{p.children}</Text>;
 
 const styles = (p: TextStyle) =>
   StyleSheet.create({

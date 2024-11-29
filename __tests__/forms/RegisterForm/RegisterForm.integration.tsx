@@ -3,9 +3,7 @@ import { fireEvent, waitFor } from "@testing-library/react-native";
 import { act, renderRouter, screen } from "expo-router/testing-library";
 
 import { fireBlurEvent } from "@/__mocks__/test-utils";
-import useRegisterPageSelection, {
-  viewMode,
-} from "@/forms/hooks/useRegisterPageSelection";
+import useRegisterPageSelection, { viewMode } from "@/forms/hooks/useRegisterPageSelection";
 import RegisterForm from "@/forms/RegisterForm";
 import api from "@/lib/api";
 import Providers from "@/utils/providers";
@@ -18,10 +16,7 @@ jest.mock("@/forms/hooks/useRegisterPageSelection");
 
 const mockUseRegisterPageSelection = jest.mocked(useRegisterPageSelection);
 
-mockUseRegisterPageSelection.mockImplementation(() => [
-  "EMAIL_PASSWORD",
-  jest.fn() as (mode: viewMode) => void,
-]);
+mockUseRegisterPageSelection.mockImplementation(() => ["EMAIL_PASSWORD", jest.fn() as (mode: viewMode) => void]);
 
 describe("RegisterForm", () => {
   afterEach(() => {
@@ -124,14 +119,9 @@ describe("RegisterForm", () => {
     expect(screen).toHavePathname("/");
 
     await fireBlurEvent(screen.getByTestId("RegisterForm:Password"), PASS);
-    await fireBlurEvent(
-      screen.getByTestId("RegisterForm:PasswordConfirmation"),
-      PASS_CONF
-    );
+    await fireBlurEvent(screen.getByTestId("RegisterForm:PasswordConfirmation"), PASS_CONF);
 
-    expect(
-      await screen.findByText(EXPECTED_PASSWORD_CONF_ERROR)
-    ).not.toBeNull();
+    expect(await screen.findByText(EXPECTED_PASSWORD_CONF_ERROR)).not.toBeNull();
 
     await act(() => {
       fireEvent.press(screen.getByText("Submit"));

@@ -16,15 +16,7 @@ type Props = {
   disabled?: boolean;
 };
 
-const CityPicker = ({
-  value,
-  placeholder,
-  onChangeText,
-  selectedCountry,
-  onBlur,
-  error,
-  disabled,
-}: Props) => {
+const CityPicker = ({ value, placeholder, onChangeText, selectedCountry, onBlur, error, disabled }: Props) => {
   const cities: City[] = useMemo(() => {
     return new OnboardingClient().getCities(selectedCountry);
   }, [selectedCountry]);

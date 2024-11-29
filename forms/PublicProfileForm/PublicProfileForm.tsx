@@ -12,14 +12,7 @@ import { FormProps } from "@/forms/types/forms.types";
 const placeholderBiography =
   "Example: As a female CEO, I'm committed to leading with vision and impact. Alongside championing diversity and innovation, my passion for travel fuels my global perspective. Let's connect to empower each other in the world of leadership and swap adventure stories! ✈️ \n(500 characters max)";
 
-const PublicProfileForm = ({
-  inputs,
-  errors,
-  blurFuncs,
-  changeTextFuncs,
-  isPending,
-  onPress,
-}: FormProps) => (
+const PublicProfileForm = ({ inputs, errors, blurFuncs, changeTextFuncs, isPending, onPress }: FormProps) => (
   <SafeAreaView>
     <Space height={10} />
     <TextInput
@@ -70,9 +63,7 @@ const PublicProfileForm = ({
       error={errors.goals}
     />
     <Space height={10} />
-    <ProfilePhotoUploadSection
-      uploadProfileImage={changeTextFuncs.profile_image}
-    />
+    <ProfilePhotoUploadSection uploadProfileImage={changeTextFuncs.profile_image} />
     <Space height={10} />
     <TextInput
       placeholder={placeholderBiography}

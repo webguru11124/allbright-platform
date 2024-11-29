@@ -56,18 +56,14 @@ describe("PublicProfileForm", () => {
       const expectedJobTitle = faker.person.jobTitle();
       const input = screen.getByTestId("PublicProfileForm:JobTitle");
       fireEvent.changeText(input, expectedJobTitle);
-      expect(props.changeTextFuncs.jobTitle).toHaveBeenCalledWith(
-        expectedJobTitle
-      );
+      expect(props.changeTextFuncs.jobTitle).toHaveBeenCalledWith(expectedJobTitle);
     });
 
     it("when the jobCompany input is updated", () => {
       const expectedjobCompany = faker.company.name();
       const input = screen.getByTestId("PublicProfileForm:CompanyName");
       fireEvent.changeText(input, expectedjobCompany);
-      expect(props.changeTextFuncs.jobCompany).toHaveBeenCalledWith(
-        expectedjobCompany
-      );
+      expect(props.changeTextFuncs.jobCompany).toHaveBeenCalledWith(expectedjobCompany);
     });
   });
 

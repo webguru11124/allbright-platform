@@ -11,13 +11,7 @@ type Props = Omit<TextInputProps, "onBlur"> & {
   theme: Theme;
 };
 
-const ThirdPartyAgreedCheckBox = ({
-  theme,
-  onChangeText,
-  error,
-  value,
-  testID,
-}: Props) => {
+const ThirdPartyAgreedCheckBox = ({ theme, onChangeText, error, value, testID }: Props) => {
   const onPress = () => {
     onChangeText(!value);
   };
@@ -37,8 +31,8 @@ const ThirdPartyAgreedCheckBox = ({
           )}
         </TickWrapper>
         <CS>
-          I would like to receive news and special offers from carefully
-          selected partners of AllBright by email to surprise and delight me
+          I would like to receive news and special offers from carefully selected partners of AllBright by email to
+          surprise and delight me
         </CS>
       </TickContainer>
       {error && <CS color="red">{error}</CS>}

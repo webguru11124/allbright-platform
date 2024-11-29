@@ -8,11 +8,7 @@ interface Props {
   field?: CareerGoalType["id"][];
   error?: string;
 }
-const CareerGoalsSelectionContainer = ({
-  error,
-  field = [],
-  updateField,
-}: Props) => {
+const CareerGoalsSelectionContainer = ({ error, field = [], updateField }: Props) => {
   const { goalIsSelected, setGoalsStateHandler } = useCareerGoalState({
     goals: field,
     updateField,

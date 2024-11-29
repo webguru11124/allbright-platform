@@ -3,13 +3,7 @@ import React from "react";
 
 import { AppStartImgProps } from "@/features/AppStart/types";
 
-const AppStartImg: React.FC<AppStartImgProps> = ({
-  elm,
-  xDim,
-  yDim,
-  c,
-  idx,
-}: AppStartImgProps) => (
+const AppStartImg: React.FC<AppStartImgProps> = ({ elm, xDim, yDim, c, idx }: AppStartImgProps) => (
   <Image
     key={idx}
     style={[

@@ -11,13 +11,7 @@ type Props = {
   error: string | undefined;
 };
 
-const CountryPicker = ({
-  value,
-  placeholder,
-  onChangeText,
-  onBlur,
-  error,
-}: Props) => {
+const CountryPicker = ({ value, placeholder, onChangeText, onBlur, error }: Props) => {
   return (
     <Picker
       placeholder={placeholder}

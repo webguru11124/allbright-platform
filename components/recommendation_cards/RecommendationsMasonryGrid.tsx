@@ -17,9 +17,7 @@ const RecommendationsMasonryGrid = () => {
       data={DUMMY_RECS}
       keyExtractor={(item): string => item.id}
       numColumns={2}
-      renderItem={({ item }) => (
-        <RecommendationCard {...(item as RecommendationModel)} />
-      )}
+      renderItem={({ item }) => <RecommendationCard {...(item as RecommendationModel)} />}
       contentContainerStyle={styles.masonry}
       showsVerticalScrollIndicator={true}
     />

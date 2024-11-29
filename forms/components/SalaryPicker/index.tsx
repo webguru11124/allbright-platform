@@ -16,14 +16,7 @@ type Props = Omit<TextInputProps, "onBlur"> & {
   theme: Theme;
 };
 
-const SalaryPicker = ({
-  theme,
-  onChangeText,
-  placeholder,
-  onBlur,
-  error,
-  value,
-}: Props) => {
+const SalaryPicker = ({ theme, onChangeText, placeholder, onBlur, error, value }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleChangeText = (value: string) => {
@@ -32,10 +25,7 @@ const SalaryPicker = ({
   };
 
   const displayValue = useMemo(
-    () =>
-      Boolean(value)
-        ? salary.find((item) => item.value === value)?.label
-        : undefined,
+    () => (Boolean(value) ? salary.find((item) => item.value === value)?.label : undefined),
     [value]
   );
 

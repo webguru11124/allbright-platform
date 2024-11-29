@@ -15,11 +15,9 @@ const IsAuthenticated = (props: Props) => {
     const checkToken = async () => {
       const token = await getToken();
       if (Boolean(token) === false) {
-        authenticationPaths.includes(pathname) === false &&
-          router.navigate("/");
+        authenticationPaths.includes(pathname) === false && router.navigate("/");
       } else {
-        authenticationPaths.includes(pathname) === true &&
-          router.navigate("/home");
+        authenticationPaths.includes(pathname) === true && router.navigate("/home");
       }
     };
 

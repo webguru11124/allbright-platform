@@ -19,11 +19,7 @@ const TabImage = ({ theme, imageSrc, initials, onPress }: Props) => (
         source={imageSrc}
       />
     ) : (
-      <View
-        style={[
-          styles.initialsContainer,
-          { backgroundColor: theme.colors.background },
-        ]}>
+      <View style={[styles.initialsContainer, { backgroundColor: theme.colors.background }]}>
         <H4 style={styles.initials}>{initials}</H4>
       </View>
     )}

@@ -34,10 +34,7 @@ export default function Layout() {
                   }}>
                   <TabImage
                     imageSrc={user?.imageSrc}
-                    initials={
-                      (user?.firstName?.slice(0, 1) || "A") +
-                      (user?.lastName?.slice(0, 1) || "B")
-                    }
+                    initials={(user?.firstName?.slice(0, 1) || "A") + (user?.lastName?.slice(0, 1) || "B")}
                   />
                   <H4 style={{ paddingLeft: 10 }}>{user?.name}</H4>
                 </View>

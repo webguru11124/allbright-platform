@@ -9,10 +9,8 @@ const Welcome: FunctionComponent = () => {
     <OnboadingPageLayout>
       <H3>Profile complete</H3>
       <CM>
-        Here is your AllBright Business Card. Please check everything looks
-        right, and we’ll get you onto the platform immediately. You can change
-        your details at any time through the Profile option at the top right of
-        your screen.
+        Here is your AllBright Business Card. Please check everything looks right, and we’ll get you onto the platform
+        immediately. You can change your details at any time through the Profile option at the top right of your screen.
       </CM>
 
       <Button>Approve</Button>

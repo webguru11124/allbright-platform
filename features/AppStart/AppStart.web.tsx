@@ -9,14 +9,7 @@ import EntryButtons from "@/features/AppStart/partials/EntryButtons";
 import { AppStartProps, AppStartStyleProps } from "@/features/AppStart/types";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 
-const AppStart = ({
-  store,
-  nameAnim,
-  animY,
-  NOTCH,
-  heightOffset,
-  minWidth,
-}: AppStartProps) => (
+const AppStart = ({ store, nameAnim, animY, NOTCH, heightOffset, minWidth }: AppStartProps) => (
   <Main>
     <Section>
       <Container>
@@ -30,8 +23,7 @@ const AppStart = ({
         />
         <BlurWrapper>
           <Space height={NOTCH ? 15 : 50} />
-          <Animated.View
-            style={{ opacity: nameAnim, transform: [{ translateY: animY }] }}>
+          <Animated.View style={{ opacity: nameAnim, transform: [{ translateY: animY }] }}>
             <H2 textAlign={"center"}>Welcome to AllBright.</H2>
             <Space height={10} />
             <CXL textAlign={"center"}>

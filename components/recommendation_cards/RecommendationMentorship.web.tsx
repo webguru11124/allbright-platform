@@ -7,9 +7,7 @@ import { MentorshipRecommendationModel } from "@/types/Recommendations";
 
 import Badge from "./Badge";
 
-const RecommendationMentorship: React.FC<MentorshipRecommendationModel> = (
-  props
-) => {
+const RecommendationMentorship: React.FC<MentorshipRecommendationModel> = (props) => {
   const styles = StyleSheet.create({
     container: {},
     image: {

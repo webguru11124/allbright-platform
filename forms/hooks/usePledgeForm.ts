@@ -7,24 +7,15 @@ import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 
 const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
-  const {
-    inputs,
-    errors,
-    blurFuncs,
-    changeTextFuncs,
-    postBody,
-    isFormValid,
-    validateAllInputs,
-    showErrorMessage,
-  } = useForm(careerGoalsSchema);
+  const { inputs, errors, blurFuncs, changeTextFuncs, postBody, isFormValid, validateAllInputs, showErrorMessage } =
+    useForm(careerGoalsSchema);
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
 
   const onPress = async () => {
     try {
-      if (!validateAllInputs())
-        throw new Error("Please fill out all required fields");
+      if (!validateAllInputs()) throw new Error("Please fill out all required fields");
       setLoading(true);
       const input = postBody;
       const output = pledgeAdapter(input as PledgeInput);

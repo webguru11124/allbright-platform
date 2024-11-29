@@ -9,8 +9,7 @@ type WithThemeProps = {
 const withTheme = <T extends WithThemeProps = WithThemeProps>(
   WrappedComponent: React.ComponentType<T>
 ): React.ComponentType<Omit<T, keyof WithThemeProps>> => {
-  const displayName =
-    WrappedComponent.displayName || WrappedComponent.name || "Component";
+  const displayName = WrappedComponent.displayName || WrappedComponent.name || "Component";
 
   const ComponentWithTheme = (props: Omit<T, keyof WithThemeProps>) => {
     const theme = useTheme();

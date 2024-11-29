@@ -18,29 +18,21 @@ type StyleProps = {
 interface EthnicGroupsSectionProps {
   checkIfChecked: (ethnicGroup: (typeof ethnicGroups)[number]) => boolean;
   checkIfDisabled: (ethnicGroup: (typeof ethnicGroups)[number]) => boolean;
-  onEthnicGroupsChange: (ethnicGroup: {
-    title: string;
-    value?: string;
-    id: string;
-  }) => void;
+  onEthnicGroupsChange: (ethnicGroup: { title: string; value?: string; id: string }) => void;
   error?: string;
 }
 
-const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (
-  props
-) => {
-  const { error, checkIfChecked, checkIfDisabled, onEthnicGroupsChange } =
-    props;
+const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (props) => {
+  const { error, checkIfChecked, checkIfDisabled, onEthnicGroupsChange } = props;
 
   return (
     <S.Container data-cy="ethnic-groups-container">
       <H5>Please describe your race/ethnicity (check all that apply)</H5>
       <CM>
-        Inclusion is one of our priorities at AllBright and we are committed to
-        creating an environment that is representative of all women.
+        Inclusion is one of our priorities at AllBright and we are committed to creating an environment that is
+        representative of all women.
         <Space height={10} />
-        This data will only be used to help us create a space that provides
-        equity for all of our members.
+        This data will only be used to help us create a space that provides equity for all of our members.
       </CM>
       <FormFieldContainer error={error}>
         {[...ethnicGroups].map((elm) => (
@@ -54,9 +46,7 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (
                 disabled={checkIfDisabled(elm)}
                 id={elm.id}
                 placeholder={"Other (please specify)"}
-                placeholderTextColor={
-                  checkIfDisabled(elm) ? colours.charcoalFaded : colours.charcoal
-                }
+                placeholderTextColor={checkIfDisabled(elm) ? colours.charcoalFaded : colours.charcoal}
                 checked={checkIfChecked(elm)}
                 onChangeText={(value) =>
                   onEthnicGroupsChange({
@@ -78,9 +68,7 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (
                 onPress={() => onEthnicGroupsChange(elm)}
                 data-cy={`${elm.title}-option`}
                 testID={`ethnic-group-option-${elm.title}`}>
-                <S.OptionLabel disabled={checkIfDisabled(elm)}>
-                  {elm.title}
-                </S.OptionLabel>
+                <S.OptionLabel disabled={checkIfDisabled(elm)}>{elm.title}</S.OptionLabel>
               </S.Checkbox>
             )}
             {checkIfChecked(elm) && (

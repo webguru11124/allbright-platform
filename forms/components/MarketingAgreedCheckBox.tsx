@@ -11,13 +11,7 @@ type Props = Omit<TextInputProps, "onBlur"> & {
   theme: Theme;
 };
 
-const MarketingAgreedCheckBox = ({
-  theme,
-  onChangeText,
-  error,
-  value,
-  testID,
-}: Props) => {
+const MarketingAgreedCheckBox = ({ theme, onChangeText, error, value, testID }: Props) => {
   const onPress = () => {
     onChangeText(!value);
   };
@@ -37,8 +31,7 @@ const MarketingAgreedCheckBox = ({
           )}
         </TickWrapper>
         <CS>
-          I would like to receive relevant information, newsletters and
-          opportunities updates from AllBright by email
+          I would like to receive relevant information, newsletters and opportunities updates from AllBright by email
         </CS>
       </TickContainer>
       {error && <CS color="red">{error}</CS>}

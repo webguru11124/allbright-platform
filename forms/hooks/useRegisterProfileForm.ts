@@ -9,9 +9,7 @@ import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 import { UserModel } from "@/types/user";
 
-const useRegisterProfileForm = (
-  registerProfileSchema: Joi.PartialSchemaMap<any>
-) => {
+const useRegisterProfileForm = (registerProfileSchema: Joi.PartialSchemaMap<any>) => {
   const { user, refetch } = React.useContext<{
     user: Partial<UserModel> | undefined;
     refetch: Function;
@@ -44,8 +42,7 @@ const useRegisterProfileForm = (
 
   const onPress = async () => {
     try {
-      if (!validateAllInputs())
-        throw new Error("Please fill out all required fields");
+      if (!validateAllInputs()) throw new Error("Please fill out all required fields");
       setLoading(true);
       const input = postBody as RegisterProfileInput;
       const output = registerProfileAdaptor(input);

@@ -21,16 +21,7 @@ type Props = Omit<TextInputProps, "onBlur"> & {
   disabled?: boolean;
 };
 
-const CityPicker = ({
-  theme,
-  onChangeText,
-  placeholder,
-  onBlur,
-  error,
-  selectedCountry,
-  value,
-  disabled,
-}: Props) => {
+const CityPicker = ({ theme, onChangeText, placeholder, onBlur, error, selectedCountry, value, disabled }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [searchText, setSearchText] = useState<string | undefined>(undefined);
   const cities: City[] = useMemo(() => {
@@ -40,9 +31,7 @@ const CityPicker = ({
   const filteredCities = useMemo(
     () =>
       searchText !== undefined
-        ? cities.filter((val) =>
-            val.key.toLowerCase().includes(searchText?.toLowerCase())
-          )
+        ? cities.filter((val) => val.key.toLowerCase().includes(searchText?.toLowerCase()))
         : cities,
     [cities, searchText]
   );
@@ -53,17 +42,11 @@ const CityPicker = ({
   };
 
   const displayValue = useMemo(
-    () =>
-      Boolean(value)
-        ? cities.find((item) => item.value === value)?.label
-        : undefined,
+    () => (Boolean(value) ? cities.find((item) => item.value === value)?.label : undefined),
     [value, cities]
   );
 
-  const isDisabled = useMemo(
-    () => Boolean(selectedCountry) === false,
-    [selectedCountry]
-  );
+  const isDisabled = useMemo(() => Boolean(selectedCountry) === false, [selectedCountry]);
 
   const onCloseButtonPress = () => {
     onBlur();
@@ -125,9 +108,7 @@ const CityPicker = ({
         theme={theme}
         onPress={() => setModalVisible(true)}
         error={error}>
-        <CM color={isDisabled ? "#ddd" : theme.colors.text}>
-          {displayValue || placeholder}
-        </CM>
+        <CM color={isDisabled ? "#ddd" : theme.colors.text}>{displayValue || placeholder}</CM>
         <MaterialIcons
           name={"arrow-drop-down"}
           size={24}

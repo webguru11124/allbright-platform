@@ -5,13 +5,7 @@ import Button from "@/forms/components/Button";
 import CareerGoalsSelection from "@/forms/components/CareerGoalsSelection";
 import { FormProps } from "@/forms/types/forms.types";
 
-const ProfileGoalsForm = ({
-  errors,
-  changeTextFuncs,
-  isPending,
-  inputs,
-  onPress,
-}: FormProps) => (
+const ProfileGoalsForm = ({ errors, changeTextFuncs, isPending, inputs, onPress }: FormProps) => (
   <SafeAreaView>
     <CareerGoalsSelection
       field={inputs.careerGoals}

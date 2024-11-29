@@ -1,7 +1,4 @@
-import {
-  Picker as NativePicker,
-  PickerProps,
-} from "@react-native-picker/picker";
+import { Picker as NativePicker, PickerProps } from "@react-native-picker/picker";
 import { NativeSyntheticEvent, NativeTouchEvent } from "react-native";
 import styled from "styled-components/native";
 
@@ -29,16 +26,7 @@ type StyleProps = {
   error: string | undefined;
 };
 
-const Picker = ({
-  value,
-  onValueChange,
-  onBlur,
-  items,
-  error,
-  placeholder,
-  theme,
-  ...props
-}: Props) => {
+const Picker = ({ value, onValueChange, onBlur, items, error, placeholder, theme, ...props }: Props) => {
   return (
     <>
       <StyledPicker

@@ -11,13 +11,7 @@ type Props = {
   error: string | undefined;
 };
 
-const JobLevelPicker = ({
-  value,
-  placeholder,
-  onChangeText,
-  onBlur,
-  error,
-}: Props) => {
+const JobLevelPicker = ({ value, placeholder, onChangeText, onBlur, error }: Props) => {
   return (
     <Picker
       placeholder={placeholder}

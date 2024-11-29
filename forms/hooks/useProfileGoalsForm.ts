@@ -5,10 +5,7 @@ import { useEffect, useState } from "react";
 
 import { profileGoalsAdapter, ProfileGoalsInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
-import {
-  useUpdateUserGoals,
-  useUserGoals,
-} from "@/hooks/resources/useUserGoals";
+import { useUpdateUserGoals, useUserGoals } from "@/hooks/resources/useUserGoals";
 import { CareerGoalType } from "@/utils/data/careerGoals";
 
 const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
@@ -42,8 +39,7 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
 
   const onPress = async () => {
     try {
-      if (!validateAllInputs())
-        throw new Error("Please fill out all required fields");
+      if (!validateAllInputs()) throw new Error("Please fill out all required fields");
       setLoading(true);
       const input = postBody as ProfileGoalsInput;
       const goals = profileGoalsAdapter(input);

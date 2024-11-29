@@ -36,14 +36,10 @@ describe("useFormWithPassConfs", () => {
   describe(".schema", () => {
     it("are extracted from the schema minus settings.omit", () => {
       const { result } = renderHook(() => useFormWithPassConf(schema));
-      const { error } = result.current.schema
-        .extract("first_name")
-        .validate("");
+      const { error } = result.current.schema.extract("first_name").validate("");
       expect(error).not.toBeUndefined();
 
-      const { error: updatedError } = result.current.schema
-        .extract("first_name")
-        .validate("lorem");
+      const { error: updatedError } = result.current.schema.extract("first_name").validate("lorem");
       expect(updatedError).toBeUndefined();
     });
   });
@@ -59,9 +55,7 @@ describe("useFormWithPassConfs", () => {
       });
 
       expect(result.current.touched.password_confirmation).toEqual(true);
-      expect(result.current.errors.password_confirmation).toEqual(
-        '"Password_confirmation" is required'
-      );
+      expect(result.current.errors.password_confirmation).toEqual('"Password_confirmation" is required');
     });
   });
 
@@ -93,8 +87,7 @@ describe("useFormWithPassConfs", () => {
         first_name: undefined,
         last_name: undefined,
         password: undefined,
-        password_confirmation:
-          '"Password Confirmation" and "Password" should match',
+        password_confirmation: '"Password Confirmation" and "Password" should match',
       });
 
       await act(async () => {
@@ -134,9 +127,7 @@ describe("useFormWithPassConfs", () => {
 
       await act(async () => {
         await result.current.changeTextFuncs.password("matchingpasswords");
-        await result.current.changeTextFuncs.password_confirmation(
-          "matchingpasswords"
-        );
+        await result.current.changeTextFuncs.password_confirmation("matchingpasswords");
       });
 
       expect(result.current.isFormValid).toBe(true);

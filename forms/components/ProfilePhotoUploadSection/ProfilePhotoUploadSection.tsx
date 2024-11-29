@@ -37,17 +37,13 @@ const ProfilePhotoUploadSection = ({
         </ArrowButton>
         <SelectPhotoText>
           <H4>'Select photo'</H4>
-          <CMMarginBottom>
-            Please ensure it is of just yourself and no one else.
-          </CMMarginBottom>
+          <CMMarginBottom>Please ensure it is of just yourself and no one else.</CMMarginBottom>
         </SelectPhotoText>
       </PhotoInformationSection>
 
       <PhotoUploadPosition>
         <ProfilePhotoInput
-          imageSrc={
-            profileImage.state === LocalImageType.FILE_UNSET ? null : imageSrc
-          }
+          imageSrc={profileImage.state === LocalImageType.FILE_UNSET ? null : imageSrc}
           pickProfileImage={pickProfileImage}
         />
       </PhotoUploadPosition>

@@ -2,9 +2,7 @@ import { cities, City, pickerAdaptor } from "@/utils/data/cities";
 import countries from "@/utils/data/countries";
 
 class OnboardingClient {
-  public getCities(
-    userCountry?: (typeof countries)[number]["Name"] | undefined | null
-  ): City[] {
+  public getCities(userCountry?: (typeof countries)[number]["Name"] | undefined | null): City[] {
     if (Boolean(userCountry) === false) {
       return [];
     }

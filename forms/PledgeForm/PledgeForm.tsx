@@ -6,13 +6,7 @@ import Button from "@/forms/components/Button";
 import TickBox from "@/forms/components/TickBox";
 import { FormProps } from "@/forms/types/forms.types";
 
-const PledgeForm = ({
-  errors,
-  changeTextFuncs,
-  isPending,
-  onPress,
-  inputs,
-}: FormProps) => (
+const PledgeForm = ({ errors, changeTextFuncs, isPending, onPress, inputs }: FormProps) => (
   <SafeAreaView>
     <S.Row>
       <TickBox

@@ -11,13 +11,7 @@ type Props = {
   error: string | undefined;
 };
 
-const IndustryPicker = ({
-  selectedValue,
-  placeholder,
-  onChangeText,
-  onBlur,
-  error,
-}: Props) => {
+const IndustryPicker = ({ selectedValue, placeholder, onChangeText, onBlur, error }: Props) => {
   return (
     <Picker
       placeholder={placeholder}

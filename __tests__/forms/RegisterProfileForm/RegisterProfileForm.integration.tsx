@@ -1,11 +1,5 @@
 import { faker } from "@faker-js/faker";
-import {
-  act,
-  fireEvent,
-  renderRouter,
-  screen,
-  waitFor,
-} from "expo-router/testing-library";
+import { act, fireEvent, renderRouter, screen, waitFor } from "expo-router/testing-library";
 
 import { fireBlurEvent } from "@/__mocks__/test-utils";
 import RegisterProfileForm from "@/forms/RegisterProfileForm";
@@ -45,15 +39,9 @@ describe("RegisterProfileForm", () => {
     const randomFirstName = faker.person.firstName();
     const randomLastName = faker.person.lastName();
     expect(screen.getByTestId("RegisterProfileForm:FirstName")).not.toBeNull();
-    fireEvent.changeText(
-      screen.getByTestId("RegisterProfileForm:FirstName"),
-      randomFirstName
-    );
+    fireEvent.changeText(screen.getByTestId("RegisterProfileForm:FirstName"), randomFirstName);
 
-    fireEvent.changeText(
-      screen.getByTestId("RegisterProfileForm:LastName"),
-      randomLastName
-    );
+    fireEvent.changeText(screen.getByTestId("RegisterProfileForm:LastName"), randomLastName);
     fireEvent.changeText(screen.getByText("Country"), randomCountry);
     fireEvent.changeText(screen.getByText("City"), randomCity);
     fireEvent.press(screen.getByTestId("RegisterProfileForm:TermsAgreed"));
@@ -90,14 +78,8 @@ describe("RegisterProfileForm", () => {
     const EXPECTED_FIRST_NAME = `"FirstName" is  not allowed to be empty`;
     const EXPECTED_LAST_NAME = `"LastName" is not allowed to be empty`;
 
-    await fireBlurEvent(
-      screen.getByTestId("RegisterProfileForm:FirstName"),
-      FIRST_NAME
-    );
-    await fireBlurEvent(
-      screen.getByTestId("RegisterProfileForm:LastName"),
-      LAST_NAME
-    );
+    await fireBlurEvent(screen.getByTestId("RegisterProfileForm:FirstName"), FIRST_NAME);
+    await fireBlurEvent(screen.getByTestId("RegisterProfileForm:LastName"), LAST_NAME);
     expect(await screen.findByText(EXPECTED_FIRST_NAME)).not.toBeNull();
     expect(await screen.findByText(EXPECTED_LAST_NAME)).not.toBeNull();
 

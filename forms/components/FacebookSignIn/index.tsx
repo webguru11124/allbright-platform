@@ -11,10 +11,7 @@ const FacebookSignInContainer = (props: Props) => {
   const [loading, setLoading] = React.useState(false);
   const handleFacebookLogin = async () => {
     try {
-      const result = await LoginManager.logInWithPermissions([
-        "public_profile",
-        "email",
-      ]);
+      const result = await LoginManager.logInWithPermissions(["public_profile", "email"]);
       if (result.isCancelled) {
         console.log("Login cancelled");
       } else {

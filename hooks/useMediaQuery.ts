@@ -6,9 +6,7 @@ export const BREAKPOINT_TABLET = 768;
 export const BREAKPOINT_LAPTOP = 1024;
 
 const useMediaQuery = () => {
-  const [currentWidth, setCurrentWidth] = useState(
-    Dimensions.get("window").width
-  );
+  const [currentWidth, setCurrentWidth] = useState(Dimensions.get("window").width);
 
   useEffect(() => {
     const subscription = Dimensions.addEventListener("change", ({ window }) => {

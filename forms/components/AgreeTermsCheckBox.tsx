@@ -12,13 +12,7 @@ type Props = Omit<TextInputProps, "onBlur"> & {
   theme: Theme;
 };
 
-const AgreeTermsCheckBox = ({
-  theme,
-  onChangeText,
-  error,
-  value,
-  testID,
-}: Props) => {
+const AgreeTermsCheckBox = ({ theme, onChangeText, error, value, testID }: Props) => {
   const onPress = () => {
     onChangeText(!value);
   };

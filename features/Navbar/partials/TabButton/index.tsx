@@ -14,11 +14,7 @@ export type Props = {
   children: React.ReactNode;
 };
 
-const TabButtonContainer = ({
-  href,
-  children,
-  ...rest
-}: Pick<Props, "href" | "children">) => {
+const TabButtonContainer = ({ href, children, ...rest }: Pick<Props, "href" | "children">) => {
   const { isActive, widthAnim, onHoverIn, onHoverOut } = useTabButton({
     href: href,
   });

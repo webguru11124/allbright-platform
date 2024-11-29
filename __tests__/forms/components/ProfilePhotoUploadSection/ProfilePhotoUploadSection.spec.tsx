@@ -20,17 +20,13 @@ describe("ProfilePhotoUploadSection", () => {
   });
 
   it("renders correctly and allows user to select an image", () => {
-    const arrowButton = screen.getByTestId(
-      "ProfilePhotoUploadSection:ArrowButton"
-    );
+    const arrowButton = screen.getByTestId("ProfilePhotoUploadSection:ArrowButton");
     fireEvent.press(arrowButton);
     expect(mockPickProfileImage).toHaveBeenCalled();
   });
 
   it("handles tick box state change", () => {
-    const tickBox = screen.getByTestId(
-      "ProfilePhotoUploadSection:ProfileWantedToggle"
-    );
+    const tickBox = screen.getByTestId("ProfilePhotoUploadSection:ProfileWantedToggle");
     fireEvent.press(tickBox);
     expect(mockHandleProfileWantedToggle).toHaveBeenCalledWith(true);
   });

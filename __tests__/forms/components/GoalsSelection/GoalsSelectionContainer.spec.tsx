@@ -50,11 +50,6 @@ describe("GoalsSectionContainer", () => {
     selectGoal(goal3, [goals[0], goals[1], goals[2]]);
 
     fireEvent.press(goal4);
-    expect(updateFieldMock).not.toHaveBeenCalledWith([
-      goals[0],
-      goals[1],
-      goals[2],
-      goals[3],
-    ]);
+    expect(updateFieldMock).not.toHaveBeenCalledWith([goals[0], goals[1], goals[2], goals[3]]);
   });
 });

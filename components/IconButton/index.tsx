@@ -10,14 +10,7 @@ type Props = {
   testID?: string;
 };
 
-export default function IconButton({
-  icon,
-  label,
-  onPress,
-  color = "#fff",
-  size = 24,
-  testID,
-}: Props) {
+export default function IconButton({ icon, label, onPress, color = "#fff", size = 24, testID }: Props) {
   return (
     <Pressable
       testID={testID}

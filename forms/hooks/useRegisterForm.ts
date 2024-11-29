@@ -4,12 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import { RegisterInput, registrationAdaptor } from "@/forms/adaptors";
 import useFormWithPassConf from "@/forms/hooks/useFormWithPassConf";
-import {
-  Login,
-  Register,
-  useRegister,
-  useSignIn,
-} from "@/hooks/resources/useAuth";
+import { Login, Register, useRegister, useSignIn } from "@/hooks/resources/useAuth";
 import { setToken } from "@/utils/token";
 
 enum State {
@@ -19,22 +14,12 @@ enum State {
   SUCCESS,
 }
 
-const useRegisterForm = (
-  registerSchema: Joi.PartialSchemaMap<any> | undefined
-) => {
+const useRegisterForm = (registerSchema: Joi.PartialSchemaMap<any> | undefined) => {
   const [state, setState] = useState<State>(State.IDLE);
-  const {
-    inputs,
-    postBody,
-    errors,
-    blurFuncs,
-    changeTextFuncs,
-    isFormValid,
-    showErrorMessage,
-  } = useFormWithPassConf(registerSchema);
+  const { inputs, postBody, errors, blurFuncs, changeTextFuncs, isFormValid, showErrorMessage } =
+    useFormWithPassConf(registerSchema);
 
-  const { mutate: mutateRegister, isPending: isPendingRegister } =
-    useRegister();
+  const { mutate: mutateRegister, isPending: isPendingRegister } = useRegister();
 
   const { mutate: mutateSignin, isPending: isPendingSignIn } = useSignIn();
 
@@ -44,18 +29,15 @@ const useRegisterForm = (
 
   const register = useCallback(
     () =>
-      mutateRegister(
-        registrationAdaptor(postBody as RegisterInput) as Register,
-        {
-          onSuccess: ({ data }) => {
-            if (data.success) setState(State.SIGNIN);
-          },
-          onError: (error: any) => showErrorMessage(error.message),
-          onSettled: () => {
-            registerCalled.current = false;
-          },
-        }
-      ),
+      mutateRegister(registrationAdaptor(postBody as RegisterInput) as Register, {
+        onSuccess: ({ data }) => {
+          if (data.success) setState(State.SIGNIN);
+        },
+        onError: (error: any) => showErrorMessage(error.message),
+        onSettled: () => {
+          registerCalled.current = false;
+        },
+      }),
     [postBody, showErrorMessage, mutateRegister]
   );
 
@@ -98,14 +80,7 @@ const useRegisterForm = (
         navigateToHome();
         break;
     }
-  }, [
-    isPendingRegister,
-    isPendingSignIn,
-    register,
-    signin,
-    navigateToHome,
-    state,
-  ]);
+  }, [isPendingRegister, isPendingSignIn, register, signin, navigateToHome, state]);
 
   return {
     inputs,

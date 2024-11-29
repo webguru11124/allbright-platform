@@ -9,9 +9,7 @@ const headers = {
 };
 
 const resolveApiUrl = () =>
-  config.ENV === "development" && Platform.OS === "android"
-    ? "http://10.0.2.2:4000"
-    : config.API_URL;
+  config.ENV === "development" && Platform.OS === "android" ? "http://10.0.2.2:4000" : config.API_URL;
 
 const api = axios.create({
   baseURL: resolveApiUrl(),

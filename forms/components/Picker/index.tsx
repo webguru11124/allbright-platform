@@ -1,15 +1,5 @@
-import {
-  Picker as NativePicker,
-  PickerProps,
-} from "@react-native-picker/picker";
-import {
-  NativeSyntheticEvent,
-  NativeTouchEvent,
-  Pressable,
-  StyleSheet,
-  TextInputProps,
-  TextStyle,
-} from "react-native";
+import { Picker as NativePicker, PickerProps } from "@react-native-picker/picker";
+import { NativeSyntheticEvent, NativeTouchEvent, Pressable, StyleSheet, TextInputProps, TextStyle } from "react-native";
 
 import { CS } from "@/components/Typography";
 import TextInput from "@/forms/components/TextInput";
@@ -29,16 +19,7 @@ type Props = Omit<PickerProps, "selectedValue"> & {
   theme: Theme;
 };
 
-const Picker = ({
-  selectedValue,
-  placeholder,
-  onValueChange,
-  onBlur,
-  items,
-  error,
-  theme,
-  ...props
-}: Props) => {
+const Picker = ({ selectedValue, placeholder, onValueChange, onBlur, items, error, theme, ...props }: Props) => {
   const style = styles({ backgroundColor: theme.colors.inputs.background });
   return (
     <>
@@ -78,16 +59,7 @@ type PickerInputProps = TextInputProps & {
 };
 
 export const PickerInput = withTheme(
-  ({
-    input,
-    displayValue,
-    error,
-    theme,
-    onFocus,
-    placeholder,
-    onPress,
-    ...props
-  }: PickerInputProps) => {
+  ({ input, displayValue, error, theme, onFocus, placeholder, onPress, ...props }: PickerInputProps) => {
     {
       const style = styles({
         backgroundColor: theme.colors.inputs.background,

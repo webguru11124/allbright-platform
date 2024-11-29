@@ -29,11 +29,7 @@ describe("CareerGoalsSelectionContainer", () => {
 
     selectGoal(allCareerGoals[0], [allCareerGoals[0].id]);
     selectGoal(allCareerGoals[1], [allCareerGoals[0].id, allCareerGoals[1].id]);
-    selectGoal(allCareerGoals[2], [
-      allCareerGoals[0].id,
-      allCareerGoals[1].id,
-      allCareerGoals[2].id,
-    ]);
+    selectGoal(allCareerGoals[2], [allCareerGoals[0].id, allCareerGoals[1].id, allCareerGoals[2].id]);
     selectGoal(allCareerGoals[3], [
       allCareerGoals[0].id,
       allCareerGoals[1].id,

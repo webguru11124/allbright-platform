@@ -61,49 +61,37 @@ describe("RegisterProfileForm", () => {
       const expectedFirstName = faker.person.firstName();
       const firstNameInput = screen.getByText("First Name");
       fireEvent.changeText(firstNameInput, expectedFirstName);
-      expect(props.changeTextFuncs.firstName).toHaveBeenCalledWith(
-        expectedFirstName
-      );
+      expect(props.changeTextFuncs.firstName).toHaveBeenCalledWith(expectedFirstName);
     });
 
     it("when the lastName input is updated", () => {
       const expectedLastName = faker.person.lastName();
       const lastNameInput = screen.getByText("Last Name");
       fireEvent.changeText(lastNameInput, expectedLastName);
-      expect(props.changeTextFuncs.lastName).toHaveBeenCalledWith(
-        expectedLastName
-      );
+      expect(props.changeTextFuncs.lastName).toHaveBeenCalledWith(expectedLastName);
     });
 
     it("when the country input is updated", () => {
       const expectedCountry = faker.helpers.arrayElement(countries).Name;
       const countryInput = screen.getByText("Country");
       fireEvent.changeText(countryInput, expectedCountry);
-      expect(props.changeTextFuncs.country).toHaveBeenCalledWith(
-        expectedCountry
-      );
+      expect(props.changeTextFuncs.country).toHaveBeenCalledWith(expectedCountry);
     });
 
     it("marks the termsAgreed checkbox as true when pressed", () => {
-      const termsAgreedCheckbox = screen.getByTestId(
-        "RegisterProfileForm:TermsAgreed"
-      );
+      const termsAgreedCheckbox = screen.getByTestId("RegisterProfileForm:TermsAgreed");
       fireEvent.press(termsAgreedCheckbox);
       expect(props.changeTextFuncs.termsAgreed).toHaveBeenCalledWith(true);
     });
 
     it("marks the marketingAgreed checkbox as true when pressed", () => {
-      const marketingAgreedCheckbox = screen.getByTestId(
-        "RegisterProfileForm:MarketingAgreed"
-      );
+      const marketingAgreedCheckbox = screen.getByTestId("RegisterProfileForm:MarketingAgreed");
       fireEvent.press(marketingAgreedCheckbox);
       expect(props.changeTextFuncs.marketingAgreed).toHaveBeenCalledWith(true);
     });
 
     it("marks the thirdPartyAgreed checkbox as true when pressed", () => {
-      const thirdPartyAgreedCheckbox = screen.getByTestId(
-        "RegisterProfileForm:ThirdPartyAgreed"
-      );
+      const thirdPartyAgreedCheckbox = screen.getByTestId("RegisterProfileForm:ThirdPartyAgreed");
       fireEvent.press(thirdPartyAgreedCheckbox);
       expect(props.changeTextFuncs.thirdPartyAgreed).toHaveBeenCalledWith(true);
     });

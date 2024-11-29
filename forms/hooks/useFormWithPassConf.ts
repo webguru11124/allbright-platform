@@ -3,10 +3,7 @@ import { useMemo } from "react";
 
 import useForm, { Settings } from "@/forms/hooks/useForm";
 
-const useFormWithPassConf = (
-  baseSchema: Joi.PartialSchemaMap<any> | undefined,
-  settings: Settings = {}
-) => {
+const useFormWithPassConf = (baseSchema: Joi.PartialSchemaMap<any> | undefined, settings: Settings = {}) => {
   const {
     schema,
     schemaInputs,
@@ -24,12 +21,10 @@ const useFormWithPassConf = (
 
   const errors = useMemo<typeof internalErrors>(
     () =>
-      touched.password_confirmation &&
-      inputs.password !== inputs.password_confirmation
+      touched.password_confirmation && inputs.password !== inputs.password_confirmation
         ? {
             ...internalErrors,
-            password_confirmation:
-              '"Password Confirmation" and "Password" should match',
+            password_confirmation: '"Password Confirmation" and "Password" should match',
           }
         : {
             ...internalErrors,
@@ -38,8 +33,7 @@ const useFormWithPassConf = (
   );
 
   const isFormValid = useMemo(
-    () =>
-      internalIsFormValid && inputs.password === inputs.password_confirmation,
+    () => internalIsFormValid && inputs.password === inputs.password_confirmation,
     [inputs.password, inputs.password_confirmation, internalIsFormValid]
   );
 

@@ -99,8 +99,7 @@ export const groupTestData: GroupRecommendationModel = {
   category: "groups",
   id: "string",
   name: "EvolveHer",
-  description:
-    "Bringing together like-minded women to connect, share and learn.",
+  description: "Bringing together like-minded women to connect, share and learn.",
   isPrivate: false,
   type: "string",
   headerImageUrl: "string",

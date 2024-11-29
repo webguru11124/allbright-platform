@@ -1,8 +1,4 @@
-import {
-  RegisterInput,
-  RegisterOutput,
-  registrationAdaptor,
-} from "@/forms/adaptors";
+import { RegisterInput, RegisterOutput, registrationAdaptor } from "@/forms/adaptors";
 
 type TestItem = {
   description: string;

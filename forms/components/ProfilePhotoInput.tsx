@@ -16,9 +16,7 @@ interface ProfilePhotoInputProps {
   pickProfileImage: () => void;
 }
 
-const ProfilePhotoInput: React.FunctionComponent<ProfilePhotoInputProps> = (
-  props
-) => {
+const ProfilePhotoInput: React.FunctionComponent<ProfilePhotoInputProps> = (props) => {
   const getImageDisplay = () => {
     if (props.imageSrc)
       return (

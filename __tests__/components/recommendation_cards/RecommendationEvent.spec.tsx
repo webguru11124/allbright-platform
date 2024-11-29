@@ -11,9 +11,7 @@ describe("RecommendationEvent", () => {
   it("renders correct event data", () => {
     render(<RecommendationEvent {...eventTestData} />);
     expect(screen.getByText(eventTestData.title)).toBeTruthy();
-    expect(
-      screen.getByText(`${eventTestData.location} • Oct 23rd`)
-    ).toBeTruthy();
+    expect(screen.getByText(`${eventTestData.location} • Oct 23rd`)).toBeTruthy();
     expect(screen.getByText(eventTestData.description)).toBeTruthy();
   });
 });

@@ -55,9 +55,7 @@ describe("RegisterForm", () => {
       const expectedPassword = faker.internet.password();
       const passwordInput = screen.getByText("Password");
       fireEvent.changeText(passwordInput, expectedPassword);
-      expect(props.changeTextFuncs.password).toHaveBeenCalledWith(
-        expectedPassword
-      );
+      expect(props.changeTextFuncs.password).toHaveBeenCalledWith(expectedPassword);
     });
   });
 

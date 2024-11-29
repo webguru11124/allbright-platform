@@ -6,18 +6,13 @@ interface useGoalsProps {
   goals?: (typeof goals)[number][];
   updateField: (value: (typeof goals)[number][]) => void;
 }
-export const useGoalState = ({
-  goals: defaultGoals = [],
-  updateField,
-}: useGoalsProps) => {
-  const [goalsState, setGoalsState] =
-    React.useState<(typeof goals)[number][]>(defaultGoals);
+export const useGoalState = ({ goals: defaultGoals = [], updateField }: useGoalsProps) => {
+  const [goalsState, setGoalsState] = React.useState<(typeof goals)[number][]>(defaultGoals);
 
   React.useEffect(() => {
     if (defaultGoals.length > 0) setGoalsState(defaultGoals);
   }, [defaultGoals]);
-  const goalIsSelected = (goal: (typeof goals)[number]) =>
-    goalsState?.includes(goal);
+  const goalIsSelected = (goal: (typeof goals)[number]) => goalsState?.includes(goal);
 
   const setGoalsStateHandler = (goal: (typeof goals)[number]) => {
     let goalsList: (typeof goals)[number][] = [];
