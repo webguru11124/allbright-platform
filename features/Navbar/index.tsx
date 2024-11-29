@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 
 import IconAllBright from "@/components/IconAllbright";
 import { H6 } from "@/components/Typography";
+import { Metrics } from "@/constants/Metrics";
 import TabButton from "@/features/Navbar/partials/TabButton";
 
 export default function NavigationBar() {
@@ -61,7 +62,7 @@ export default function NavigationBar() {
 }
 
 const NavigationBarContainer = styled(View)`
-  height: 82px;
+  height: ${Metrics.navbarHeight}px;
   width: 100%;
   padding-horizontal: 40px;
 `;
