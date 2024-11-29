@@ -1,3 +1,6 @@
 export const Metrics = {
-  navbarHeight: 82,
+  navbar: {
+    height: 82,
+    userImageHeight: 50,
+  },
 };
