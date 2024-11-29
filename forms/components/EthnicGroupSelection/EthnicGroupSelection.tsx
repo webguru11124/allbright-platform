@@ -1,13 +1,12 @@
 import React, { FunctionComponent, useContext } from "react";
-import styled, { css } from "styled-components/native";
+import styled from "styled-components/native";
 
 import { Tick } from "@/components/Icons/index";
 import Space from "@/components/Space";
 import { CL, CM, H5 } from "@/components/Typography";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import FormFieldContainer from "@/forms/components/FormFieldContainer";
-import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
-import colors from "@/theme";
+import colours from "@/theme";
 import { ethnicGroups } from "@/utils/data/ethnicGroups";
 
 type StyleProps = {
@@ -61,7 +60,7 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (
                 id={elm.id}
                 placeholder={"Other (please specify)"}
                 placeholderTextColor={
-                  checkIfDisabled(elm) ? colors.charcoalFaded : colors.charcoal
+                  checkIfDisabled(elm) ? colours.charcoalFaded : colours.charcoal
                 }
                 checked={checkIfChecked(elm)}
                 onChangeText={(value) =>
@@ -94,7 +93,7 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (
             )}
             {checkIfChecked(elm) && (
               <S.TickIcon
-                color={colors.white}
+                color={colours.white}
                 width={20}
                 height={20}
               />
@@ -137,10 +136,10 @@ S.Checkbox = styled.Pressable<StyleProps>`
   border: none;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: ${colors.shell};
+  border-bottom-color: ${colours.shell};
   font-weight: 500;
-  background: ${colors.white};
-  color: ${colors.charcoal};
+  background: ${colours.white};
+  color: ${colours.charcoal};
   justify-content: center;
   padding-left: 20px;
   cursor: pointer;
@@ -148,23 +147,17 @@ S.Checkbox = styled.Pressable<StyleProps>`
   ${(p) =>
     p.checked &&
     `
-    background: ${colors.pillTeal};
+    background: ${colours.pillTeal};
   `}
 
   ${(p) =>
     p.disabled &&
     `
     pointer-events: none;
-    background: ${colors.shellOverlay};
+    background: ${colours.shellOverlay};
     cursor: default;
 
   `}
-
-  ${(props) =>
-    props.maxWidth(BREAKPOINT_TABLET) &&
-    css`
-      font-size: 1rem;
-    `}
 `;
 S.TextInput = styled.TextInput<StyleProps>`
   -webkit-appearance: none;
@@ -174,34 +167,28 @@ S.TextInput = styled.TextInput<StyleProps>`
   width: 100%;
   border: none;
   font-weight: 500;
-  background: ${colors.white};
-  color: ${colors.charcoal};
+  background: ${colours.white};
+  color: ${colours.charcoal};
   cursor: pointer;
   padding-left: 20px;
 
   ${(p) =>
     p.checked &&
     `
-    background: ${colors.pillTeal};
+    background: ${colours.pillTeal};
   `}
 
   ${(p) =>
     p.disabled &&
     `
     pointer-events: none;
-    background: ${colors.shellOverlay};
+    background: ${colours.shellOverlay};
     cursor: default;
 
   `}
 
   cursor: text;
   padding: 0 45px 0 20px;
-
-  ${(props) =>
-    props.maxWidth(BREAKPOINT_TABLET) &&
-    css`
-      font-size: 1rem;
-    `}
 `;
 
 S.OptionLabel = styled(CL)<StyleProps>`
@@ -216,18 +203,11 @@ S.OptionLabel = styled(CL)<StyleProps>`
     overflow: hidden;
   `}
 
-  ${(props) =>
-    props.maxWidth(BREAKPOINT_TABLET) &&
-    css`
-      font-size: 1rem;
-    `}
-  
-
   ${(p) =>
     p.disabled &&
     `
   pointer-events: none;
-  color: ${colors.charcoalFaded};
+  color: ${colours.charcoalFaded};
   `}
 `;
 
