@@ -8,13 +8,15 @@ import { publicProfileAdaptor, PublicProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 import { LocalImageType } from "@/types/files/localImage";
+import { UserModel } from "@/types/user";
 
 const usePublicProfileForm = (
   publicProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
-  const { user, refetch } = React.useContext<{ user: User; refetch: Function }>(
-    UserContext
-  );
+  const { user, refetch } = React.useContext<{
+    user: Partial<UserModel> | undefined;
+    refetch: Function;
+  }>(UserContext);
 
   const {
     inputs,

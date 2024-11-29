@@ -7,13 +7,15 @@ import { UserContext } from "@/contexts/UserContext";
 import { registerProfileAdaptor, RegisterProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
+import { UserModel } from "@/types/user";
 
 const useRegisterProfileForm = (
   registerProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
-  const { user, refetch } = React.useContext<{ user: User; refetch: Function }>(
-    UserContext
-  );
+  const { user, refetch } = React.useContext<{
+    user: Partial<UserModel> | undefined;
+    refetch: Function;
+  }>(UserContext);
 
   const {
     inputs,

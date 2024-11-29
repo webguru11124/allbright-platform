@@ -6,13 +6,15 @@ import { UserContext } from "@/contexts/UserContext";
 import { privateProfileAdaptor, PrivateProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
+import { UserModel } from "@/types/user";
 
 const usePrivateProfileForm = (
   privateProfileSchema: Joi.PartialSchemaMap<any>
 ) => {
-  const { user, refetch } = React.useContext<{ user: User; refetch: Function }>(
-    UserContext
-  );
+  const { user, refetch } = React.useContext<{
+    user: Partial<UserModel> | undefined;
+    refetch: Function;
+  }>(UserContext);
 
   const {
     inputs,

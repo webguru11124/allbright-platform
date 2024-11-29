@@ -2,8 +2,6 @@ import { GestureResponderEvent, MouseEvent } from "react-native";
 
 import { DefaultTheme } from "@/theme";
 
-import { UserModel } from "./user";
-
 declare global {
   type GestureEvent = (event: GestureResponderEvent) => void;
   type MyMouseEvent = (event: MouseEvent) => void;
@@ -21,5 +19,4 @@ declare global {
     type: "danger" | "warning";
     message: string;
   };
-  type User = UserModel;
 }

@@ -1,11 +1,14 @@
 import { createContext } from "react";
 
 import { useUserProfile } from "@/hooks/resources/useUserProfile";
+import { UserModel } from "@/types/user";
 
-const initContext = { ...({} as User) };
+const initContext = { user: undefined, refetch: () => {} };
 
-// TODO: Fix typescript issue
-export const UserContext = createContext<any>(initContext);
+export const UserContext = createContext<{
+  user: Partial<UserModel> | undefined;
+  refetch: Function;
+}>(initContext);
 
 type UserProviderProps = {
   children: React.ReactNode;
