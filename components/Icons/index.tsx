@@ -1,12 +1,12 @@
 import React from "react";
 import Svg, { Path, SvgProps } from "react-native-svg";
 
-import colours from "@/theme";
+import colors from "@/theme";
 
 type Props = SvgProps & {
   width?: number;
   height?: number;
-  colour?: string;
+  color?: string;
   fill?: string;
 };
 
@@ -14,7 +14,7 @@ export function IconCamera(props: Props) {
   return (
     <Svg
       viewBox="0 0 36 32"
-      color={props.colour ?? "rgba(65, 65, 67, 1)"}
+      color={props.color ?? "rgba(65, 65, 67, 1)"}
       width={props.width ?? "20"}
       height={"20"}
       {...props}>
@@ -37,7 +37,7 @@ export function ArrowRight(props: Props) {
       {...props}>
       <Path
         d="M12.5 4.5L11.09 5.91L16.67 11.5H4.5V13.5H16.67L11.09 19.09L12.5 20.5L20.5 12.5L12.5 4.5Z"
-        fill={props.colour || props.fill || "white"}
+        fill={props.color || props.fill || "white"}
       />
     </Svg>
   );
@@ -49,11 +49,11 @@ export function Tick(props: Props) {
       width="14"
       height="12"
       viewBox="0 0 14 12"
-      color={colours.teal}
+      color={colors.teal}
       {...props}>
       <path
         d="M4.91995 7.55559C4.63928 7.83597 4.18451 7.83585 3.90399 7.55533L2.30551 5.95686C2.02532 5.67667 1.57119 5.67618 1.29039 5.95576L0.455622 6.78693C0.173964 7.06738 0.173472 7.5232 0.454523 7.80425L3.90372 11.2535C4.18435 11.5341 4.63932 11.5341 4.91995 11.2535L13.492 2.68143C13.7726 2.40081 13.7726 1.94583 13.492 1.66521L12.6627 0.835974C12.3822 0.555454 11.9274 0.555337 11.6468 0.835712L4.91995 7.55559Z"
-        fill={props.colour || props.fill || "white"}
+        fill={props.color || props.fill || "white"}
       />
     </Svg>
   );

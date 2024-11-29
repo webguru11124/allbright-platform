@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 import { CS, CXL, H4 } from "@/components/Typography";
 import { OnboadingPageLayout } from "@/features/Onboarding/OnboardingLayout";
 import PledgeForm from "@/forms/PledgeForm";
-import colours from "@/theme";
+import colors from "@/theme";
 import pledge from "@/utils/data/pledge";
 
 interface StyledProps {
@@ -31,7 +31,7 @@ const Pledge = () => {
 };
 
 const BulletPoint = styled.View`
-  background: ${colours.plusLime};
+  background: ${colors.plusLime};
   height: 10px;
   width: 10px;
 

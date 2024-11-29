@@ -7,7 +7,7 @@ import Space from "@/components/Space";
 import { CM, CS } from "@/components/Typography";
 import TextInput from "@/forms/components/TextInput";
 import withTheme from "@/hocs/withTheme";
-import { recommendationColour } from "@/theme";
+import { recommendationColor } from "@/theme";
 import OnboardingClient from "@/utils/client/user/OnboardingClient";
 import { City } from "@/utils/data/cities";
 import countries from "@/utils/data/countries";
@@ -206,7 +206,7 @@ const StyledPressable = styled.Pressable<{ error: string | undefined }>`
   border-color: ${(p) => (Boolean(p.error) ? "red" : "transparent")};
   border-width: ${(p) => (Boolean(p.error) ? 3 : 0)}px;
   border-radius: 5px;
-  color: ${recommendationColour.textColor};
+  color: ${recommendationColor.textColor};
 `;
 
 const TextInputContainer = styled.View`

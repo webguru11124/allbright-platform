@@ -7,7 +7,7 @@ import { CL, CM, H5 } from "@/components/Typography";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import FormFieldContainer from "@/forms/components/FormFieldContainer";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
-import colours from "@/theme";
+import colors from "@/theme";
 import { ethnicGroups } from "@/utils/data/ethnicGroups";
 
 type StyleProps = {
@@ -61,9 +61,7 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (
                 id={elm.id}
                 placeholder={"Other (please specify)"}
                 placeholderTextColor={
-                  checkIfDisabled(elm)
-                    ? colours.charcoalFaded
-                    : colours.charcoal
+                  checkIfDisabled(elm) ? colors.charcoalFaded : colors.charcoal
                 }
                 checked={checkIfChecked(elm)}
                 onChangeText={(value) =>
@@ -96,7 +94,7 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (
             )}
             {checkIfChecked(elm) && (
               <S.TickIcon
-                color={colours.white}
+                color={colors.white}
                 width={20}
                 height={20}
               />
@@ -139,10 +137,10 @@ S.Checkbox = styled.Pressable<StyleProps>`
   border: none;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: ${colours.shell};
+  border-bottom-color: ${colors.shell};
   font-weight: 500;
-  background: ${colours.white};
-  color: ${colours.charcoal};
+  background: ${colors.white};
+  color: ${colors.charcoal};
   justify-content: center;
   padding-left: 20px;
   cursor: pointer;
@@ -150,14 +148,14 @@ S.Checkbox = styled.Pressable<StyleProps>`
   ${(p) =>
     p.checked &&
     `
-    background: ${colours.pillTeal};
+    background: ${colors.pillTeal};
   `}
 
   ${(p) =>
     p.disabled &&
     `
     pointer-events: none;
-    background: ${colours.shellOverlay};
+    background: ${colors.shellOverlay};
     cursor: default;
 
   `}
@@ -176,22 +174,22 @@ S.TextInput = styled.TextInput<StyleProps>`
   width: 100%;
   border: none;
   font-weight: 500;
-  background: ${colours.white};
-  color: ${colours.charcoal};
+  background: ${colors.white};
+  color: ${colors.charcoal};
   cursor: pointer;
   padding-left: 20px;
 
   ${(p) =>
     p.checked &&
     `
-    background: ${colours.pillTeal};
+    background: ${colors.pillTeal};
   `}
 
   ${(p) =>
     p.disabled &&
     `
     pointer-events: none;
-    background: ${colours.shellOverlay};
+    background: ${colors.shellOverlay};
     cursor: default;
 
   `}
@@ -229,7 +227,7 @@ S.OptionLabel = styled(CL)<StyleProps>`
     p.disabled &&
     `
   pointer-events: none;
-  color: ${colours.charcoalFaded};
+  color: ${colors.charcoalFaded};
   `}
 `;
 

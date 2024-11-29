@@ -7,17 +7,17 @@ import Badge from "@/components/recommendation_cards/Badge";
 
 describe("Badge", () => {
   const badgeData = {
-    colour: "black",
+    backgroundColor: "black",
     text: "Text",
-    textColour: "white",
+    color: "white",
   };
 
   it("renders badge", () => {
     render(
       <Badge
-        colour={badgeData.colour}
+        backgroundColor={badgeData.backgroundColor}
         text={badgeData.text}
-        textColour={badgeData.textColour}
+        color={badgeData.color}
       />
     );
     expect(screen.getByText(badgeData.text)).toBeTruthy();

@@ -15,7 +15,7 @@ export const Colors = {
     tabIconDefault: "#687076",
     tabIconSelected: tintColorLight,
 
-    // colours from web
+    // colors from web
     charcoal: "#414143",
     green: "#9CCB95",
     orange: "#DE8466",
@@ -33,7 +33,7 @@ export const Colors = {
     tabIconDefault: "#9BA1A6",
     tabIconSelected: tintColorDark,
 
-    // colours from web
+    // colors from web
     charcoal: "#414143",
     green: "#9CCB95",
     orange: "#DE8466",

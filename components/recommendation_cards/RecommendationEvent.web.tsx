@@ -38,13 +38,13 @@ const RecommendationEventCard: React.FC<EventRecommendationModel> = (props) => {
         />
       </View>
       <Badge
-        colour={Colors.light.green}
+        backgroundColor={Colors.light.green}
         text="Event"
       />
       <View style={styles.textContent}>
         <H5>{props.title}</H5>
         <CS>{props.location} • Oct 23rd</CS>
-        <Divider colour={Colors.light.green} />
+        <Divider color={Colors.light.green} />
         <CS>{props.description}</CS>
       </View>
     </View>

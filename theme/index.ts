@@ -9,7 +9,7 @@ import {
   MD2LightTheme as DefaultPaperTheme,
 } from "react-native-paper";
 
-const colours = {
+const colors = {
   teal: "#00605C", // All primary buttons and CTAs
   charcoal: "#414143", // All text
   charcoalMid: "#414143BB", // Placeholder text
@@ -75,7 +75,7 @@ const colours = {
   stepForwardOrange: "#E88A79", // Orange used for Step Forward page
   stepForwardBlue: "#2B1C68", // Blue used for Step Forward page
 
-  plusColours: [
+  plusColors: [
     "#50968D",
     "#617595",
     "#886BB7",
@@ -92,13 +92,13 @@ const alertColors = {
   warning: "#fff3cd",
   info: "#cff4fc",
 };
-export const recommendationColour = {
-  article: colours.marketingYellow,
+export const recommendationColor = {
+  article: colors.marketingYellow,
   connection: "#3A7D6D",
   course: "#DE8466",
   event: "#61A356",
   group: "#7D4282",
-  mentorship: colours.charcoal,
+  mentorship: colors.charcoal,
   programme: "#555C9A",
   btColor: "rgb(228, 230, 235)",
   btBgColor: "rgb(58, 59, 61)",
@@ -109,9 +109,9 @@ export const PaperDefaultTheme = {
   ...DefaultPaperTheme,
   colors: {
     ...DefaultPaperTheme.colors,
-    primary: recommendationColour.textColor,
+    primary: recommendationColor.textColor,
     placeholder: "rgb(73,101,140)",
-    text: recommendationColour.textColor,
+    text: recommendationColor.textColor,
   },
 };
 
@@ -179,4 +179,4 @@ export const DarkTheme = {
   },
 };
 
-export default colours;
+export default colors;

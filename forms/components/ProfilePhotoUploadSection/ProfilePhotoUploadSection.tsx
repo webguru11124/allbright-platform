@@ -7,7 +7,7 @@ import { CM, H4 } from "@/components/Typography";
 import Button from "@/forms/components/Button";
 import ProfilePhotoInput from "@/forms/components/ProfilePhotoInput";
 import TickBox from "@/forms/components/TickBox";
-import colours from "@/theme";
+import colors from "@/theme";
 import { LocalImageType } from "@/types/files/localImage";
 
 interface ProfilePhotoUploadSectionProps {
@@ -33,7 +33,7 @@ const ProfilePhotoUploadSection = ({
         <ArrowButton
           onPress={pickProfileImage}
           testID="ProfilePhotoUploadSection:ArrowButton">
-          <ArrowRight fill={colours.lightShell} />
+          <ArrowRight fill={colors.lightShell} />
         </ArrowButton>
         <SelectPhotoText>
           <H4>'Select photo'</H4>

@@ -7,10 +7,10 @@ import Divider from "@/components/recommendation_cards/Divider";
 
 describe("Divider", () => {
   const dividerData = {
-    colour: "black",
+    color: "black",
   };
 
   it("renders divider", () => {
-    render(<Divider colour={dividerData.colour} />);
+    render(<Divider color={dividerData.color} />);
   });
 });

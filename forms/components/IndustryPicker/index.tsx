@@ -6,7 +6,7 @@ import styled from "styled-components/native";
 import Space from "@/components/Space";
 import { CM, CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
-import { recommendationColour } from "@/theme";
+import { recommendationColor } from "@/theme";
 import { pickerAdaptor as industries } from "@/utils/data/industries";
 
 type Props = Omit<TextInputProps, "onBlur"> & {
@@ -161,7 +161,7 @@ const StyledPressable = styled.Pressable<{ error: string | undefined }>`
   border-color: ${(p) => (Boolean(p.error) ? "red" : "transparent")};
   border-width: ${(p) => (Boolean(p.error) ? 3 : 0)}px;
   border-radius: 5px;
-  color: ${recommendationColour.textColor};
+  color: ${recommendationColor.textColor};
 `;
 
 export default withTheme(IndustryPicker);

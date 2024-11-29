@@ -38,13 +38,13 @@ const RecommendationGroup: React.FC<GroupRecommendationModel> = (props) => {
         />
       </View>
       <Badge
-        colour={Colors.light.purple}
+        backgroundColor={Colors.light.purple}
         text="Group"
-        textColour="white"
+        color="white"
       />
       <View style={styles.textContent}>
         <H5>{props.name}</H5>
-        <Divider colour={Colors.light.purple} />
+        <Divider color={Colors.light.purple} />
         <CS>{props.description}</CS>
       </View>
     </View>

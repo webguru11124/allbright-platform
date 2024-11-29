@@ -17,7 +17,7 @@ export type UserModel = {
   email: string;
   stripeCustomerId: string;
   lastActiveAt: number;
-  businessCardColour: string;
+  businessCardColor: string;
   displayPhoto?: boolean;
   roles: (typeof Roles)[number][];
   createdAt: number;

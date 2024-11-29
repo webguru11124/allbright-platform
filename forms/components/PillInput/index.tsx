@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components/native";
 
-import colours from "@/theme";
+import colors from "@/theme";
 
 interface PillInputProps {
   name: string;
@@ -37,7 +37,7 @@ S.Container = styled.Pressable<StyleProps>`
   position: relative;
   height: 25px;
   align-items: center;
-  background: ${colours.shellOverlay};
+  background: ${colors.shellOverlay};
   border-radius: 50px;
   transition: transform 0.1s linear;
   ${(p) =>
@@ -53,7 +53,7 @@ S.Container = styled.Pressable<StyleProps>`
   ${(p) =>
     p.checked &&
     `
-    background: ${colours.pillTeal};
+    background: ${colors.pillTeal};
   `}
 
     ${(p) =>
