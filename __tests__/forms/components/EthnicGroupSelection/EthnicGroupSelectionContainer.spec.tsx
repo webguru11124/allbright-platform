@@ -39,13 +39,13 @@ describe("EthnicGroupsSectionContainer", () => {
   it("when select prefer not say, others should be disabled", () => {
     renderComponent();
 
-    const checkbox0 = screen.getByTestId(`ethnic-group-option-${ethnicGroups[0].title}`);
-    fireEvent.press(checkbox0);
-    expect(setFieldMock).not.toHaveBeenCalled();
+    const ethnicGroup0 = ethnicGroups[0].title;
+    const ethnicGroup1 = ethnicGroups[1].title;
+    const ethnicGroup2 = ethnicGroups[2].title;
 
-    const checkbox1 = screen.getByTestId(`ethnic-group-option-${ethnicGroups[1].title}`);
-    fireEvent.press(checkbox1);
-    expect(setFieldMock).not.toHaveBeenCalled();
+    selectEthnicGroup(ethnicGroup1, [ethnicGroups[1]]);
+    selectEthnicGroup(ethnicGroup2, [ethnicGroups[1], ethnicGroups[2]]);
+    selectEthnicGroup(ethnicGroup0, [ethnicGroups[0]]);
   });
 
   it("changing other will update state", () => {
