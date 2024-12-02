@@ -23,6 +23,11 @@ export const useEthnicGroups = ({
     !!ethnicGroupsState.filter((item) => item.title === "Prefer not to say" && elm.title !== "Prefer not to say")
       .length;
 
+  const changeTextFuncs = (value: FieldsType[]) => {
+    setEthnicGroupsState(value);
+    setField(value);
+  };
+
   const onEthnicGroupsChange = (elm: any) => {
     const selectedGroups = [...ethnicGroupsState];
     const otherHasValue = elm.title === "Other" && elm.value.length > 0;
@@ -30,15 +35,13 @@ export const useEthnicGroups = ({
 
     if (isChecked && !otherHasValue) {
       const newGroups = selectedGroups.filter((e) => e.title !== elm.title);
-      setEthnicGroupsState(newGroups);
-      setField(newGroups);
+      changeTextFuncs(newGroups);
     } else if (elm.title === "Prefer not to say") {
-      setEthnicGroupsState([elm]);
+      changeTextFuncs([elm]);
     } else {
       const filteredSelectedGroups = selectedGroups.filter((item) => item.title !== elm.title);
       filteredSelectedGroups.push(elm);
-      setEthnicGroupsState(filteredSelectedGroups);
-      setField(filteredSelectedGroups);
+      changeTextFuncs(filteredSelectedGroups);
     }
   };
 
