@@ -1,9 +1,11 @@
-import { Text, View } from "react-native";
+import Placeholder from "@/components/Placeholder";
 
 export default function Index() {
   return (
-    <View>
-      <Text>Groups</Text>
-    </View>
+    <Placeholder
+      style={{ backgroundColor: "yellow" }}
+      textStyle={{ color: "black" }}
+      placeholderText="Groups"
+    />
   );
 }

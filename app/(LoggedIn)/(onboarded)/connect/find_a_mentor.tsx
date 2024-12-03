@@ -1,9 +1,5 @@
-import { Text, View } from "react-native";
+import Placeholder from "@/components/Placeholder";
 
 export default function Index() {
-  return (
-    <View>
-      <Text>Find a mentor</Text>
-    </View>
-  );
+  return <Placeholder placeholderText="Find a mentor" />;
 }

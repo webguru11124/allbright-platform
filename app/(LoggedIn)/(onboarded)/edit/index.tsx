@@ -1,9 +1,11 @@
-import { Text, View } from "react-native";
+import Placeholder from "@/components/Placeholder";
 
 export default function Index() {
   return (
-    <View>
-      <Text>The AllBright Post</Text>
-    </View>
+    <Placeholder
+      style={{ backgroundColor: "red" }}
+      textStyle={{ color: "black" }}
+      placeholderText="The AllBright Post"
+    />
   );
 }

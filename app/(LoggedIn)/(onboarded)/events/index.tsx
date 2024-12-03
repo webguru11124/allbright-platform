@@ -1,9 +1,11 @@
-import { Text, View } from "react-native";
+import Placeholder from "@/components/Placeholder";
 
 export default function Index() {
   return (
-    <View>
-      <Text>Events</Text>
-    </View>
+    <Placeholder
+      style={{ backgroundColor: "blue" }}
+      textStyle={{ color: "white" }}
+      placeholderText="Events"
+    />
   );
 }

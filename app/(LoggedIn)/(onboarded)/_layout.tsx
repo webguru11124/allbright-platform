@@ -130,6 +130,7 @@ export default function Layout() {
           <Drawer.Screen
             name="account"
             options={{
+              title: "Account",
               drawerItemStyle: { display: "none" },
             }}
           />

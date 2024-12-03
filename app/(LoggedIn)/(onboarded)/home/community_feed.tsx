@@ -1,9 +1,11 @@
-import { Text, View } from "react-native";
+import Placeholder from "@/components/Placeholder";
 
 export default function Index() {
   return (
-    <View>
-      <Text>Community Feed</Text>
-    </View>
+    <Placeholder
+      style={{ backgroundColor: "orange" }}
+      textStyle={{ color: "purple" }}
+      placeholderText="Community Feed"
+    />
   );
 }

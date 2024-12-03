@@ -1,9 +1,5 @@
-import { Text, View } from "react-native";
+import Placeholder from "@/components/Placeholder";
 
 export default function Index() {
-  return (
-    <View>
-      <Text>Connect</Text>
-    </View>
-  );
+  return <Placeholder placeholderText="Connect" />;
 }

@@ -10,12 +10,54 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Connect",
+          title: "Profile",
           headerShown: false,
           tabBarIcon: ({ color }) => (
             <MaterialIcons
               size={28}
-              name="emoji-people"
+              name="account-circle"
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="account_settings"
+        options={{
+          title: "Account Settings",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons
+              size={28}
+              name="manage-accounts"
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="membership"
+        options={{
+          title: "Membership",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons
+              size={28}
+              name="badge"
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="contact_us"
+        options={{
+          title: "Contact Us",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons
+              size={28}
+              name="contact-support"
               color={color}
             />
           ),
