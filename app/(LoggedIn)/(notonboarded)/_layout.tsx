@@ -57,6 +57,34 @@ export default function Layout() {
             }}
           />
           <Drawer.Screen
+            name="learning"
+            options={{
+              drawerLabel: "Learning",
+              title: "Learning",
+            }}
+          />
+          <Drawer.Screen
+            name="events"
+            options={{
+              drawerLabel: "Events",
+              title: "Events",
+            }}
+          />
+          <Drawer.Screen
+            name="groups"
+            options={{
+              drawerLabel: "Groups",
+              title: "Groups",
+            }}
+          />
+          <Drawer.Screen
+            name="edit"
+            options={{
+              drawerLabel: "The AllBright Post",
+              title: "The AllBright Post",
+            }}
+          />
+          <Drawer.Screen
             name="account"
             options={{
               drawerItemStyle: { display: "none" },
