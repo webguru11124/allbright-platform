@@ -12,7 +12,12 @@ jest.mock("expo-image-picker", () => ({
 describe("ProfilePhotoUploadSectionContainer", () => {
   const mockUploadProfileImage = jest.fn();
   beforeEach(() => {
-    cleanup();
+    (ImagePicker.launchImageLibraryAsync as jest.Mock).mockResolvedValueOnce({
+      canceled: false,
+      assets: [{ uri: "image-uri" }],
+    });
+  });
+  afterEach(() => {
     jest.clearAllMocks();
   });
 
@@ -23,10 +28,6 @@ describe("ProfilePhotoUploadSectionContainer", () => {
         uploadProfileImage={mockUploadProfileImage}
       />
     );
-    (ImagePicker.launchImageLibraryAsync as jest.Mock).mockResolvedValueOnce({
-      canceled: false,
-      assets: [{ uri: "image-uri" }],
-    });
 
     const arrowButton = screen.getByTestId("ProfilePhotoUploadSection:ArrowButton");
     fireEvent.press(arrowButton);
