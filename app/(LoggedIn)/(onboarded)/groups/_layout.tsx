@@ -15,7 +15,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <MaterialIcons
               size={28}
-              name="emoji-people"
+              name="people"
               color={color}
             />
           ),
