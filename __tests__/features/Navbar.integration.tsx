@@ -55,7 +55,7 @@ describe("AppStart", () => {
   `, () => {
     expect(screen).toHavePathname("/");
     fireEvent.press(screen.getByText(/learning/i));
-    expect(screen).toHavePathname("/");
+    expect(screen).toHavePathname("/learning");
   });
 
   it(`should:
@@ -63,7 +63,7 @@ describe("AppStart", () => {
   `, () => {
     expect(screen).toHavePathname("/");
     fireEvent.press(screen.getByText(/events/i));
-    expect(screen).toHavePathname("/");
+    expect(screen).toHavePathname("/events");
   });
 
   it(`should:
@@ -71,7 +71,7 @@ describe("AppStart", () => {
   `, () => {
     expect(screen).toHavePathname("/");
     fireEvent.press(screen.getByText(/groups/i));
-    expect(screen).toHavePathname("/");
+    expect(screen).toHavePathname("/groups");
   });
 
   it(`should:
@@ -79,6 +79,6 @@ describe("AppStart", () => {
   `, () => {
     expect(screen).toHavePathname("/");
     fireEvent.press(screen.getByText(/the allbright post/i));
-    expect(screen).toHavePathname("/");
+    expect(screen).toHavePathname("/edit");
   });
 });
