@@ -5,13 +5,12 @@ import { ProfileImage, useProfilePhotoUploadSection } from "@/forms/hooks/usePro
 import ProfilePhotoUploadSection from "./ProfilePhotoUploadSection";
 
 interface ProfilePhotoUploadSectionProps {
+  value: ProfileImage;
   uploadProfileImage: (profileImage: ProfileImage) => void;
 }
 
 const ProfilePhotoUploadSectionContainer: FunctionComponent<ProfilePhotoUploadSectionProps> = (props) => {
-  const { profileImage, pickProfileImage, handleProfileWantedToggle } = useProfilePhotoUploadSection(
-    props.uploadProfileImage
-  );
+  const { profileImage, pickProfileImage, handleProfileWantedToggle } = useProfilePhotoUploadSection(props);
 
   return (
     <ProfilePhotoUploadSection

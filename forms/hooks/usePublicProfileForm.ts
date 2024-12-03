@@ -31,6 +31,12 @@ const usePublicProfileForm = (publicProfileSchema: Joi.PartialSchemaMap<any>) =>
   useEffect(() => {
     if (user) {
       reset(user);
+      if (user.imageSrc) {
+        changeTextFuncs.profile_image({
+          state: LocalImageType.FILE_SET,
+          file: user.imageSrc,
+        });
+      }
     } else {
       refetch();
     }

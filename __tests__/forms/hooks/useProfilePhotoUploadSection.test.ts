@@ -13,9 +13,13 @@ describe("useProfilePhotoUploadSection", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+  const props = {
+    uploadProfileImage: mockUploadProfileImage,
+    value: { state: LocalImageType.FILE_NOT_SET, file: null },
+  };
 
   it("should initialize with default profile image state", () => {
-    const { result } = renderHook(() => useProfilePhotoUploadSection(mockUploadProfileImage));
+    const { result } = renderHook(() => useProfilePhotoUploadSection(props));
 
     expect(result.current.profileImage).toEqual({
       state: LocalImageType.FILE_NOT_SET,
@@ -24,7 +28,7 @@ describe("useProfilePhotoUploadSection", () => {
   });
 
   it("should handle image upload correctly", () => {
-    const { result } = renderHook(() => useProfilePhotoUploadSection(mockUploadProfileImage));
+    const { result } = renderHook(() => useProfilePhotoUploadSection(props));
 
     act(() => {
       result.current.handleImageUpload("test-file.jpg");
@@ -37,7 +41,7 @@ describe("useProfilePhotoUploadSection", () => {
   });
 
   it("should handle profile wanted toggle correctly", () => {
-    const { result } = renderHook(() => useProfilePhotoUploadSection(mockUploadProfileImage));
+    const { result } = renderHook(() => useProfilePhotoUploadSection(props));
 
     act(() => {
       result.current.handleProfileWantedToggle(true);
@@ -55,7 +59,7 @@ describe("useProfilePhotoUploadSection", () => {
   it("should pick and upload profile image correctly", async () => {
     mockUseImagePicker.mockReturnValueOnce(() => Promise.resolve("picked-file.jpg"));
 
-    const { result } = renderHook(() => useProfilePhotoUploadSection(mockUploadProfileImage));
+    const { result } = renderHook(() => useProfilePhotoUploadSection(props));
 
     act(() => {
       result.current.handleImageUpload("picked-file.jpg");

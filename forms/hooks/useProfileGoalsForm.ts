@@ -29,7 +29,6 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
 
   useEffect(() => {
     if (_.isEqual(careerGoals, currentCareerGoals) === false) {
-      console.log(careerGoals, currentCareerGoals);
       setCurrentCareerGoals(currentCareerGoals);
     }
   }, [careerGoals, currentCareerGoals, reset]);
