@@ -1,6 +1,7 @@
-import { Pressable, StyleProp, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { useRef } from "react";
+import { Animated, Easing, Pressable, StyleProp, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
 
-import { H5 } from "@/components/Typography";
+import { H6 } from "@/components/Typography";
 
 export type TabItemStyle = StyleProp<ViewStyle> & { minTabItemWidth?: number };
 
@@ -16,6 +17,27 @@ type Props = {
 };
 
 const TabItem = ({ tabItemStyle, tabItemTextStyle, name, onPress, active, theme }: Props) => {
+  const widthAnim = useRef(new Animated.Value(0)).current;
+  const ANIMATION_DURATION = 250;
+
+  const onHoverIn = () => {
+    Animated.timing(widthAnim, {
+      toValue: 100,
+      duration: ANIMATION_DURATION,
+      useNativeDriver: false,
+      easing: Easing.inOut(Easing.linear),
+    }).start();
+  };
+
+  const onHoverOut = () => {
+    Animated.timing(widthAnim, {
+      toValue: 0,
+      duration: ANIMATION_DURATION,
+      useNativeDriver: false,
+      easing: Easing.ease,
+    }).start();
+  };
+
   return (
     <Pressable
       style={[
@@ -23,18 +45,38 @@ const TabItem = ({ tabItemStyle, tabItemTextStyle, name, onPress, active, theme 
         { borderColor: theme.colors.border, borderWidth: 1, minWidth: tabItemStyle?.minTabItemWidth ?? "auto" },
         tabItemStyle,
       ]}
-      onPress={onPress}>
-      <H5
-        style={[
-          styles.tabItemText,
-          {
-            color: active ? theme.colors.text : theme.colors.inactive,
-            fontWeight: active ? 800 : 400,
-          },
-          tabItemTextStyle,
-        ]}>
-        {name}
-      </H5>
+      onPress={onPress}
+      onHoverIn={onHoverIn}
+      onHoverOut={onHoverOut}>
+      <View style={styles.tabItemContainer}>
+        <View style={styles.tabItemAnimatedWidth}>
+          <H6
+            style={[
+              styles.tabItemText,
+              {
+                color: active ? theme.colors.text : theme.colors.inactive,
+                fontWeight: active ? 800 : 400,
+              },
+              tabItemTextStyle,
+            ]}>
+            {name}
+          </H6>
+          <Animated.View
+            style={[
+              {
+                height: 2,
+                backgroundColor: "black",
+                marginTop: 3,
+                width: widthAnim.interpolate({
+                  inputRange: [0, 100],
+                  outputRange: ["0%", "100%"],
+                }),
+                alignSelf: "flex-start",
+              },
+            ]}
+          />
+        </View>
+      </View>
     </Pressable>
   );
 };
@@ -44,11 +86,21 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     marginHorizontal: 3,
-    paddingHorizontal: 3,
-    height: 30,
+    paddingTop: 5,
+    paddingHorizontal: 10,
+    height: 35,
     justifyContent: "center",
     alignItems: "center",
     cursor: "pointer",
+  },
+  tabItemContainer: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  tabItemAnimatedWidth: {
+    alignSelf: "flex-start",
   },
   tabItemText: {
     fontWeight: 400,
