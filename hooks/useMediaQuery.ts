@@ -25,7 +25,7 @@ const useMediaQuery = () => {
     return currentWidth >= val;
   };
 
-  return { screenSize, maxWidth, minWidth };
+  return { screenSize, currentWidth, maxWidth, minWidth };
 };
 
 function getScreenType(currentWidth: number): ScreenSize {

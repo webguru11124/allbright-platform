@@ -9,7 +9,11 @@ type MediaQueryProviderProps = {
 };
 
 export const MediaQueryProvider: React.FC<MediaQueryProviderProps> = ({ children }) => {
-  const { screenSize, maxWidth, minWidth } = useMediaQuery();
+  const { screenSize, currentWidth, maxWidth, minWidth } = useMediaQuery();
 
-  return <MediaQueryContext.Provider value={{ screenSize, maxWidth, minWidth }}>{children}</MediaQueryContext.Provider>;
+  return (
+    <MediaQueryContext.Provider value={{ screenSize, currentWidth, maxWidth, minWidth }}>
+      {children}
+    </MediaQueryContext.Provider>
+  );
 };

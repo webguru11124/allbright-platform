@@ -1,7 +1,7 @@
 import { useContext, useMemo, useState } from "react";
-import { Pressable, StyleProp, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
+import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 
-import { H5 } from "@/components/Typography";
+import TabItem, { TabItemStyle, TabItemTextStyle } from "@/components/Tabs/partials/TabItem";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import withTheme from "@/hocs/withTheme";
 import { BREAKPOINT_LAPTOP, BREAKPOINT_MOBILE, BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
@@ -16,10 +16,6 @@ type TabItemContainerStyle = Pick<ViewStyle, "backgroundColor"> & {
   height?: number;
   distribution?: TabItemDistribution;
 };
-
-type TabItemStyle = StyleProp<ViewStyle> & { minTabItemWidth?: number };
-
-type TabItemTextStyle = StyleProp<TextStyle> & { height?: number };
 
 type TabBodyContainerStyle = StyleProp<ViewStyle>;
 
@@ -43,7 +39,7 @@ type Props = {
 };
 
 const Tabs = ({ data, tabContainerStyle, tabItemContainerStyle, tabItemStyle, tabItemTextStyle, theme }: Props) => {
-  const { maxWidth } = useContext<MediaQuery>(MediaQueryContext);
+  const { maxWidth, currentWidth } = useContext<MediaQuery>(MediaQueryContext);
   const [activeTab, setActiveTab] = useState<number>(0);
   const distribution: "space-between" | "flex-start" | "flex-end" = useMemo(() => {
     switch (tabItemContainerStyle?.distribution) {
@@ -56,13 +52,13 @@ const Tabs = ({ data, tabContainerStyle, tabItemContainerStyle, tabItemStyle, ta
         return "flex-start";
     }
   }, [tabItemContainerStyle?.distribution]);
-  const showVerticalTabItems: boolean = useMemo(() => {
-    if (tabContainerStyle?.displayVerticalBreakpointWidth === undefined) {
-      return false;
-    } else {
-      return maxWidth(tabContainerStyle?.displayVerticalBreakpointWidth);
-    }
-  }, [maxWidth, tabContainerStyle?.displayVerticalBreakpointWidth]);
+  const showVerticalTabItems: boolean = useMemo(
+    () =>
+      tabContainerStyle?.displayVerticalBreakpointWidth === undefined
+        ? false
+        : currentWidth > 0 && maxWidth(tabContainerStyle?.displayVerticalBreakpointWidth),
+    [currentWidth, maxWidth, tabContainerStyle?.displayVerticalBreakpointWidth]
+  );
 
   return (
     <View style={[styles.tabContainer, { backgroundColor: theme.colors.background }, tabContainerStyle]}>
@@ -74,26 +70,15 @@ const Tabs = ({ data, tabContainerStyle, tabItemContainerStyle, tabItemStyle, ta
         ]}>
         {data.map((item, index) => {
           return (
-            <Pressable
-              style={[
-                styles.tabItem,
-                { borderColor: theme.colors.border, borderWidth: 1, minWidth: tabItemStyle?.minTabItemWidth ?? "auto" },
-                tabItemStyle,
-              ]}
+            <TabItem
+              tabItemStyle={tabItemStyle}
+              tabItemTextStyle={tabItemTextStyle}
               key={item.key}
-              onPress={() => setActiveTab(index)}>
-              <H5
-                style={[
-                  styles.tabItemText,
-                  {
-                    color: activeTab === index ? theme.colors.text : theme.colors.inactive,
-                    fontWeight: activeTab === index ? 800 : 400,
-                  },
-                  tabItemTextStyle,
-                ]}>
-                {item.name}
-              </H5>
-            </Pressable>
+              name={item.name}
+              onPress={() => setActiveTab(index)}
+              active={activeTab === index}
+              theme={theme}
+            />
           );
         })}
       </View>
@@ -112,8 +97,6 @@ const Tabs = ({ data, tabContainerStyle, tabItemContainerStyle, tabItemStyle, ta
   );
 };
 
-export default withTheme(Tabs);
-
 const styles = StyleSheet.create({
   tabContainer: {
     flexBasis: "auto",
@@ -124,19 +107,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     borderBottomWidth: 1,
   },
-  tabItem: {
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
-    marginHorizontal: 3,
-    paddingHorizontal: 3,
-    height: 30,
-    justifyContent: "center",
-    alignItems: "center",
-    cursor: "pointer",
-  },
-  tabItemText: {
-    fontWeight: 400,
-  },
   tabBodyContainer: {
     flex: 1,
   },
@@ -144,3 +114,5 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+export default withTheme(Tabs);
