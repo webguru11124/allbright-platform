@@ -1,11 +1,5 @@
-import Placeholder from "@/components/Placeholder";
+import AccountSettings from "@/features/Account/AccountSettings";
 
 export default function Index() {
-  return (
-    <Placeholder
-      style={{ backgroundColor: "purple" }}
-      textStyle={{ color: "white" }}
-      placeholderText="Account Settings"
-    />
-  );
+  return <AccountSettings />;
 }

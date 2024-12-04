@@ -1,36 +1,14 @@
 import { View } from "react-native";
 
-import Placeholder from "@/components/Placeholder";
+import Profile from "@/features/Account/Profile";
 
 export default function Index() {
   return (
-    <View style={{ flex: 1, alignContent: "space-between", justifyContent: "space-between" }}>
+    <View style={{ flex: 1 }}>
       <View
-        style={{ minHeight: 100 }}
+        style={{ flex: 1 }}
         nativeID="profile-1">
-        <Placeholder
-          style={{ backgroundColor: "purple" }}
-          textStyle={{ color: "white" }}
-          placeholderText="Profile 1"
-        />
-      </View>
-      <View
-        style={{ minHeight: 100 }}
-        nativeID="profile-2">
-        <Placeholder
-          style={{ backgroundColor: "green" }}
-          textStyle={{ color: "white" }}
-          placeholderText="Profile 2"
-        />
-      </View>
-      <View
-        style={{ minHeight: 100 }}
-        nativeID="profile-3">
-        <Placeholder
-          style={{ backgroundColor: "red" }}
-          textStyle={{ color: "white" }}
-          placeholderText="Profile 3"
-        />
+        <Profile />
       </View>
     </View>
   );
