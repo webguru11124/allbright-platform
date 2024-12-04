@@ -1,7 +1,7 @@
 import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 
-import TabBodyItem, { TabBodyItemStyle } from "@/components/Tabs/partials/TabBodyItem";
-import TabItem, { TabItemStyle, TabItemTextStyle } from "@/components/Tabs/partials/TabItem";
+import TabBodyItem, { TabBodyItemStyle } from "@/features/Tabs/partials/TabBodyItem";
+import TabItem, { TabItemStyle, TabItemTextStyle } from "@/features/Tabs/partials/TabItem";
 import { BREAKPOINT_LAPTOP, BREAKPOINT_MOBILE, BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 
 export type TabContainerStyle = Pick<ViewStyle, "backgroundColor"> & {

@@ -1,6 +1,6 @@
-import { TabBodyItemStyle } from "@/components/Tabs/partials/TabBodyItem";
-import { TabItemStyle, TabItemTextStyle } from "@/components/Tabs/partials/TabItem";
-import Tabs, { Data, TabBodyContainerStyle, TabContainerStyle, TabItemContainerStyle } from "@/components/Tabs/Tabs";
+import { TabBodyItemStyle } from "@/features/Tabs/partials/TabBodyItem";
+import { TabItemStyle, TabItemTextStyle } from "@/features/Tabs/partials/TabItem";
+import Tabs, { Data, TabBodyContainerStyle, TabContainerStyle, TabItemContainerStyle } from "@/features/Tabs/Tabs";
 import withTheme from "@/hocs/withTheme";
 
 import useTabs from "./hooks/useTabs";

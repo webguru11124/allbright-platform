@@ -1,10 +1,10 @@
 import { View } from "react-native";
 
-import Tabs from "@/components/Tabs/index.web";
 import AccountSettings from "@/features/Account/AccountSettings";
 import ContactUs from "@/features/Account/ContactUs";
 import Membership from "@/features/Account/Membership";
 import Profile from "@/features/Account/Profile";
+import Tabs from "@/features/Tabs/index.web";
 
 const tabs = [
   {

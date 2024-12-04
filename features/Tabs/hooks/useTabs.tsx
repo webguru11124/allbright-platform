@@ -1,7 +1,7 @@
 import { useContext, useMemo, useState } from "react";
 
-import { TabContainerStyle, TabItemContainerStyle } from "@/components/Tabs/Tabs";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
+import { TabContainerStyle, TabItemContainerStyle } from "@/features/Tabs/Tabs";
 
 type Props = {
   tabContainerStyle?: TabContainerStyle;
