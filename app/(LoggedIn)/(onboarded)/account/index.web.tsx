@@ -55,7 +55,12 @@ export default function Index() {
     <View style={{ flex: 1 }}>
       <Tabs
         data={tabs}
-        tabItemTextStyle={{ fontWeight: 400 }}
+        tabContainerStyle={{ height: 500, displayVerticalBreakpointWidth: 480 }}
+        tabItemContainerStyle={{ distribution: "tab-start-left" }}
+        tabItemStyle={{ minTabItemWidth: 100 }}
+        tabItemTextStyle={{}}
+        tabBodyContainerStyle={{}}
+        tabBodyItemStyle={{}}
       />
     </View>
   );
