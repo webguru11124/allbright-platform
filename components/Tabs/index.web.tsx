@@ -1,30 +1,10 @@
 import { useContext, useMemo, useState } from "react";
-import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 
-import TabBodyItem, { TabBodyItemStyle } from "@/components/Tabs/partials/TabBodyItem";
-import TabItem, { TabItemStyle, TabItemTextStyle } from "@/components/Tabs/partials/TabItem";
+import { TabBodyItemStyle } from "@/components/Tabs/partials/TabBodyItem";
+import { TabItemStyle, TabItemTextStyle } from "@/components/Tabs/partials/TabItem";
+import Tabs, { Data, TabBodyContainerStyle, TabContainerStyle, TabItemContainerStyle } from "@/components/Tabs/Tabs";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import withTheme from "@/hocs/withTheme";
-import { BREAKPOINT_LAPTOP, BREAKPOINT_MOBILE, BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
-
-type TabContainerStyle = Pick<ViewStyle, "backgroundColor"> & {
-  height?: number;
-  displayVerticalBreakpointWidth?: typeof BREAKPOINT_LAPTOP | typeof BREAKPOINT_TABLET | typeof BREAKPOINT_MOBILE;
-};
-
-type TabItemDistribution = "full-width-equally-spaced" | "tab-start-left" | "tab-start-right";
-type TabItemContainerStyle = Pick<ViewStyle, "backgroundColor"> & {
-  height?: number;
-  distribution?: TabItemDistribution;
-};
-
-type TabBodyContainerStyle = StyleProp<ViewStyle>;
-
-type Data = {
-  component: React.ReactNode;
-  key: string;
-  name: string;
-};
 
 type Props = {
   data: Data[];
@@ -37,7 +17,7 @@ type Props = {
   theme: Theme;
 };
 
-const Tabs = ({
+const TabContainer = ({
   data,
   tabContainerStyle,
   tabItemContainerStyle,
@@ -48,7 +28,9 @@ const Tabs = ({
   theme,
 }: Props) => {
   const { maxWidth, currentWidth } = useContext<MediaQuery>(MediaQueryContext);
+
   const [activeTab, setActiveTab] = useState<number>(0);
+
   const distribution: "space-between" | "flex-start" | "flex-end" = useMemo(() => {
     switch (tabItemContainerStyle?.distribution) {
       case "full-width-equally-spaced":
@@ -60,6 +42,7 @@ const Tabs = ({
         return "flex-start";
     }
   }, [tabItemContainerStyle?.distribution]);
+
   const showVerticalTabItems: boolean = useMemo(
     () =>
       tabContainerStyle?.displayVerticalBreakpointWidth === undefined
@@ -69,51 +52,21 @@ const Tabs = ({
   );
 
   return (
-    <View style={[styles.tabContainer, { backgroundColor: theme.colors.background }, tabContainerStyle]}>
-      <View
-        style={[
-          styles.tabItemContainer,
-          { justifyContent: distribution, flexDirection: showVerticalTabItems ? "column" : "row" },
-          tabItemContainerStyle,
-        ]}>
-        {data.map((item, index) => (
-          <TabItem
-            tabItemStyle={tabItemStyle}
-            tabItemTextStyle={tabItemTextStyle}
-            key={item.key}
-            name={item.name}
-            onPress={() => setActiveTab(index)}
-            active={activeTab === index}
-            theme={theme}
-          />
-        ))}
-      </View>
-      <View style={[styles.tabBodyContainer, tabBodyContainerStyle]}>
-        {data.map((item, index) => (
-          <TabBodyItem
-            tabBodyItemStyle={tabBodyItemStyle}
-            active={activeTab === index}
-            component={item.component}
-          />
-        ))}
-      </View>
-    </View>
+    <Tabs
+      data={data}
+      tabContainerStyle={tabContainerStyle}
+      tabItemContainerStyle={tabItemContainerStyle}
+      tabItemStyle={tabItemStyle}
+      tabItemTextStyle={tabItemTextStyle}
+      tabBodyContainerStyle={tabBodyContainerStyle}
+      tabBodyItemStyle={tabBodyItemStyle}
+      distribution={distribution}
+      activeTab={activeTab}
+      setActiveTab={setActiveTab}
+      showVerticalTabItems={showVerticalTabItems}
+      theme={theme}
+    />
   );
 };
 
-const styles = StyleSheet.create({
-  tabContainer: {
-    flexBasis: "auto",
-    flexShrink: 1,
-  },
-  tabItemContainer: {
-    flexDirection: "row",
-    marginTop: 5,
-    borderBottomWidth: 1,
-  },
-  tabBodyContainer: {
-    flex: 1,
-  },
-});
-
-export default withTheme(Tabs);
+export default withTheme(TabContainer);
