@@ -10,40 +10,54 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Connect",
+          title: "Profile",
           headerShown: false,
           tabBarIcon: ({ color }) => (
             <MaterialIcons
               size={28}
-              name="emoji-people"
+              name="account-circle"
               color={color}
             />
           ),
         }}
       />
       <Tabs.Screen
-        name="find_a_mentor"
+        name="account_settings"
         options={{
-          title: "Find a Mentor",
+          title: "Account Settings",
           headerShown: false,
           tabBarIcon: ({ color }) => (
             <MaterialIcons
               size={28}
-              name="school"
+              name="manage-accounts"
               color={color}
             />
           ),
         }}
       />
       <Tabs.Screen
-        name="your_mentorship"
+        name="membership"
         options={{
-          title: "Your Mentorship",
+          title: "Membership",
           headerShown: false,
           tabBarIcon: ({ color }) => (
             <MaterialIcons
               size={28}
-              name="people-alt"
+              name="badge"
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="contact_us"
+        options={{
+          title: "Contact Us",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons
+              size={28}
+              name="contact-support"
               color={color}
             />
           ),

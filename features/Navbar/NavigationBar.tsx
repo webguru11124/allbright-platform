@@ -33,28 +33,28 @@ const NavigationBar = ({ user }: Props) => (
           Connect
         </H6>
       </TabButton>
-      <TabButton href="/">
+      <TabButton href="/learning">
         <H6
           fontWeight={700}
           color={"#414143"}>
           Learning
         </H6>
       </TabButton>
-      <TabButton href="/">
+      <TabButton href="/events">
         <H6
           fontWeight={700}
           color={"#414143"}>
           Events
         </H6>
       </TabButton>
-      <TabButton href="/">
+      <TabButton href="/groups">
         <H6
           fontWeight={700}
           color={"#414143"}>
           Groups
         </H6>
       </TabButton>
-      <TabButton href="/">
+      <TabButton href="/edit">
         <H6
           fontWeight={700}
           color={"#414143"}>
