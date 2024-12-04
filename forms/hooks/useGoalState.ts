@@ -22,7 +22,11 @@ export const useGoalState = ({ goals: defaultGoals = [], updateField }: useGoals
     }
 
     if (!goalIsSelected(goal)) {
-      goalsList = goalsState.length < 3 ? goalsState.concat(goal) : goalsState;
+      if (goalsState.length < 3) {
+        goalsList = goalsState.concat(goal);
+      } else {
+        goalsList = [...goalsState.slice(0, -1), goal];
+      }
     }
     setGoalsState(goalsList);
     updateField(goalsList);
