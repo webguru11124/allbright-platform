@@ -1,6 +1,7 @@
 import { useContext, useMemo, useState } from "react";
 import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 
+import TabBodyItem, { TabBodyItemStyle } from "@/components/Tabs/partials/TabBodyItem";
 import TabItem, { TabItemStyle, TabItemTextStyle } from "@/components/Tabs/partials/TabItem";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import withTheme from "@/hocs/withTheme";
@@ -19,8 +20,6 @@ type TabItemContainerStyle = Pick<ViewStyle, "backgroundColor"> & {
 
 type TabBodyContainerStyle = StyleProp<ViewStyle>;
 
-type TabBodyItemStyle = StyleProp<ViewStyle>;
-
 type Data = {
   component: React.ReactNode;
   key: string;
@@ -38,7 +37,16 @@ type Props = {
   theme: Theme;
 };
 
-const Tabs = ({ data, tabContainerStyle, tabItemContainerStyle, tabItemStyle, tabItemTextStyle, theme }: Props) => {
+const Tabs = ({
+  data,
+  tabContainerStyle,
+  tabItemContainerStyle,
+  tabItemStyle,
+  tabItemTextStyle,
+  tabBodyContainerStyle,
+  tabBodyItemStyle,
+  theme,
+}: Props) => {
   const { maxWidth, currentWidth } = useContext<MediaQuery>(MediaQueryContext);
   const [activeTab, setActiveTab] = useState<number>(0);
   const distribution: "space-between" | "flex-start" | "flex-end" = useMemo(() => {
@@ -68,30 +76,26 @@ const Tabs = ({ data, tabContainerStyle, tabItemContainerStyle, tabItemStyle, ta
           { justifyContent: distribution, flexDirection: showVerticalTabItems ? "column" : "row" },
           tabItemContainerStyle,
         ]}>
-        {data.map((item, index) => {
-          return (
-            <TabItem
-              tabItemStyle={tabItemStyle}
-              tabItemTextStyle={tabItemTextStyle}
-              key={item.key}
-              name={item.name}
-              onPress={() => setActiveTab(index)}
-              active={activeTab === index}
-              theme={theme}
-            />
-          );
-        })}
+        {data.map((item, index) => (
+          <TabItem
+            tabItemStyle={tabItemStyle}
+            tabItemTextStyle={tabItemTextStyle}
+            key={item.key}
+            name={item.name}
+            onPress={() => setActiveTab(index)}
+            active={activeTab === index}
+            theme={theme}
+          />
+        ))}
       </View>
-      <View style={[styles.tabBodyContainer]}>
-        {data.map((item, index) => {
-          return (
-            <View
-              style={[styles.tabBodyItem, { display: activeTab === index ? "flex" : "none" }]}
-              key={item.key}>
-              {item.component}
-            </View>
-          );
-        })}
+      <View style={[styles.tabBodyContainer, tabBodyContainerStyle]}>
+        {data.map((item, index) => (
+          <TabBodyItem
+            tabBodyItemStyle={tabBodyItemStyle}
+            active={activeTab === index}
+            component={item.component}
+          />
+        ))}
       </View>
     </View>
   );
@@ -108,9 +112,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   tabBodyContainer: {
-    flex: 1,
-  },
-  tabBodyItem: {
     flex: 1,
   },
 });
