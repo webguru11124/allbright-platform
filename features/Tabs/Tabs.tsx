@@ -4,13 +4,13 @@ import TabBodyItem, { TabBodyItemStyle } from "@/features/Tabs/partials/TabBodyI
 import TabItem, { TabItemStyle, TabItemTextStyle } from "@/features/Tabs/partials/TabItem";
 import { BREAKPOINT_LAPTOP, BREAKPOINT_MOBILE, BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 
-export type TabContainerStyle = Pick<ViewStyle, "backgroundColor"> & {
+export type TabContainerStyle = StyleProp<ViewStyle> & {
   height?: number;
   displayVerticalBreakpointWidth?: typeof BREAKPOINT_LAPTOP | typeof BREAKPOINT_TABLET | typeof BREAKPOINT_MOBILE;
 };
 
 export type TabItemDistribution = "full-width-equally-spaced" | "tab-start-left" | "tab-start-right";
-export type TabItemContainerStyle = Pick<ViewStyle, "backgroundColor"> & {
+export type TabItemContainerStyle = StyleProp<ViewStyle> & {
   height?: number;
   distribution?: TabItemDistribution;
 };
