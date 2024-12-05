@@ -49,7 +49,7 @@ const usePrivateProfileForm = (privateProfileSchema: Joi.PartialSchemaMap<any>) 
       const output = privateProfileAdaptor(input);
 
       await mutateUpdateUserAsync({ ...output });
-      router.replace("/onboarding/profile-goals" as Href);
+      router.push("/onboarding/profile-goals" as Href);
     } catch (error: any) {
       showErrorMessage(error.message);
     } finally {

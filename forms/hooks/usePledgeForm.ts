@@ -21,7 +21,7 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
       const output = pledgeAdapter(input as PledgeInput);
 
       await mutateUpdateUserAsync({ ...output });
-      router.replace("/onboarding/complete");
+      router.push("/onboarding/complete");
     } catch (error: any) {
       showErrorMessage(error.message);
     } finally {

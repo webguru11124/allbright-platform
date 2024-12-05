@@ -17,3 +17,10 @@ export const useUserUpdate = () => {
     },
   });
 };
+
+export const useUserUpdateProfileImage = () => {
+  return useMutation({
+    mutationKey: ["updateUserProfileImage"],
+    mutationFn: new UserClient().updateUserProfileImage,
+  });
+};

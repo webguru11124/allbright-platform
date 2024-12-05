@@ -48,7 +48,7 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
       const goals = profileGoalsAdapter(input);
 
       await mutateUpdateUserGoalsAsync(goals.careerGoals);
-      router.replace("/onboarding/pledge");
+      router.push("/onboarding/pledge");
     } catch (error: any) {
       showErrorMessage(error.message);
     } finally {
