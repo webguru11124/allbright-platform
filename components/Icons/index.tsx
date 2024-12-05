@@ -58,3 +58,70 @@ export function Tick(props: Props) {
     </Svg>
   );
 }
+
+export function AllBrightVector(props: Props) {
+  return (
+    <Svg
+      width={props.width ?? "200"}
+      height={props.height ?? "200"}
+      viewBox="0 0 1903 1716"
+      fill="none">
+      <path
+        d="M1902 1696.88V1690.97C1744.73 1690.97 1657.3 1557.95 1532.72 1285.17L949.464 0L423.753 1227.8H431.854L733.257 524.755L1067.62 1306.26C1151.7 1502.84 1174.61 1691.25 967.062 1691.25V1697.16H1902.28L1902 1696.88ZM285.482 1412.28C72.0688 1293.05 0 1469.93 0 1555.42C0 1640.91 103.354 1715.72 253.917 1715.72C413.418 1715.72 644.987 1633.88 782.141 1510.99L776.555 1507.05C605.88 1628.54 325.706 1434.5 285.482 1412"
+        fill={props.color}
+      />
+    </Svg>
+  );
+}
+
+export function LoadingVector(props: Props) {
+  return (
+    <Svg
+      width={props.width ?? "200"}
+      height={props.height ?? "200"}
+      viewBox="0 0 1903 1716"
+      fill="none">
+      <defs>
+        <linearGradient
+          id="logo-gradient"
+          gradientUnits="objectBoundingBox"
+          x1="0"
+          y1="0"
+          x2="1"
+          y2="1">
+          <stop
+            offset="0"
+            stopColor="#083D39">
+            <animate
+              attributeName="stop-color"
+              values="#083D39;#2C736F;#083D39;"
+              dur="5s"
+              repeatCount="indefinite"></animate>
+          </stop>
+
+          <stop
+            offset="1"
+            stopColor="#2C736F">
+            <animate
+              attributeName="stop-color"
+              values="#2C736F;#083D39;#2C736F;"
+              dur="5s"
+              repeatCount="indefinite"></animate>
+          </stop>
+          <animateTransform
+            attributeName="gradientTransform"
+            type="rotate"
+            from="0 1 -.5"
+            to="360 1 -.5"
+            dur="5s"
+            repeatCount="indefinite"
+          />
+        </linearGradient>
+      </defs>
+      <path
+        d="M1902 1696.88V1690.97C1744.73 1690.97 1657.3 1557.95 1532.72 1285.17L949.464 0L423.753 1227.8H431.854L733.257 524.755L1067.62 1306.26C1151.7 1502.84 1174.61 1691.25 967.062 1691.25V1697.16H1902.28L1902 1696.88ZM285.482 1412.28C72.0688 1293.05 0 1469.93 0 1555.42C0 1640.91 103.354 1715.72 253.917 1715.72C413.418 1715.72 644.987 1633.88 782.141 1510.99L776.555 1507.05C605.88 1628.54 325.706 1434.5 285.482 1412"
+        fill="url('#logo-gradient')"
+      />
+    </Svg>
+  );
+}
