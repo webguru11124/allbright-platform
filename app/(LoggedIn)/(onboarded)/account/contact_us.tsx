@@ -1,11 +1,5 @@
-import Placeholder from "@/components/Placeholder";
+import ContactUs from "@/features/Account/ContactUs";
 
 export default function Index() {
-  return (
-    <Placeholder
-      style={{ backgroundColor: "purple" }}
-      textStyle={{ color: "white" }}
-      placeholderText="Contact Us"
-    />
-  );
+  return <ContactUs />;
 }

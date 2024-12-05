@@ -1,11 +1,5 @@
-import Placeholder from "@/components/Placeholder";
+import Membership from "@/features/Account/Membership";
 
 export default function Index() {
-  return (
-    <Placeholder
-      style={{ backgroundColor: "purple" }}
-      textStyle={{ color: "white" }}
-      placeholderText="Membership"
-    />
-  );
+  return <Membership />;
 }

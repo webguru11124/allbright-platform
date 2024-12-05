@@ -14,6 +14,7 @@ const useTabButton = ({ href }: { href: Href<string | object> }) => {
       toValue: 100,
       duration: ANIMATION_DURATION,
       useNativeDriver: false,
+      easing: Easing.ease,
     }).start();
   };
 

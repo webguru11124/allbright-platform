@@ -10,6 +10,7 @@ declare global {
   type ScreenSize = "mobile" | "tablet" | "laptop" | "desktop";
   type MediaQuery = {
     screenSize: ScreenSize;
+    currentWidth: number;
     maxWidth: (val: number) => boolean;
     minWidth: (val: number) => boolean;
   };
