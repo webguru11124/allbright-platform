@@ -1,12 +1,18 @@
+import { useRouter } from "expo-router";
 import styled from "styled-components/native";
 
-import Link from "@/components/Link";
 import { CM, H2Rox } from "@/components/Typography";
 import { OnboadingPageLayout } from "@/features/Onboarding/OnboardingLayout";
-import { recommendationColor } from "@/theme";
+import Button from "@/forms/components/Button";
 
 export default function WelcomeScreen() {
   const returningUser = false;
+  const router = useRouter();
+
+  const onPress = () => {
+    router.push("/onboarding/register-profile");
+  };
+
   return (
     <OnboadingPageLayout>
       <Main>
@@ -34,12 +40,7 @@ export default function WelcomeScreen() {
           </CM>
         </Section>
 
-        <Link
-          href="/onboarding/register-profile"
-          background={recommendationColor.btBgColor}
-          isSecondary={true}>
-          <CM color={recommendationColor.btColor}>Start</CM>
-        </Link>
+        <Button onPress={onPress}>Start</Button>
       </Main>
     </OnboadingPageLayout>
   );
