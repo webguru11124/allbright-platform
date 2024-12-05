@@ -8,7 +8,11 @@ describe("Onboarding", () => {
   describe("Welcome", () => {
     beforeEach(() => {
       renderRouter({
-        index: jest.fn(() => <Welcome />),
+        index: jest.fn(() => (
+          <Providers>
+            <Welcome />
+          </Providers>
+        )),
       });
     });
 
