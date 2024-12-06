@@ -18,12 +18,13 @@ type StyleProps = {
 interface EthnicGroupsSectionProps {
   checkIfChecked: (ethnicGroup: (typeof ethnicGroups)[number]) => boolean;
   checkIfDisabled: (ethnicGroup: (typeof ethnicGroups)[number]) => boolean;
+  getOtherValue: () => string;
   onEthnicGroupsChange: (ethnicGroup: { title: string; value?: string; id: string }) => void;
   error?: string;
 }
 
 const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (props) => {
-  const { error, checkIfChecked, checkIfDisabled, onEthnicGroupsChange } = props;
+  const { error, checkIfChecked, checkIfDisabled, onEthnicGroupsChange, getOtherValue } = props;
 
   return (
     <S.Container data-cy="ethnic-groups-container">
@@ -55,6 +56,7 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (props)
                     id: elm.id,
                   })
                 }
+                value={getOtherValue()}
                 data-cy={`other-ethnicity-option`}
                 testID={`ethnic-group-option-${elm.title}`}
               />
@@ -68,7 +70,7 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (props)
                 onPress={() => onEthnicGroupsChange(elm)}
                 data-cy={`${elm.title}-option`}
                 testID={`ethnic-group-option-${elm.title}`}>
-                <S.OptionLabel disabled={checkIfDisabled(elm)}>{elm.title}</S.OptionLabel>
+                <S.OptionLabel disabled={checkIfDisabled(elm)}>{elm.value}</S.OptionLabel>
               </S.Checkbox>
             )}
             {checkIfChecked(elm) && (

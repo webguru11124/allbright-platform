@@ -17,11 +17,13 @@ export const useEthnicGroups = ({
     if (field.length > 0) setEthnicGroupsState(field);
   }, [field]);
 
-  const checkIfChecked = (elm: any) => !!ethnicGroupsState.filter((item) => item.title === elm.title).length;
+  const checkIfChecked = (elm: any) => ethnicGroupsState.some((item) => item.title === elm.title);
 
   const checkIfDisabled = (elm: any) =>
     !!ethnicGroupsState.filter((item) => item.title === "Prefer not to say" && elm.title !== "Prefer not to say")
       .length;
+
+  const getOtherValue = () => ethnicGroupsState.find((item) => item.title === "Other")?.value ?? "";
 
   const changeTextFuncs = (value: FieldsType[]) => {
     setEthnicGroupsState(value);
@@ -48,6 +50,7 @@ export const useEthnicGroups = ({
   return {
     checkIfChecked,
     checkIfDisabled,
+    getOtherValue,
     onEthnicGroupsChange,
   };
 };
