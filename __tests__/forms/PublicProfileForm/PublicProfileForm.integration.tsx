@@ -22,12 +22,15 @@ jest.mock("expo-image-picker", () => ({
 
 describe("PublicProfileForm", () => {
   beforeEach(() => {
-    (ImagePicker.launchImageLibraryAsync as jest.Mock).mockResolvedValueOnce({
+    (ImagePicker.launchImageLibraryAsync as jest.Mock).mockResolvedValue({
       canceled: false,
       assets: [{ uri: "image-uri" }],
     });
-    jest.clearAllMocks();
     (UserClient.prototype.findUserById as jest.Mock).mockResolvedValue({});
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   it(`should:

@@ -15,17 +15,34 @@ class UserClient {
   public async updateUser(user: Partial<UserModel>): Promise<boolean> {
     const userId = await getUserId();
     if (!userId) return Promise.reject("Invalid User Id");
-    if (user.imageSrc) {
-      const response = await api.put(`/v1/users/${userId}/with-image`, {
-        ...user,
-      });
-      return response.data;
+
+    const response = await api.put(`/v1/users/${userId}`, {
+      ...user,
+    });
+    return response.data;
+  }
+
+  public async updateUserProfileImage(imageFile: string | File | Blob) {
+    const userId = await getUserId();
+    if (!userId) return Promise.reject("Invalid User Id");
+    console.log("imageFile", imageFile);
+
+    const formData = new FormData();
+    if (imageFile instanceof File) {
+      console.log("imageFile is a File");
+      formData.append("imageSrc", imageFile);
+    } else if (imageFile instanceof Blob) {
+      console.log("imageFile is a Blob");
+      formData.append("imageSrc", new File([imageFile], "image.jpg", { type: imageFile.type }));
     } else {
-      const response = await api.put(`/v1/users/${userId}`, {
-        ...user,
-      });
-      return response.data;
+      console.log("imageFile is invalid");
+      throw new Error("Invalid image format");
     }
+
+    const response = await api.put(`/v1/users/${userId}/profile-image`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return response.data;
   }
 
   public async getUserGoals() {

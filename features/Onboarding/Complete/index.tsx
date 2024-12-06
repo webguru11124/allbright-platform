@@ -4,7 +4,10 @@ import { CM, H3 } from "@/components/Typography";
 import { OnboadingPageLayout } from "@/features/Onboarding/OnboardingLayout";
 import Button from "@/forms/components/Button";
 
-const Welcome: FunctionComponent = () => {
+import { useApprove } from "./hooks/useApprove";
+
+const Complete: FunctionComponent = () => {
+  const { onClick } = useApprove();
   return (
     <OnboadingPageLayout>
       <H3>Profile complete</H3>
@@ -13,9 +16,9 @@ const Welcome: FunctionComponent = () => {
         immediately. You can change your details at any time through the Profile option at the top right of your screen.
       </CM>
 
-      <Button>Approve</Button>
+      <Button onPress={onClick}>Approve</Button>
     </OnboadingPageLayout>
   );
 };
 
-export default Welcome;
+export default Complete;

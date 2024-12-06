@@ -17,7 +17,7 @@ const Button = ({ disabled, theme, ...props }: Props) => {
       onPress={props.onPress}
       theme={theme}
       {...props}>
-      <CM color={theme.colors.button.primary}>
+      <CM style={{ color: theme.colors.button.primary }}>
         {props.isLoading ? (
           <ActivityIndicator
             size={24}

@@ -1,5 +1,5 @@
 import CompleteScreen from "@/features/Onboarding/Complete";
 
-export default function PrifileGoals() {
+export default function ProfileGoals() {
   return <CompleteScreen />;
 }

@@ -49,7 +49,7 @@ const useRegisterProfileForm = (registerProfileSchema: Joi.PartialSchemaMap<any>
 
       await mutateUpdateUserAsync({ ...output });
 
-      router.replace("/onboarding/public-profile");
+      router.push("/onboarding/public-profile");
     } catch (error: any) {
       showErrorMessage(error.message);
     } finally {

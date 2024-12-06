@@ -63,7 +63,10 @@ const PublicProfileForm = ({ inputs, errors, blurFuncs, changeTextFuncs, isPendi
       error={errors.goals}
     />
     <Space height={10} />
-    <ProfilePhotoUploadSection uploadProfileImage={changeTextFuncs.profile_image} />
+    <ProfilePhotoUploadSection
+      value={inputs.profile_image}
+      uploadProfileImage={changeTextFuncs.profile_image}
+    />
     <Space height={10} />
     <TextInput
       placeholder={placeholderBiography}

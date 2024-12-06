@@ -29,13 +29,16 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
 
   useEffect(() => {
     if (_.isEqual(careerGoals, currentCareerGoals) === false) {
-      if (careerGoals)
-        reset({
-          careerGoals: careerGoals.map((goal: CareerGoalType) => goal.id),
-        });
       setCurrentCareerGoals(currentCareerGoals);
     }
   }, [careerGoals, currentCareerGoals, reset]);
+
+  useEffect(() => {
+    if (currentCareerGoals) changeTextFuncs.careerGoals(currentCareerGoals.map((goal: CareerGoalType) => goal.id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentCareerGoals]);
+
+  console.log(inputs.careerGoals, errors.careerGoals);
 
   const onPress = async () => {
     try {
@@ -45,7 +48,7 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
       const goals = profileGoalsAdapter(input);
 
       await mutateUpdateUserGoalsAsync(goals.careerGoals);
-      router.replace("/onboarding/pledge");
+      router.push("/onboarding/pledge");
     } catch (error: any) {
       showErrorMessage(error.message);
     } finally {

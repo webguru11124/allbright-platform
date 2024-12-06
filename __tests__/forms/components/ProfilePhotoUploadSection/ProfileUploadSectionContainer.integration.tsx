@@ -12,16 +12,22 @@ jest.mock("expo-image-picker", () => ({
 describe("ProfilePhotoUploadSectionContainer", () => {
   const mockUploadProfileImage = jest.fn();
   beforeEach(() => {
-    cleanup();
-    jest.clearAllMocks();
-  });
-
-  it("updates state when image is selected", async () => {
-    render(<ProfilePhotoUploadSectionContainer uploadProfileImage={mockUploadProfileImage} />);
     (ImagePicker.launchImageLibraryAsync as jest.Mock).mockResolvedValueOnce({
       canceled: false,
       assets: [{ uri: "image-uri" }],
     });
+  });
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("updates state when image is selected", async () => {
+    render(
+      <ProfilePhotoUploadSectionContainer
+        value={{ state: LocalImageType.FILE_NOT_SET, file: null }}
+        uploadProfileImage={mockUploadProfileImage}
+      />
+    );
 
     const arrowButton = screen.getByTestId("ProfilePhotoUploadSection:ArrowButton");
     fireEvent.press(arrowButton);
@@ -35,10 +41,12 @@ describe("ProfilePhotoUploadSectionContainer", () => {
   });
 
   it("handles image selection cancellation", async () => {
-    render(<ProfilePhotoUploadSectionContainer uploadProfileImage={mockUploadProfileImage} />);
-    (ImagePicker.launchImageLibraryAsync as jest.Mock).mockResolvedValueOnce({
-      canceled: true,
-    });
+    render(
+      <ProfilePhotoUploadSectionContainer
+        value={{ state: LocalImageType.FILE_NOT_SET, file: null }}
+        uploadProfileImage={mockUploadProfileImage}
+      />
+    );
 
     const arrowButton = screen.getByTestId("ProfilePhotoUploadSection:ArrowButton");
     fireEvent.press(arrowButton);
@@ -49,7 +57,12 @@ describe("ProfilePhotoUploadSectionContainer", () => {
   });
 
   it("throws error when image selection fails", async () => {
-    render(<ProfilePhotoUploadSectionContainer uploadProfileImage={mockUploadProfileImage} />);
+    render(
+      <ProfilePhotoUploadSectionContainer
+        value={{ state: LocalImageType.FILE_NOT_SET, file: null }}
+        uploadProfileImage={mockUploadProfileImage}
+      />
+    );
     (ImagePicker.launchImageLibraryAsync as jest.Mock).mockRejectedValueOnce(new Error("Failed to pick image"));
 
     const arrowButton = screen.getByTestId("ProfilePhotoUploadSection:ArrowButton");

@@ -9,19 +9,26 @@ export type ProfileImage = {
   file: string | null;
 };
 
-export const useProfilePhotoUploadSection = (uploadProfileImage: (profileImage: ProfileImage) => void) => {
+interface ProfilePhotoUploadSectionProps {
+  value: ProfileImage;
+  uploadProfileImage: (profileImage: ProfileImage) => void;
+}
+
+export const useProfilePhotoUploadSection = ({ value, uploadProfileImage }: ProfilePhotoUploadSectionProps) => {
   const pickImageAsync = useImagePicker();
 
   const pickProfileImage = async () => {
-    try {
-      const image = await pickImageAsync();
-      handleImageUpload(image);
-    } catch {}
+    const image = await pickImageAsync();
+    handleImageUpload(image);
   };
   const [profileImage, setProfileImage] = React.useState<ProfileImage>({
     state: LocalImageType.FILE_NOT_SET,
     file: null,
   });
+
+  React.useEffect(() => {
+    if (value?.state === LocalImageType.FILE_SET) setProfileImage(value);
+  }, [value]);
 
   const handleImageUpload = (file: string) => {
     setProfileImage({ state: LocalImageType.FILE_SET, file });
