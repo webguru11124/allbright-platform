@@ -125,3 +125,20 @@ export function LoadingVector(props: Props) {
     </Svg>
   );
 }
+
+export function Location(props: Props) {
+  return (
+    <Svg
+      viewBox="0 0 18 18"
+      width="20"
+      height="20"
+      fill={props.color}
+      {...props}>
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M3.75 6.75A5.246 5.246 0 019 1.5a5.246 5.246 0 015.25 5.25C14.25 10.688 9 16.5 9 16.5s-5.25-5.813-5.25-9.75zm3.375 0a1.876 1.876 0 103.751-.001 1.876 1.876 0 00-3.751.001z"
+        fill={props.color}></Path>
+    </Svg>
+  );
+}
