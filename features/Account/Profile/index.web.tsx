@@ -5,7 +5,7 @@ import Placeholder from "@/components/Placeholder";
 import { H3 } from "@/components/Typography";
 import { UserContext } from "@/contexts/UserContext";
 import BusinessCard from "@/features/BusinessCard";
-import PublicProfileForm from "@/forms/PublicProfileForm";
+import AccountProfileForm from "@/forms/AccountProfileForm";
 import withTheme from "@/hocs/withTheme";
 import { UserModel } from "@/types/user";
 
@@ -24,7 +24,7 @@ const Profile = ({ theme }: Props) => {
         <View style={styles.main}>
           <View style={styles.article}>
             <H3>{user?.name}</H3>
-            <PublicProfileForm />
+            <AccountProfileForm />
           </View>
           <View style={styles.aside}>
             <View style={styles.businessCardContainer}>

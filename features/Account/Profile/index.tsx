@@ -21,11 +21,11 @@ const Profile = ({ theme }: Props) => {
     <View style={[styles.root, { backgroundColor: theme.colors.background }]}>
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.main}>
-          <H3>{user?.name}</H3>
-          <PublicProfileForm />
           <View style={styles.businessCardContainer}>
             <BusinessCard member={user as UserModel} />
           </View>
+          <H3>{user?.name}</H3>
+          <PublicProfileForm />
         </View>
       </ScrollView>
     </View>
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     flexGrow: 1,
+    paddingHorizontal: 20,
   },
   main: {
     marginTop: 40,
