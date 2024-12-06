@@ -17,7 +17,7 @@ export function IconCamera(props: Props) {
       color={props.color ?? "rgba(65, 65, 67, 1)"}
       width={props.width ?? "20"}
       height={"20"}
-      {...props}>
+      testID={props.testID}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -34,7 +34,7 @@ export function ArrowRight(props: Props) {
       height={props.height || "25"}
       viewBox="0 0 25 25"
       fill={props.fill || "none"}
-      {...props}>
+      testID={props.testID}>
       <Path
         d="M12.5 4.5L11.09 5.91L16.67 11.5H4.5V13.5H16.67L11.09 19.09L12.5 20.5L20.5 12.5L12.5 4.5Z"
         fill={props.color || props.fill || "white"}
@@ -50,7 +50,7 @@ export function Tick(props: Props) {
       height="12"
       viewBox="0 0 14 12"
       color={colors.teal}
-      {...props}>
+      testID={props.testID}>
       <Path
         d="M4.91995 7.55559C4.63928 7.83597 4.18451 7.83585 3.90399 7.55533L2.30551 5.95686C2.02532 5.67667 1.57119 5.67618 1.29039 5.95576L0.455622 6.78693C0.173964 7.06738 0.173472 7.5232 0.454523 7.80425L3.90372 11.2535C4.18435 11.5341 4.63932 11.5341 4.91995 11.2535L13.492 2.68143C13.7726 2.40081 13.7726 1.94583 13.492 1.66521L12.6627 0.835974C12.3822 0.555454 11.9274 0.555337 11.6468 0.835712L4.91995 7.55559Z"
         fill={props.color || props.fill || "white"}
@@ -65,7 +65,8 @@ export function AllBrightVector(props: Props) {
       width={props.width ?? "200"}
       height={props.height ?? "200"}
       viewBox="0 0 1903 1716"
-      fill="none">
+      fill="none"
+      testID={props.testID}>
       <Path
         d="M1902 1696.88V1690.97C1744.73 1690.97 1657.3 1557.95 1532.72 1285.17L949.464 0L423.753 1227.8H431.854L733.257 524.755L1067.62 1306.26C1151.7 1502.84 1174.61 1691.25 967.062 1691.25V1697.16H1902.28L1902 1696.88ZM285.482 1412.28C72.0688 1293.05 0 1469.93 0 1555.42C0 1640.91 103.354 1715.72 253.917 1715.72C413.418 1715.72 644.987 1633.88 782.141 1510.99L776.555 1507.05C605.88 1628.54 325.706 1434.5 285.482 1412"
         fill={props.color}
@@ -133,12 +134,13 @@ export function Location(props: Props) {
       width="20"
       height="20"
       fill={props.color}
-      {...props}>
+      testID={props.testID}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
         d="M3.75 6.75A5.246 5.246 0 019 1.5a5.246 5.246 0 015.25 5.25C14.25 10.688 9 16.5 9 16.5s-5.25-5.813-5.25-9.75zm3.375 0a1.876 1.876 0 103.751-.001 1.876 1.876 0 00-3.751.001z"
-        fill={props.color}></Path>
+        fill={props.color}
+      />
     </Svg>
   );
 }
