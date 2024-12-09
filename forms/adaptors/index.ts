@@ -93,6 +93,30 @@ export type RegisterProfileOutput = {
   city?: (typeof cities)[number]["city"];
 };
 
+export type AccountProfileInput = {
+  profile_image: ProfileImage;
+  country: string;
+  city: (typeof cities)[number]["city"];
+  jobTitle: string;
+  jobCompany: string;
+  jobLevel: (typeof jobLevels)[number];
+  jobIndustry: string;
+  goals: (typeof goals)[number][];
+  interests: InterestTitles;
+};
+
+export type AccountProfileOutput = {
+  imageSrc?: string | null;
+  country: string;
+  city: (typeof cities)[number]["city"];
+  jobTitle: string;
+  jobCompany: string;
+  jobLevel?: (typeof jobLevels)[number];
+  jobIndustry: string;
+  goals: (typeof goals)[number][];
+  interests: InterestTitles;
+};
+
 export const publicProfileAdaptor = (postBody: PublicProfileInput): PublicProfileOutput => ({
   city: postBody.city,
   jobTitle: postBody.jobTitle,
@@ -117,6 +141,17 @@ export const privateProfileAdaptor = (postBody: PrivateProfileInput): PrivatePro
   organisationSize: postBody.organisationSize,
   dateOfBirth: postBody.dateOfBirth,
   ethnicGroups: postBody.ethnicGroups.map((e) => e.value),
+});
+
+export const accountProfileAdaptor = (postBody: AccountProfileInput): AccountProfileOutput => ({
+  city: postBody.city,
+  country: postBody.country,
+  jobTitle: postBody.jobTitle,
+  jobCompany: postBody.jobCompany,
+  jobLevel: postBody.jobLevel,
+  jobIndustry: postBody.jobIndustry,
+  goals: postBody.goals,
+  interests: postBody.interests,
 });
 
 export const profileGoalsAdapter = (postBody: ProfileGoalsInput): ProfileGoalsOutput => ({
