@@ -38,8 +38,6 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCareerGoals]);
 
-  console.log(inputs.careerGoals, errors.careerGoals);
-
   const onPress = async () => {
     try {
       if (!validateAllInputs()) throw new Error("Please fill out all required fields");

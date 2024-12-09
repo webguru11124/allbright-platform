@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
+import Placeholder from "@/components/Placeholder";
 import { H3 } from "@/components/Typography";
 import { UserContext } from "@/contexts/UserContext";
 import BusinessCard from "@/features/BusinessCard";
-import PublicProfileForm from "@/forms/PublicProfileForm";
+import AccountProfileForm from "@/forms/AccountProfileForm";
 import withTheme from "@/hocs/withTheme";
 import { UserModel } from "@/types/user";
 
@@ -21,11 +22,16 @@ const Profile = ({ theme }: Props) => {
     <View style={[styles.root, { backgroundColor: theme.colors.background }]}>
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.main}>
-          <View style={styles.businessCardContainer}>
-            <BusinessCard member={user as UserModel} />
+          <View style={styles.article}>
+            <H3>{user?.name}</H3>
+            <AccountProfileForm />
           </View>
-          <H3>{user?.name}</H3>
-          <PublicProfileForm />
+          <View style={styles.aside}>
+            <View style={styles.businessCardContainer}>
+              <BusinessCard member={user as UserModel} />
+            </View>
+            <Placeholder placeholderText="Sidebar" />
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -42,16 +48,21 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     flexGrow: 1,
-    paddingHorizontal: 20,
   },
   main: {
+    flexDirection: "row",
+    justifyContent: "center",
     marginTop: 40,
-    marginHorizontal: 20,
+  },
+  article: {},
+  aside: {
+    width: 300,
+    marginLeft: 20,
   },
   businessCardContainer: {
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 20,
+    marginBottom: 20,
   },
 });
 

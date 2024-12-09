@@ -14,12 +14,14 @@ export type UserModel = {
   firstName: string;
   lastName: string;
   name: string;
+  displayName?: string;
   email: string;
   stripeCustomerId: string;
   lastActiveAt: number;
   businessCardColor: string;
   displayPhoto?: boolean;
   roles: (typeof Roles)[number][];
+  updatedAt?: number;
   createdAt: number;
   salary: string;
   jobStatus: (typeof jobStatus)[number] | null;
