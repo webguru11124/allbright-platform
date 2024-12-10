@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 
 import { CS } from "@/components/Typography";
 import Button from "@/forms/components/Button";
@@ -31,7 +31,14 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     justifyContent: "center",
-    paddingHorizontal: "20%",
+    ...Platform.select({
+      native: {
+        paddingHorizontal: "20%",
+      },
+      default: {
+        paddingHorizontal: "40%",
+      },
+    }),
   },
   textContainer: {
     marginBottom: 10,
