@@ -98,7 +98,7 @@ const AccountProfileForm = ({ inputs, errors, blurFuncs, changeTextFuncs, isPend
       isLoading={isPending}
       onPress={onPress}
       testID="AccountProfileForm:Submit">
-      Save Changes
+      Save Changes...
     </Button>
   </SafeAreaView>
 );

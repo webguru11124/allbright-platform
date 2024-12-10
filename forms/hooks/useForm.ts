@@ -1,8 +1,6 @@
 import Joi from "joi";
 import _ from "lodash";
 import { useCallback, useMemo, useState } from "react";
-import { Platform } from "react-native";
-import Toast from "react-native-root-toast";
 
 import useTheme from "@/hooks/useTheme";
 
@@ -93,22 +91,23 @@ const useForm = (baseSchema: Joi.PartialSchemaMap<any> | undefined, settings: Se
   };
 
   const showToastMessage = (message: string, color: string) => {
-    Toast.show(message, {
-      duration: 10000,
-      backgroundColor: color,
-      hideOnPress: true,
-      opacity: 1,
-      ...Platform.select({
-        web: {
-          position: 92,
-          containerStyle: { minWidth: 500 },
-        },
-        default: {
-          position: Toast.positions.TOP,
-          containerStyle: { minWidth: "auto" },
-        },
-      }),
-    });
+    console.log(message);
+    // Toast.show(message, {
+    //   duration: 10000,
+    //   backgroundColor: color,
+    //   hideOnPress: true,
+    //   opacity: 1,
+    //   ...Platform.select({
+    //     web: {
+    //       position: 92,
+    //       containerStyle: { minWidth: 500 },
+    //     },
+    //     default: {
+    //       position: Toast.positions.TOP,
+    //       containerStyle: { minWidth: "auto" },
+    //     },
+    //   }),
+    // });
   };
 
   return {
