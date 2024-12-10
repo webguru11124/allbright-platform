@@ -155,7 +155,7 @@ export const DarkTheme = {
       placeholder: "rgb(150,150,150)",
     },
     button: {
-      primary: "#FFF",
+      primary: "#000",
       background: "#00605C",
     },
     txt: {

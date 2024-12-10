@@ -20,7 +20,7 @@ export default function Layout() {
   return (
     <IsOnboarding>
       <Drawer
-        screenOptions={{ drawerHideStatusBarOnOpen: true }}
+        screenOptions={{ drawerHideStatusBarOnOpen: true, headerTintColor: theme.colors.primary }}
         drawerContent={(props) => {
           return (
             <>
