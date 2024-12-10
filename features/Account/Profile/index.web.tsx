@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
+    marginBottom: 50,
   },
   scroll: {
     flexDirection: "row",

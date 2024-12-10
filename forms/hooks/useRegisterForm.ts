@@ -33,7 +33,7 @@ const useRegisterForm = (registerSchema: Joi.PartialSchemaMap<any> | undefined) 
         onSuccess: ({ data }) => {
           if (data.success) setState(State.SIGNIN);
         },
-        onError: (error: any) => showErrorMessage(error.message),
+        onError: (error: any) => showErrorMessage("Error", error.message),
         onSettled: () => {
           registerCalled.current = false;
         },
@@ -48,7 +48,7 @@ const useRegisterForm = (registerSchema: Joi.PartialSchemaMap<any> | undefined) 
           setToken(response.data as unknown as string);
           setState(State.SUCCESS);
         },
-        onError: (error: any) => showErrorMessage(error.message),
+        onError: (error: any) => showErrorMessage("Error", error.message),
         onSettled: () => {
           signinCalled.current = false;
         },

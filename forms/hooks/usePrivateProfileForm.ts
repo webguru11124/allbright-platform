@@ -51,7 +51,7 @@ const usePrivateProfileForm = (privateProfileSchema: Joi.PartialSchemaMap<any>) 
       await mutateUpdateUserAsync({ ...output });
       router.push("/onboarding/profile-goals" as Href);
     } catch (error: any) {
-      showErrorMessage(error.message);
+      showErrorMessage("Error", error.message);
     } finally {
       setLoading(false);
     }

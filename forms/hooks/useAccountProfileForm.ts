@@ -1,4 +1,3 @@
-import { useRouter } from "expo-router";
 import * as Joi from "joi";
 import * as React from "react";
 import { useEffect } from "react";
@@ -9,6 +8,10 @@ import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate, useUserUpdateProfileImage } from "@/hooks/resources/useUserUpdate";
 import { LocalImageType } from "@/types/files/localImage";
 import { UserModel } from "@/types/user";
+
+// NOTE: Redo useShowToast and use Alert for Android/IOS and https://stackoverflow.com/a/72554509
+//       for web. Ensure the toast message works on all platforms.
+//       Remove toast from useForm if unneccessary...
 
 const useAccountProfileForm = (accountProfileSchema: Joi.PartialSchemaMap<any>) => {
   const { user, refetch } = React.useContext<{
@@ -25,6 +28,7 @@ const useAccountProfileForm = (accountProfileSchema: Joi.PartialSchemaMap<any>) 
     isFormValid,
     reset,
     validateAllInputs,
+    showSuccessMessage,
     showErrorMessage,
   } = useForm(accountProfileSchema, {});
 
@@ -46,10 +50,6 @@ const useAccountProfileForm = (accountProfileSchema: Joi.PartialSchemaMap<any>) 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const { mutateAsync: mutateUpdateUserProfileImageAsync } = useUserUpdateProfileImage();
   const [loading, setLoading] = React.useState(false);
-  const router = useRouter();
-
-  // NOTE: YOU ARE HERE!!! FIX UP
-  // NEED: AccountProfileInput AND accountProfileAdaptor
 
   const onPress = async () => {
     try {
@@ -72,9 +72,9 @@ const useAccountProfileForm = (accountProfileSchema: Joi.PartialSchemaMap<any>) 
 
       await mutateUpdateUserAsync({ ...output, imageSrc });
 
-      router.push("/onboarding/private-profile");
+      showSuccessMessage("Success", "Profile information updated successfully!");
     } catch (error: any) {
-      showErrorMessage(error.message);
+      showErrorMessage("Error", error.message);
     } finally {
       setLoading(false);
     }

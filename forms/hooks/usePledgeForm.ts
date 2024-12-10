@@ -48,7 +48,7 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
       await mutateUpdateUserAsync({ ...output });
       router.push("/onboarding/complete");
     } catch (error: any) {
-      showErrorMessage(error.message);
+      showErrorMessage("Error", error.message);
     } finally {
       setLoading(false);
     }

@@ -72,7 +72,7 @@ const colors = {
   plusColors: ["#50968D", "#617595", "#886BB7", "#834973", "#955C5C", "#D18D66", "#D3B137", "#6D8868"],
 };
 const alertColors = {
-  success: "#00605C",
+  success: "rgb(50, 150, 50)",
   danger: "#EB5757",
   warning: "#fff3cd",
   info: "#cff4fc",
@@ -126,6 +126,8 @@ export const DefaultTheme = {
     txt: {
       primo: "#DADCE1",
       placeholder: "#DADCE180",
+      dark: "#000000",
+      light: "#FFFFFF",
     },
     card: "rgb(255, 255, 255)",
     text: "rgb(28, 28, 30)",
@@ -153,12 +155,14 @@ export const DarkTheme = {
       placeholder: "rgb(150,150,150)",
     },
     button: {
-      primary: "#FFF",
+      primary: "#000",
       background: "#00605C",
     },
     txt: {
       primo: "#414143",
       placeholder: "#41414380",
+      dark: "#FFFFFF",
+      light: "#000000",
     },
     headerText: "rgb(255, 255, 255)",
   },

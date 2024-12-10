@@ -9,6 +9,7 @@ export type AppStartStyleProps = ViewProps & { marginBottom: number };
 
 export type EntryButtonsProps = {
   nameAnim: Animated.Value;
+  theme: Theme;
 };
 
 export type BackgroundImageMasonryProps = {
@@ -16,7 +17,7 @@ export type BackgroundImageMasonryProps = {
   heightOffset: number;
 };
 
-export type AppStartProps = EntryButtonsProps &
+export type AppStartProps = Omit<EntryButtonsProps, "theme"> &
   BackgroundImageMasonryProps & {
     animY: Animated.AnimatedInterpolation<string | number>;
     NOTCH: boolean;

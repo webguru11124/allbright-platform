@@ -4,6 +4,7 @@ import useAccountProfileForm from "@/forms/hooks/useAccountProfileForm";
 
 export const AccountProfileFormContainer = ({ ...rest }) => {
   const props = useAccountProfileForm(accountProfileSchema);
+
   return (
     <AccountProfileForm
       {...props}

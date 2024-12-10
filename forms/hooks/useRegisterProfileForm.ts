@@ -51,7 +51,7 @@ const useRegisterProfileForm = (registerProfileSchema: Joi.PartialSchemaMap<any>
 
       router.push("/onboarding/public-profile");
     } catch (error: any) {
-      showErrorMessage(error.message);
+      showErrorMessage("Error", error.message);
     } finally {
       setLoading(false);
     }

@@ -2,6 +2,7 @@ import { View } from "react-native";
 
 import AccountSettings from "@/features/Account/AccountSettings";
 import ContactUs from "@/features/Account/ContactUs";
+import Logout from "@/features/Account/Logout";
 import Membership from "@/features/Account/Membership";
 import Profile from "@/features/Account/Profile";
 import Tabs from "@/features/Tabs/index.web";
@@ -27,6 +28,11 @@ const tabs = [
     name: "Contact Us",
     component: <ContactUs />,
     key: "contact_us",
+  },
+  {
+    name: "Log Out",
+    component: <Logout />,
+    key: "log_out",
   },
 ];
 

@@ -4,7 +4,6 @@ import { useEffect } from "react";
 
 import IsAuthenticated from "@/components/IsAuthenticated";
 import useRootLayout from "@/hooks/useRootLayout";
-import Providers from "@/utils/providers";
 
 export default function RootLayout() {
   const [loaded, error] = useRootLayout();
@@ -21,9 +20,7 @@ export default function RootLayout() {
 
   return (
     <IsAuthenticated>
-      <Providers>
-        <Slot />
-      </Providers>
+      <Slot />
     </IsAuthenticated>
   );
 }

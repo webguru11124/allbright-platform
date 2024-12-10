@@ -17,7 +17,7 @@ const useLoginForm = (loginSchema: Joi.PartialSchemaMap<any> | undefined) => {
           setToken(response.data as unknown as string);
           router.replace("/home");
         },
-        onError: (error: any) => showErrorMessage(error.message),
+        onError: (error: any) => showErrorMessage("Error", error.message),
       });
     }
   };
