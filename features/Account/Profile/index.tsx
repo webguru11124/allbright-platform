@@ -4,7 +4,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 import { H3 } from "@/components/Typography";
 import { UserContext } from "@/contexts/UserContext";
 import BusinessCard from "@/features/BusinessCard";
-import PublicProfileForm from "@/forms/PublicProfileForm";
+import AccountProfileForm from "@/forms/AccountProfileForm";
 import withTheme from "@/hocs/withTheme";
 import { UserModel } from "@/types/user";
 
@@ -25,7 +25,7 @@ const Profile = ({ theme }: Props) => {
             <BusinessCard member={user as UserModel} />
           </View>
           <H3>{user?.name}</H3>
-          <PublicProfileForm />
+          <AccountProfileForm />
         </View>
       </ScrollView>
     </View>

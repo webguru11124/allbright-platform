@@ -33,7 +33,7 @@ const useOAuthLogin = (isSignup?: boolean) => {
         }
       }
     } catch (error: any) {
-      showErrorMessage(error.message);
+      showErrorMessage("Error", error.message);
     }
   };
 

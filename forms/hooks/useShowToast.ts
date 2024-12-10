@@ -1,17 +1,21 @@
-import useTheme from "@/hooks/useTheme";
+import Toast from "react-native-toast-message";
 
 export const useShowToast = () => {
-  const theme = useTheme();
-  const showToastMessage = (message: string, color: string) => {
-    console.log(message);
+  const showSuccessMessage = (title: string, message: string) => {
+    showToastMessage(title, message, "success");
   };
 
-  const showSuccessMessage = (message: string) => {
-    showToastMessage(message, theme.colors.alert.success);
+  const showErrorMessage = (title: string, message: string) => {
+    showToastMessage(title, message, "error");
   };
 
-  const showErrorMessage = (message: string) => {
-    showToastMessage(message, theme.colors.alert.danger);
+  const showToastMessage = (title: string, message: string, type: "success" | "error") => {
+    Toast.show({
+      type: type,
+      text1: title,
+      text2: message,
+    });
   };
+
   return { showSuccessMessage, showErrorMessage };
 };

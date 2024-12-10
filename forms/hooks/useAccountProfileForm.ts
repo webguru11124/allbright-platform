@@ -72,9 +72,9 @@ const useAccountProfileForm = (accountProfileSchema: Joi.PartialSchemaMap<any>) 
 
       await mutateUpdateUserAsync({ ...output, imageSrc });
 
-      showSuccessMessage("Profile information updated successfully!");
+      showSuccessMessage("Success", "Profile information updated successfully!");
     } catch (error: any) {
-      showErrorMessage(error.message);
+      showErrorMessage("Error", error.message);
     } finally {
       setLoading(false);
     }

@@ -1,8 +1,7 @@
 import Joi from "joi";
 import _ from "lodash";
 import { useCallback, useMemo, useState } from "react";
-
-import useTheme from "@/hooks/useTheme";
+import Toast from "react-native-toast-message";
 
 export type Settings = {
   omit?: string[];
@@ -12,7 +11,6 @@ export type Settings = {
 type EventType = { name: string; value: string | boolean };
 
 const useForm = (baseSchema: Joi.PartialSchemaMap<any> | undefined, settings: Settings = {}) => {
-  const theme = useTheme();
   const schema = Joi.object(baseSchema);
   const schemaKeys = Object.keys(baseSchema || {});
   const schemaInputs = _.chain(schemaKeys)
@@ -82,32 +80,20 @@ const useForm = (baseSchema: Joi.PartialSchemaMap<any> | undefined, settings: Se
 
   const postBody = useMemo(() => (settings?.omit ? _.omit(inputs, settings.omit) : inputs), [inputs, settings]);
 
-  const showSuccessMessage = (message: string) => {
-    showToastMessage(message, theme.colors.alert.success);
+  const showSuccessMessage = (title: string, message: string) => {
+    showToastMessage(title, message, "success");
   };
 
-  const showErrorMessage = (message: string) => {
-    showToastMessage(message, theme.colors.alert.danger);
+  const showErrorMessage = (title: string, message: string) => {
+    showToastMessage(title, message, "error");
   };
 
-  const showToastMessage = (message: string, color: string) => {
-    console.log(message);
-    // Toast.show(message, {
-    //   duration: 10000,
-    //   backgroundColor: color,
-    //   hideOnPress: true,
-    //   opacity: 1,
-    //   ...Platform.select({
-    //     web: {
-    //       position: 92,
-    //       containerStyle: { minWidth: 500 },
-    //     },
-    //     default: {
-    //       position: Toast.positions.TOP,
-    //       containerStyle: { minWidth: "auto" },
-    //     },
-    //   }),
-    // });
+  const showToastMessage = (title: string, message: string, type: "success" | "error") => {
+    Toast.show({
+      type: type,
+      text1: title,
+      text2: message,
+    });
   };
 
   return {

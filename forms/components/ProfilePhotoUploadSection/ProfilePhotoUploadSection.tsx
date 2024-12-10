@@ -66,6 +66,7 @@ const ProfilePhotoUploadSection = ({
 const ArrowButton = styled(Button)`
   padding-left: 20px;
   padding-right: 20px;
+  padding-top: 5px;
 `;
 const CMMarginBottom = styled(CM)`
   margin-bottom: 20px;

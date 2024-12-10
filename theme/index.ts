@@ -72,7 +72,7 @@ const colors = {
   plusColors: ["#50968D", "#617595", "#886BB7", "#834973", "#955C5C", "#D18D66", "#D3B137", "#6D8868"],
 };
 const alertColors = {
-  success: "#00605C",
+  success: "rgb(50, 150, 50)",
   danger: "#EB5757",
   warning: "#fff3cd",
   info: "#cff4fc",
