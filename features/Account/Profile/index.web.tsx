@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 40,
   },
-  article: {},
+  article: { width: 660 },
   aside: {
     width: 300,
     marginLeft: 20,
