@@ -1,6 +1,7 @@
 import { SafeAreaView } from "react-native";
 
 import Space from "@/components/Space";
+import Toast from "@/components/Toast";
 import Button from "@/forms/components/Button";
 import CityPicker from "@/forms/components/CityPicker";
 import CountryPicker from "@/forms/components/CountryPicker";
@@ -14,6 +15,10 @@ import { FormProps } from "@/forms/types/forms.types";
 
 const AccountProfileForm = ({ inputs, errors, blurFuncs, changeTextFuncs, isPending, onPress }: FormProps) => (
   <SafeAreaView>
+    <Toast
+      type={"success"}
+      message={"Well done!"}
+    />
     <Space height={10} />
     <ProfilePhotoUploadSection
       value={inputs.profile_image}

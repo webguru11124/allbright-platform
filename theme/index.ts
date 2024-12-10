@@ -126,6 +126,8 @@ export const DefaultTheme = {
     txt: {
       primo: "#DADCE1",
       placeholder: "#DADCE180",
+      dark: "#000000",
+      light: "#FFFFFF",
     },
     card: "rgb(255, 255, 255)",
     text: "rgb(28, 28, 30)",
@@ -159,6 +161,8 @@ export const DarkTheme = {
     txt: {
       primo: "#414143",
       placeholder: "#41414380",
+      dark: "#FFFFFF",
+      light: "#000000",
     },
     headerText: "rgb(255, 255, 255)",
   },

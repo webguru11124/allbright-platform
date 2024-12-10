@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { UserContext } from "@/contexts/UserContext";
 import { publicProfileAdaptor, PublicProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
-import { useShowToast } from "@/forms/hooks/useShowToast";
 import { useUserUpdate, useUserUpdateProfileImage } from "@/hooks/resources/useUserUpdate";
 import { LocalImageType } from "@/types/files/localImage";
 import { UserModel } from "@/types/user";
@@ -15,17 +14,23 @@ import { UserModel } from "@/types/user";
 //       Remove toast from useForm if unneccessary...
 
 const useAccountProfileForm = (accountProfileSchema: Joi.PartialSchemaMap<any>) => {
-  const { showSuccessMessage, showErrorMessage } = useShowToast();
-
   const { user, refetch } = React.useContext<{
     user: Partial<UserModel> | undefined;
     refetch: Function;
   }>(UserContext);
 
-  const { inputs, errors, blurFuncs, changeTextFuncs, postBody, isFormValid, reset, validateAllInputs } = useForm(
-    accountProfileSchema,
-    {}
-  );
+  const {
+    inputs,
+    errors,
+    blurFuncs,
+    changeTextFuncs,
+    postBody,
+    isFormValid,
+    reset,
+    validateAllInputs,
+    showSuccessMessage,
+    showErrorMessage,
+  } = useForm(accountProfileSchema, {});
 
   useEffect(() => {
     if (user) {
