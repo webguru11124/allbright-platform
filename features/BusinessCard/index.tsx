@@ -31,7 +31,7 @@ const BusinessCardContainer: FunctionComponent<Props> = ({ member, theme }) => {
     .join(" • ");
   const goals = (card.goals || []).filter((item) => GOALS.includes(stripTags(item))).join(" • ");
 
-  const textColor = whiteTextColours.includes(stripTags(card.businessCardColor))
+  const textColor = whiteTextColours.includes(stripTags(card.businessCardColour))
     ? theme.colors.background
     : theme.colors.text;
 

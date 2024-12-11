@@ -30,7 +30,7 @@ export const mockUser: UserModel = {
   isClub: faker.helpers.arrayElement([true, false]),
   updatedAt: new Date().getUTCDate(),
   createdAt: new Date().getUTCDate(),
-  businessCardColor: "",
+  businessCardColour: "",
   roles: [],
   salary: "",
   jobStatus: null,

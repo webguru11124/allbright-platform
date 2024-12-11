@@ -6,7 +6,7 @@ export const businessCardAdaptor = (user: UserModel): BusinessCard => {
     id: user.id || user.uid,
     displayName: user.name || `${user.firstName} ${user.lastName}`,
     imageSrc: user.imageSrc || user.profileImageUrl,
-    businessCardColor: user?.businessCardColor || "#FFFFFF",
+    businessCardColour: user?.businessCardColour || "#FFFFFF",
     location: `${[user.city, user.country].filter(Boolean).join(", ")}` || user.location,
     job: user.jobTitle,
     jobLevel: user.jobLevel,

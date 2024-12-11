@@ -3,7 +3,7 @@ import { InterestTitles } from "@/utils/data/interests";
 
 export type BusinessCard = {
   displayName: string;
-  businessCardColor: string;
+  businessCardColour: string;
   location?: string;
   job?: string;
   jobLevel?: string;
