@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
-import { Animated, Pressable, StyleProp, StyleSheet, View, ViewProps } from "react-native";
+import React from "react";
+import { StyleProp, StyleSheet, View, ViewProps } from "react-native";
 
+import AnimatedPressable from "@/components/AnimatedPressable";
 import withTheme from "@/hocs/withTheme";
 
 type Props = {
@@ -31,49 +32,18 @@ const ColourSquares = ({ setValue, theme, style }: Props) => {
     <View style={[styles.root, style]}>
       <View style={[styles.main]}>
         {cardColours.map((colour) => (
-          <ColourSquare
+          <AnimatedPressable
+            type={"scaleOnHover"}
+            containerStyle={[styles.cardContainer]}
+            pressableStyle={[styles.cardSquare, { backgroundColor: colour.hex }]}
+            onPress={() => handleClick(colour)}
             key={colour.hex}
-            colour={colour}
-            onPress={handleClick}
+            testID={colour.hex}
           />
         ))}
       </View>
       <View style={[styles.linkContainer]}></View>
     </View>
-  );
-};
-
-const ColourSquare = ({ colour, onPress }: { colour: { hex: string }; onPress: Function }) => {
-  const scaleValue = useRef(new Animated.Value(1)).current;
-
-  const scaleUp = () => {
-    Animated.timing(scaleValue, {
-      toValue: 1.1,
-      duration: 250,
-      useNativeDriver: false,
-    }).start();
-  };
-
-  const scaleDown = () => {
-    Animated.timing(scaleValue, {
-      toValue: 1,
-      duration: 250,
-      useNativeDriver: false,
-    }).start();
-  };
-
-  return (
-    <Animated.View
-      key={colour.hex}
-      style={[styles.cardContainer, { transform: [{ scale: scaleValue }] }]}>
-      <Pressable
-        onPress={() => onPress(colour)}
-        onHoverIn={scaleUp}
-        onHoverOut={scaleDown}
-        style={[styles.cardSquare, { backgroundColor: colour.hex }]}
-        testID={colour.hex}
-      />
-    </Animated.View>
   );
 };
 
