@@ -1,6 +1,6 @@
 import { renderRouter, screen } from "expo-router/testing-library";
 
-import Connect from "@/features/Connect";
+import Connect from "@/features/Connect/Connect";
 import Providers from "@/utils/providers";
 
 describe("Connect", () => {

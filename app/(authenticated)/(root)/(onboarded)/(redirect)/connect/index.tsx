@@ -1,5 +1,5 @@
-import Placeholder from "@/components/Placeholder";
+import Connect from "@/features/Connect/Connect";
 
 export default function Index() {
-  return <Placeholder placeholderText="Connect" />;
+  return <Connect />;
 }
