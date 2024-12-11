@@ -27,10 +27,11 @@ export default function Layout() {
               <View
                 style={{
                   backgroundColor: theme.colors.background,
-                  padding: 20,
                   flexDirection: "row",
-                  alignItems: "center",
                   justifyContent: "flex-start",
+                  alignItems: "center",
+                  padding: 20,
+                  paddingTop: 100,
                 }}>
                 <TabImage
                   imageSrc={user?.imageSrc}
