@@ -1,34 +1,38 @@
-import { useContext } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
+import ColourSquares from "@/components/ColourSquares";
 import Placeholder from "@/components/Placeholder";
 import { H3 } from "@/components/Typography";
-import { UserContext } from "@/contexts/UserContext";
 import BusinessCard from "@/features/BusinessCard";
-import AccountProfileForm from "@/forms/AccountProfileForm";
+import AccountProfileForm from "@/forms/AccountProfileForm/AccountProfileForm";
+import { FormProps } from "@/forms/types/forms.types";
 import withTheme from "@/hocs/withTheme";
 import { UserModel } from "@/types/user";
 
 type Props = {
   theme: Theme;
+  user: Partial<UserModel> | undefined;
+  formProps: FormProps;
 };
 
-const Profile = ({ theme }: Props) => {
-  const { user } = useContext<{
-    user: Partial<UserModel> | undefined;
-    refetch: Function;
-  }>(UserContext);
+const Profile = ({ theme, user, formProps }: Props) => {
   return (
     <View style={[styles.root, { backgroundColor: theme.colors.background }]}>
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.main}>
           <View style={styles.article}>
             <H3>{user?.name}</H3>
-            <AccountProfileForm />
+            <AccountProfileForm {...formProps} />
           </View>
           <View style={styles.aside}>
             <View style={styles.businessCardContainer}>
-              <BusinessCard member={user as UserModel} />
+              <BusinessCard
+                member={{ ...user, businessCardColour: formProps.inputs.businessCardColour } as UserModel}
+              />
+              <ColourSquares
+                style={{ marginTop: 20 }}
+                setValue={(val) => formProps.changeTextFuncs.businessCardColour(val)}
+              />
             </View>
             <Placeholder placeholderText="Sidebar" />
           </View>

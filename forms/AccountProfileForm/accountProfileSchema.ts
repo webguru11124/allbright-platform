@@ -41,6 +41,7 @@ export const accountProfileSchema = {
       "any.required": "You must select at least one goal.",
     }),
   interests: Joi.array().min(1).required(),
+  businessCardColour: Joi.string().allow(null),
 };
 
 export default accountProfileSchema;
