@@ -1,20 +1,19 @@
 import React, { useContext } from "react";
 
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
-import ProfileDesktop from "@/features/Account/Profile/Profile_Desktop";
-import ProfileMobile from "@/features/Account/Profile/Profile_Mobile";
-import { FormProps } from "@/forms/types/forms.types";
 import withTheme from "@/hocs/withTheme";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 import { UserModel } from "@/types/user";
 
+import MemberDesktop from "./Member_Desktop";
+import MemberMobile from "./Member_Mobile";
+
 type Props = {
   theme: Theme;
-  user: Partial<UserModel> | undefined;
-  formProps: FormProps;
+  user: UserModel;
 };
 
-const Profile = ({ theme, user, formProps }: Props) => {
+const Member = ({ user, theme }: Props) => {
   const { maxWidth, currentWidth } = useContext<MediaQuery>(MediaQueryContext);
 
   const showCompactDisplay = React.useMemo(
@@ -23,18 +22,16 @@ const Profile = ({ theme, user, formProps }: Props) => {
   );
 
   return showCompactDisplay ? (
-    <ProfileMobile
-      theme={theme}
+    <MemberMobile
       user={user}
-      formProps={formProps}
+      theme={theme}
     />
   ) : (
-    <ProfileDesktop
-      theme={theme}
+    <MemberDesktop
       user={user}
-      formProps={formProps}
+      theme={theme}
     />
   );
 };
 
-export default withTheme(Profile);
+export default withTheme(Member);

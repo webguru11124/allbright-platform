@@ -1,7 +1,6 @@
-import { Image } from "expo-image";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable } from "react-native";
 
-import { H4 } from "@/components/Typography";
+import ImageOrInitials from "@/components/ImageOrInitials";
 import { Metrics } from "@/constants/Metrics";
 
 type Props = {
@@ -13,35 +12,14 @@ type Props = {
 
 const TabImage = ({ theme, imageSrc, initials, onPress }: Props) => (
   <Pressable onPress={onPress}>
-    {Boolean(imageSrc) ? (
-      <Image
-        style={styles.img}
-        source={imageSrc}
-      />
-    ) : (
-      <View style={[styles.initialsContainer, { backgroundColor: theme.colors.background }]}>
-        <H4 style={styles.initials}>{initials}</H4>
-      </View>
-    )}
+    <ImageOrInitials
+      theme={theme}
+      imageSrc={imageSrc}
+      initials={initials}
+      height={Metrics.navbar.userImageHeight}
+      width={Metrics.navbar.userImageHeight}
+    />
   </Pressable>
 );
-
-const styles = StyleSheet.create({
-  img: {
-    height: Metrics.navbar.userImageHeight,
-    width: Metrics.navbar.userImageHeight,
-    borderRadius: Metrics.navbar.userImageHeight / 2,
-  },
-  initialsContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    height: Metrics.navbar.userImageHeight,
-    width: Metrics.navbar.userImageHeight,
-    borderRadius: Metrics.navbar.userImageHeight / 2,
-  },
-  initials: {
-    fontWeight: 100,
-  },
-});
 
 export default TabImage;
