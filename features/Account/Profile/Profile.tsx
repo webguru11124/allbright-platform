@@ -2,12 +2,12 @@ import { ScrollView, StyleSheet, View } from "react-native";
 
 import ColourSquares from "@/components/ColourSquares";
 import Space from "@/components/Space";
-import { H3 } from "@/components/Typography";
 import BusinessCard from "@/features/BusinessCard";
 import {
   AccountProfileFormBio,
   AccountProfileFormButton,
   AccountProfileFormPersonal,
+  AccountProfileFormPhoto,
   AccountProfileFormSocialMedia,
 } from "@/forms/AccountProfileForm/AccountProfileForm";
 import { FormProps } from "@/forms/types/forms.types";
@@ -31,8 +31,9 @@ const Profile = ({ theme, user, formProps }: Props) => (
             setValue={(val) => formProps.changeTextFuncs.businessCardColour(val)}
           />
         </View>
-        <H3>{user?.name}</H3>
         <View style={styles.inputsContainer}>
+          <Space height={10} />
+          <AccountProfileFormPhoto {...formProps} />
           <Space height={10} />
           <AccountProfileFormPersonal {...formProps} />
           <Space height={10} />

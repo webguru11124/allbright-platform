@@ -1,4 +1,4 @@
-import { ActivityIndicator, ButtonProps } from "react-native";
+import { ActivityIndicator, ButtonProps, StyleProp } from "react-native";
 import styled from "styled-components/native";
 
 import { CM } from "@/components/Typography";
@@ -8,11 +8,13 @@ type Props = Omit<ButtonProps, "title"> & {
   isLoading?: boolean;
   theme: Theme;
   children: React.ReactNode;
+  style?: StyleProp<LayoutProps>;
 };
 
-const Button = ({ disabled, theme, ...props }: Props) => {
+const Button = ({ disabled, theme, style, ...props }: Props) => {
   return (
     <StyledPressable
+      style={[style]}
       disabled={disabled || props.isLoading}
       onPress={props.onPress}
       theme={theme}

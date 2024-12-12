@@ -1,17 +1,22 @@
+import React, { useContext } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 import ColourSquares from "@/components/ColourSquares";
+import Column from "@/components/Column";
 import Space from "@/components/Space";
-import { H3 } from "@/components/Typography";
+import { CS } from "@/components/Typography";
+import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import BusinessCard from "@/features/BusinessCard";
 import {
   AccountProfileFormBio,
   AccountProfileFormButton,
   AccountProfileFormPersonal,
+  AccountProfileFormPhoto,
   AccountProfileFormSocialMedia,
 } from "@/forms/AccountProfileForm/AccountProfileForm";
 import { FormProps } from "@/forms/types/forms.types";
 import withTheme from "@/hocs/withTheme";
+import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 import { UserModel } from "@/types/user";
 
 type Props = {
@@ -21,38 +26,107 @@ type Props = {
 };
 
 const Profile = ({ theme, user, formProps }: Props) => {
-  return (
-    <View style={[styles.root, { backgroundColor: theme.colors.background }]}>
-      <ScrollView contentContainerStyle={styles.scroll}>
-        <View style={styles.main}>
-          <View style={styles.article}>
-            <H3>{user?.name}</H3>
-            <AccountProfileFormPersonal {...formProps} />
+  const { maxWidth, currentWidth } = useContext<MediaQuery>(MediaQueryContext);
+
+  const showAsSingleColumn = React.useMemo(
+    () => (Boolean(currentWidth) ? maxWidth(BREAKPOINT_TABLET) : false),
+    [maxWidth, currentWidth]
+  );
+
+  return showAsSingleColumn ? (
+    <ProfileTablet
+      theme={theme}
+      user={user}
+      formProps={formProps}
+    />
+  ) : (
+    <ProfileDesktop
+      theme={theme}
+      user={user}
+      formProps={formProps}
+    />
+  );
+};
+
+const ProfileDesktop = ({ theme, user, formProps }: Props) => (
+  <View style={[styles.root, { backgroundColor: theme.colors.background }]}>
+    <ScrollView contentContainerStyle={styles.scroll}>
+      <View style={[styles.main]}>
+        <View style={[styles.article]}>
+          <AccountProfileFormPhoto {...formProps} />
+          <View style={styles.profileAppearanceContainer}>
+            <Column style={{ width: "50%", alignItems: "flex-start" }}>
+              <CS style={{ textDecorationLine: "underline" }}>View Profile Appearance</CS>
+            </Column>
+            <Column style={{ width: "50%", alignItems: "flex-end" }}>
+              <AccountProfileFormButton
+                style={{ width: 250 }}
+                {...formProps}
+              />
+            </Column>
           </View>
-          <View style={styles.aside}>
-            <View style={styles.businessCardContainer}>
-              <BusinessCard
-                member={{ ...user, businessCardColour: formProps.inputs.businessCardColour } as UserModel}
-              />
-              <ColourSquares
-                style={{ marginTop: 20 }}
-                setValue={(val) => formProps.changeTextFuncs.businessCardColour(val)}
-              />
-              <View style={styles.inputsContainer}>
-                <Space height={10} />
-                <AccountProfileFormButton {...formProps} />
-                <Space height={10} />
-                <AccountProfileFormBio {...formProps} />
-                <Space height={10} />
-                <AccountProfileFormSocialMedia {...formProps} />
-              </View>
+          <Space height={20} />
+          <AccountProfileFormPersonal {...formProps} />
+        </View>
+        <View style={[styles.aside]}>
+          <View style={styles.businessCardContainer}>
+            <BusinessCard member={{ ...user, businessCardColour: formProps.inputs.businessCardColour } as UserModel} />
+            <ColourSquares
+              style={{ marginTop: 20 }}
+              setValue={(val) => formProps.changeTextFuncs.businessCardColour(val)}
+            />
+            <View style={styles.inputsContainer}>
+              <Space height={10} />
+              <AccountProfileFormBio {...formProps} />
+              <Space height={10} />
+              <AccountProfileFormSocialMedia {...formProps} />
+              <Space height={10} />
+              <AccountProfileFormButton {...formProps} />
             </View>
           </View>
         </View>
-      </ScrollView>
-    </View>
-  );
-};
+      </View>
+    </ScrollView>
+  </View>
+);
+
+const ProfileTablet = ({ theme, user, formProps }: Props) => (
+  <View style={[styles.root, { backgroundColor: theme.colors.background }]}>
+    <ScrollView contentContainerStyle={styles.scroll}>
+      <View style={[styles.main, { flexDirection: "column" }]}>
+        <View style={[styles.article, { width: "100%" }]}>
+          <View style={styles.businessCardContainer}>
+            <BusinessCard member={{ ...user, businessCardColour: formProps.inputs.businessCardColour } as UserModel} />
+            <ColourSquares
+              style={{ marginTop: 20 }}
+              setValue={(val) => formProps.changeTextFuncs.businessCardColour(val)}
+            />
+            <Space height={20} />
+          </View>
+          <AccountProfileFormPhoto {...formProps} />
+          <Space height={20} />
+          <View style={styles.profileAppearanceContainer}>
+            <Column style={{ width: "50%", alignItems: "flex-start" }}>
+              <CS style={{ textDecorationLine: "underline" }}>View Profile Appearance</CS>
+            </Column>
+          </View>
+          <Space height={20} />
+          <AccountProfileFormPersonal {...formProps} />
+        </View>
+        <View style={[styles.aside, { width: "100%" }]}>
+          <View style={styles.inputsContainer}>
+            <Space height={10} />
+            <AccountProfileFormBio {...formProps} />
+            <Space height={10} />
+            <AccountProfileFormSocialMedia {...formProps} />
+            <Space height={10} />
+            <AccountProfileFormButton {...formProps} />
+          </View>
+        </View>
+      </View>
+    </ScrollView>
+  </View>
+);
 
 const styles = StyleSheet.create({
   root: {
@@ -85,6 +159,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     gap: 10,
     width: "100%",
+  },
+  profileAppearanceContainer: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });
 

@@ -22,6 +22,16 @@ const AccountProfileForm = ({
   onPress,
 }: FormProps) => (
   <>
+    <AccountProfileFormPhoto
+      inputs={inputs}
+      errors={errors}
+      blurFuncs={blurFuncs}
+      changeTextFuncs={changeTextFuncs}
+      isPending={isPending}
+      onPress={onPress}
+      isFormValid={isFormValid}
+    />
+    <Space height={10} />
     <AccountProfileFormPersonal
       inputs={inputs}
       errors={errors}
@@ -64,13 +74,17 @@ const AccountProfileForm = ({
   </>
 );
 
-export const AccountProfileFormPersonal = ({ inputs, errors, blurFuncs, changeTextFuncs }: FormProps) => (
+export const AccountProfileFormPhoto = ({ inputs, changeTextFuncs }: FormProps) => (
   <SafeAreaView>
     <ProfilePhotoUploadSection
       value={inputs.profile_image}
       uploadProfileImage={changeTextFuncs.profile_image}
     />
-    <Space height={10} />
+  </SafeAreaView>
+);
+
+export const AccountProfileFormPersonal = ({ inputs, errors, blurFuncs, changeTextFuncs }: FormProps) => (
+  <SafeAreaView>
     <CountryPicker
       placeholder="Country"
       value={inputs.country}
@@ -209,9 +223,10 @@ export const AccountProfileFormBio = ({ inputs, errors, blurFuncs, changeTextFun
   </SafeAreaView>
 );
 
-export const AccountProfileFormButton = ({ isPending, onPress }: FormProps) => (
+export const AccountProfileFormButton = ({ isPending, onPress, style }: FormProps) => (
   <SafeAreaView>
     <Button
+      style={style}
       isLoading={isPending}
       onPress={onPress}
       testID="AccountProfileForm:Submit">
