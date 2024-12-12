@@ -12,9 +12,60 @@ import ProfilePhotoUploadSection from "@/forms/components/ProfilePhotoUploadSect
 import TextInput from "@/forms/components/TextInput";
 import { FormProps } from "@/forms/types/forms.types";
 
-const AccountProfileForm = ({ inputs, errors, blurFuncs, changeTextFuncs, isPending, onPress }: FormProps) => (
-  <SafeAreaView>
+const AccountProfileForm = ({
+  inputs,
+  errors,
+  blurFuncs,
+  changeTextFuncs,
+  isPending,
+  isFormValid,
+  onPress,
+}: FormProps) => (
+  <>
+    <AccountProfileFormPersonal
+      inputs={inputs}
+      errors={errors}
+      blurFuncs={blurFuncs}
+      changeTextFuncs={changeTextFuncs}
+      isPending={isPending}
+      onPress={onPress}
+      isFormValid={isFormValid}
+    />
     <Space height={10} />
+    <AccountProfileFormSocialMedia
+      inputs={inputs}
+      errors={errors}
+      blurFuncs={blurFuncs}
+      changeTextFuncs={changeTextFuncs}
+      isPending={isPending}
+      onPress={onPress}
+      isFormValid={isFormValid}
+    />
+    <Space height={10} />
+    <AccountProfileFormBio
+      inputs={inputs}
+      errors={errors}
+      blurFuncs={blurFuncs}
+      changeTextFuncs={changeTextFuncs}
+      isPending={isPending}
+      onPress={onPress}
+      isFormValid={isFormValid}
+    />
+    <Space height={50} />
+    <AccountProfileFormButton
+      inputs={inputs}
+      errors={errors}
+      blurFuncs={blurFuncs}
+      changeTextFuncs={changeTextFuncs}
+      isPending={isPending}
+      onPress={onPress}
+      isFormValid={isFormValid}
+    />
+  </>
+);
+
+export const AccountProfileFormPersonal = ({ inputs, errors, blurFuncs, changeTextFuncs }: FormProps) => (
+  <SafeAreaView>
     <ProfilePhotoUploadSection
       value={inputs.profile_image}
       uploadProfileImage={changeTextFuncs.profile_image}
@@ -92,8 +143,74 @@ const AccountProfileForm = ({ inputs, errors, blurFuncs, changeTextFuncs, isPend
       error={errors.interests}
       field={inputs.interests}
     />
-    <Space height={10} />
+  </SafeAreaView>
+);
 
+export const AccountProfileFormSocialMedia = ({ inputs, errors, blurFuncs, changeTextFuncs }: FormProps) => (
+  <SafeAreaView>
+    <Space height={10} />
+    <TextInput
+      placeholder={"Website"}
+      label={"Website"}
+      placeholderTextColor={"#ddd"}
+      inputMode="text"
+      textContentType="URL"
+      value={inputs.website}
+      error={errors.website}
+      onBlur={blurFuncs.website}
+      onChangeText={changeTextFuncs.website}
+      testID="Profile:Website"
+    />
+    <Space height={10} />
+    <TextInput
+      placeholder={"Instagram"}
+      label={"Instagram (@yourhandle)"}
+      placeholderTextColor={"#ddd"}
+      inputMode="text"
+      textContentType="URL"
+      value={inputs.instagram}
+      error={errors.instagram}
+      onBlur={blurFuncs.instagram}
+      onChangeText={changeTextFuncs.instagram}
+      testID="Profile:Instagram"
+    />
+    <Space height={10} />
+    <TextInput
+      placeholder={"LinkedIn"}
+      label={"LinkedIn"}
+      placeholderTextColor={"#ddd"}
+      inputMode="text"
+      textContentType="URL"
+      value={inputs.linkedin}
+      error={errors.linkedin}
+      onBlur={blurFuncs.linkedin}
+      onChangeText={changeTextFuncs.linkedin}
+      testID="Profile:LinkedIn"
+    />
+  </SafeAreaView>
+);
+
+export const AccountProfileFormBio = ({ inputs, errors, blurFuncs, changeTextFuncs }: FormProps) => (
+  <SafeAreaView>
+    <TextInput
+      placeholder={"Please enter your biography"}
+      label={"Biography*"}
+      placeholderTextColor={"#ddd"}
+      inputMode="text"
+      textContentType="none"
+      multiline
+      numberOfLines={10}
+      value={inputs.bio}
+      error={errors.bio}
+      onBlur={blurFuncs.bio}
+      onChangeText={changeTextFuncs.bio}
+      testID="Profile:UserBiography"
+    />
+  </SafeAreaView>
+);
+
+export const AccountProfileFormButton = ({ isPending, onPress }: FormProps) => (
+  <SafeAreaView>
     <Button
       isLoading={isPending}
       onPress={onPress}
