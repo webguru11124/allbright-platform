@@ -6,6 +6,7 @@ import Column from "@/components/Column";
 import Space from "@/components/Space";
 import { CS } from "@/components/Typography";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
+import ProfileMobile from "@/features/Account/Profile/Profile_Mobile";
 import BusinessCard from "@/features/BusinessCard";
 import {
   AccountProfileFormBio,
@@ -34,7 +35,7 @@ const Profile = ({ theme, user, formProps }: Props) => {
   );
 
   return showAsSingleColumn ? (
-    <ProfileTablet
+    <ProfileMobile
       theme={theme}
       user={user}
       formProps={formProps}
@@ -83,44 +84,6 @@ const ProfileDesktop = ({ theme, user, formProps }: Props) => (
               <Space height={10} />
               <AccountProfileFormButton {...formProps} />
             </View>
-          </View>
-        </View>
-      </View>
-    </ScrollView>
-  </View>
-);
-
-const ProfileTablet = ({ theme, user, formProps }: Props) => (
-  <View style={[styles.root, { backgroundColor: theme.colors.background }]}>
-    <ScrollView contentContainerStyle={styles.scroll}>
-      <View style={[styles.main, { flexDirection: "column" }]}>
-        <View style={[styles.article, { width: "100%" }]}>
-          <View style={styles.businessCardContainer}>
-            <BusinessCard member={{ ...user, businessCardColour: formProps.inputs.businessCardColour } as UserModel} />
-            <ColourSquares
-              style={{ marginTop: 20 }}
-              setValue={(val) => formProps.changeTextFuncs.businessCardColour(val)}
-            />
-            <Space height={20} />
-          </View>
-          <AccountProfileFormPhoto {...formProps} />
-          <Space height={20} />
-          <View style={styles.profileAppearanceContainer}>
-            <Column style={{ width: "50%", alignItems: "flex-start" }}>
-              <CS style={{ textDecorationLine: "underline" }}>View Profile Appearance</CS>
-            </Column>
-          </View>
-          <Space height={20} />
-          <AccountProfileFormPersonal {...formProps} />
-        </View>
-        <View style={[styles.aside, { width: "100%" }]}>
-          <View style={styles.inputsContainer}>
-            <Space height={10} />
-            <AccountProfileFormBio {...formProps} />
-            <Space height={10} />
-            <AccountProfileFormSocialMedia {...formProps} />
-            <Space height={10} />
-            <AccountProfileFormButton {...formProps} />
           </View>
         </View>
       </View>
