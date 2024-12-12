@@ -99,11 +99,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     flexGrow: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
+    paddingBottom: 20,
   },
   main: {
     marginTop: 40,
-    marginHorizontal: 20,
   },
   businessCardContainer: {
     justifyContent: "center",
