@@ -84,6 +84,9 @@ const PhotoUploadPosition = styled.View`
 `;
 
 const SelectPhotoText = styled.View`
+  width: 0;
+  flex-grow: 1;
+  flex: 1;
   margin-left: 8px;
 `;
 
