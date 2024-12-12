@@ -140,7 +140,7 @@ export const privateProfileAdaptor = (postBody: PrivateProfileInput): PrivatePro
   salary: postBody.salary,
   organisationSize: postBody.organisationSize,
   dateOfBirth: postBody.dateOfBirth,
-  ethnicGroups: postBody.ethnicGroups.map((e) => e.value),
+  ethnicGroups: postBody.ethnicGroups,
 });
 
 export const accountProfileAdaptor = (postBody: AccountProfileInput): AccountProfileOutput => ({
@@ -180,24 +180,5 @@ export type PrivateProfileOutput = {
   salary: string;
   organisationSize: (typeof organisationSize)[number] | null;
   dateOfBirth: Date;
-  ethnicGroups: string[];
-};
-
-export const ethnicGroupsAdapter = (ethnics: string[]): (typeof ethnicGroups)[number][] => {
-  const ethnicGroupsData: (typeof ethnicGroups)[number][] = [];
-  for (const ethnic of ethnics) {
-    if (ethnic === "Prefer not to say") {
-      ethnicGroupsData.push(ethnicGroups[0]);
-    } else {
-      const ethicGroup = ethnicGroups.find((e) => e.title === ethnic);
-      if (!ethicGroup)
-        ethnicGroupsData.push({
-          title: "Other",
-          value: ethnic as any,
-          id: "ca4564ca-55fd-11ee-8c99-0242ac120002",
-        });
-      else ethnicGroupsData.push(ethicGroup);
-    }
-  }
-  return ethnicGroupsData;
+  ethnicGroups: (typeof ethnicGroups)[number][];
 };

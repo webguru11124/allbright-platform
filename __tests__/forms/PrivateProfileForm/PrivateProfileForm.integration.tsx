@@ -81,7 +81,7 @@ describe("PrivateProfileForm", () => {
         salary: randomSalaryRange,
         organisationSize: randomOrgnizationSize,
         interests: randomInterests,
-        ethnicGroups: randomeEthnicGroups.map((e) => e.value),
+        ethnicGroups: randomeEthnicGroups,
         dateOfBirth: parseDateString(dateInput),
       });
       expect(screen).toHavePathname("/onboarding/profile-goals");
