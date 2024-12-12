@@ -25,6 +25,7 @@ export const mockUser: UserModel = {
     groupDirectMessages: false,
     marketing: true,
   },
+  ethnicGroups: [],
   lastActiveAt: new Date().getUTCDate(),
   isPaid: true,
   isClub: faker.helpers.arrayElement([true, false]),
