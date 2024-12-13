@@ -13,8 +13,7 @@ const MemberCardMobile = ({
   name,
   theme,
   imageSrc,
-  firstName,
-  lastName,
+  initials,
   occupation,
   location,
   bioFields,
@@ -28,7 +27,7 @@ const MemberCardMobile = ({
         <ImageOrInitials
           theme={theme}
           imageSrc={imageSrc}
-          initials={(firstName?.slice(0, 1) || "A") + (lastName?.slice(0, 1) || "B")}
+          initials={initials as string}
           height={150}
           width={150}
         />

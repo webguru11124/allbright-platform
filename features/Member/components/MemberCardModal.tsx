@@ -30,7 +30,7 @@ const Member = ({ user, showModal, setShowModal, theme }: Props) => {
     [showCompactDisplay]
   );
 
-  const { id, name, firstName, lastName, imageSrc, occupation, location, bioFields, lightBackground } = useMemberCard({
+  const { id, name, initials, imageSrc, occupation, location, bioFields, lightBackground } = useMemberCard({
     theme: theme,
     user: user as UserModel,
   });
@@ -55,8 +55,7 @@ const Member = ({ user, showModal, setShowModal, theme }: Props) => {
             lightBackground={lightBackground}
             id={id}
             name={name}
-            firstName={firstName}
-            lastName={lastName}
+            initials={initials}
             imageSrc={imageSrc}
             occupation={occupation}
             location={location}

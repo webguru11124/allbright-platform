@@ -13,7 +13,7 @@ type Props = {
 
 function MemberContainer({ userId, theme }: Props) {
   const { data } = useUserFetch({ id: userId });
-  const { id, name, firstName, lastName, imageSrc, occupation, location, bioFields, lightBackground } = useMemberCard({
+  const { id, name, initials, imageSrc, occupation, location, bioFields, lightBackground } = useMemberCard({
     theme: theme,
     user: data as UserModel,
   });
@@ -23,8 +23,7 @@ function MemberContainer({ userId, theme }: Props) {
       lightBackground={lightBackground}
       id={id}
       name={name}
-      firstName={firstName}
-      lastName={lastName}
+      initials={initials}
       imageSrc={imageSrc}
       occupation={occupation}
       location={location}

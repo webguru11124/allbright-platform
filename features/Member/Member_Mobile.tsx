@@ -3,20 +3,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 
 import BackButton from "@/components/BackButton";
 import MemberCardMobile from "@/features/Member/components/MemberCard_Mobile";
-import { BioField } from "@/features/Member/types";
-
-type Props = {
-  lightBackground: string;
-  id?: string;
-  name?: string;
-  imageSrc?: string | undefined | null;
-  firstName?: string;
-  lastName?: string;
-  occupation: string;
-  location: string;
-  bioFields: BioField[];
-  theme: Theme;
-};
+import { MemberCardProps } from "@/features/Member/types";
 
 const MemberMobile = ({
   lightBackground,
@@ -24,12 +11,11 @@ const MemberMobile = ({
   name,
   theme,
   imageSrc,
-  firstName,
-  lastName,
+  initials,
   occupation,
   location,
   bioFields,
-}: Props) => (
+}: MemberCardProps) => (
   <View style={[styles.root, { backgroundColor: theme.colors.background }]}>
     <ScrollView style={[styles.main]}>
       <BackButton onPress={() => router.back()} />
@@ -37,8 +23,7 @@ const MemberMobile = ({
         lightBackground={lightBackground}
         id={id}
         name={name}
-        firstName={firstName}
-        lastName={lastName}
+        initials={initials}
         imageSrc={imageSrc}
         occupation={occupation}
         location={location}

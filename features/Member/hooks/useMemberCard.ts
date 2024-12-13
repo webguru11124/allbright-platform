@@ -17,8 +17,7 @@ const useMemberCard = ({ user, theme }: Props) => {
 
   const id = user?.id;
   const name = user?.name;
-  const firstName = user?.firstName;
-  const lastName = user?.lastName;
+  const initials = (user?.firstName?.slice(0, 1) || "A") + (user?.lastName?.slice(0, 1) || "B");
   const imageSrc = user?.imageSrc;
 
   // @ts-ignore
@@ -49,7 +48,7 @@ const useMemberCard = ({ user, theme }: Props) => {
   ];
   const lightBackground = theme.colors.lightBackground;
 
-  return { id, name, firstName, lastName, imageSrc, occupation, location, bioFields, lightBackground };
+  return { id, name, initials, imageSrc, occupation, location, bioFields, lightBackground };
 };
 
 export default useMemberCard;

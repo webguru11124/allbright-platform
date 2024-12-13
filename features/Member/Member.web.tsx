@@ -1,25 +1,12 @@
 import React, { useContext } from "react";
 
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
-import { BioField } from "@/features/Member/types";
+import { MemberCardProps } from "@/features/Member/types";
 import withTheme from "@/hocs/withTheme";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 
 import MemberDesktop from "./Member_Desktop";
 import MemberMobile from "./Member_Mobile";
-
-type Props = {
-  lightBackground: string;
-  id?: string;
-  name?: string;
-  imageSrc?: string | undefined | null;
-  firstName?: string;
-  lastName?: string;
-  occupation: string;
-  location: string;
-  bioFields: BioField[];
-  theme: Theme;
-};
 
 const Member = ({
   lightBackground,
@@ -27,12 +14,11 @@ const Member = ({
   name,
   theme,
   imageSrc,
-  firstName,
-  lastName,
+  initials,
   occupation,
   location,
   bioFields,
-}: Props) => {
+}: MemberCardProps) => {
   const { maxWidth, currentWidth } = useContext<MediaQuery>(MediaQueryContext);
 
   const showCompactDisplay = React.useMemo(
@@ -45,8 +31,7 @@ const Member = ({
       lightBackground={lightBackground}
       id={id}
       name={name}
-      firstName={firstName}
-      lastName={lastName}
+      initials={initials}
       imageSrc={imageSrc}
       occupation={occupation}
       location={location}
@@ -58,8 +43,7 @@ const Member = ({
       lightBackground={lightBackground}
       id={id}
       name={name}
-      firstName={firstName}
-      lastName={lastName}
+      initials={initials}
       imageSrc={imageSrc}
       occupation={occupation}
       location={location}

@@ -19,8 +19,7 @@ export type MemberCardProps = {
   name?: string;
   theme: Theme;
   imageSrc?: string | undefined | null;
-  firstName?: string;
-  lastName?: string;
+  initials?: string;
   occupation: string;
   location: string;
   bioFields: BioField[];
