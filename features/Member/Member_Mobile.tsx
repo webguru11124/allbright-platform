@@ -12,7 +12,7 @@ type Props = {
 };
 
 const MemberMobile = ({ theme, user }: Props) => {
-  const { name, firstName, lastName, imageSrc, occupation, location, bioFields, lightBackground } = useMemberCard({
+  const { id, name, firstName, lastName, imageSrc, occupation, location, bioFields, lightBackground } = useMemberCard({
     theme: theme,
     user: user,
   });
@@ -23,6 +23,7 @@ const MemberMobile = ({ theme, user }: Props) => {
         <BackButton onPress={() => router.back()} />
         <MemberCardMobile
           lightBackground={lightBackground}
+          id={id}
           name={name}
           firstName={firstName}
           lastName={lastName}

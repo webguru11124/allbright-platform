@@ -14,6 +14,7 @@ const useMemberCard = ({ user, theme }: Props) => {
   const country = user?.country;
   const location = [city, country].filter((a) => a).join(", ");
 
+  const id = user?.id;
   const name = user?.name;
   const firstName = user?.firstName;
   const lastName = user?.lastName;
@@ -47,7 +48,7 @@ const useMemberCard = ({ user, theme }: Props) => {
   ];
   const lightBackground = theme.colors.lightBackground;
 
-  return { name, firstName, lastName, imageSrc, occupation, location, bioFields, lightBackground };
+  return { id, name, firstName, lastName, imageSrc, occupation, location, bioFields, lightBackground };
 };
 
 export default useMemberCard;

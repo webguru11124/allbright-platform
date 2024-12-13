@@ -24,6 +24,7 @@ type BioField = {
 
 type Props = {
   lightBackground: string;
+  id?: string;
   name?: string;
   theme: Theme;
   imageSrc?: string | undefined | null;
@@ -36,6 +37,7 @@ type Props = {
 
 const MemberCardDesktop = ({
   lightBackground,
+  id,
   name,
   theme,
   imageSrc,
@@ -48,7 +50,9 @@ const MemberCardDesktop = ({
   return (
     <View style={[styles.card, { backgroundColor: lightBackground }]}>
       <Column style={[{ width: "45%" }]}>
-        <H4>{name}</H4>
+        <Link href={`/member/${id}`}>
+          <H4 style={{ textDecorationLine: "underline" }}>{name}</H4>
+        </Link>
         <View style={styles.imageOrInitialsContainer}>
           <ImageOrInitials
             theme={theme}

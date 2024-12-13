@@ -23,6 +23,7 @@ type BioField = {
 
 type Props = {
   lightBackground: string;
+  id?: string;
   name?: string;
   theme: Theme;
   imageSrc?: string | undefined | null;
@@ -35,6 +36,7 @@ type Props = {
 
 const MemberCardMobile = ({
   lightBackground,
+  id,
   name,
   theme,
   imageSrc,
@@ -46,7 +48,9 @@ const MemberCardMobile = ({
 }: Props) => {
   return (
     <View style={[styles.card, { backgroundColor: lightBackground }]}>
-      <H4>{name}</H4>
+      <Link href={`/member/${id}`}>
+        <H4 style={{ textDecorationLine: "underline" }}>{name}</H4>
+      </Link>
       <View style={styles.imageOrInitialsContainer}>
         <ImageOrInitials
           theme={theme}
@@ -119,11 +123,10 @@ function BioRow({ index, info, evenRowColour, oddRowColour, title, isLink }: Bio
 
 const styles = StyleSheet.create({
   card: {
-    minWidth: 480,
-    flexDirection: "column",
+    minWidth: 380,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 40,
+    marginVertical: 40,
     paddingVertical: 20,
     borderRadius: 5,
     shadowColor: "#ddd",
@@ -134,19 +137,14 @@ const styles = StyleSheet.create({
   imageOrInitialsContainer: {
     marginVertical: 20,
   },
-  imageBackground: {
-    // marginRight: 50,
-  },
   bio: {
     position: "relative",
     justifyContent: "center",
     alignItems: "center",
-    flex: 1,
   },
   bioRow: {
     position: "relative",
-    width: 460,
-    paddingHorizontal: 10,
+    minWidth: 380,
     paddingVertical: 10,
   },
   rowColour: {

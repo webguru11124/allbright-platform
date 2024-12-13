@@ -30,7 +30,7 @@ const Member = ({ user, showModal, setShowModal, theme }: Props) => {
     [showCompactDisplay]
   );
 
-  const { name, firstName, lastName, imageSrc, occupation, location, bioFields, lightBackground } = useMemberCard({
+  const { id, name, firstName, lastName, imageSrc, occupation, location, bioFields, lightBackground } = useMemberCard({
     theme: theme,
     user: user as UserModel,
   });
@@ -53,6 +53,7 @@ const Member = ({ user, showModal, setShowModal, theme }: Props) => {
           </Pressable>
           <MemberCard
             lightBackground={lightBackground}
+            id={id}
             name={name}
             firstName={firstName}
             lastName={lastName}
@@ -70,12 +71,15 @@ const Member = ({ user, showModal, setShowModal, theme }: Props) => {
 
 const styles = StyleSheet.create({
   root: {
-    paddingHorizontal: 100,
     flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: "#00000025",
   },
   main: {
     backgroundColor: "transparent",
+    width: "80%",
+    maxWidth: 960,
   },
   iconContainer: {
     justifyContent: "center",
