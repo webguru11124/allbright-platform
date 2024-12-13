@@ -6,20 +6,7 @@ import Column from "@/components/Column";
 import ImageOrInitials from "@/components/ImageOrInitials";
 import Row from "@/components/Row";
 import { CL, CS, H4, H6 } from "@/components/Typography";
-import { BioField, BioRowProps } from "@/features/Member/types";
-
-type Props = {
-  lightBackground: string;
-  id?: string;
-  name?: string;
-  theme: Theme;
-  imageSrc?: string | undefined | null;
-  firstName?: string;
-  lastName?: string;
-  occupation: string;
-  location: string;
-  bioFields: BioField[];
-};
+import { BioRowProps, MemberCardProps } from "@/features/Member/types";
 
 const MemberCardDesktop = ({
   lightBackground,
@@ -32,7 +19,7 @@ const MemberCardDesktop = ({
   occupation,
   location,
   bioFields,
-}: Props) => {
+}: MemberCardProps) => {
   return (
     <View style={[styles.card, { backgroundColor: lightBackground }]}>
       <Column style={[{ width: "45%" }]}>

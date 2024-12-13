@@ -5,20 +5,7 @@ import { StyleSheet, View } from "react-native";
 import ImageOrInitials from "@/components/ImageOrInitials";
 import Row from "@/components/Row";
 import { CL, CS, H4, H6 } from "@/components/Typography";
-import { BioField, BioRowProps } from "@/features/Member/types";
-
-type Props = {
-  lightBackground: string;
-  id?: string;
-  name?: string;
-  theme: Theme;
-  imageSrc?: string | undefined | null;
-  firstName?: string;
-  lastName?: string;
-  occupation: string;
-  location: string;
-  bioFields: BioField[];
-};
+import { BioRowProps, MemberCardProps } from "@/features/Member/types";
 
 const MemberCardMobile = ({
   lightBackground,
@@ -31,7 +18,7 @@ const MemberCardMobile = ({
   occupation,
   location,
   bioFields,
-}: Props) => {
+}: MemberCardProps) => {
   return (
     <View style={[styles.card, { backgroundColor: lightBackground }]}>
       <Link href={`/member/${id}`}>
