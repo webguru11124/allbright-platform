@@ -33,7 +33,7 @@ const usePublicProfileForm = (publicProfileSchema: Joi.PartialSchemaMap<any>) =>
       reset(user);
       if (user.imageSrc) {
         changeTextFuncs.profile_image({
-          state: LocalImageType.FILE_SET,
+          state: LocalImageType.FILE_NOT_SET,
           file: user.imageSrc,
         });
       }
@@ -56,12 +56,9 @@ const usePublicProfileForm = (publicProfileSchema: Joi.PartialSchemaMap<any>) =>
       const input = postBody as PublicProfileInput;
       const output = publicProfileAdaptor(input);
       let imageSrc: any = null;
+      imageSrc = input.profile_image.file;
       if (input.profile_image?.state === LocalImageType.FILE_SET && input.profile_image?.file !== null) {
-        imageSrc = input.profile_image.file;
-
-        if (imageSrc instanceof File || imageSrc instanceof Blob) {
-          imageSrc = await mutateUpdateUserProfileImageAsync(imageSrc);
-        }
+        imageSrc = await mutateUpdateUserProfileImageAsync(imageSrc);
       }
 
       if (input.profile_image?.state === LocalImageType.FILE_UNSET) {

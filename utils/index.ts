@@ -82,3 +82,15 @@ export function parseJwt(token: string) {
   );
   return JSON.parse(jsonPayload);
 }
+
+export function base64ToFile(base64Data: string, fileName: string): File {
+  const [metadata, base64String] = base64Data.split(",");
+  const mimeType = metadata.match(/data:(.*?);base64/)?.[1] || "application/octet-stream";
+
+  const byteCharacters = atob(base64String);
+  const byteNumbers = new Array(byteCharacters.length).fill(0).map((_, i) => byteCharacters.charCodeAt(i));
+  const byteArray = new Uint8Array(byteNumbers);
+
+  const blob = new Blob([byteArray], { type: mimeType });
+  return new File([blob], fileName, { type: mimeType });
+}

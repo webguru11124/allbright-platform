@@ -1,7 +1,11 @@
+import { Platform } from "react-native";
+
 import api from "@/lib/api";
 import { UserModel } from "@/types/user";
+import { base64ToFile } from "@/utils";
 import { CareerGoalType } from "@/utils/data/careerGoals";
 import { getUserId } from "@/utils/token";
+import { imageResizer } from "@/utils/ui/image";
 
 class UserClient {
   public async findUserById(userId: string): Promise<UserModel | undefined> {
@@ -22,22 +26,20 @@ class UserClient {
     return response.data;
   }
 
-  public async updateUserProfileImage(imageFile: string | File | Blob) {
+  public async updateUserProfileImage(imageFile: string) {
     const userId = await getUserId();
     if (!userId) return Promise.reject("Invalid User Id");
-    console.log("imageFile", imageFile);
 
     const formData = new FormData();
-    if (imageFile instanceof File) {
-      console.log("imageFile is a File");
-      formData.append("imageSrc", imageFile);
-    } else if (imageFile instanceof Blob) {
-      console.log("imageFile is a Blob");
-      formData.append("imageSrc", new File([imageFile], "image.jpg", { type: imageFile.type }));
-    } else {
-      console.log("imageFile is invalid");
-      throw new Error("Invalid image format");
+    let file = base64ToFile(imageFile, "image.jpg");
+
+    if (Platform.OS === "web") {
+      file = await imageResizer(file, {
+        maxWidthOrHeight: 800,
+      });
     }
+
+    formData.append("imageSrc", file);
 
     const response = await api.put(`/v1/users/${userId}/profile-image`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
