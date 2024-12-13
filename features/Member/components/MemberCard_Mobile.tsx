@@ -1,6 +1,6 @@
 import MaterialIcons from "@expo/vector-icons/build/MaterialIcons";
 import { Link } from "expo-router";
-import { ImageBackground, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import ImageOrInitials from "@/components/ImageOrInitials";
 import Row from "@/components/Row";
@@ -65,10 +65,8 @@ const MemberCardMobile = ({
         />
         <CL style={{ fontWeight: 500 }}>{location}</CL>
       </Row>
-      <ImageBackground
-        source={require("../../../assets/images/allbright-a.png")}
-        style={styles.imageBackground}>
-        {
+      {
+        <Row>
           <View style={[styles.bio]}>
             {bioFields
               .filter((field) => field.info)
@@ -82,8 +80,8 @@ const MemberCardMobile = ({
                 />
               ))}
           </View>
-        }
-      </ImageBackground>
+        </Row>
+      }
     </View>
   );
 };
@@ -121,11 +119,12 @@ function BioRow({ index, info, evenRowColour, oddRowColour, title, isLink }: Bio
 
 const styles = StyleSheet.create({
   card: {
+    minWidth: 480,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 40,
-    padding: 40,
+    paddingVertical: 20,
     borderRadius: 5,
     shadowColor: "#ddd",
     shadowOffset: { width: 0, height: 0 },
@@ -136,18 +135,18 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   imageBackground: {
-    marginRight: 50,
+    // marginRight: 50,
   },
   bio: {
     position: "relative",
-    flexDirection: "column",
-    flex: 3,
-    padding: 0,
-    overflow: "hidden",
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
   },
   bioRow: {
     position: "relative",
-    paddingHorizontal: 40,
+    width: 460,
+    paddingHorizontal: 10,
     paddingVertical: 10,
   },
   rowColour: {

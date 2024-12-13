@@ -1,8 +1,11 @@
-import { ScrollView, StyleSheet, View } from "react-native";
+import { useState } from "react";
+import { Pressable, ScrollView, StyleSheet, View } from "react-native";
 
 import ColourSquares from "@/components/ColourSquares";
 import Space from "@/components/Space";
+import { CS } from "@/components/Typography";
 import BusinessCard from "@/features/BusinessCard";
+import MemberCardModal from "@/features/Member/components/MemberCardModal";
 import {
   AccountProfileFormBio,
   AccountProfileFormButton,
@@ -19,34 +22,47 @@ type Props = {
   formProps: FormProps;
 };
 
-const ProfileMobile = ({ theme, user, formProps }: Props) => (
-  <View style={[styles.root, { backgroundColor: theme.colors.background }]}>
-    <ScrollView contentContainerStyle={styles.scroll}>
-      <View style={styles.main}>
-        <View style={styles.businessCardContainer}>
-          <BusinessCard member={{ ...user, businessCardColour: formProps.inputs.businessCardColour } as UserModel} />
-          <ColourSquares
-            style={{ marginTop: 20 }}
-            setValue={(val) => formProps.changeTextFuncs.businessCardColour(val)}
-          />
+const ProfileMobile = ({ theme, user, formProps }: Props) => {
+  const [showModal, setShowModal] = useState(false);
+  return (
+    <View style={[styles.root, { backgroundColor: theme.colors.background }]}>
+      <ScrollView contentContainerStyle={styles.scroll}>
+        <MemberCardModal
+          user={user}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+        <View style={styles.main}>
+          <View style={styles.businessCardContainer}>
+            <BusinessCard member={{ ...user, businessCardColour: formProps.inputs.businessCardColour } as UserModel} />
+            <ColourSquares
+              style={{ marginTop: 20 }}
+              setValue={(val) => formProps.changeTextFuncs.businessCardColour(val)}
+            />
+            <Pressable
+              style={[styles.viewProfileContainer]}
+              onPress={() => setShowModal(true)}>
+              <CS style={{ textDecorationLine: "underline" }}>View Profile Appearance</CS>
+            </Pressable>
+          </View>
+          <View style={styles.inputsContainer}>
+            <Space height={10} />
+            <AccountProfileFormPhoto {...formProps} />
+            <Space height={10} />
+            <AccountProfileFormPersonal {...formProps} />
+            <Space height={10} />
+            <AccountProfileFormBio {...formProps} />
+            <Space height={10} />
+            <AccountProfileFormSocialMedia {...formProps} />
+            <Space height={10} />
+            <AccountProfileFormButton {...formProps} />
+            <Space height={10} />
+          </View>
         </View>
-        <View style={styles.inputsContainer}>
-          <Space height={10} />
-          <AccountProfileFormPhoto {...formProps} />
-          <Space height={10} />
-          <AccountProfileFormPersonal {...formProps} />
-          <Space height={10} />
-          <AccountProfileFormBio {...formProps} />
-          <Space height={10} />
-          <AccountProfileFormSocialMedia {...formProps} />
-          <Space height={10} />
-          <AccountProfileFormButton {...formProps} />
-          <Space height={10} />
-        </View>
-      </View>
-    </ScrollView>
-  </View>
-);
+      </ScrollView>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   root: {
@@ -69,8 +85,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 20,
   },
+  viewProfileContainer: {
+    marginTop: 20,
+  },
   inputsContainer: {
-    marginVertical: 20,
+    marginBottom: 20,
     gap: 10,
     width: "100%",
   },
