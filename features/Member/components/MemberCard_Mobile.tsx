@@ -5,21 +5,7 @@ import { StyleSheet, View } from "react-native";
 import ImageOrInitials from "@/components/ImageOrInitials";
 import Row from "@/components/Row";
 import { CL, CS, H4, H6 } from "@/components/Typography";
-
-type BioRowProps = {
-  index: number;
-  info: any;
-  evenRowColour: string;
-  oddRowColour: string;
-  title: string;
-  isLink: boolean;
-};
-
-type BioField = {
-  title: string;
-  info: any;
-  isLink: boolean;
-};
+import { BioField, BioRowProps } from "@/features/Member/types";
 
 type Props = {
   lightBackground: string;
@@ -128,6 +114,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 40,
     paddingVertical: 20,
+    paddingHorizontal: 10,
     borderRadius: 5,
     shadowColor: "#ddd",
     shadowOffset: { width: 0, height: 0 },

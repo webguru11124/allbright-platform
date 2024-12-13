@@ -1,18 +1,27 @@
 import { router } from "expo-router";
 import { useEffect } from "react";
 
-import { UserModel } from "@/types/user";
+import { BioField } from "@/features/Member/types";
 
 type Props = {
-  user: UserModel;
+  lightBackground: string;
+  id?: string;
+  name?: string;
+  imageSrc?: string | undefined | null;
+  firstName?: string;
+  lastName?: string;
+  occupation: string;
+  location: string;
+  bioFields: BioField[];
+  theme: Theme;
 };
 
-const Member = ({ user }: Props) => {
+const Member = ({ name }: Props) => {
   useEffect(() => {
     router.navigate("/home");
   }, []);
 
-  return `${user?.name}`;
+  return `${name}`;
 };
 
 export default Member;

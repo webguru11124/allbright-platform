@@ -6,21 +6,7 @@ import Column from "@/components/Column";
 import ImageOrInitials from "@/components/ImageOrInitials";
 import Row from "@/components/Row";
 import { CL, CS, H4, H6 } from "@/components/Typography";
-
-type BioRowProps = {
-  index: number;
-  info: any;
-  evenRowColour: string;
-  oddRowColour: string;
-  title: string;
-  isLink: boolean;
-};
-
-type BioField = {
-  title: string;
-  info: any;
-  isLink: boolean;
-};
+import { BioField, BioRowProps } from "@/features/Member/types";
 
 type Props = {
   lightBackground: string;

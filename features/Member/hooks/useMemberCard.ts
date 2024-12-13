@@ -1,3 +1,4 @@
+import { BioField } from "@/features/Member/types";
 import { UserModel } from "@/types/user";
 
 type Props = {
@@ -24,7 +25,7 @@ const useMemberCard = ({ user, theme }: Props) => {
   const interests = user?.interests?.join(" . ");
   const seeking = user?.goals?.join(" • ");
 
-  const bioFields = [
+  const bioFields: BioField[] = [
     { title: "About Me", info: user?.bio, isLink: false },
     { title: "Interests", info: interests, isLink: false },
     { title: "Seeking", info: seeking, isLink: false },
