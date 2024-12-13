@@ -27,8 +27,9 @@ export default {
     },
     web: {
       bundler: "metro",
-      output: "static",
-      favicon: "./assets/images/favicon.png",
+      output: "single",
+      favicon: "./assets/images/favicon/favicon.png",
+      name: "AllBright | Redefining ambition",
       backgroundColor: "#F9F4F0",
     },
     plugins: [
