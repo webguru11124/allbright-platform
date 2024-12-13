@@ -1,11 +1,8 @@
-import { Platform } from "react-native";
-
 import api from "@/lib/api";
 import { UserModel } from "@/types/user";
 import { base64ToFile } from "@/utils";
 import { CareerGoalType } from "@/utils/data/careerGoals";
 import { getUserId } from "@/utils/token";
-import { imageResizer } from "@/utils/ui/image";
 
 class UserClient {
   public async findUserById(userId: string): Promise<UserModel | undefined> {
@@ -32,12 +29,6 @@ class UserClient {
 
     const formData = new FormData();
     let file = base64ToFile(imageFile, "image.jpg");
-
-    if (Platform.OS === "web") {
-      file = await imageResizer(file, {
-        maxWidthOrHeight: 800,
-      });
-    }
 
     formData.append("imageSrc", file);
 
