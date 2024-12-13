@@ -18,6 +18,7 @@ describe("ProfilePhotoUploadSectionContainer", () => {
     });
   });
   afterEach(() => {
+    cleanup();
     jest.clearAllMocks();
   });
 
