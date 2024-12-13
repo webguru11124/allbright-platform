@@ -22,6 +22,7 @@ export const recommendationColor = {
   btColor: "rgb(228, 230, 235)",
   btBgColor: "rgb(58, 59, 61)",
   textColor: "rgb(73, 101, 140)",
+  subnav: colors.buntingBlue,
 };
 
 export const PaperDefaultTheme = {

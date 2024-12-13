@@ -5,6 +5,7 @@ import FindMentor from "@/features/Connect/FindMentor";
 import YourMentorship from "@/features/Connect/Mentorship";
 import Tabs from "@/features/Tabs/index.web";
 import useTheme from "@/hooks/useTheme";
+import { recommendationColor } from "@/theme";
 
 const tabs = [
   {
@@ -32,14 +33,17 @@ export default function Index() {
         data={tabs}
         tabContainerStyle={{ flex: 1, displayVerticalBreakpointWidth: 480 }}
         tabItemContainerStyle={{
-          marginTop: 10,
+          marginTop: 20,
           marginHorizontal: 20,
-          paddingBottom: 10,
+          marginBottom: 10,
           distribution: "tab-start-left",
+          paddingHorizontal: 400,
+          paddingVertical: 10,
           borderColor: theme.colors.inactive,
+          backgroundColor: recommendationColor.subnav,
         }}
         tabItemStyle={{ borderWidth: 0 }}
-        tabItemTextStyle={{ fontSize: 14 }}
+        tabItemTextStyle={{ fontSize: 14, color: theme.colors.inputs.background }}
         tabBodyContainerStyle={{}}
         tabBodyItemStyle={{}}
       />
