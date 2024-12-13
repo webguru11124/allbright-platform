@@ -34,7 +34,7 @@ type Props = {
   bioFields: BioField[];
 };
 
-const MemberCard = ({
+const MemberCardDesktop = ({
   lightBackground,
   name,
   theme,
@@ -171,4 +171,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MemberCard;
+export default MemberCardDesktop;

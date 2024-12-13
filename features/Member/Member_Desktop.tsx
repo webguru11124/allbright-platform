@@ -2,7 +2,7 @@ import { router } from "expo-router";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 import BackButton from "@/components/BackButton";
-import MemberCard from "@/features/Member/components/MemberCard";
+import MemberCardDesktop from "@/features/Member/components/MemberCard_Desktop";
 import { UserModel } from "@/types/user";
 
 type Props = {
@@ -50,7 +50,7 @@ const MemberDesktop = ({ theme, user }: Props) => {
     <View style={[styles.root, { backgroundColor: theme.colors.background }]}>
       <ScrollView style={[styles.main]}>
         <BackButton onPress={() => router.back()} />
-        <MemberCard
+        <MemberCardDesktop
           lightBackground={theme.colors.lightBackground}
           name={user?.name}
           firstName={user?.firstName}
