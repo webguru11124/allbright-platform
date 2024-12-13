@@ -23,7 +23,7 @@ type Props = {
 
 const BusinessCard: FunctionComponent<Props> = ({ WIDTH, HEIGHT, card, textColor, role, userInterests, goals }) => {
   const Front = () => (
-    <Main style={{ backgroundColor: card?.businessCardColor }}>
+    <Main style={{ backgroundColor: card?.businessCardColour }}>
       <Header>
         <Row>
           <AllBrightVector
@@ -52,7 +52,7 @@ const BusinessCard: FunctionComponent<Props> = ({ WIDTH, HEIGHT, card, textColor
       )}
       <>
         <TapMeWrap style={{}}>
-          <CS style={{ fontWeight: 500, color: card.businessCardColor }}>tap me</CS>
+          <CS style={{ fontWeight: 500, color: card.businessCardColour }}>tap me</CS>
         </TapMeWrap>
         <TapMeTriangle style={{ borderBottomColor: textColor }} />
       </>

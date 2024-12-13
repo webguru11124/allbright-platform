@@ -30,7 +30,7 @@ const tabs = [
     key: "contact_us",
   },
   {
-    name: "Log Out",
+    name: "Logout",
     component: <Logout />,
     key: "log_out",
   },

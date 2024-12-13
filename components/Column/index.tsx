@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
+import { StyleProp, StyleSheet, View, ViewProps } from "react-native";
 
 type Props = {
-  style?: StyleProp<ViewStyle>;
+  style?: StyleProp<LayoutProps & ViewProps>;
   children: React.ReactNode;
 };
 

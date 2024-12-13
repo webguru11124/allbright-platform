@@ -1,8 +1,9 @@
-import { GestureResponderEvent, MouseEvent } from "react-native";
+import { GestureResponderEvent, IntrinsicAttributes, MouseEvent } from "react-native";
 
 import { DefaultTheme } from "@/theme";
 
 declare global {
+  type LayoutProps = IntrinsicAttributes;
   type GestureEvent = (event: GestureResponderEvent) => void;
   type MyMouseEvent = (event: MouseEvent) => void;
   type SyntheticEvent = (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;

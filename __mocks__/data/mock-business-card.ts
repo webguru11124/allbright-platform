@@ -7,7 +7,7 @@ import { jobLevels } from "@/utils/data/jobLevels";
 
 export const mockBusinessCard: BusinessCard = {
   displayName: faker.person.fullName(),
-  businessCardColor: faker.color.rgb(),
+  businessCardColour: faker.color.rgb(),
   location: faker.location.city(),
   job: faker.person.jobTitle(),
   jobLevel: faker.helpers.arrayElement(jobLevels),

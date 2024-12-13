@@ -113,6 +113,8 @@ export const DefaultTheme = {
     secondary: "rgb(255, 150, 50)",
     inactive: "rgb(150,150,150)",
     background: "#F9F4F0",
+    lightBackground: "#FFFBF9",
+    overlay: "#F2E7DF",
     inputs: {
       background: "#FFF",
       text: "#414143",
@@ -148,6 +150,8 @@ export const DarkTheme = {
     secondary: "rgb(0, 250, 50)",
     inactive: "rgb(221,221,221)",
     background: "#bbb",
+    lightBackground: "#ddd",
+    overlay: "#ccc",
     inputs: {
       background: "#FFF",
       text: "#414143",

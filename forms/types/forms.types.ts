@@ -1,4 +1,5 @@
 import { Dictionary } from "lodash";
+import { StyleProp } from "react-native";
 
 export type FormProps = {
   inputs: Dictionary<string | undefined | any>;
@@ -8,4 +9,5 @@ export type FormProps = {
   isFormValid: boolean;
   isPending: boolean;
   onPress: GestureEvent;
+  style?: StyleProp<LayoutProps>;
 };

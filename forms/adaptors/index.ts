@@ -103,6 +103,11 @@ export type AccountProfileInput = {
   jobIndustry: string;
   goals: (typeof goals)[number][];
   interests: InterestTitles;
+  businessCardColour: string;
+  bio: string;
+  website: string;
+  instagram: string;
+  linkedin: string;
 };
 
 export type AccountProfileOutput = {
@@ -115,6 +120,11 @@ export type AccountProfileOutput = {
   jobIndustry: string;
   goals: (typeof goals)[number][];
   interests: InterestTitles;
+  businessCardColour: string;
+  bio: string;
+  website: string;
+  instagram: string;
+  linkedin: string;
 };
 
 export const publicProfileAdaptor = (postBody: PublicProfileInput): PublicProfileOutput => ({
@@ -152,6 +162,11 @@ export const accountProfileAdaptor = (postBody: AccountProfileInput): AccountPro
   jobIndustry: postBody.jobIndustry,
   goals: postBody.goals,
   interests: postBody.interests,
+  businessCardColour: postBody.businessCardColour,
+  bio: postBody.bio,
+  website: postBody.website,
+  instagram: postBody.instagram,
+  linkedin: postBody.linkedin,
 });
 
 export const profileGoalsAdapter = (postBody: ProfileGoalsInput): ProfileGoalsOutput => ({

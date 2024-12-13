@@ -41,6 +41,16 @@ export const accountProfileSchema = {
       "any.required": "You must select at least one goal.",
     }),
   interests: Joi.array().min(1).required(),
+  businessCardColour: Joi.string().allow(null),
+  bio: Joi.string().required().min(10).max(500).messages({
+    "string.empty": "Biography is required",
+    "string.min": "Biography must be at least 10 characters long",
+    "string.max": "Biography must be less than or equal to 500 characters long",
+    "any.required": "Biography is required",
+  }),
+  website: Joi.string().allow(null),
+  instagram: Joi.string().allow(null),
+  linkedin: Joi.string().allow(null),
 };
 
 export default accountProfileSchema;

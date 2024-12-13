@@ -3,15 +3,11 @@ import * as React from "react";
 import { useEffect } from "react";
 
 import { UserContext } from "@/contexts/UserContext";
-import { publicProfileAdaptor, PublicProfileInput } from "@/forms/adaptors";
+import { accountProfileAdaptor, AccountProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate, useUserUpdateProfileImage } from "@/hooks/resources/useUserUpdate";
 import { LocalImageType } from "@/types/files/localImage";
 import { UserModel } from "@/types/user";
-
-// NOTE: Redo useShowToast and use Alert for Android/IOS and https://stackoverflow.com/a/72554509
-//       for web. Ensure the toast message works on all platforms.
-//       Remove toast from useForm if unneccessary...
 
 const useAccountProfileForm = (accountProfileSchema: Joi.PartialSchemaMap<any>) => {
   const { user, refetch } = React.useContext<{
@@ -55,8 +51,8 @@ const useAccountProfileForm = (accountProfileSchema: Joi.PartialSchemaMap<any>) 
     try {
       if (!validateAllInputs()) throw new Error("Please fill out all required fields");
       setLoading(true);
-      const input = postBody as PublicProfileInput;
-      const output = publicProfileAdaptor(input);
+      const input = postBody as AccountProfileInput;
+      const output = accountProfileAdaptor(input);
       let imageSrc: any = null;
       if (input.profile_image?.state === LocalImageType.FILE_SET && input.profile_image?.file !== null) {
         imageSrc = input.profile_image.file;

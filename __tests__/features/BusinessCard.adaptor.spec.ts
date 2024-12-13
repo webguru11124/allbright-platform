@@ -14,7 +14,7 @@ describe.each([
       location: faker.location.city(),
     },
     output: {
-      businessCardColor: "#FFFFFF",
+      businessCardColour: "#FFFFFF",
       displayName: mockUser.name,
       displayPhoto: true,
       goals: undefined,
