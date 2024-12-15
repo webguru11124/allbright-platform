@@ -9,6 +9,7 @@ import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate, useUserUpdateProfileImage } from "@/hooks/resources/useUserUpdate";
 import { LocalImageType } from "@/types/files/localImage";
 import { UserModel } from "@/types/user";
+import UserClient from "@/utils/client/user/UserClient";
 
 const usePublicProfileForm = (publicProfileSchema: Joi.PartialSchemaMap<any>) => {
   const { user, refetch } = React.useContext<{
@@ -44,7 +45,6 @@ const usePublicProfileForm = (publicProfileSchema: Joi.PartialSchemaMap<any>) =>
   }, [refetch, user]);
 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
-  const { mutateAsync: mutateUpdateUserProfileImageAsync } = useUserUpdateProfileImage();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
 
@@ -58,7 +58,7 @@ const usePublicProfileForm = (publicProfileSchema: Joi.PartialSchemaMap<any>) =>
       let imageSrc: any = null;
       imageSrc = input.profile_image.file;
       if (input.profile_image?.state === LocalImageType.FILE_SET && input.profile_image?.file !== null) {
-        imageSrc = await mutateUpdateUserProfileImageAsync(imageSrc);
+        imageSrc = await new UserClient().uploadProfileImage(imageSrc);
       }
 
       if (input.profile_image?.state === LocalImageType.FILE_UNSET) {
@@ -69,6 +69,7 @@ const usePublicProfileForm = (publicProfileSchema: Joi.PartialSchemaMap<any>) =>
 
       router.push("/onboarding/private-profile");
     } catch (error: any) {
+      console.error(error);
       showErrorMessage("Error", error.message);
     } finally {
       setLoading(false);

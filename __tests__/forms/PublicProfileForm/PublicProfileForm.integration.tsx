@@ -71,7 +71,7 @@ describe("PublicProfileForm", () => {
 
     fireEvent.press(screen.getByTestId("ProfilePhotoUploadSection:ArrowButton"));
     mockedApi.post.mockResolvedValueOnce({});
-    jest.spyOn(UserClient.prototype, "updateUserProfileImage").mockResolvedValueOnce("image-uri");
+    jest.spyOn(UserClient.prototype, "uploadProfileImage").mockResolvedValueOnce("image-uri");
     await act(() => fireEvent.press(screen.getByTestId("ProfilePhotoUploadSection:ArrowButton")));
     // Check that the button is not disabled before API call
     const submitButton = screen.getByTestId("PublicProfileForm:Submit");

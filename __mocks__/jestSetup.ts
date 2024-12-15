@@ -27,3 +27,6 @@ jest.mock("@react-native-google-signin/google-signin", () => {
     },
   };
 });
+
+jest.mock("firebase/storage", () => require("./firebase/firebase-storage"));
+jest.mock("firebase/app", () => require("./firebase/firebase-app"));
