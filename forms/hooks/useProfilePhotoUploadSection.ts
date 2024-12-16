@@ -27,7 +27,7 @@ export const useProfilePhotoUploadSection = ({ value, uploadProfileImage }: Prof
   });
 
   React.useEffect(() => {
-    if (value?.state === LocalImageType.FILE_NOT_SET) setProfileImage(value);
+    if (value?.state === LocalImageType.FILE_SET) setProfileImage(value);
   }, [value]);
 
   const handleImageUpload = (file: string) => {
