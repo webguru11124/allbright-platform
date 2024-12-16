@@ -1,6 +1,5 @@
 import React, { createContext, useContext } from "react";
 
-import { useUserGoals } from "@/hooks/resources/useUserGoals";
 import { useUserProfile } from "@/hooks/resources/useUserProfile";
 import { UserModel } from "@/types/user";
 
@@ -16,20 +15,14 @@ type UserProviderProps = {
 };
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-  const { data, refetch: refetchProfile } = useUserProfile();
-  const { careerGoals, refetch: refetchGoals } = useUserGoals();
-
-  const refetch = React.useCallback(async () => {
-    await refetchProfile();
-    await refetchGoals();
-  }, [refetchProfile, refetchGoals]);
+  const { data, refetch } = useUserProfile();
 
   React.useEffect(() => {
     refetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const contextValue = React.useMemo(() => ({ user: { ...data, careerGoals }, refetch }), [data, careerGoals, refetch]);
+  const contextValue = React.useMemo(() => ({ user: data, refetch }), [data, refetch]);
 
   return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>;
 };

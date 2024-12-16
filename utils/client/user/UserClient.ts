@@ -8,12 +8,12 @@ import { storage } from "@/utils/client/firebase";
 import { CareerGoalType } from "@/utils/data/careerGoals";
 
 class UserClient {
-  public async findUserById(userId: string): Promise<UserModel | undefined> {
+  public async findUserById(userId: string): Promise<UserModel | null> {
     if (!userId) throw new Error("Invalid User Id");
 
     const { data } = await api.get(`/v1/users/${userId}`);
 
-    return data;
+    return data || null;
   }
 
   public async updateUser(userId: string, user: Partial<UserModel>): Promise<UserModel> {
@@ -51,7 +51,7 @@ class UserClient {
     return response.data;
   }
 
-  public async uploadProfileImage(fileUrl: string): Promise<string | undefined> {
+  public async uploadProfileImage(fileUrl: string): Promise<string | null> {
     if (fileUrl) {
       const imageName = u.uuid();
       const currentFileRef = ref(storage, `images/${imageName}`);
@@ -79,7 +79,7 @@ class UserClient {
       }
       throw new Error("Failed to get download URL after maximum retries");
     } else {
-      return undefined;
+      return null;
     }
   }
 }

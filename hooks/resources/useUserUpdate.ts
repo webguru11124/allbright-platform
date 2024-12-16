@@ -16,11 +16,15 @@ export const useUserUpdate = () => {
       return new UserClient().updateUser(userId, newUser);
     },
     onSuccess: async (newUser) => {
-      // const userId = await getUserId();
-
       await queryClient.cancelQueries({ queryKey: ["user"] });
 
-      queryClient.setQueryData(["user"], (old: any) => ({ ...old, ...newUser }));
+      const previousUser: any = queryClient.getQueryData(["user"]);
+      queryClient.setQueryData(["user"], (old: UserModel | undefined) => {
+        if (!old) return newUser;
+        return { ...old, ...newUser };
+      });
+
+      return { ...previousUser, ...newUser };
     },
   });
 };

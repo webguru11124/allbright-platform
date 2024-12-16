@@ -12,6 +12,7 @@ export const useUserGoals = () => {
       if (!userId) throw new Error("User ID not available");
       return new UserClient().getUserGoals(userId);
     },
+    select: (data) => data ?? [],
   });
 
   return {

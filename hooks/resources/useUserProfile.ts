@@ -11,7 +11,8 @@ export const useUserProfile = () => {
     queryFn: async () => {
       const userId = await getUserId();
       if (!userId) throw new Error("User ID not available");
-      return await new UserClient().findUserById(userId);
+      const data = await new UserClient().findUserById(userId);
+      return data || null; // Return null instead of undefined
     },
     select: (data: UserModel | undefined | null) => ({
       ...data,
