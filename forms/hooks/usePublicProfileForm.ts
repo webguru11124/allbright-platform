@@ -69,7 +69,6 @@ const usePublicProfileForm = (publicProfileSchema: Joi.PartialSchemaMap<any>) =>
 
       router.push("/onboarding/private-profile");
     } catch (error: any) {
-      console.error(error);
       showErrorMessage("Error", error.message);
     } finally {
       setLoading(false);

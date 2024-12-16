@@ -32,7 +32,6 @@ class UserClient {
     if (!userId) return Promise.reject("Invalid User Id");
 
     const formData = new FormData();
-    console.log(imageFile);
     let file = base64ToFile(imageFile, "image.jpg");
 
     formData.append("imageSrc", file);
