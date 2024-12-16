@@ -2,6 +2,7 @@ import { router } from "expo-router";
 import Joi from "joi";
 import React, { useCallback, useEffect, useState } from "react";
 
+import { useUserContext } from "@/contexts/UserContext";
 import { RegisterInput, registrationAdaptor } from "@/forms/adaptors";
 import useFormWithPassConf from "@/forms/hooks/useFormWithPassConf";
 import { Login, Register, useRegister, useSignIn } from "@/hooks/resources/useAuth";
@@ -22,6 +23,7 @@ const useRegisterForm = (registerSchema: Joi.PartialSchemaMap<any> | undefined) 
   const { mutate: mutateRegister, isPending: isPendingRegister } = useRegister();
 
   const { mutate: mutateSignin, isPending: isPendingSignIn } = useSignIn();
+  const { refetch } = useUserContext();
 
   // const onPress = () => {
   //   if (isFormValid) setState(State.REGISTER);
@@ -44,8 +46,9 @@ const useRegisterForm = (registerSchema: Joi.PartialSchemaMap<any> | undefined) 
   const signin = useCallback(
     () =>
       mutateSignin(postBody as Login, {
-        onSuccess: (response) => {
-          setToken(response.data as unknown as string);
+        onSuccess: async (response) => {
+          await setToken(response.data as unknown as string);
+          refetch();
           setState(State.SUCCESS);
         },
         onError: (error: any) => showErrorMessage("Error", error.message),
@@ -53,11 +56,11 @@ const useRegisterForm = (registerSchema: Joi.PartialSchemaMap<any> | undefined) 
           signinCalled.current = false;
         },
       }),
-    [mutateSignin, postBody, showErrorMessage]
+    [mutateSignin, refetch, postBody, showErrorMessage]
   );
 
   const navigateToHome = useCallback(() => {
-    router.replace("/onboarding/register-profile");
+    router.replace("/onboarding/welcome");
   }, []);
 
   const registerCalled = React.useRef(false);

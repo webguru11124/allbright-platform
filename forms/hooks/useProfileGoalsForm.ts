@@ -1,12 +1,11 @@
 import { useRouter } from "expo-router";
 import Joi from "joi";
-import _ from "lodash";
 import { useEffect, useState } from "react";
 
+import { useUserContext } from "@/contexts/UserContext";
 import { profileGoalsAdapter, ProfileGoalsInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
-import { useUpdateUserGoals, useUserGoals } from "@/hooks/resources/useUserGoals";
-import { CareerGoalType } from "@/utils/data/careerGoals";
+import { useUpdateUserGoals } from "@/hooks/resources/useUserGoals";
 
 const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
   const {
@@ -16,27 +15,22 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
     changeTextFuncs,
     postBody,
     isFormValid,
-    reset,
     validateAllInputs,
     showErrorMessage,
+    reset,
   } = useForm(careerGoalsSchema);
   const { mutateAsync: mutateUpdateUserGoalsAsync } = useUpdateUserGoals();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
-  const { careerGoals } = useUserGoals();
-  const [currentCareerGoals, setCurrentCareerGoals] = useState(careerGoals);
+  const { user } = useUserContext();
 
   useEffect(() => {
-    if (_.isEqual(careerGoals, currentCareerGoals) === false) {
-      setCurrentCareerGoals(currentCareerGoals);
+    if (user) {
+      console.log("user", user);
+      reset(user);
     }
-  }, [careerGoals, currentCareerGoals, reset]);
-
-  useEffect(() => {
-    if (currentCareerGoals) changeTextFuncs.careerGoals(currentCareerGoals.map((goal: CareerGoalType) => goal.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentCareerGoals]);
+  }, [user]);
 
   const onPress = async () => {
     try {

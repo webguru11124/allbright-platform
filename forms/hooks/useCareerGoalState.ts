@@ -3,27 +3,27 @@ import React from "react";
 import { CareerGoalType } from "@/utils/data/careerGoals";
 
 interface useGoalsProps {
-  goals?: CareerGoalType["id"][];
-  updateField: (value: CareerGoalType["id"][]) => void;
+  goals?: CareerGoalType[];
+  updateField: (value: CareerGoalType[]) => void;
 }
 export const useCareerGoalState = ({ goals: defaultGoals = [], updateField }: useGoalsProps) => {
-  const [goalsState, setGoalsState] = React.useState<CareerGoalType["id"][]>(defaultGoals);
+  const [goalsState, setGoalsState] = React.useState<CareerGoalType[]>(defaultGoals);
 
   React.useEffect(() => {
     if (defaultGoals.length > 0) setGoalsState(defaultGoals);
   }, [defaultGoals]);
 
-  const goalIsSelected = (goal: CareerGoalType) => goalsState?.includes(goal?.id);
+  const goalIsSelected = (goal: CareerGoalType) => goalsState?.some((g) => g?.id === goal?.id);
 
   const setGoalsStateHandler = (goal: CareerGoalType) => {
-    let goalsList: CareerGoalType["id"][] = [];
+    let goalsList: CareerGoalType[] = [];
 
     if (goalIsSelected(goal)) {
-      goalsList = [...goalsState].filter((item) => item !== goal?.id);
+      goalsList = [...goalsState].filter((item) => item?.id !== goal?.id);
     }
 
     if (!goalIsSelected(goal)) {
-      goalsList = goalsState.length < 6 ? goalsState.concat(goal?.id) : goalsState;
+      goalsList = goalsState.length < 6 ? goalsState.concat(goal) : goalsState;
     }
     setGoalsState(goalsList);
     updateField(goalsList);

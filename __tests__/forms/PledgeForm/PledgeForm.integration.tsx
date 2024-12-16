@@ -8,9 +8,19 @@ import Providers from "@/utils/providers";
 
 jest.mock("@/lib/api");
 jest.mock("@/utils/client/user/UserClient");
+
+jest.mock("@/utils/token", () => ({
+  getUserId: jest.fn(),
+}));
 const mockedApi = api as jest.Mocked<typeof api>;
 
 describe("PledgeForm", () => {
+  beforeEach(() => {
+    jest.spyOn(jest.requireMock("@/utils/token"), "getUserId").mockResolvedValue("mock-user-id");
+  });
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
   it(`Should:
           - Check agreement checkbox
           - Make a call to api.post which update user profile
@@ -32,7 +42,7 @@ describe("PledgeForm", () => {
     });
 
     await waitFor(() => {
-      expect(UserClient.prototype.updateUser).toHaveBeenCalledWith({
+      expect(UserClient.prototype.updateUser).toHaveBeenCalledWith("mock-user-id", {
         agreedToPledge: true,
       });
       expect(screen).toHavePathname("/onboarding/complete");

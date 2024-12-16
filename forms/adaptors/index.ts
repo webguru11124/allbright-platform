@@ -1,5 +1,5 @@
 import { ProfileImage } from "@/forms/hooks/useProfilePhotoUploadSection";
-import allCareerGoals, { CareerGoalType } from "@/utils/data/careerGoals";
+import { CareerGoalType } from "@/utils/data/careerGoals";
 import { cities } from "@/utils/data/cities";
 import { ethnicGroups } from "@/utils/data/ethnicGroups";
 import goals from "@/utils/data/goals";
@@ -167,7 +167,7 @@ export const accountProfileAdaptor = (postBody: AccountProfileInput): AccountPro
 });
 
 export const profileGoalsAdapter = (postBody: ProfileGoalsInput): ProfileGoalsOutput => ({
-  careerGoals: allCareerGoals.filter((goal) => postBody.careerGoals.includes(goal.id)),
+  careerGoals: postBody.careerGoals,
 });
 
 export const pledgeAdapter = (postBody: PledgeInput) => ({
@@ -183,7 +183,7 @@ export type ProfileGoalsOutput = {
 };
 
 export type ProfileGoalsInput = {
-  careerGoals: CareerGoalType["id"][];
+  careerGoals: CareerGoalType[];
 };
 
 export type PrivateProfileOutput = {

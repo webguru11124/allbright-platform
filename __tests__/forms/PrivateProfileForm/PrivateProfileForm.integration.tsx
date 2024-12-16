@@ -15,6 +15,9 @@ import Providers from "@/utils/providers";
 
 jest.mock("@/lib/api");
 jest.mock("@/utils/client/user/UserClient");
+jest.mock("@/utils/token", () => ({
+  getUserId: jest.fn(),
+}));
 
 const mockedApi = api as jest.Mocked<typeof api>;
 
@@ -33,8 +36,8 @@ describe("PrivateProfileForm", () => {
   }
 
   beforeEach(async () => {
-    jest.clearAllMocks();
     (UserClient.prototype.findUserById as jest.Mock).mockResolvedValue({});
+    jest.spyOn(jest.requireMock("@/utils/token"), "getUserId").mockResolvedValue("mock-user-id");
     renderRouter({
       index: jest.fn(() => (
         <Providers>
@@ -49,6 +52,11 @@ describe("PrivateProfileForm", () => {
       expect(screen.getByText("Job status*")).not.toBeNull();
     });
   });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it(`should:
       - Enter valid data for the relevant form fields
       - Make a call to api.post which update user profile
@@ -76,7 +84,7 @@ describe("PrivateProfileForm", () => {
     await act(() => fireEvent.press(submitButton));
 
     await waitFor(() => {
-      expect(UserClient.prototype.updateUser).toHaveBeenCalledWith({
+      expect(UserClient.prototype.updateUser).toHaveBeenCalledWith("mock-user-id", {
         jobStatus: randomJobStatus,
         salary: randomSalaryRange,
         organisationSize: randomOrgnizationSize,

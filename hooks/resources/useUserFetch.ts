@@ -9,7 +9,7 @@ type Props = {
 export const useUserFetch = ({ id }: Props) =>
   useQuery({
     enabled: true,
-    queryKey: ["user", id],
+    queryKey: ["user", { id }],
     queryFn: async () => {
       return await new UserClient().findUserById(id);
     },

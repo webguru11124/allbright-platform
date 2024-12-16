@@ -3,17 +3,13 @@ import * as Joi from "joi";
 import * as React from "react";
 import { useEffect } from "react";
 
-import { UserContext } from "@/contexts/UserContext";
+import { useUserContext } from "@/contexts/UserContext";
 import { registerProfileAdaptor, RegisterProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
-import { UserModel } from "@/types/user";
 
 const useRegisterProfileForm = (registerProfileSchema: Joi.PartialSchemaMap<any>) => {
-  const { user, refetch } = React.useContext<{
-    user: Partial<UserModel> | undefined;
-    refetch: Function;
-  }>(UserContext);
+  const { user } = useUserContext();
 
   const {
     inputs,
@@ -30,11 +26,9 @@ const useRegisterProfileForm = (registerProfileSchema: Joi.PartialSchemaMap<any>
   useEffect(() => {
     if (user) {
       reset(user);
-    } else {
-      refetch();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [refetch, user]);
+  }, [user]);
 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);

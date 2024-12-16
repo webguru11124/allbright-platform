@@ -9,6 +9,10 @@ import Providers from "@/utils/providers";
 
 jest.mock("@/lib/api");
 jest.mock("@/utils/client/user/UserClient");
+
+jest.mock("@/utils/token", () => ({
+  getUserId: jest.fn(),
+}));
 const mockedApi = api as jest.Mocked<typeof api>;
 
 describe("ProfileGoalsForm", () => {
@@ -18,6 +22,7 @@ describe("ProfileGoalsForm", () => {
   }
   beforeEach(async () => {
     (UserClient.prototype.getUserGoals as jest.Mock).mockResolvedValue([]);
+    jest.spyOn(jest.requireMock("@/utils/token"), "getUserId").mockResolvedValue("mock-user-id");
     renderRouter({
       index: jest.fn(() => (
         <Providers>
@@ -47,7 +52,7 @@ describe("ProfileGoalsForm", () => {
     });
 
     await waitFor(() => {
-      expect(UserClient.prototype.updateUserGoals).toHaveBeenCalledWith([
+      expect(UserClient.prototype.updateUserGoals).toHaveBeenCalledWith("mock-user-id", [
         allCareerGoals[0],
         allCareerGoals[1],
         allCareerGoals[2],
