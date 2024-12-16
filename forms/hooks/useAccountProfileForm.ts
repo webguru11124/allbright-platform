@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { UserContext } from "@/contexts/UserContext";
 import { accountProfileAdaptor, AccountProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
-import { useUserUpdate, useUserUpdateProfileImage } from "@/hooks/resources/useUserUpdate";
+import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 import { LocalImageType } from "@/types/files/localImage";
 import { UserModel } from "@/types/user";
 import UserClient from "@/utils/client/user/UserClient";
@@ -34,7 +34,7 @@ const useAccountProfileForm = (accountProfileSchema: Joi.PartialSchemaMap<any>) 
       reset(user);
       if (user.imageSrc) {
         changeTextFuncs.profile_image({
-          state: LocalImageType.FILE_SET,
+          state: LocalImageType.FILE_NOT_SET,
           file: user.imageSrc,
         });
       }
@@ -45,7 +45,6 @@ const useAccountProfileForm = (accountProfileSchema: Joi.PartialSchemaMap<any>) 
   }, [refetch, user]);
 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
-  const { mutateAsync: mutateUpdateUserProfileImageAsync } = useUserUpdateProfileImage();
   const [loading, setLoading] = React.useState(false);
 
   const onPress = async () => {
@@ -54,8 +53,7 @@ const useAccountProfileForm = (accountProfileSchema: Joi.PartialSchemaMap<any>) 
       setLoading(true);
       const input = postBody as AccountProfileInput;
       const output = accountProfileAdaptor(input);
-      let imageSrc: any = null;
-      imageSrc = input.profile_image.file;
+      let imageSrc: any = input.profile_image.file;
       if (input.profile_image?.state === LocalImageType.FILE_SET && input.profile_image?.file !== null) {
         imageSrc = await new UserClient().uploadProfileImage(imageSrc);
       }
