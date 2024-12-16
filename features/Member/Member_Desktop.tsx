@@ -1,44 +1,38 @@
-import { ImageBackground, ScrollView, StyleSheet, View } from "react-native";
+import { router } from "expo-router";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 import BackButton from "@/components/BackButton";
-import Column from "@/components/Column";
-import ImageOrInitials from "@/components/ImageOrInitials";
-import { H4 } from "@/components/Typography";
-import { UserModel } from "@/types/user";
+import MemberCardDesktop from "@/features/Member/components/MemberCard_Desktop";
+import { MemberCardProps } from "@/features/Member/types";
 
-type Props = {
-  user: UserModel;
-  theme: Theme;
-};
-
-const MemberDesktop = ({ theme, user }: Props) => {
-  return (
-    <View style={[styles.root, { backgroundColor: theme.colors.background }]}>
-      <ScrollView style={[styles.main]}>
-        <BackButton />
-        <View style={[styles.card, { backgroundColor: theme.colors.lightBackground }]}>
-          <Column style={[{ width: "45%" }]}>
-            <H4>{user?.name}</H4>
-            <View style={styles.imageOrInitialsContainer}>
-              <ImageOrInitials
-                theme={theme}
-                imageSrc={user?.imageSrc}
-                initials={(user?.firstName?.slice(0, 1) || "A") + (user?.lastName?.slice(0, 1) || "B")}
-                height={150}
-                width={150}
-              />
-            </View>
-          </Column>
-          <Column style={[{ width: "55%" }]}>
-            <ImageBackground
-              source={require("../../assets/images/allbright-a.png")}
-              style={styles.imageBackground}></ImageBackground>
-          </Column>
-        </View>
-      </ScrollView>
-    </View>
-  );
-};
+const MemberDesktop = ({
+  lightBackground,
+  id,
+  name,
+  theme,
+  imageSrc,
+  initials,
+  occupation,
+  location,
+  bioFields,
+}: MemberCardProps) => (
+  <View style={[styles.root, { backgroundColor: theme.colors.background }]}>
+    <ScrollView style={[styles.main]}>
+      <BackButton onPress={() => router.back()} />
+      <MemberCardDesktop
+        lightBackground={lightBackground}
+        id={id}
+        name={name}
+        initials={initials}
+        imageSrc={imageSrc}
+        occupation={occupation}
+        location={location}
+        bioFields={bioFields}
+        theme={theme}
+      />
+    </ScrollView>
+  </View>
+);
 
 const styles = StyleSheet.create({
   root: {
@@ -49,22 +43,6 @@ const styles = StyleSheet.create({
   main: {
     width: 1000,
     padding: 20,
-  },
-  card: {
-    flexDirection: "row",
-    marginTop: 40,
-    padding: 40,
-    borderRadius: 5,
-    shadowColor: "#ddd",
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 1,
-    shadowRadius: 10,
-  },
-  imageOrInitialsContainer: {
-    marginVertical: 20,
-  },
-  imageBackground: {
-    marginRight: 50,
   },
 });
 

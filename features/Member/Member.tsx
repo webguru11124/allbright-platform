@@ -1,18 +1,14 @@
 import { router } from "expo-router";
 import { useEffect } from "react";
 
-import { UserModel } from "@/types/user";
+import { MemberCardProps } from "@/features/Member/types";
 
-type Props = {
-  user: UserModel;
-};
-
-const Member = ({ user }: Props) => {
+const Member = ({ name }: MemberCardProps) => {
   useEffect(() => {
     router.navigate("/home");
   }, []);
 
-  return `${user?.name}`;
+  return `${name}`;
 };
 
 export default Member;
