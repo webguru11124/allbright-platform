@@ -134,6 +134,13 @@ export default function Layout() {
             drawerItemStyle: { display: "none" },
           }}
         />
+        <Drawer.Screen
+          name="member/[userId]"
+          options={{
+            title: "Account",
+            drawerItemStyle: { display: "none" },
+          }}
+        />
       </Drawer>
     </IsOnboarding>
   );
