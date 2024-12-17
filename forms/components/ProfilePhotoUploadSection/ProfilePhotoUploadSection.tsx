@@ -24,7 +24,6 @@ const ProfilePhotoUploadSection = ({
   handleProfileWantedToggle,
   profileImage,
 }: ProfilePhotoUploadSectionProps) => {
-  const imageSrc = profileImage.file;
   return (
     <View>
       <CM>Profile picture</CM>
@@ -43,7 +42,7 @@ const ProfilePhotoUploadSection = ({
 
       <PhotoUploadPosition>
         <ProfilePhotoInput
-          imageSrc={profileImage.state === LocalImageType.FILE_UNSET ? null : imageSrc}
+          imageSrc={profileImage.state === LocalImageType.FILE_UNSET ? null : profileImage.file}
           pickProfileImage={pickProfileImage}
         />
       </PhotoUploadPosition>

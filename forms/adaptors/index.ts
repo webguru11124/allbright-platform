@@ -55,7 +55,6 @@ export type PrivateProfileInput = {
 };
 
 export type PublicProfileInput = {
-  city: (typeof cities)[number]["city"];
   jobTitle: string;
   jobCompany: string;
   jobLevel: (typeof jobLevels)[number];
@@ -66,7 +65,6 @@ export type PublicProfileInput = {
 };
 
 export type PublicProfileOutput = {
-  city: (typeof cities)[number]["city"];
   jobTitle: string;
   jobCompany: string;
   jobLevel?: (typeof jobLevels)[number];
@@ -128,7 +126,6 @@ export type AccountProfileOutput = {
 };
 
 export const publicProfileAdaptor = (postBody: PublicProfileInput): PublicProfileOutput => ({
-  city: postBody.city,
   jobTitle: postBody.jobTitle,
   jobCompany: postBody.jobCompany,
   jobLevel: postBody.jobLevel,

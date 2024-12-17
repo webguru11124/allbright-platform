@@ -1,5 +1,5 @@
 import * as ImagePicker from "expo-image-picker";
-import { fireEvent, screen, waitFor } from "expo-router/testing-library";
+import { cleanup, fireEvent, screen, waitFor } from "expo-router/testing-library";
 
 import { render } from "@/__mocks__/test-utils";
 import ProfilePhotoUploadSectionContainer from "@/forms/components/ProfilePhotoUploadSection";
@@ -18,6 +18,7 @@ describe("ProfilePhotoUploadSectionContainer", () => {
     });
   });
   afterEach(() => {
+    cleanup();
     jest.clearAllMocks();
   });
 

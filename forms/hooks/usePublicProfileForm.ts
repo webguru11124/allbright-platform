@@ -6,9 +6,10 @@ import { useEffect } from "react";
 import { UserContext } from "@/contexts/UserContext";
 import { publicProfileAdaptor, PublicProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
-import { useUserUpdate, useUserUpdateProfileImage } from "@/hooks/resources/useUserUpdate";
+import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 import { LocalImageType } from "@/types/files/localImage";
 import { UserModel } from "@/types/user";
+import UserClient from "@/utils/client/user/UserClient";
 
 const usePublicProfileForm = (publicProfileSchema: Joi.PartialSchemaMap<any>) => {
   const { user, refetch } = React.useContext<{
@@ -33,7 +34,7 @@ const usePublicProfileForm = (publicProfileSchema: Joi.PartialSchemaMap<any>) =>
       reset(user);
       if (user.imageSrc) {
         changeTextFuncs.profile_image({
-          state: LocalImageType.FILE_SET,
+          state: LocalImageType.FILE_NOT_SET,
           file: user.imageSrc,
         });
       }
@@ -44,7 +45,6 @@ const usePublicProfileForm = (publicProfileSchema: Joi.PartialSchemaMap<any>) =>
   }, [refetch, user]);
 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
-  const { mutateAsync: mutateUpdateUserProfileImageAsync } = useUserUpdateProfileImage();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
 
@@ -55,13 +55,9 @@ const usePublicProfileForm = (publicProfileSchema: Joi.PartialSchemaMap<any>) =>
       setLoading(true);
       const input = postBody as PublicProfileInput;
       const output = publicProfileAdaptor(input);
-      let imageSrc: any = null;
+      let imageSrc: any = input.profile_image.file;
       if (input.profile_image?.state === LocalImageType.FILE_SET && input.profile_image?.file !== null) {
-        imageSrc = input.profile_image.file;
-
-        if (imageSrc instanceof File || imageSrc instanceof Blob) {
-          imageSrc = await mutateUpdateUserProfileImageAsync(imageSrc);
-        }
+        imageSrc = await new UserClient().uploadProfileImage(imageSrc);
       }
 
       if (input.profile_image?.state === LocalImageType.FILE_UNSET) {
