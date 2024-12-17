@@ -109,7 +109,7 @@ describe("AccountProfileForm", () => {
         bio: randomBiography,
         goals: [randomGoals[0], randomGoals[1], randomGoals[2]],
         interests: randomInterests,
-        imageSrc: "image-uri",
+        imageSrc: undefined,
         instagram: randomInstagramHandle,
         linkedin: randomLinkedIn,
         website: randomWebsite,
