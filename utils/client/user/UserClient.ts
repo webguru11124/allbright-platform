@@ -1,4 +1,4 @@
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes, uploadBytesResumable } from "firebase/storage";
 
 import api from "@/lib/api";
 import { UserModel } from "@/types/user";
@@ -52,35 +52,53 @@ class UserClient {
   }
 
   public async uploadProfileImage(fileUrl: string): Promise<string | null> {
-    if (fileUrl) {
-      const imageName = u.uuid();
-      const currentFileRef = ref(storage, `images/${imageName}`);
+    if (!fileUrl) return null;
 
-      const response = await fetch(fileUrl);
-      const fileBlob = await response.blob();
+    const imageName = u.uuid();
+    const currentFileRef = ref(storage, `images/${imageName}`);
 
-      await uploadBytes(currentFileRef, fileBlob);
+    const response = await fetch(fileUrl);
+    const fileBlob = await response.blob();
 
-      const maxRetries = 5;
-      const retryDelay = 1000; // 1 second
-
-      for (let attempt = 1; attempt <= maxRetries; attempt++) {
-        try {
-          const imageUrl = await getDownloadURL(currentFileRef);
-          return `${imageUrl.split("?")[0]}_800x800?${imageUrl.split("?")[1]}`;
-        } catch (error: any) {
-          if (error.code === "storage/object-not-found" && attempt < maxRetries) {
-            // Wait for retryDelay milliseconds before next attempt
-            await new Promise((resolve) => setTimeout(resolve, retryDelay));
-            continue;
-          }
-          throw error; // If it's not a 404 error or we've exhausted retries, throw the error
+    // Create upload task and wrap it in a promise
+    const uploadTask = uploadBytesResumable(currentFileRef, fileBlob);
+    await new Promise((resolve, reject) => {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload progress:", progress + "%");
+        },
+        (error) => {
+          console.error("Upload error:", error);
+          reject(error);
+        },
+        () => {
+          resolve(null);
         }
+      );
+    });
+
+    const maxRetries = 5;
+    const baseDelay = 1000; // 1 second base delay
+
+    // Retry loop for getting download URL
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        const imageUrl = await getDownloadURL(uploadTask.snapshot.ref);
+        return `${imageUrl.split("?")[0]}_800x800?${imageUrl.split("?")[1]}`;
+      } catch (error: any) {
+        if (error.code === "storage/object-not-found" && attempt < maxRetries) {
+          const delay = Math.min(baseDelay * Math.pow(2, attempt - 1) + Math.random() * 1000, 10000);
+          await new Promise((resolve) => setTimeout(resolve, delay));
+          continue;
+        }
+        console.error(`Failed to get download URL (attempt ${attempt}):`, error);
+        throw error;
       }
-      throw new Error("Failed to get download URL after maximum retries");
-    } else {
-      return null;
     }
+
+    throw new Error("Failed to get download URL after maximum retries");
   }
 }
 export default UserClient;
