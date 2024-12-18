@@ -2,6 +2,7 @@ import axios from "axios";
 import { Platform } from "react-native";
 
 import config from "@/config";
+import { getToken } from "@/utils/token";
 
 const headers = {
   "Content-Type": "application/json",
@@ -16,5 +17,18 @@ const api = axios.create({
   headers,
   timeout: 200000,
 });
+
+api.interceptors.request.use(
+  async (config) => {
+    const token = await getToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export default api;
