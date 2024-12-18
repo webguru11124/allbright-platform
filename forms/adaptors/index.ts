@@ -87,6 +87,7 @@ export type RegisterProfileInput = {
 export type RegisterProfileOutput = {
   firstName: string;
   lastName: string;
+  name: string;
   country: string;
   city?: (typeof cities)[number]["city"];
 };
@@ -137,6 +138,7 @@ export const publicProfileAdaptor = (postBody: PublicProfileInput): PublicProfil
 export const registerProfileAdaptor = (postBody: RegisterProfileInput): RegisterProfileOutput => ({
   firstName: postBody.firstName,
   lastName: postBody.lastName,
+  name: `${postBody.firstName} ${postBody.lastName}`,
   country: postBody.country,
   city: postBody.city,
 });

@@ -61,23 +61,7 @@ class UserClient {
     const fileBlob = await response.blob();
 
     // Create upload task and wrap it in a promise
-    const uploadTask = uploadBytesResumable(currentFileRef, fileBlob);
-    await new Promise((resolve, reject) => {
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload progress:", progress + "%");
-        },
-        (error) => {
-          console.error("Upload error:", error);
-          reject(error);
-        },
-        () => {
-          resolve(null);
-        }
-      );
-    });
+    const uploadTaskResult = await uploadBytes(currentFileRef, fileBlob);
 
     const maxRetries = 5;
     const baseDelay = 1000; // 1 second base delay
@@ -85,7 +69,7 @@ class UserClient {
     // Retry loop for getting download URL
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
-        const imageUrl = await getDownloadURL(uploadTask.snapshot.ref);
+        const imageUrl = await getDownloadURL(uploadTaskResult.ref);
         return `${imageUrl.split("?")[0]}_800x800?${imageUrl.split("?")[1]}`;
       } catch (error: any) {
         if (error.code === "storage/object-not-found" && attempt < maxRetries) {
