@@ -66,6 +66,7 @@ describe("RegisterProfileForm", () => {
         lastName: randomLastName,
         country: randomCountry,
         city: randomCity,
+        name: `${randomFirstName} ${randomLastName}`,
       });
       expect(screen).toHavePathname("/onboarding/public-profile");
     });
