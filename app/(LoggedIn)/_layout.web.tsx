@@ -1,13 +1,13 @@
 import { Slot } from "expo-router";
 
-import IsAuthenticated from "@/components/IsAuthenticated";
 import Navbar from "@/features/Navbar";
+import Session from "@/features/Session";
 
 export default function Layout() {
   return (
-    <IsAuthenticated>
+    <Session>
       <Navbar />
       <Slot />
-    </IsAuthenticated>
+    </Session>
   );
 }

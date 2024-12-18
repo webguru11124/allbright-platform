@@ -1,11 +1,11 @@
 import { Slot } from "expo-router";
 
-import IsAuthenticated from "@/components/IsAuthenticated";
+import Session from "@/features/Session";
 
 export default function Layout() {
   return (
-    <IsAuthenticated>
+    <Session>
       <Slot />
-    </IsAuthenticated>
+    </Session>
   );
 }

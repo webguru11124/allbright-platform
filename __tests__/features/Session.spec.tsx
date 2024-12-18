@@ -2,7 +2,7 @@ import { useRouter } from "expo-router";
 import { act, fireEvent, renderRouter, screen } from "expo-router/testing-library";
 import { Button, View } from "react-native";
 
-import IsAuthenticated from "@/components/IsAuthenticated";
+import Session from "@/features/Session";
 import * as utilsToken from "@/utils/token";
 
 jest.mock("@/utils/token");
@@ -27,9 +27,9 @@ const MockComponentInit = jest.fn(() => {
 
 const MockComponent = jest.fn(() => {
   return (
-    <IsAuthenticated>
+    <Session>
       <View />;
-    </IsAuthenticated>
+    </Session>
   );
 });
 

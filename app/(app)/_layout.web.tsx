@@ -2,7 +2,7 @@ import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 
-import IsAuthenticated from "@/components/IsAuthenticated";
+import Session from "@/features/Session";
 import useRootLayout from "@/hooks/useRootLayout";
 
 export default function RootLayout() {
@@ -19,8 +19,8 @@ export default function RootLayout() {
   }
 
   return (
-    <IsAuthenticated>
+    <Session>
       <Slot />
-    </IsAuthenticated>
+    </Session>
   );
 }

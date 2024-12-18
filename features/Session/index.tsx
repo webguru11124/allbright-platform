@@ -9,7 +9,7 @@ type Props = {
 
 const authenticationPaths = ["/", "/register", "/login"];
 
-const IsAuthenticated = (props: Props) => {
+const Session = (props: Props) => {
   const pathname = usePathname();
   useEffect(() => {
     const checkToken = async () => {
@@ -27,4 +27,4 @@ const IsAuthenticated = (props: Props) => {
   return props.children;
 };
 
-export default IsAuthenticated;
+export default Session;
