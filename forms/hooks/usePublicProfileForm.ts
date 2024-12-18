@@ -3,19 +3,15 @@ import * as Joi from "joi";
 import * as React from "react";
 import { useEffect } from "react";
 
-import { UserContext } from "@/contexts/UserContext";
+import { useUserContext } from "@/contexts/UserContext";
 import { publicProfileAdaptor, PublicProfileInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 import { LocalImageType } from "@/types/files/localImage";
-import { UserModel } from "@/types/user";
 import UserClient from "@/utils/client/user/UserClient";
 
 const usePublicProfileForm = (publicProfileSchema: Joi.PartialSchemaMap<any>) => {
-  const { user, refetch } = React.useContext<{
-    user: Partial<UserModel> | undefined;
-    refetch: Function;
-  }>(UserContext);
+  const { user } = useUserContext();
 
   const {
     inputs,
@@ -38,11 +34,9 @@ const usePublicProfileForm = (publicProfileSchema: Joi.PartialSchemaMap<any>) =>
           file: user.imageSrc,
         });
       }
-    } else {
-      refetch();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [refetch, user]);
+  }, [user]);
 
   const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
   const [loading, setLoading] = React.useState(false);

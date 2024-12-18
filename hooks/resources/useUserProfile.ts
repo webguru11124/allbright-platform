@@ -4,14 +4,15 @@ import { UserModel } from "@/types/user";
 import UserClient from "@/utils/client/user/UserClient";
 import { getUserId } from "@/utils/token";
 
-export const useUserProfile = () =>
-  useQuery({
+export const useUserProfile = () => {
+  return useQuery({
     enabled: false,
     queryKey: ["user"],
     queryFn: async () => {
-      const id = await getUserId();
-      if (!id) return null;
-      return await new UserClient().findUserById(id!);
+      const userId = await getUserId();
+      if (!userId) throw new Error("User ID not available");
+      const data = await new UserClient().findUserById(userId);
+      return data || null; // Return null instead of undefined
     },
     select: (data: UserModel | undefined | null) => ({
       ...data,
@@ -20,3 +21,4 @@ export const useUserProfile = () =>
       goals: data?.goals ?? [],
     }),
   });
+};

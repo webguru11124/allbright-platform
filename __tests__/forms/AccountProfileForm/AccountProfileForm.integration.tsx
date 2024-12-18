@@ -22,6 +22,10 @@ jest.mock("expo-image-picker", () => ({
   launchImageLibraryAsync: jest.fn(),
 }));
 
+jest.mock("@/utils/token", () => ({
+  getUserId: jest.fn(),
+}));
+
 describe("AccountProfileForm", () => {
   function selectInterest(interest: string) {
     const interestElement = screen.getByTestId(`interests-checkbox-${interest}`);
@@ -34,6 +38,7 @@ describe("AccountProfileForm", () => {
       assets: [{ uri: "image-uri" }],
     });
     (UserClient.prototype.findUserById as jest.Mock).mockResolvedValue({});
+    jest.spyOn(jest.requireMock("@/utils/token"), "getUserId").mockResolvedValue("mock-user-id");
   });
 
   afterEach(() => {
@@ -98,7 +103,7 @@ describe("AccountProfileForm", () => {
     await act(() => fireEvent.press(submitButton));
 
     await waitFor(() => {
-      expect(UserClient.prototype.updateUser).toHaveBeenCalledWith({
+      expect(UserClient.prototype.updateUser).toHaveBeenCalledWith("mock-user-id", {
         businessCardColour: undefined,
         country: randomCountry,
         city: randomCity,

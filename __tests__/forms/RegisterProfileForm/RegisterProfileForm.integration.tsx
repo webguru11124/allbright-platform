@@ -10,11 +10,17 @@ import Providers from "@/utils/providers";
 
 jest.mock("@/lib/api");
 jest.mock("@/utils/client/user/UserClient");
+
+jest.mock("@/utils/token", () => ({
+  getUserId: jest.fn(),
+}));
+
 const mockedApi = api as jest.Mocked<typeof api>;
 
 describe("RegisterProfileForm", () => {
   beforeEach(async () => {
     (UserClient.prototype.findUserById as jest.Mock).mockResolvedValue({});
+    jest.spyOn(jest.requireMock("@/utils/token"), "getUserId").mockResolvedValue("mock-user-id");
     renderRouter({
       index: jest.fn(() => (
         <Providers>
@@ -55,11 +61,12 @@ describe("RegisterProfileForm", () => {
     });
 
     await waitFor(() => {
-      expect(UserClient.prototype.updateUser).toHaveBeenCalledWith({
+      expect(UserClient.prototype.updateUser).toHaveBeenCalledWith("mock-user-id", {
         firstName: randomFirstName,
         lastName: randomLastName,
         country: randomCountry,
         city: randomCity,
+        name: `${randomFirstName} ${randomLastName}`,
       });
       expect(screen).toHavePathname("/onboarding/public-profile");
     });

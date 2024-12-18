@@ -10,7 +10,7 @@ const EmailPasswordSignin = ({ onPress }: { onPress: GestureEvent }) => {
     <StyledButton onPress={onPress}>
       <VerticalCenter>
         <AllBrightIcon source={require("@/assets/images/icon.png")} />
-        <Text>Sign in with Email and Password</Text>
+        <Text>Sign up with Email and Password</Text>
       </VerticalCenter>
     </StyledButton>
   );

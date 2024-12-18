@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 
+import { useUserContext } from "@/contexts/UserContext";
 import { useGoogleSignIn } from "@/hooks/resources/useAuth";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 import { setToken } from "@/utils/token";
@@ -11,6 +12,7 @@ const useOAuthLogin = (isSignup?: boolean) => {
 
   const { showErrorMessage } = useShowToast();
   const { mutateAsync: updateUser } = useUserUpdate();
+  const { refetch } = useUserContext();
 
   const googleLogin = async (idToken: string) => {
     if (!idToken) throw new Error("idToken is required");
@@ -27,10 +29,11 @@ const useOAuthLogin = (isSignup?: boolean) => {
           await updateUser({ ...response.data.profile });
         }
         if (isSignup) {
-          router.replace("/onboarding/register-profile");
+          router.replace("/onboarding/welcome");
         } else {
           router.replace("/home");
         }
+        refetch();
       }
     } catch (error: any) {
       showErrorMessage("Error", error.message);

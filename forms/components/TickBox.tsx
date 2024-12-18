@@ -26,6 +26,8 @@ const TickBox = ({ onChange, error, value, label, testID }: Props) => {
         <TickWrapper error={error}>
           {value && (
             <MaterialIcons
+              aria-checked={value}
+              aria-label="Checkbox"
               name={"check"}
               size={24}
               color={"black"}

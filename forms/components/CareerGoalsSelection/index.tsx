@@ -4,8 +4,8 @@ import { CareerGoalType } from "@/utils/data/careerGoals";
 import CareerGoalsSelection from "./CareerGoalsSelection";
 
 interface Props {
-  updateField: (value: CareerGoalType["id"][]) => void;
-  field?: CareerGoalType["id"][];
+  updateField: (value: CareerGoalType[]) => void;
+  field?: CareerGoalType[];
   error?: string;
 }
 const CareerGoalsSelectionContainer = ({ error, field = [], updateField }: Props) => {

@@ -18,7 +18,7 @@ describe("CareerGoalsSelectionContainer", () => {
     updateFieldMock.mockClear();
   });
 
-  function selectGoal(careerGoal: CareerGoalType, expectation: string[]) {
+  function selectGoal(careerGoal: CareerGoalType, expectation: CareerGoalType[]) {
     const goal = screen.getByTestId(`interests-checkbox-${careerGoal.title}`);
     fireEvent.press(goal);
     expect(updateFieldMock).toHaveBeenCalledWith(expectation);
@@ -27,37 +27,32 @@ describe("CareerGoalsSelectionContainer", () => {
   it("should not allow selecting more than 6 goals", () => {
     renderComponent();
 
-    selectGoal(allCareerGoals[0], [allCareerGoals[0].id]);
-    selectGoal(allCareerGoals[1], [allCareerGoals[0].id, allCareerGoals[1].id]);
-    selectGoal(allCareerGoals[2], [allCareerGoals[0].id, allCareerGoals[1].id, allCareerGoals[2].id]);
-    selectGoal(allCareerGoals[3], [
-      allCareerGoals[0].id,
-      allCareerGoals[1].id,
-      allCareerGoals[2].id,
-      allCareerGoals[3].id,
-    ]);
+    selectGoal(allCareerGoals[0], [allCareerGoals[0]]);
+    selectGoal(allCareerGoals[1], [allCareerGoals[0], allCareerGoals[1]]);
+    selectGoal(allCareerGoals[2], [allCareerGoals[0], allCareerGoals[1], allCareerGoals[2]]);
+    selectGoal(allCareerGoals[3], [allCareerGoals[0], allCareerGoals[1], allCareerGoals[2], allCareerGoals[3]]);
     selectGoal(allCareerGoals[4], [
-      allCareerGoals[0].id,
-      allCareerGoals[1].id,
-      allCareerGoals[2].id,
-      allCareerGoals[3].id,
-      allCareerGoals[4].id,
+      allCareerGoals[0],
+      allCareerGoals[1],
+      allCareerGoals[2],
+      allCareerGoals[3],
+      allCareerGoals[4],
     ]);
     selectGoal(allCareerGoals[5], [
-      allCareerGoals[0].id,
-      allCareerGoals[1].id,
-      allCareerGoals[2].id,
-      allCareerGoals[3].id,
-      allCareerGoals[4].id,
-      allCareerGoals[5].id,
+      allCareerGoals[0],
+      allCareerGoals[1],
+      allCareerGoals[2],
+      allCareerGoals[3],
+      allCareerGoals[4],
+      allCareerGoals[5],
     ]);
     selectGoal(allCareerGoals[6], [
-      allCareerGoals[0].id,
-      allCareerGoals[1].id,
-      allCareerGoals[2].id,
-      allCareerGoals[3].id,
-      allCareerGoals[4].id,
-      allCareerGoals[5].id,
+      allCareerGoals[0],
+      allCareerGoals[1],
+      allCareerGoals[2],
+      allCareerGoals[3],
+      allCareerGoals[4],
+      allCareerGoals[5],
     ]);
   });
 });

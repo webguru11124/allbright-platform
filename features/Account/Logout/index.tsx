@@ -1,13 +1,20 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { router } from "expo-router";
+import React from "react";
 import { Platform, StyleSheet, View } from "react-native";
 
 import { CS } from "@/components/Typography";
+import { useUserContext } from "@/contexts/UserContext";
 import Button from "@/forms/components/Button";
 import { setToken } from "@/utils/token";
 
 const Logout = () => {
+  const queryClient = useQueryClient();
+  const { refetch } = useUserContext();
   const onPress = async () => {
     await setToken("");
+    queryClient.clear();
+    refetch();
     router.navigate("/");
   };
 

@@ -1,21 +1,33 @@
-import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 import UserClient from "@/utils/client/user/UserClient";
+import { CareerGoalType } from "@/utils/data/careerGoals";
+import { getUserId } from "@/utils/token";
 
 export const useUserGoals = () => {
-  const { data } = useSuspenseQuery({
+  const { data, refetch } = useQuery({
     queryKey: ["userGoals"],
-    queryFn: new UserClient().getUserGoals,
+    queryFn: async () => {
+      const userId = await getUserId();
+      if (!userId) throw new Error("User ID not available");
+      return new UserClient().getUserGoals(userId);
+    },
+    select: (data) => data ?? [],
   });
 
   return {
     careerGoals: data,
+    refetch: refetch,
   };
 };
 
 export const useUpdateUserGoals = () => {
   return useMutation({
     mutationKey: ["updateUserGoals"],
-    mutationFn: new UserClient().updateUserGoals,
+    mutationFn: async (goals: CareerGoalType[]) => {
+      const userId = await getUserId();
+      if (!userId) throw new Error("User ID not available");
+      return new UserClient().updateUserGoals(userId, goals);
+    },
   });
 };

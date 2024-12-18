@@ -3,11 +3,10 @@ import Joi from "joi";
 import * as React from "react";
 import { useEffect } from "react";
 
-import { UserContext } from "@/contexts/UserContext";
+import { useUserContext } from "@/contexts/UserContext";
 import { pledgeAdapter, PledgeInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
-import { UserModel } from "@/types/user";
 
 const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
   const {
@@ -25,19 +24,15 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
 
-  const { user, refetch } = React.useContext<{
-    user: Partial<UserModel> | undefined;
-    refetch: Function;
-  }>(UserContext);
+  const { user } = useUserContext();
 
   useEffect(() => {
     if (user) {
       reset(user);
-    } else {
-      refetch();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [refetch, user]);
+  }, [user]);
+
   const onPress = async () => {
     try {
       if (!validateAllInputs()) throw new Error("Please fill out all required fields");

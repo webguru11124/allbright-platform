@@ -59,7 +59,7 @@ describe("RegisterForm", () => {
 
     await waitFor(() => {
       expect(tokenSpy).toHaveBeenCalledWith(MOCK_TOKEN);
-      expect(screen).toHavePathname("/onboarding/register-profile");
+      expect(screen).toHavePathname("/onboarding/welcome");
     });
   });
 

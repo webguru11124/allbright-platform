@@ -9,14 +9,10 @@ type Props = {
 };
 
 const IsOnboarding = (props: Props) => {
-  const { user, refetch } = useContext<{
+  const { user } = useContext<{
     user: Partial<UserModel> | undefined;
     refetch: Function;
   }>(UserContext);
-
-  useEffect(() => {
-    refetch();
-  }, [refetch]);
 
   useEffect(() => {
     if (user?.agreedToPledge === false) router.navigate("onboarding/welcome");

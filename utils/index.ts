@@ -70,6 +70,7 @@ export const uuid = (): string => {
 export function parseJwt(token: string) {
   if (!token) return null;
   var base64Url = token.split(".")[1];
+  if (!base64Url) return null;
   var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
   var jsonPayload = decodeURIComponent(
     window
