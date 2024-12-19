@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import useRootLayout from "@/hooks/useRootLayout";
 
-export default function RootLayout() {
+export default function Layout() {
   const [loaded, error] = useRootLayout();
 
   useEffect(() => {

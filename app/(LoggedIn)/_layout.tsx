@@ -2,7 +2,7 @@ import { Slot } from "expo-router";
 
 import { AuthenticatedProviders } from "@/utils/providers";
 
-export default function Layout() {
+export default function RootLayout() {
   return (
     <AuthenticatedProviders>
       <Slot />

@@ -3,7 +3,7 @@ import { Stack } from "expo-router";
 import HeaderBackButton from "@/components/HeaderBackButton";
 import useTheme from "@/hooks/useTheme";
 
-export default function RootLayout() {
+export default function Layout() {
   const theme = useTheme();
 
   return (

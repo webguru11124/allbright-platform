@@ -14,9 +14,10 @@ const useRedirectIfOnboarding = () => {
 
   useEffect(() => {
     if (isOnboarding) {
+      console.log(user);
       router.navigate("onboarding/welcome");
     }
-  }, [isOnboarding]);
+  }, [isOnboarding, user]);
 };
 
 export default useRedirectIfOnboarding;
