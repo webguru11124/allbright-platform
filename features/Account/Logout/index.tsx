@@ -1,19 +1,18 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { router } from "expo-router";
-import { signOut } from "firebase/auth";
 import React from "react";
 import { Platform, StyleSheet, View } from "react-native";
 
 import { CS } from "@/components/Typography";
 import { useUserContext } from "@/contexts/UserContext";
 import Button from "@/forms/components/Button";
-import { auth } from "@/utils/client/firebase";
+import { signOut } from "@/utils/client/FirebaseAuthClient";
 
 const Logout = () => {
   const queryClient = useQueryClient();
   const { refetch } = useUserContext();
   const onPress = async () => {
-    signOut(auth);
+    signOut();
     queryClient.clear();
     refetch();
     router.navigate("/");

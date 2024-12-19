@@ -58,7 +58,6 @@ export const useImagePicker = () => {
         // Only resize if we're on web platform
         if (typeof window !== "undefined" && window.document) {
           const resizedUri = await resizeImageForWeb(uri);
-          console.log("resized");
           return resizedUri;
         }
         return uri;

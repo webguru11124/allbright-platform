@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 import { useUserProfile } from "@/hooks/resources/useUserProfile";
 import { UserModel } from "@/types/user";
@@ -16,15 +16,18 @@ type UserProviderProps = {
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const { data, refetch } = useUserProfile();
+  const [user, setUser] = useState<Partial<UserModel> | undefined>();
+
+  React.useEffect(() => {
+    setUser(data);
+  }, [data]);
 
   React.useEffect(() => {
     refetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const contextValue = React.useMemo(() => ({ user: data, refetch }), [data, refetch]);
-
-  return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={{ user, refetch }}>{children}</UserContext.Provider>;
 };
 
 export const useUserContext = () => {
