@@ -53,12 +53,22 @@ class UserClient {
 
   public async uploadProfileImage(fileUrl: string): Promise<string | null> {
     if (!fileUrl) return null;
+    const fileBlob: Blob = await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+        resolve(xhr.response);
+      };
+      xhr.onerror = function (e) {
+        console.log(e);
+        reject(new TypeError("Network request failed"));
+      };
+      xhr.responseType = "blob";
+      xhr.open("GET", fileUrl, true);
+      xhr.send(null);
+    });
 
     const imageName = u.uuid();
     const currentFileRef = ref(storage, `images/${imageName}`);
-
-    const response = await fetch(fileUrl);
-    const fileBlob = await response.blob();
 
     // Create upload task and wrap it in a promise
     const uploadTaskResult = await uploadBytes(currentFileRef, fileBlob);
