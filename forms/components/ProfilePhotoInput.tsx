@@ -1,5 +1,5 @@
+import { Image } from "expo-image";
 import React from "react";
-import { Image } from "react-native";
 import styled from "styled-components/native";
 
 import { IconCamera } from "@/components/Icons";
@@ -17,24 +17,26 @@ interface ProfilePhotoInputProps {
 }
 
 const ProfilePhotoInput: React.FunctionComponent<ProfilePhotoInputProps> = (props) => {
-  const getImageDisplay = () => {
+  const ImageDisplay = React.useMemo(() => {
     if (props.imageSrc)
       return (
-        <S.StyledImage
-          testID="profile-photo"
-          source={{ uri: props.imageSrc }}
+        <Image
+          style={{ height: "100%", width: "100%", flex: 1 }}
+          accessibilityLabel="profile-photo"
+          source={props.imageSrc}
+          contentFit="cover"
         />
       );
 
     return <S.CameraIcon testID="camera-icon" />;
-  };
+  }, [props.imageSrc]);
 
   return (
     <S.DisplayPhotoSection onPress={props.pickProfileImage}>
       <S.DisplayPhoto
         height={props.height}
         width={props.width}>
-        {getImageDisplay()}
+        {ImageDisplay}
       </S.DisplayPhoto>
     </S.DisplayPhotoSection>
   );
@@ -42,10 +44,6 @@ const ProfilePhotoInput: React.FunctionComponent<ProfilePhotoInputProps> = (prop
 
 const S = () => {};
 
-S.StyledImage = styled(Image)`
-  width: 100%;
-  height: 100%;
-`;
 S.DisplayPhotoSection = styled.Pressable`
   justify-content: center;
   align-items: center;

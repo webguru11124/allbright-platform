@@ -19,15 +19,14 @@ describe("ProfilePhotoInput", () => {
 
   it("renders image when imageSrc is provided", () => {
     const imageSrc = "https://example.com/profile.jpg";
-    const { getByTestId } = render(
+    const { getByLabelText } = render(
       <ProfilePhotoInput
         imageSrc={imageSrc}
         pickProfileImage={mockPickProfileImage}
       />
     );
-
-    const image = getByTestId("profile-photo");
-    expect(image.props.source.uri).toBe(imageSrc);
+    const image = getByLabelText("profile-photo");
+    expect(image.props.source).toStrictEqual([{ uri: imageSrc }]);
   });
 
   it("calls pickProfileImage when pressed", () => {
