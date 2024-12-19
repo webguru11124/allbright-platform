@@ -30,7 +30,7 @@ const useRegisterProfileForm = (registerProfileSchema: Joi.PartialSchemaMap<any>
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
-  const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
+  const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate(user?.id);
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
 

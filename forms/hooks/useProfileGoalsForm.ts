@@ -2,11 +2,13 @@ import { useRouter } from "expo-router";
 import Joi from "joi";
 import { useEffect, useState } from "react";
 
+import { useUserContext } from "@/contexts/UserContext";
 import { profileGoalsAdapter, ProfileGoalsInput } from "@/forms/adaptors";
 import useForm from "@/forms/hooks/useForm";
 import { useUpdateUserGoals, useUserGoals } from "@/hooks/resources/useUserGoals";
 
 const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
+  const { user } = useUserContext();
   const {
     inputs,
     errors,
@@ -18,10 +20,10 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
     showErrorMessage,
     reset,
   } = useForm(careerGoalsSchema);
-  const { mutateAsync: mutateUpdateUserGoalsAsync } = useUpdateUserGoals();
+  const { mutateAsync: mutateUpdateUserGoalsAsync } = useUpdateUserGoals(user?.id);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const { careerGoals, refetch } = useUserGoals();
+  const { careerGoals, refetch } = useUserGoals(user?.id);
 
   useEffect(() => {
     refetch();

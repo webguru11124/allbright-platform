@@ -2,14 +2,12 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { UserModel } from "@/types/user";
 import UserClient from "@/utils/client/user/UserClient";
-import { getUserId } from "@/utils/token";
 
-export const useUserUpdate = () => {
+export const useUserUpdate = (userId: string | undefined) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["updateUser"],
     mutationFn: async (newUser: Partial<UserModel>) => {
-      const userId = await getUserId();
       if (!userId) {
         throw new Error("User ID not available");
       }
@@ -29,12 +27,10 @@ export const useUserUpdate = () => {
   });
 };
 
-export const useUserUpdateProfileImage = () => {
+export const useUserUpdateProfileImage = (userId: string | undefined) => {
   return useMutation({
     mutationKey: ["updateUserProfileImage"],
     mutationFn: async (imageFile: string) => {
-      const userId = await getUserId();
-
       if (!userId) {
         throw new Error("User ID not available");
       }

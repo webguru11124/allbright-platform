@@ -15,7 +15,7 @@ const IsOnboarding = (props: Props) => {
   }>(UserContext);
 
   useEffect(() => {
-    if (user?.agreedToPledge === false) router.navigate("onboarding/welcome");
+    if (Boolean(user?.agreedToPledge) === false) router.navigate("onboarding/welcome");
   }, [user?.agreedToPledge]);
 
   return props.children;

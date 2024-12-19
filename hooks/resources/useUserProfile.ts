@@ -13,6 +13,7 @@ export const useUserProfile = () => {
     },
     select: (data: UserModel | undefined | null) => ({
       ...data,
+      name: `${data?.firstName} ${data?.lastName}`,
       ethnicGroups: data?.ethnicGroups ?? [],
       careerGoals: data?.careerGoals ?? [],
       goals: data?.goals ?? [],

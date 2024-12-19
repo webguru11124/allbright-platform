@@ -22,6 +22,28 @@ export const RegisterForm = ({
       <HeaderBackButton onBackPress={onBackPress} />
     </BackButtonContainer>
     <TextInput
+      placeholder="First Name"
+      inputMode="text"
+      textContentType="name"
+      value={inputs.firstName}
+      error={errors.firstName}
+      onBlur={blurFuncs.firstName}
+      onChangeText={changeTextFuncs.firstName}
+      testID="RegisterForm:FirstName"
+    />
+    <Space height={10} />
+    <TextInput
+      placeholder="Last Name"
+      inputMode="text"
+      textContentType="name"
+      value={inputs.lastName}
+      error={errors.lastName}
+      onBlur={blurFuncs.lastName}
+      onChangeText={changeTextFuncs.lastName}
+      testID="RegisterForm:LastName"
+    />
+    <Space height={10} />
+    <TextInput
       placeholder="Email"
       inputMode="email"
       textContentType="emailAddress"

@@ -6,7 +6,6 @@ import { fireBlurEvent } from "@/__mocks__/test-utils";
 import LoginForm from "@/forms/LoginForm";
 import api from "@/lib/api";
 import Providers from "@/utils/providers";
-import * as tokenFns from "@/utils/token";
 
 jest.mock("@/lib/api");
 const mockedApi = api as jest.Mocked<typeof api>;
@@ -24,7 +23,6 @@ describe("LoginForm", () => {
     const MOCK_TOKEN = "my-bearer-token";
     const EMAIL = faker.internet.email();
     const PASS = faker.internet.password();
-    const tokenSpy = jest.spyOn(tokenFns, "setToken");
 
     renderRouter({
       index: jest.fn(() => (
@@ -46,7 +44,6 @@ describe("LoginForm", () => {
     });
 
     await waitFor(() => {
-      expect(tokenSpy).toHaveBeenCalledWith(MOCK_TOKEN);
       expect(screen).toHavePathname("/home");
     });
   });
