@@ -42,7 +42,7 @@ const ProfilePhotoInput: React.FunctionComponent<ProfilePhotoInputProps> = (prop
   );
 };
 
-const S = () => { };
+const S = () => {};
 
 S.DisplayPhotoSection = styled.Pressable`
   justify-content: center;
