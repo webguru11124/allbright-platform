@@ -14,6 +14,28 @@ type Props = {
 };
 const client = new QueryClient();
 
+export const AppProviders = ({ children }: Props) => (
+  <QueryClientProvider client={client}>
+    <ThemeProvider value={DefaultTheme}>
+      <MediaQueryProvider>{children}</MediaQueryProvider>
+    </ThemeProvider>
+  </QueryClientProvider>
+);
+
+export const AuthenticatedProviders = ({ children }: Props) => (
+  <GestureHandlerRootView style={{ flex: 1 }}>
+    <UserProvider>
+      <PaperProvider
+        theme={PaperDefaultTheme}
+        settings={{
+          rippleEffectEnabled: false,
+        }}>
+        <RootSiblingParent>{children}</RootSiblingParent>
+      </PaperProvider>
+    </UserProvider>
+  </GestureHandlerRootView>
+);
+
 const Providers = ({ children }: Props) => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

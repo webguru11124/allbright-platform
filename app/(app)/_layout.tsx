@@ -1,7 +1,6 @@
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 
-import Session from "@/features/Session";
 import useRootLayout from "@/hooks/useRootLayout";
 
 export default function RootLayout() {
@@ -18,12 +17,10 @@ export default function RootLayout() {
   }
 
   return (
-    <Session>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      />
-    </Session>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+      }}
+    />
   );
 }
