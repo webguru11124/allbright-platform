@@ -1,22 +1,19 @@
-import { router } from "expo-router";
-import React, { useContext, useEffect } from "react";
+import { router, usePathname } from "expo-router";
+import React, { useEffect } from "react";
 
-import { UserContext } from "@/contexts/UserContext";
-import { UserModel } from "@/types/user";
+import { useUserContext } from "@/contexts/UserContext";
 
 type Props = {
   children: React.ReactNode;
 };
 
 const IsOnboarding = (props: Props) => {
-  const { user } = useContext<{
-    user: Partial<UserModel> | undefined;
-    refetch: Function;
-  }>(UserContext);
+  const { user } = useUserContext();
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (Boolean(user?.agreedToPledge) === false) router.navigate("onboarding/welcome");
-  }, [user?.agreedToPledge]);
+    if (Boolean(user?.agreedToPledge) === false && pathname !== "/account") router.navigate("onboarding/welcome");
+  }, [pathname, user?.agreedToPledge]);
 
   return props.children;
 };

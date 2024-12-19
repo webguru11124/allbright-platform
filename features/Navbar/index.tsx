@@ -1,14 +1,10 @@
 import React from "react";
 
-import { UserContext } from "@/contexts/UserContext";
+import { useUserContext } from "@/contexts/UserContext";
 import NavigationBar from "@/features/Navbar/NavigationBar";
-import { UserModel } from "@/types/user";
 
 const NavigationBarContainer = () => {
-  const { user } = React.useContext<{
-    user: Partial<UserModel> | undefined;
-    refetch: Function;
-  }>(UserContext);
+  const { user } = useUserContext();
 
   return <NavigationBar user={user} />;
 };
