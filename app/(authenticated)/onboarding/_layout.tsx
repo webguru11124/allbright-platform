@@ -2,10 +2,8 @@ import { useTheme } from "@react-navigation/native";
 import { Stack } from "expo-router";
 
 import HeaderBackButton from "@/components/HeaderBackButton";
-import useRedirectIfOnboarding from "@/hooks/useRedirectIfOnboarding";
 
 export default function Layout() {
-  useRedirectIfOnboarding();
   const theme = useTheme();
   return (
     <Stack
