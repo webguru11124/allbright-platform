@@ -20,11 +20,12 @@ const Main = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
+  padding-bottom: 50px;
 `;
 
 const FormContainer = styled.View`
-  max-width: 300;
-  padding: 30px 10px 0 10px;
   flex: 1;
+  min-width: 360px;
+  padding: 30px 10px 0 10px;
   justify-content: flex-start;
 `;

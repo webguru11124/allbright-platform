@@ -18,9 +18,14 @@ export default LoginMobile;
 
 const Main = styled.View`
   flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
 `;
 
 const FormContainer = styled.View`
+  flex: 1;
+  max-width: 360px;
   padding: 30px 10px 0 10px;
-  justify-content: flex-start;
+  align-items: flex-start;
 `;
