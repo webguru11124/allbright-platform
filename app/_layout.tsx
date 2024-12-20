@@ -12,7 +12,7 @@ const client = new QueryClient();
 
 const authenticationPaths = ["/", "/register", "/login"];
 
-export default function RootLayout() {
+export default function Root() {
   const pathname = usePathname();
 
   onAuthStateChanged(auth, (fbUser) => {

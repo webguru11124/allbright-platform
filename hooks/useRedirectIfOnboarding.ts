@@ -16,7 +16,7 @@ const useRedirectIfOnboarding = () => {
     if (isOnboarding) {
       router.navigate("onboarding/welcome");
     }
-  }, [isOnboarding, user]);
+  }, [isOnboarding]);
 };
 
 export default useRedirectIfOnboarding;

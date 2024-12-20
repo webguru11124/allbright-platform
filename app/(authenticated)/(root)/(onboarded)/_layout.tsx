@@ -7,13 +7,11 @@ import { View } from "react-native";
 import { H4 } from "@/components/Typography";
 import { useUserContext } from "@/contexts/UserContext";
 import TabImage from "@/features/Navbar/partials/TabImage";
-import useRedirectIfOnboarding from "@/hooks/useRedirectIfOnboarding";
 import useTheme from "@/hooks/useTheme";
 
 export default function Layout() {
   const { user } = useUserContext();
   const theme = useTheme();
-  useRedirectIfOnboarding();
   return (
     <>
       <Drawer
