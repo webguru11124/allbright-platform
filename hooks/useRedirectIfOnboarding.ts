@@ -8,13 +8,13 @@ const useRedirectIfOnboarding = () => {
   const pathname = usePathname();
 
   const isOnboarding = useMemo(
-    () => Boolean(user?.agreedToPledge) === false && pathname !== "/account",
+    () => user && Boolean(user?.agreedToPledge) === false && pathname !== "/account",
     [pathname, user]
   );
 
   useEffect(() => {
     if (isOnboarding) {
-      router.navigate("onboarding/welcome");
+      router.replace("/onboarding/welcome");
     }
   }, [isOnboarding]);
 };
