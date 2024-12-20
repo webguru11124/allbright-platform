@@ -42,7 +42,7 @@ const InterestsSelection: FunctionComponent<InterestsSelectionProps> = ({ error,
 const S = () => {};
 
 S.Main = styled.View<StyleProps>`
-  width: 360px;
+  width: 100%;
 `;
 
 S.Container = styled.View<StyleProps>`
