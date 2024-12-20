@@ -4,7 +4,6 @@ import { View } from "react-native";
 import Link from "@/components/Link";
 import Logout from "@/features/Account/Logout";
 import Providers from "@/utils/providers";
-import { getToken, setToken } from "@/utils/token";
 
 describe("HeaderBackButton", () => {
   const BUTTON_TEXT = "Click Me!";
@@ -37,11 +36,6 @@ describe("HeaderBackButton", () => {
   it(`should:
       - navigate to the previous screen when pressed
     `, async () => {
-    const TOKEN = "TEST";
-
-    await setToken(TOKEN);
-    expect(await getToken()).toBe(TOKEN);
-
     fireEvent.press(screen.getByText(BUTTON_TEXT));
     expect(screen).toHavePathname("/logout");
 
@@ -52,6 +46,5 @@ describe("HeaderBackButton", () => {
     });
 
     expect(screen).toHavePathname("/");
-    expect(await getToken()).toBe("");
   });
 });

@@ -1,8 +1,8 @@
 import { faker } from "@faker-js/faker";
 import { fireEvent, render } from "@testing-library/react-native";
 
+import { TestProviders } from "@/__mocks__/test-utils";
 import RegisterForm from "@/forms/RegisterForm/RegisterForm";
-import Providers from "@/utils/providers";
 
 describe("RegisterForm", () => {
   const props = {
@@ -37,9 +37,9 @@ describe("RegisterForm", () => {
 
     beforeEach(() => {
       screen = render(
-        <Providers>
+        <TestProviders>
           <RegisterForm {...props} />
-        </Providers>
+        </TestProviders>
       );
       jest.clearAllMocks();
     });
@@ -64,9 +64,9 @@ describe("RegisterForm", () => {
 
     beforeEach(() => {
       screen = render(
-        <Providers>
+        <TestProviders>
           <RegisterForm {...props} />
-        </Providers>
+        </TestProviders>
       );
     });
 
@@ -81,9 +81,9 @@ describe("RegisterForm", () => {
       };
 
       screen.rerender(
-        <Providers>
+        <TestProviders>
           <RegisterForm {...updatedProps} />
-        </Providers>
+        </TestProviders>
       );
 
       expect(screen.queryByText(updatedProps.errors.email)).not.toBeNull();
@@ -100,9 +100,9 @@ describe("RegisterForm", () => {
       };
 
       screen.rerender(
-        <Providers>
+        <TestProviders>
           <RegisterForm {...updatedProps} />
-        </Providers>
+        </TestProviders>
       );
 
       expect(screen.queryByText(updatedProps.errors.password)).not.toBeNull();
@@ -114,9 +114,9 @@ describe("RegisterForm", () => {
 
     beforeEach(() => {
       screen = render(
-        <Providers>
+        <TestProviders>
           <RegisterForm {...props} />
-        </Providers>
+        </TestProviders>
       );
     });
 
@@ -132,9 +132,9 @@ describe("RegisterForm", () => {
       };
 
       screen.rerender(
-        <Providers>
+        <TestProviders>
           <RegisterForm {...updatedProps} />
-        </Providers>
+        </TestProviders>
       );
 
       fireEvent.press(submit);

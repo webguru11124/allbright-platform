@@ -4,21 +4,16 @@ import { Drawer } from "expo-router/drawer";
 import React from "react";
 import { View } from "react-native";
 
-import IsOnboarding from "@/components/IsOnboarding";
 import { H4 } from "@/components/Typography";
-import { UserContext } from "@/contexts/UserContext";
+import { useUserContext } from "@/contexts/UserContext";
 import TabImage from "@/features/Navbar/partials/TabImage";
 import useTheme from "@/hooks/useTheme";
-import { UserModel } from "@/types/user";
 
 export default function Layout() {
-  const { user } = React.useContext<{
-    user: Partial<UserModel> | undefined;
-    refetch: Function;
-  }>(UserContext);
+  const { user } = useUserContext();
   const theme = useTheme();
   return (
-    <IsOnboarding>
+    <>
       <Drawer
         screenOptions={{ drawerHideStatusBarOnOpen: true, headerTintColor: theme.colors.primary }}
         drawerContent={(props) => {
@@ -142,6 +137,6 @@ export default function Layout() {
           }}
         />
       </Drawer>
-    </IsOnboarding>
+    </>
   );
 }

@@ -2,13 +2,11 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 import UserClient from "@/utils/client/user/UserClient";
 import { CareerGoalType } from "@/utils/data/careerGoals";
-import { getUserId } from "@/utils/token";
 
-export const useUserGoals = () => {
+export const useUserGoals = (userId: string | undefined) => {
   const { data, refetch } = useQuery({
     queryKey: ["userGoals"],
     queryFn: async () => {
-      const userId = await getUserId();
       if (!userId) throw new Error("User ID not available");
       return new UserClient().getUserGoals(userId);
     },
@@ -21,11 +19,10 @@ export const useUserGoals = () => {
   };
 };
 
-export const useUpdateUserGoals = () => {
+export const useUpdateUserGoals = (userId: string | undefined) => {
   return useMutation({
     mutationKey: ["updateUserGoals"],
     mutationFn: async (goals: CareerGoalType[]) => {
-      const userId = await getUserId();
       if (!userId) throw new Error("User ID not available");
       return new UserClient().updateUserGoals(userId, goals);
     },

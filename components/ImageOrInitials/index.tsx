@@ -14,8 +14,9 @@ type Props = {
 const ImageOrInitials = ({ theme, imageSrc, initials, height, width }: Props) =>
   Boolean(imageSrc) ? (
     <Image
-      style={[{ height: height, width: width, borderRadius: height / 2 }]}
+      style={[{ height: height, width: width, borderRadius: height / 2, borderWidth: 1, borderColor: "#EEE" }]}
       source={imageSrc}
+      alt={`${initials}`}
     />
   ) : (
     <View

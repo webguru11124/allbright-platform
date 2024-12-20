@@ -1,4 +1,4 @@
-import { getDownloadURL, ref, uploadBytes, uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 import api from "@/lib/api";
 import { UserModel } from "@/types/user";
@@ -8,6 +8,12 @@ import { storage } from "@/utils/client/firebase";
 import { CareerGoalType } from "@/utils/data/careerGoals";
 
 class UserClient {
+  public async getMe(): Promise<UserModel | null> {
+    const { data } = await api.get(`/v1/users/me`);
+
+    return data || null;
+  }
+
   public async findUserById(userId: string): Promise<UserModel | null> {
     if (!userId) throw new Error("Invalid User Id");
 

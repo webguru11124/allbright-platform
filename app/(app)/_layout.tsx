@@ -1,10 +1,9 @@
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 
-import IsAuthenticated from "@/components/IsAuthenticated";
 import useRootLayout from "@/hooks/useRootLayout";
 
-export default function RootLayout() {
+export default function Layout() {
   const [loaded, error] = useRootLayout();
 
   useEffect(() => {
@@ -18,12 +17,10 @@ export default function RootLayout() {
   }
 
   return (
-    <IsAuthenticated>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      />
-    </IsAuthenticated>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+      }}
+    />
   );
 }

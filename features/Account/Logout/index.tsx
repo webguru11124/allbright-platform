@@ -6,13 +6,13 @@ import { Platform, StyleSheet, View } from "react-native";
 import { CS } from "@/components/Typography";
 import { useUserContext } from "@/contexts/UserContext";
 import Button from "@/forms/components/Button";
-import { setToken } from "@/utils/token";
+import { signOut } from "@/utils/client/FirebaseAuthClient";
 
 const Logout = () => {
   const queryClient = useQueryClient();
   const { refetch } = useUserContext();
   const onPress = async () => {
-    await setToken("");
+    signOut();
     queryClient.clear();
     refetch();
     router.navigate("/");

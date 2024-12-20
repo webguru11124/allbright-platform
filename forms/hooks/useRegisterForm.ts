@@ -6,7 +6,6 @@ import { useUserContext } from "@/contexts/UserContext";
 import { RegisterInput, registrationAdaptor } from "@/forms/adaptors";
 import useFormWithPassConf from "@/forms/hooks/useFormWithPassConf";
 import { Login, Register, useRegister, useSignIn } from "@/hooks/resources/useAuth";
-import { setToken } from "@/utils/token";
 
 enum State {
   IDLE = 1,
@@ -47,7 +46,6 @@ const useRegisterForm = (registerSchema: Joi.PartialSchemaMap<any> | undefined) 
     () =>
       mutateSignin(postBody as Login, {
         onSuccess: async (response) => {
-          await setToken(response.data as unknown as string);
           refetch();
           setState(State.SUCCESS);
         },

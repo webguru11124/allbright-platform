@@ -9,6 +9,7 @@ import useForm from "@/forms/hooks/useForm";
 import { useUserUpdate } from "@/hooks/resources/useUserUpdate";
 
 const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
+  const { user } = useUserContext();
   const {
     inputs,
     errors,
@@ -20,11 +21,9 @@ const useProfileGoalsForm = (careerGoalsSchema: Joi.PartialSchemaMap<any>) => {
     validateAllInputs,
     showErrorMessage,
   } = useForm(careerGoalsSchema);
-  const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate();
+  const { mutateAsync: mutateUpdateUserAsync } = useUserUpdate(user?.id);
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
-
-  const { user } = useUserContext();
 
   useEffect(() => {
     if (user) {

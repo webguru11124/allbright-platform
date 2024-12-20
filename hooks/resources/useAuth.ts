@@ -2,8 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 
 import { RegisterOutput } from "@/forms/adaptors";
 import api from "@/lib/api";
+import { signInWithEmailAndPassword } from "@/utils/client/FirebaseAuthClient";
 
-const SIGNIN_URL = "/v1/auth/signin";
 const REGISTER_URL = "/v1/auth/register/allbright_free";
 const GOOGLE_SIGN_IN_URL = "/v1/auth/google-signin";
 const GOOGLE_SIGN_UP_URL = "/v1/auth/google-signup";
@@ -17,9 +17,7 @@ export type Register = RegisterOutput;
 
 const signinFn = async (loginData: Login) => {
   try {
-    const myVal = await api.post(SIGNIN_URL, loginData);
-
-    return myVal;
+    await signInWithEmailAndPassword(loginData.email, loginData.password);
   } catch (error: any) {
     throw HandledError(error?.data?.statusCode);
   }

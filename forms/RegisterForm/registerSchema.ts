@@ -1,6 +1,8 @@
 import Joi from "joi";
 
 export const registerSchema = {
+  firstName: Joi.string().min(1).required(),
+  lastName: Joi.string().min(1).required(),
   email: Joi.string()
     .email({ tlds: { allow: false } })
     .required(),
