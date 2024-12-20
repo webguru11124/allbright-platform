@@ -68,6 +68,7 @@ const PublicProfileForm = ({ inputs, errors, blurFuncs, changeTextFuncs, isPendi
       uploadProfileImage={changeTextFuncs.profile_image}
     />
     <Space height={10} />
+
     <TextInput
       placeholder={placeholderBiography}
       label={"Biography*"}
@@ -82,7 +83,8 @@ const PublicProfileForm = ({ inputs, errors, blurFuncs, changeTextFuncs, isPendi
       onChangeText={changeTextFuncs.bio}
       testID="PublicProfileForm:UserBiography"
     />
-    <Space height={10} />
+
+    <Space height={20} />
 
     <Button
       isLoading={isPending}
