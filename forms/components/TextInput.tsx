@@ -1,4 +1,4 @@
-import { TextInputProps, TextStyle } from "react-native";
+import { TextInputProps, TextStyle, View } from "react-native";
 import { FloatingLabelInput } from "react-native-floating-label-input";
 
 import { CS } from "@/components/Typography";
@@ -12,7 +12,7 @@ type Props = TextInputProps & {
 
 const TextInput = ({ theme, error, onBlur, onChangeText, placeholder, label, ...rest }: Props) => {
   return (
-    <>
+    <View style={{ minHeight: rest.multiline ? 200 : 50 }}>
       <FloatingLabelInput
         label={label || placeholder || "Please enter"}
         autoCapitalize="none"
@@ -31,6 +31,7 @@ const TextInput = ({ theme, error, onBlur, onChangeText, placeholder, label, ...
           borderColor: Boolean(error) ? "red" : "transparent",
           borderWidth: Boolean(error) ? 3 : 0,
           paddingTop: rest.multiline ? 35 : 0,
+          minHeight: rest.multiline ? 100 : 50,
         }}
         animationDuration={150}
         onChangeText={onChangeText}
@@ -40,7 +41,7 @@ const TextInput = ({ theme, error, onBlur, onChangeText, placeholder, label, ...
         {...rest}
       />
       {error && <CS color="red">{error}</CS>}
-    </>
+    </View>
   );
 };
 

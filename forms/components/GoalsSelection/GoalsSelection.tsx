@@ -1,14 +1,10 @@
 import React, { FunctionComponent } from "react";
-import styled from "styled-components/native";
+import { StyleSheet, View } from "react-native";
 
 import { CL } from "@/components/Typography";
 import FormFieldContainer from "@/forms/components/FormFieldContainer";
 import TickBox from "@/forms/components/TickBox";
 import goals from "@/utils/data/goals";
-
-type StyleProps = {
-  error?: string;
-};
 
 interface GoalsSectionProps {
   goalIsSelected: (goal: (typeof goals)[number]) => boolean;
@@ -18,10 +14,10 @@ interface GoalsSectionProps {
 
 const GoalsSection: FunctionComponent<GoalsSectionProps> = ({ error, ...props }) => {
   return (
-    <>
+    <View style={styles.root}>
       <CL>Why do you want to meet others? Choose between 1 and to 3</CL>
       <FormFieldContainer error={error}>
-        <GoalsContainer>
+        <View style={styles.goalsContainer}>
           {goals.map((goal) => (
             <TickBox
               key={goal}
@@ -32,16 +28,18 @@ const GoalsSection: FunctionComponent<GoalsSectionProps> = ({ error, ...props })
               testID={`goals-checkbox-${goal}`}
             />
           ))}
-        </GoalsContainer>
+        </View>
       </FormFieldContainer>
-    </>
+    </View>
   );
 };
 
-const GoalsContainer = styled.View<StyleProps>`
-  padding: 15px 0 0 0;
-  flex-direction: column;
-  gap: 8px;
-`;
+const styles = StyleSheet.create({
+  root: { marginTop: 10 },
+  goalsContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+});
 
 export default GoalsSection;

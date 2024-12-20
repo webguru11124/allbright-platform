@@ -1,8 +1,8 @@
-import { SafeAreaView } from "react-native";
+import { Pressable, SafeAreaView, View } from "react-native";
 import styled from "styled-components/native";
 
-import HeaderBackButton from "@/components/HeaderBackButton";
 import Space from "@/components/Space";
+import { CS } from "@/components/Typography";
 import Button from "@/forms/components/Button";
 import TextInput from "@/forms/components/TextInput";
 import { FormProps } from "@/forms/types/forms.types";
@@ -18,65 +18,69 @@ export const RegisterForm = ({
   onBackPress,
 }: FormProps & { onBackPress: () => void }) => (
   <SafeAreaView>
-    <BackButtonContainer>
-      <HeaderBackButton onBackPress={onBackPress} />
-    </BackButtonContainer>
-    <TextInput
-      placeholder="First Name"
-      inputMode="text"
-      textContentType="name"
-      value={inputs.firstName}
-      error={errors.firstName}
-      onBlur={blurFuncs.firstName}
-      onChangeText={changeTextFuncs.firstName}
-      testID="RegisterForm:FirstName"
-    />
-    <Space height={10} />
-    <TextInput
-      placeholder="Last Name"
-      inputMode="text"
-      textContentType="name"
-      value={inputs.lastName}
-      error={errors.lastName}
-      onBlur={blurFuncs.lastName}
-      onChangeText={changeTextFuncs.lastName}
-      testID="RegisterForm:LastName"
-    />
-    <Space height={10} />
-    <TextInput
-      placeholder="Email"
-      inputMode="email"
-      textContentType="emailAddress"
-      value={inputs.email}
-      error={errors.email}
-      onBlur={blurFuncs.email}
-      onChangeText={changeTextFuncs.email}
-      testID="RegisterForm:Email"
-    />
-    <Space height={10} />
-    <TextInput
-      secureTextEntry={true}
-      placeholder="Password"
-      inputMode="text"
-      textContentType="password"
-      value={inputs.password}
-      error={errors.password}
-      onBlur={blurFuncs.password}
-      onChangeText={changeTextFuncs.password}
-      testID="RegisterForm:Password"
-    />
-    <Space height={10} />
-    <TextInput
-      secureTextEntry={true}
-      placeholder="Confirm Password"
-      inputMode="text"
-      textContentType="password"
-      value={inputs.password_confirmation}
-      error={errors.password_confirmation}
-      onBlur={blurFuncs.password_confirmation}
-      onChangeText={changeTextFuncs.password_confirmation}
-      testID="RegisterForm:PasswordConfirmation"
-    />
+    <BackLinkContainer>
+      <Pressable onPress={onBackPress}>
+        <CS style={{ textDecorationLine: "underline" }}>Back to register screen</CS>
+      </Pressable>
+    </BackLinkContainer>
+    <View style={{ height: 300 }}>
+      <TextInput
+        placeholder="First Name"
+        inputMode="text"
+        textContentType="name"
+        value={inputs.firstName}
+        error={errors.firstName}
+        onBlur={blurFuncs.firstName}
+        onChangeText={changeTextFuncs.firstName}
+        testID="RegisterForm:FirstName"
+      />
+      <Space height={10} />
+      <TextInput
+        placeholder="Last Name"
+        inputMode="text"
+        textContentType="name"
+        value={inputs.lastName}
+        error={errors.lastName}
+        onBlur={blurFuncs.lastName}
+        onChangeText={changeTextFuncs.lastName}
+        testID="RegisterForm:LastName"
+      />
+      <Space height={10} />
+      <TextInput
+        placeholder="Email"
+        inputMode="email"
+        textContentType="emailAddress"
+        value={inputs.email}
+        error={errors.email}
+        onBlur={blurFuncs.email}
+        onChangeText={changeTextFuncs.email}
+        testID="RegisterForm:Email"
+      />
+      <Space height={10} />
+      <TextInput
+        secureTextEntry={true}
+        placeholder="Password"
+        inputMode="text"
+        textContentType="password"
+        value={inputs.password}
+        error={errors.password}
+        onBlur={blurFuncs.password}
+        onChangeText={changeTextFuncs.password}
+        testID="RegisterForm:Password"
+      />
+      <Space height={10} />
+      <TextInput
+        secureTextEntry={true}
+        placeholder="Confirm Password"
+        inputMode="text"
+        textContentType="password"
+        value={inputs.password_confirmation}
+        error={errors.password_confirmation}
+        onBlur={blurFuncs.password_confirmation}
+        onChangeText={changeTextFuncs.password_confirmation}
+        testID="RegisterForm:PasswordConfirmation"
+      />
+    </View>
     <Space height={10} />
     <Button
       disabled={!isFormValid}
@@ -87,7 +91,8 @@ export const RegisterForm = ({
     </Button>
   </SafeAreaView>
 );
-const BackButtonContainer = styled.View`
+const BackLinkContainer = styled.View`
   align-items: start;
+  margin-bottom: 20px;
 `;
 export default RegisterForm;

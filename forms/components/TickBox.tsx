@@ -1,6 +1,5 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { TextInputProps, View } from "react-native";
-import styled from "styled-components/native";
+import { Pressable, StyleSheet, TextInputProps, View } from "react-native";
 
 import { CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
@@ -19,11 +18,16 @@ const TickBox = ({ onChange, error, value, label, testID }: Props) => {
   };
 
   return (
-    <View>
-      <TickContainer
+    <View style={styles.root}>
+      <Pressable
         testID={testID}
-        onPress={onPress}>
-        <TickWrapper error={error}>
+        onPress={onPress}
+        style={styles.tickContainer}>
+        <View
+          style={[
+            styles.tickWrapper,
+            { borderColor: Boolean(error) ? "red" : "transparent", borderWidth: Boolean(error) ? 3 : 0 },
+          ]}>
           {value && (
             <MaterialIcons
               aria-checked={value}
@@ -33,33 +37,39 @@ const TickBox = ({ onChange, error, value, label, testID }: Props) => {
               color={"black"}
             />
           )}
-        </TickWrapper>
+        </View>
         <CS>{label}</CS>
-      </TickContainer>
+      </Pressable>
       {error && <CS color="red">{error}</CS>}
     </View>
   );
 };
 
-const TickContainer = styled.TouchableOpacity`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 10px 0px;
-`;
-
-const TickWrapper = styled.View<{ error: string | undefined }>`
-  width: 20px;
-  height: 20px;
-  border-radius: 2px;
-  background: #fff;
-  border-color: ${(p) => (Boolean(p.error) ? "red" : "transparent")};
-  border-width: ${(p) => (Boolean(p.error) ? 3 : 0)}px;
-  margin-right: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
+const styles = StyleSheet.create({
+  root: {
+    alignSelf: "flex-start",
+    paddingHorizontal: 10,
+    marginVertical: 5,
+    minWidth: 200,
+  },
+  tickContainer: {
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  tickWrapper: {
+    width: 20,
+    height: 20,
+    borderRadius: 2,
+    backgroundColor: "#fff",
+    borderColor: "transparent",
+    borderWidth: 0,
+    marginRight: 10,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export default withTheme(TickBox);
