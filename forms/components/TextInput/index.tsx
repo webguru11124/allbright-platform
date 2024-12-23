@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { TextInputProps, TextStyle, View } from "react-native";
 import { FloatingLabelInput } from "react-native-floating-label-input";
 
@@ -6,14 +7,15 @@ import withTheme from "@/hocs/withTheme";
 
 type Props = TextInputProps & {
   label?: string;
-  error: string | undefined;
+  error?: string | undefined;
   theme: Theme;
 };
 
-const TextInput = ({ theme, error, onBlur, onChangeText, placeholder, label, ...rest }: Props) => {
+const TextInput = forwardRef(({ theme, error, onBlur, onChangeText, placeholder, label, ...rest }: Props, ref) => {
   return (
     <View style={{ minHeight: rest.multiline ? 200 : 50 }}>
       <FloatingLabelInput
+        ref={ref as any}
         label={label || placeholder || "Please enter"}
         autoCapitalize="none"
         inputStyles={
@@ -44,6 +46,7 @@ const TextInput = ({ theme, error, onBlur, onChangeText, placeholder, label, ...
       {error && <CS style={{ color: theme.colors.error.text }}>{error}</CS>}
     </View>
   );
-};
+});
+TextInput.displayName = "TextInput";
 
 export default withTheme(TextInput);
