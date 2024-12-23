@@ -31,10 +31,10 @@ export default function Searchbox({
   }
 
   return (
-    <View style={[styles.container, containerStyle]}>
+    <View style={[containerStyle]}>
       <TextInput
         ref={inputRef}
-        style={[styles.input, style]}
+        style={[style]}
         value={inputValue}
         onChangeText={(text) => {
           setQuery(text);
@@ -49,19 +49,3 @@ export default function Searchbox({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#252b33",
-    padding: 18,
-  },
-  input: {
-    height: 48,
-    padding: 12,
-    fontSize: 16,
-    backgroundColor: "#fff",
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: "#ddd",
-  },
-});

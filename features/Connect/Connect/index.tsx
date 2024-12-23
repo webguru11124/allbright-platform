@@ -4,8 +4,8 @@ import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
 import config from "@/config";
 import BusinessCard from "@/features/BusinessCard";
 
-import AlgoliaSearch from "./AlgoriaSearchProvider";
-import { MutualConnections } from "./MutualConnections";
+import RecommendConnect from "./RecommendConnect";
+import AlgoliaSearch from "./RecommendConnect/InstantSearch";
 import Searchbox from "./Searchbox";
 
 const HitComponent = ({ hit }: { hit: any }) => {
@@ -20,28 +20,36 @@ export default function Connect() {
   }
 
   return (
-    <View>
-      <SafeAreaView style={styles.safe}>
-        <View style={styles.container}>
-          <AlgoliaSearch index={config.ALGOLIA_SEARCH.CONNECT_INDEX}>
-            <>
-              <Searchbox onChange={scrollToTop} />
-              <MutualConnections hitComponent={HitComponent} />
-            </>
-          </AlgoliaSearch>
-        </View>
-      </SafeAreaView>
-    </View>
+    <SafeAreaView style={styles.root}>
+      <AlgoliaSearch index={config.ALGOLIA_SEARCH.CONNECT_INDEX}>
+        <>
+          <View style={styles.searchContainer}>
+            <Searchbox
+              onChange={scrollToTop}
+              containerStyle={styles.searchboxContainer}
+            />
+          </View>
+          {/* <PendingConnections fromMe={false} />
+          <PendingConnections fromMe={false} />
+          <AcceptedConnections/> */}
+          <RecommendConnect hitComponent={HitComponent} />
+        </>
+      </AlgoliaSearch>
+    </SafeAreaView>
   );
 }
+
 const styles = StyleSheet.create({
-  safe: {
+  root: {
     flex: 1,
-    backgroundColor: "#252b33",
+    padding: 30,
   },
-  container: {
-    flex: 1,
-    backgroundColor: "#ffffff",
-    flexDirection: "column",
+  searchContainer: {
+    alignItems: "flex-end",
+    paddingHorizontal: 40,
+    paddingVertical: 20,
+  },
+  searchboxContainer: {
+    width: 300,
   },
 });

@@ -1,5 +1,6 @@
-import { recommendedConnections } from "@/utils/data/recommendedConnections";
+// import { recommendedConnections } from "@/utils/data/recommendedConnections";
 
 export const userMutualConnections = () => {
-  return recommendedConnections;
+  // return recommendedConnections;
+  return [];
 };

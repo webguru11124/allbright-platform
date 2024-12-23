@@ -5,6 +5,7 @@ import { PaperProvider } from "react-native-paper";
 import { RootSiblingParent } from "react-native-root-siblings";
 
 import AppContextProvider from "@/contexts/AppContextProvider";
+import { ConnecionsProvider } from "@/contexts/ConnectionContext";
 import { MediaQueryProvider } from "@/contexts/MediaQueryContext";
 import { UserProvider } from "@/contexts/UserContext";
 import { PaperDarkTheme } from "@/theme";
@@ -44,15 +45,17 @@ const Providers = ({ children }: Props) => {
       <AppContextProvider>
         <QueryClientProvider client={client}>
           <UserProvider>
-            <MediaQueryProvider>
-              <PaperProvider
-                theme={PaperDarkTheme}
-                settings={{
-                  rippleEffectEnabled: false,
-                }}>
-                <RootSiblingParent>{children}</RootSiblingParent>
-              </PaperProvider>
-            </MediaQueryProvider>
+            <ConnecionsProvider>
+              <MediaQueryProvider>
+                <PaperProvider
+                  theme={PaperDarkTheme}
+                  settings={{
+                    rippleEffectEnabled: false,
+                  }}>
+                  <RootSiblingParent>{children}</RootSiblingParent>
+                </PaperProvider>
+              </MediaQueryProvider>
+            </ConnecionsProvider>
           </UserProvider>
         </QueryClientProvider>
       </AppContextProvider>

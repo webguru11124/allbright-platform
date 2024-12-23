@@ -6,7 +6,7 @@ type Props = {
   hitComponent: React.ComponentType<any>;
 };
 
-export function MutualConnections({ hitComponent: Hit, ...props }: Props) {
+function RecommendConnectMobile({ hitComponent: Hit, ...props }: Props) {
   const { items, isLastPage, showMore } = useInfiniteHits({
     ...props,
     escapeHTML: false,
@@ -16,7 +16,6 @@ export function MutualConnections({ hitComponent: Hit, ...props }: Props) {
     <FlatList
       data={items}
       keyExtractor={(item) => item.objectID}
-      ItemSeparatorComponent={() => <View style={styles.separator} />}
       onEndReached={() => {
         if (!isLastPage) {
           showMore();
@@ -40,3 +39,4 @@ const styles = StyleSheet.create({
     padding: 18,
   },
 });
+export default RecommendConnectMobile;
