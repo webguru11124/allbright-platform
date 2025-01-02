@@ -1,8 +1,12 @@
-import styled from "styled-components/native";
+import { View } from "react-native";
 
-const Space = styled.View<{ height?: number; width?: number }>`
-  ${(p) => (p.height ? `height: ${p.height}px;` : "")}
-  ${(p) => (p.width ? `width: ${p.width}px;` : "")}
-`;
+const Space = ({ height, width }: { height?: number; width?: number }) => (
+  <View
+    style={{
+      height: height,
+      width: width,
+    }}
+  />
+);
 
 export default Space;

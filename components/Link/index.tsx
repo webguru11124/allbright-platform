@@ -1,8 +1,7 @@
 import { Href, Link as NativeLink } from "expo-router";
 import _ from "lodash";
 import React, { ReactNode } from "react";
-import { Platform, View } from "react-native";
-import styled from "styled-components/native";
+import { ActivityIndicator, Platform, StyleSheet, View } from "react-native";
 
 import * as T from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
@@ -20,19 +19,36 @@ type LinkProps = {
   children?: ReactNode;
 };
 
-type ContainerProps = Omit<LinkProps, "href">;
-
 function Link(props: LinkProps) {
   return (
-    <S.Container
+    <View
       {..._.omit(props, ["href"])}
-      background={props.theme.colors.button?.background || "#FFF"}>
-      <S.NativeLink href={props.href as Href}>{getChildren()}</S.NativeLink>
-    </S.Container>
+      style={[
+        styles.container,
+        { backgroundColor: props.theme.colors.button?.background || "#FFF", opacity: props.disabled ? 0.4 : 1 },
+      ]}>
+      <NativeLink
+        style={[
+          styles.nativeLink,
+          {
+            textAlign: Platform.OS === "web" ? "center" : "center",
+            paddingTop: Platform.OS === "web" ? 0 : 13,
+          },
+        ]}
+        href={props.href as Href}>
+        {getChildren()}
+      </NativeLink>
+    </View>
   );
 
   function getChildren() {
-    if (props.isLoading) return <S.ActivityIndicator />;
+    if (props.isLoading)
+      return (
+        <ActivityIndicator
+          size={"small"}
+          color={props.theme.colors.card}
+        />
+      );
 
     const arrayChildren = React.Children.toArray(props.children);
     if (arrayChildren.length > 0 && arrayChildren.every((el) => React.isValidElement(el))) {
@@ -58,40 +74,25 @@ function getFontColor(bgColor: string, theme: any) {
   return r * 0.299 + g * 0.587 + b * 0.114 > 186 ? theme.colors.button.primary : "white";
 }
 
-const S = {
-  NativeLink: styled(NativeLink)`
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    text-align: ${Platform.OS === "web" ? "auto" : "center"};
-    padding-top: ${Platform.OS === "web" ? 0 : 13}px;
-  `,
-
-  Container: styled(View)<ContainerProps>`
-    width: 100%;
-    height: 45px;
-    border-radius: 50px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    opacity: ${(props) => (props.disabled ? 0.4 : 1)};
-    background: ${(props) => props.background};
-  `,
-
-  ActivityIndicator: styled.ActivityIndicator.attrs((p) => ({
-    size: "small",
-    color: p.theme.bg.card,
-  }))``,
-
-  TinyContainer: styled(View)<ContainerProps>`
-    border-radius: 24px;
-    background: ${(p) => (p.isCta ? p.theme.colors.secondary : p.theme.bg.overlay)};
-    align-items: center;
-    justify-content: center;
-    padding: 10px 15px;
-  `,
-};
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: 45,
+    borderRadius: 50,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    opacity: 1,
+    backgroundColor: "transparent",
+  },
+  nativeLink: {
+    display: "flex",
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 13,
+  },
+});
 
 export default withTheme(Link);
