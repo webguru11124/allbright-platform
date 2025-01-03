@@ -1,4 +1,4 @@
-import { ActivityIndicator, ButtonProps, Pressable, StyleProp, StyleSheet } from "react-native";
+import { ActivityIndicator, ButtonProps, Pressable, StyleProp, StyleSheet, View } from "react-native";
 
 import { CM } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
@@ -17,16 +17,25 @@ const Button = ({ disabled, theme, style, ...props }: Props) => {
       disabled={disabled || props.isLoading}
       onPress={props.onPress}
       {...props}>
-      <CM style={{ color: theme.colors.txt.light }}>
-        {props.isLoading ? (
-          <ActivityIndicator
-            size={24}
-            color={theme.colors.button.primary}
-          />
-        ) : (
-          props.children
-        )}
-      </CM>
+      {typeof props.children === "string" ? (
+        <CM style={{ color: theme.colors.txt.light, justifyContent: "center", alignItems: "center" }}>
+          {props.isLoading ? (
+            <ActivityIndicator
+              size={24}
+              color={theme.colors.button.primary}
+            />
+          ) : (
+            props.children
+          )}
+        </CM>
+      ) : props.isLoading ? (
+        <ActivityIndicator
+          size={24}
+          color={theme.colors.button.primary}
+        />
+      ) : (
+        <View style={[styles.container]}>{props.children}</View>
+      )}
     </Pressable>
   );
 };
@@ -39,6 +48,10 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     borderRadius: 25,
     opacity: 1,
+  },
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

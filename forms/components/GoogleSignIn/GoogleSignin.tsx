@@ -27,12 +27,12 @@ const GoogleSignIn = ({
       isLoading={loading}>
       <View style={[styles.vertialCenter]}>
         <MaterialIcons
-          style={[styles.googleIcon]}
+          style={[styles.icon]}
           name={"google"}
           size={24}
           color={theme.colors.txt.light}
         />
-        <CM style={{ color: theme.colors.txt.light }}>
+        <CM style={{ color: theme.colors.txt.light, fontWeight: 500 }}>
           {isSignin ? "Sign in" : "Sign up"} with <Text style={[styles.bold]}>Google</Text>
         </CM>
       </View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  googleIcon: {
+  icon: {
     marginRight: 10,
   },
   bold: {

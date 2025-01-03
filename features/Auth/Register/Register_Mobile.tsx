@@ -18,10 +18,9 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
+    paddingHorizontal: 20,
     paddingBottom: 50,
   },
-
   linkContainer: {
     position: "absolute",
     bottom: 30,

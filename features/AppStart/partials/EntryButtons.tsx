@@ -12,14 +12,14 @@ const EntryButtons = ({ nameAnim, theme }: EntryButtonsProps) => {
   return (
     <Animated.View style={{ opacity: nameAnim, width: "100%" }}>
       <Link href="/register">
-        <CM style={{ color: theme.colors.button.primary }}>Join AllBright</CM>
+        <CM style={{ color: theme.colors.button.primary, fontWeight: 600 }}>Join AllBright</CM>
       </Link>
       <Space height={10} />
       <Link
         href="/login"
         background={recommendationColor.btBgColor}
         isSecondary={true}>
-        <CM style={{ color: theme.colors.button.primary }}>Log in</CM>
+        <CM style={{ color: theme.colors.button.primary, fontWeight: 600 }}>Log in</CM>
       </Link>
       <Space height={10} />
     </Animated.View>

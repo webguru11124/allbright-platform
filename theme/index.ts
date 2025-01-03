@@ -125,6 +125,8 @@ export const DefaultTheme = {
       primary: "#FFF",
       background: "#00605C",
       googleSignIn: "#4285f4",
+      facebookSignin: "#5890ff",
+      linkedinSignIn: "#0077b5",
     },
     txt: {
       primo: "#DADCE1",
@@ -163,6 +165,8 @@ export const DarkTheme = {
       primary: "#000",
       background: "#00605C",
       googleSignIn: "#4285f4",
+      facebookSignin: "#5890ff",
+      linkedinSignIn: "#0077b5",
     },
     txt: {
       primo: "#414143",

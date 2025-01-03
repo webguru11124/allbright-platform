@@ -1,8 +1,7 @@
 import { Image } from "expo-image";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
-import { CM } from "@/components/Typography";
 import Button from "@/forms/components/Button";
 import withTheme from "@/hocs/withTheme";
 
@@ -21,7 +20,7 @@ const EmailPasswordSignin = ({ onPress, theme }: Props) => {
           style={[styles.image]}
           source={require("@/assets/images/icon.png")}
         />
-        <CM style={{ color: theme.colors.txt.light, fontWeight: 700 }}>Sign up with Email and Password</CM>
+        <Text style={{ color: theme.colors.txt.light, fontWeight: 700 }}>Sign up with Email and Password</Text>
       </View>
     </Button>
   );
@@ -35,10 +34,10 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: "100%",
-    paddingTop: 10,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    paddingHorizontal: 20,
   },
   image: {
     width: 25,
