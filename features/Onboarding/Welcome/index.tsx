@@ -1,5 +1,6 @@
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
-import styled from "styled-components/native";
+import { StyleSheet, View } from "react-native";
 
 import { CM, H2Rox } from "@/components/Typography";
 import { OnboadingPageLayout } from "@/features/Onboarding/OnboardingLayout";
@@ -15,60 +16,55 @@ export default function WelcomeScreen() {
 
   return (
     <OnboadingPageLayout>
-      <Main>
-        <ImageWrapper>
-          <StyledImage
+      <View style={styles.main}>
+        <View style={styles.imageWrapper}>
+          <Image
+            style={[StyleSheet.absoluteFill, styles.image]}
             source={require("@/assets/images/digital-screens.jpg")}
-            resizeMode="cover"
+            contentFit="cover"
           />
-        </ImageWrapper>
-        <Section>
+        </View>
+        <View style={styles.section}>
           <H2Rox>{returningUser ? "A bespoke experience" : "Welcome to AllBright"}</H2Rox>
-          <CMBold>
+          <CM style={[styles.cmBold]}>
             {returningUser
               ? "AllBright is personalising your experience, for better suggestions of events, courses and connections. We invite you to check your profile is up to date."
               : "Let's get started on personalising your experience."}
-          </CMBold>
+          </CM>
           <CM>
-            <CMBold>The first section will be visible on your public profile, </CMBold>
+            <CM style={[styles.cmBold]}>The first section will be visible on your public profile, </CM>
             giving others a chance to get to know you better.
           </CM>
           <CM>
             Meanwhile, the following sections{" "}
-            <CMBold>will remain private. This information will never be shared with anyone else.</CMBold>
+            <CM style={[styles.cmBold]}>
+              will remain private. This information will never be shared with anyone else.
+            </CM>
             &nbsp;AllBright will use it to tailor your experience on the platform.
           </CM>
-        </Section>
+        </View>
 
         <Button onPress={onPress}>Start</Button>
-      </Main>
+      </View>
     </OnboadingPageLayout>
   );
 }
-const CMBold = styled(CM)`
-  font-weight: 700;
-`;
 
-const Main = styled.View`
-  flex: 1;
-  flex-direction: column;
-  justify-content: flex-start;
-`;
-const ImageWrapper = styled.View`
-  position: relative;
-  width: 100%;
-  aspect-ratio: 2/1;
-`;
-
-const StyledImage = styled.Image`
-  width: 100%;
-  height: 100%;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
-const Section = styled.View`
-  flex-direction: column;
-  gap: 15px;
-  padding: 10px 0;
-`;
+const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+    justifyContent: "flex-start",
+  },
+  imageWrapper: {
+    width: "100%",
+    aspectRatio: 2 / 1,
+  },
+  image: {},
+  section: {
+    gap: 15,
+    paddingVertical: 15,
+  },
+  cmBold: {
+    fontWeight: 700,
+  },
+});

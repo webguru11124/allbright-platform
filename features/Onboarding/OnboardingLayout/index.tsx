@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { ActivityIndicator, SafeAreaView, StyleSheet, View } from "react-native";
+import { ActivityIndicator, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 
 interface Props {
   children: React.ReactNode;
@@ -7,7 +7,7 @@ interface Props {
 
 export const OnboadingPageLayout = ({ children }: Props) => {
   return (
-    <View style={[styles.main]}>
+    <ScrollView style={[styles.main]}>
       <SafeAreaView style={[styles.container]}>
         <View style={[styles.contentWrap]}>
           <Suspense
@@ -22,7 +22,7 @@ export const OnboadingPageLayout = ({ children }: Props) => {
           </Suspense>
         </View>
       </SafeAreaView>
-    </View>
+    </ScrollView>
   );
 };
 
