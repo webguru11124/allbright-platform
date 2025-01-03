@@ -1,80 +1,47 @@
 import React, { FunctionComponent } from "react";
-import styled from "styled-components/native";
+import { Pressable, StyleSheet, Text } from "react-native";
 
-import colors from "@/theme";
+import withTheme from "@/hocs/withTheme";
 
-interface PillInputProps {
+type Props = {
   name: string;
   labelText: string;
   isChecked: boolean;
   isSquare?: boolean;
+  theme: Theme;
   onChange: () => void;
-}
+};
 
-const PillInput: FunctionComponent<PillInputProps> = (props) => {
+const PillInput: FunctionComponent<Props> = ({ name, labelText, isChecked, isSquare, theme, onChange }) => {
   return (
-    <S.Container
-      data-cy={`${props.name.toLowerCase().replace(/[\W_]+/g, "_")}-pill`}
-      checked={props.isChecked}
-      $isSquare={props.isSquare}
-      onPress={props.onChange}
-      testID={`interests-checkbox-${props.labelText}`}>
-      <S.Label $isSquare={props.isSquare}>{props.labelText}</S.Label>
-    </S.Container>
+    <Pressable
+      style={[
+        styles.container,
+        { backgroundColor: theme.colors.overlay },
+        isSquare && { height: 100, width: 100, borderRadius: 5, padding: 10 },
+        isChecked && { backgroundColor: theme.colors.pill },
+      ]}
+      data-cy={`${name.toLowerCase().replace(/[\W_]+/g, "_")}-pill`}
+      onPress={onChange}
+      testID={`interests-checkbox-${labelText}`}>
+      <Text style={[styles.label, isSquare && { padding: 0, fontWeight: 500 }]}>{labelText}</Text>
+    </Pressable>
   );
 };
 
-interface StyleProps {
-  checked?: boolean;
-  $isSquare?: boolean;
-}
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: 25,
+    backgroundColor: "transparent",
+    borderRadius: 50,
+  },
+  label: {
+    textAlign: "center",
+    paddingHorizontal: 20,
+    zIndex: 1,
+  },
+});
 
-const S = () => {};
-
-S.Container = styled.Pressable<StyleProps>`
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  height: 25px;
-  align-items: center;
-  background: ${colors.shellOverlay};
-  border-radius: 50px;
-  transition: transform 0.1s linear;
-  ${(p) =>
-    p.$isSquare &&
-    `
-    height: 80px;
-    width: 80px;
-    border-radius: 5px;
-    text-align: center;
-    padding: 5px;
-  `}
-
-  ${(p) =>
-    p.checked &&
-    `
-    background: ${colors.pillTeal};
-  `}
-
-    ${(p) =>
-    p.$isSquare &&
-    `
-    height: 100px;
-    width: 100px;
-    padding: 10px;
-  `}
-`;
-
-S.Label = styled.Text<StyleProps>`
-  padding: 0 20px;
-  z-index: 1;
-
-  ${(p) =>
-    p.$isSquare &&
-    `
-    padding: 0;
-    font-weight: 500;
-  `}
-`;
-
-export default PillInput;
+export default withTheme(PillInput);

@@ -115,6 +115,7 @@ export const DefaultTheme = {
     background: "#F9F4F0",
     lightBackground: "#FFFBF9",
     overlay: "#F2E7DF",
+    pill: "#C8E8E5",
     inputs: {
       background: "#FFF",
       text: "#414143",
@@ -155,6 +156,7 @@ export const DarkTheme = {
     background: "#bbb",
     lightBackground: "#ddd",
     overlay: "#ccc",
+    pill: "#C8E8E5",
     inputs: {
       background: "#FFF",
       text: "#414143",
