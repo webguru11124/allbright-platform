@@ -1,33 +1,31 @@
 import { Link } from "expo-router";
-import { Pressable } from "react-native";
-import styled from "styled-components/native";
+import { Pressable, StyleSheet, View } from "react-native";
 
 import { CS } from "@/components/Typography";
 
 const RegisterLink = () => {
   return (
-    <LinkContainer>
+    <View style={[styles.linkContainer]}>
       <CS>Don't have an account? </CS>
       <Link
         href="/register"
         asChild>
         <Pressable>
-          <CsUnderlined>Register</CsUnderlined>
+          <CS style={[styles.csUnderlined]}>Register</CS>
         </Pressable>
       </Link>
-    </LinkContainer>
+    </View>
   );
 };
 
+const styles = StyleSheet.create({
+  linkContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    width: "100%",
+    marginTop: 10,
+  },
+  csUnderlined: { textDecorationLine: "underline" },
+});
+
 export default RegisterLink;
-
-const LinkContainer = styled.View`
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  margin-top: 10px;
-`;
-
-const CsUnderlined = styled(CS)`
-  text-decoration: underline;
-`;

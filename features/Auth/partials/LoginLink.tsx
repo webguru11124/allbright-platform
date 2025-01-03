@@ -1,33 +1,31 @@
 import { Link } from "expo-router";
-import { Pressable } from "react-native";
-import styled from "styled-components/native";
+import { Pressable, StyleSheet, View } from "react-native";
 
 import { CS } from "@/components/Typography";
 
 const LoginLink = () => {
   return (
-    <LinkContainer>
+    <View style={[styles.linkContainer]}>
       <CS>Already have an account? </CS>
       <Link
         href="/login"
         asChild>
         <Pressable>
-          <CsUnderlined>Login</CsUnderlined>
+          <CS style={[styles.csUnderlined]}>Login</CS>
         </Pressable>
       </Link>
-    </LinkContainer>
+    </View>
   );
 };
 
+const styles = StyleSheet.create({
+  linkContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    width: "100%",
+    marginTop: 10,
+  },
+  csUnderlined: { textDecorationLine: "underline" },
+});
+
 export default LoginLink;
-
-const LinkContainer = styled.View`
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  margin-top: 10px;
-`;
-
-const CsUnderlined = styled(CS)`
-  text-decoration: underline;
-`;
