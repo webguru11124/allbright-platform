@@ -24,7 +24,6 @@ describe("AppStart", () => {
     expect(screen.getByText(/Welcome to AllBright./)).not.toBeNull();
     expect(screen.getByText(/A professional community for/)).not.toBeNull();
     expect(screen.getByText(/smart-minded women/)).not.toBeNull();
-
   });
 
   it(`should:
