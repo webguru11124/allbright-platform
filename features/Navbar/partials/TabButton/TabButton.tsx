@@ -1,6 +1,5 @@
 import { Href, Link } from "expo-router";
-import { Animated, Pressable } from "react-native";
-import styled from "styled-components/native";
+import { Animated, Pressable, StyleSheet } from "react-native";
 
 export type Props = {
   isActive: boolean;
@@ -12,10 +11,15 @@ export type Props = {
 };
 
 const TabButton = ({ isActive, widthAnim, href, onHoverIn, onHoverOut, children }: Props) => (
-  <StyledPressable
+  <Pressable
+    style={[styles.pressable]}
     onHoverIn={onHoverIn}
     onHoverOut={onHoverOut}>
-    <StyledLink href={href}>{children}</StyledLink>
+    <Link
+      style={[styles.link]}
+      href={href}>
+      {children}
+    </Link>
     <Animated.View
       style={[
         {
@@ -32,19 +36,19 @@ const TabButton = ({ isActive, widthAnim, href, onHoverIn, onHoverOut, children 
         },
       ]}
     />
-  </StyledPressable>
+  </Pressable>
 );
 
-const StyledPressable = styled(Pressable)`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  max-width: fit-content;
-  padding: 0 15px;
-`;
-
-const StyledLink = styled(Link)`
-  display: flex;
-`;
+const styles = StyleSheet.create({
+  pressable: {
+    flexGrow: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 15,
+  },
+  link: {
+    flexDirection: "row",
+  },
+});
 
 export default TabButton;
