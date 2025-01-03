@@ -1,31 +1,32 @@
-import styled from "styled-components/native";
+import { StyleSheet, View } from "react-native";
 
 import LoginLink from "@/features/Auth/partials/LoginLink";
 import RegisterForm from "@/forms/RegisterForm";
 
 const RegisterMobile = () => {
   return (
-    <Main>
-      <FormContainer>
-        <RegisterForm />
+    <View style={[styles.main]}>
+      <RegisterForm />
+      <View style={[styles.linkContainer]}>
         <LoginLink />
-      </FormContainer>
-    </Main>
+      </View>
+    </View>
   );
 };
 
+const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: 50,
+  },
+
+  linkContainer: {
+    position: "absolute",
+    bottom: 30,
+    width: "100%",
+  },
+});
+
 export default RegisterMobile;
-
-const Main = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 50px;
-`;
-
-const FormContainer = styled.View`
-  flex: 1;
-  min-width: 360px;
-  padding: 30px 10px 0 10px;
-  justify-content: flex-start;
-`;

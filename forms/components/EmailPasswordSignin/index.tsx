@@ -1,33 +1,50 @@
 import { Image } from "expo-image";
 import React from "react";
-import { Text } from "react-native";
-import styled from "styled-components/native";
+import { StyleSheet, View } from "react-native";
 
+import { CM } from "@/components/Typography";
 import Button from "@/forms/components/Button";
+import withTheme from "@/hocs/withTheme";
 
-const EmailPasswordSignin = ({ onPress }: { onPress: GestureEvent }) => {
+type Props = {
+  onPress: GestureEvent;
+  theme: Theme;
+};
+
+const EmailPasswordSignin = ({ onPress, theme }: Props) => {
   return (
-    <StyledButton onPress={onPress}>
-      <AllBrightIcon source={require("@/assets/images/icon.png")} />
-      <Text>Sign up with Email and Password</Text>
-    </StyledButton>
+    <Button
+      style={[styles.button]}
+      onPress={onPress}>
+      <View style={[styles.imageContainer]}>
+        <Image
+          style={[styles.image]}
+          source={require("@/assets/images/icon.png")}
+        />
+        <CM style={{ color: theme.colors.txt.light, fontWeight: 700 }}>Sign up with Email and Password</CM>
+      </View>
+    </Button>
   );
 };
 
-const StyledButton = styled(Button)`
-  width: 304px;
-  height: 45px;
-  margin-bottom: 8px;
-  border-radius: 4px;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
+const styles = StyleSheet.create({
+  button: {
+    width: 304,
+    height: 45,
+    borderRadius: 4,
+  },
+  imageContainer: {
+    width: "100%",
+    paddingTop: 10,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    width: 25,
+    height: 25,
+    marginRight: 10,
+  },
+});
 
-const AllBrightIcon = styled(Image)`
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
-`;
-
-export default EmailPasswordSignin;
+export default withTheme(EmailPasswordSignin);

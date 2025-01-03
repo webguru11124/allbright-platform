@@ -124,6 +124,7 @@ export const DefaultTheme = {
     button: {
       primary: "#FFF",
       background: "#00605C",
+      googleSignIn: "#4285f4",
     },
     txt: {
       primo: "#DADCE1",
@@ -161,6 +162,7 @@ export const DarkTheme = {
     button: {
       primary: "#000",
       background: "#00605C",
+      googleSignIn: "#4285f4",
     },
     txt: {
       primo: "#414143",
