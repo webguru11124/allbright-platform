@@ -1,6 +1,7 @@
 "use strict";
 
 import { DarkTheme as NativeDarkTheme, DefaultTheme as NativeDefaultTheme } from "@react-navigation/native";
+import { Platform } from "react-native";
 import { MD2DarkTheme as DarkPaperTheme, MD2LightTheme as DefaultPaperTheme } from "react-native-paper";
 
 const colors = {
@@ -91,13 +92,16 @@ export const recommendationColor = {
 };
 
 export const PaperDefaultTheme = {
-  ...DefaultPaperTheme,
-  colors: {
-    ...DefaultPaperTheme.colors,
-    primary: recommendationColor.textColor,
-    placeholder: "rgb(73,101,140)",
-    text: recommendationColor.textColor,
-  },
+  ...Platform.select({
+    native: {
+      ...DefaultPaperTheme,
+      colors: {
+        ...DefaultPaperTheme.colors,
+        primary: recommendationColor.textColor,
+        placeholder: "rgb(73,101,140)",
+      },
+    },
+  }),
 };
 
 export const PaperDarkTheme = {
