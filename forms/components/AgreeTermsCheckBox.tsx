@@ -1,6 +1,5 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { Linking, TextInputProps } from "react-native";
-import styled from "styled-components/native";
+import { Linking, Pressable, StyleSheet, TextInputProps, TouchableOpacity, View } from "react-native";
 
 import { CS } from "@/components/Typography";
 import { Links } from "@/constants/Links";
@@ -19,10 +18,19 @@ const AgreeTermsCheckBox = ({ theme, onChangeText, error, value, testID }: Props
 
   return (
     <>
-      <TickContainer
+      <TouchableOpacity
+        style={[styles.tickContainer]}
         testID={testID}
         onPress={onPress}>
-        <TickWrapper error={error}>
+        <View
+          style={[
+            styles.tickWrapper,
+            {
+              backgroundColor: theme.colors.txt.light,
+              borderColor: Boolean(error) ? "red" : "transparent",
+              borderWidth: Boolean(error) ? 3 : 0,
+            },
+          ]}>
           {value && (
             <MaterialIcons
               name={"check"}
@@ -30,42 +38,45 @@ const AgreeTermsCheckBox = ({ theme, onChangeText, error, value, testID }: Props
               color={"black"}
             />
           )}
-        </TickWrapper>
+        </View>
         <CS>
           I agree to the AllBright{" "}
-          <Link onPress={() => Linking.openURL(Links.terms)}>
-            <CS textDecorationStyle={undefined}>Terms of Use</CS>
-          </Link>
+          <View>
+            <Pressable onPress={() => Linking.openURL(Links.terms)}>
+              <CS style={styles.link}>Terms of Use</CS>
+            </Pressable>
+          </View>
         </CS>
-      </TickContainer>
-      {error && <CS color="red">{error}</CS>}
+      </TouchableOpacity>
+      {error && <CS style={styles.error}>{error}</CS>}
     </>
   );
 };
 
-const TickContainer = styled.TouchableOpacity`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 10px 0px;
-`;
-
-const TickWrapper = styled.View<{ error: string | undefined }>`
-  width: 20px;
-  height: 20px;
-  border-radius: 2px;
-  background: #fff;
-  border-color: ${(p) => (Boolean(p.error) ? "red" : "transparent")};
-  border-width: ${(p) => (Boolean(p.error) ? 3 : 0)}px;
-  margin-right: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Link = styled.Pressable`
-  text-decoration: underline;
-`;
+const styles = StyleSheet.create({
+  tickContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 10,
+  },
+  tickWrapper: {
+    width: 20,
+    height: 20,
+    borderRadius: 2,
+    backgroundColor: "#fff",
+    borderColor: "transparent",
+    borderWidth: 0,
+    marginRight: 10,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  link: {
+    textDecorationLine: "underline",
+  },
+  error: {
+    color: "red",
+  },
+});
 
 export default withTheme(AgreeTermsCheckBox);
