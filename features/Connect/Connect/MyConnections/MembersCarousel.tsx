@@ -1,7 +1,7 @@
 import * as React from "react";
 import { NativeScrollEvent, ScrollView, StyleSheet, View } from "react-native";
 
-import { H2 } from "@/components/Typography";
+import { CL, CXXL, H2 } from "@/components/Typography";
 import BusinessCard from "@/features/BusinessCard";
 import { UserModel } from "@/types/user";
 
@@ -24,7 +24,7 @@ export default function MembersCarousel({ members, title, datacy, onLoadMembers 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <H2>{title}</H2>
+        <CL>{title}</CL>
       </View>
       <ScrollView
         horizontal
@@ -39,6 +39,7 @@ export default function MembersCarousel({ members, title, datacy, onLoadMembers 
         {members.map((member) => (
           <BusinessCard
             key={member.id}
+            isStatic
             member={member}
           />
         ))}
@@ -49,11 +50,14 @@ export default function MembersCarousel({ members, title, datacy, onLoadMembers 
 const styles = StyleSheet.create({
   container: {
     marginBottom: 30,
+    padding: 30,
   },
   header: {
     marginBottom: 10,
   },
   membersContainer: {
     flexDirection: "row",
+    gap: 20,
+    rowGap: 20,
   },
 });

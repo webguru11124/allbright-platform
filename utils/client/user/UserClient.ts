@@ -34,7 +34,7 @@ class UserClient {
       ids = ids.slice(start, end);
     }
 
-    const { data } = (await api.post("/v1/users", ids)).data;
+    const { data } = await api.post("/v1/users", ids);
 
     return {
       nextToken: userIds[end] || null,
