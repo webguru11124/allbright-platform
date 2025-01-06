@@ -1,23 +1,21 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useSearchBox } from "react-instantsearch-core";
-import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 
 import TextInput from "@/forms/components/TextInput";
 
 export default function Searchbox({
   style,
-  onChange,
   containerStyle,
 }: {
-  onChange: () => void;
   style?: StyleProp<ViewStyle>;
   containerStyle?: StyleProp<ViewStyle>;
 }) {
   const { query, refine } = useSearchBox();
   const [inputValue, setInputValue] = useState(query);
-  const inputRef = useRef<any>(null);
 
   function setQuery(newQuery: string) {
+    console.log("changing");
     setInputValue(newQuery);
     refine(newQuery);
   }
@@ -26,19 +24,14 @@ export default function Searchbox({
   // the React state.
   // We bypass the state update if the input is focused to avoid concurrent
   // updates when typing.
-  if (query !== inputValue && !inputRef.current?.isFocused()) {
-    setInputValue(query);
-  }
 
   return (
     <View style={[containerStyle]}>
       <TextInput
-        ref={inputRef}
         style={[style]}
         value={inputValue}
         onChangeText={(text) => {
           setQuery(text);
-          onChange();
         }}
         clearButtonMode="while-editing"
         autoCapitalize="none"

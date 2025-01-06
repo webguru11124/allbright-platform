@@ -6,9 +6,10 @@ type Props = {
   value: string;
   width: number;
   height: number;
+  bgColor?: string;
 };
 
-export default function QRCodeGenerator({ value, width, height }: Props) {
+export default function QRCodeGenerator({ value, width, height, bgColor }: Props) {
   return (
     <View style={styles.container}>
       <View style={[styles.wrapper, { width: width, height: height }]}>
@@ -17,7 +18,7 @@ export default function QRCodeGenerator({ value, width, height }: Props) {
             value={value}
             size={200}
             color="black"
-            backgroundColor="white"
+            backgroundColor={bgColor ?? "white"}
           />
         </View>
       </View>

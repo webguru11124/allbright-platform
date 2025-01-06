@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
+import * as React from "react";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 
 import config from "@/config";
 import BusinessCard from "@/features/BusinessCard";
@@ -9,25 +9,21 @@ import AlgoliaSearch from "./RecommendConnect/InstantSearch";
 import Searchbox from "./Searchbox";
 
 const HitComponent = ({ hit }: { hit: any }) => {
-  return <BusinessCard member={hit} />;
+  return (
+    <BusinessCard
+      member={hit}
+      isStatic
+    />
+  );
 };
 
 export default function Connect() {
-  const listRef = useRef<FlatList>(null);
-
-  function scrollToTop() {
-    listRef.current?.scrollToOffset({ animated: false, offset: 0 });
-  }
-
   return (
     <SafeAreaView style={styles.root}>
       <AlgoliaSearch index={config.ALGOLIA_SEARCH.CONNECT_INDEX}>
         <>
           <View style={styles.searchContainer}>
-            <Searchbox
-              onChange={scrollToTop}
-              containerStyle={styles.searchboxContainer}
-            />
+            <Searchbox containerStyle={styles.searchboxContainer} />
           </View>
           {/* <PendingConnections fromMe={false} />
           <PendingConnections fromMe={false} />

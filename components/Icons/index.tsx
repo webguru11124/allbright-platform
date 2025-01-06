@@ -1,5 +1,5 @@
 import React from "react";
-import Svg, { Path, SvgProps } from "react-native-svg";
+import Svg, { Path, Rect, SvgProps } from "react-native-svg";
 
 type Props = SvgProps & {
   width?: number;
@@ -138,6 +138,75 @@ export function Location(props: Props) {
         clipRule="evenodd"
         d="M3.75 6.75A5.246 5.246 0 019 1.5a5.246 5.246 0 015.25 5.25C14.25 10.688 9 16.5 9 16.5s-5.25-5.813-5.25-9.75zm3.375 0a1.876 1.876 0 103.751-.001 1.876 1.876 0 00-3.751.001z"
         fill={props.color}
+      />
+    </Svg>
+  );
+}
+export function Lock(props: Props) {
+  return (
+    <Svg
+      width={props.width || "10"}
+      height={props.height || "14"}
+      viewBox="0 0 10 14"
+      fill="none"
+      {...props}>
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M8.75 5.24902H8.125V3.99902C8.125 2.27402 6.725 0.874023 5 0.874023C3.275 0.874023 1.875 2.27402 1.875 3.99902V5.24902H1.25C0.5625 5.24902 0 5.81152 0 6.49902V12.749C0 13.4365 0.5625 13.999 1.25 13.999H8.75C9.4375 13.999 10 13.4365 10 12.749V6.49902C10 5.81152 9.4375 5.24902 8.75 5.24902ZM3.12397 3.99902C3.12397 2.96152 3.96147 2.12402 4.99897 2.12402C6.03647 2.12402 6.87397 2.96152 6.87397 3.99902V5.24902H3.12397V3.99902ZM6.25023 9.62402C6.25023 10.3115 5.68773 10.874 5.00023 10.874C4.31273 10.874 3.75023 10.3115 3.75023 9.62402C3.75023 8.93652 4.31273 8.37402 5.00023 8.37402C5.68773 8.37402 6.25023 8.93652 6.25023 9.62402Z"
+        fill={props.fill || "currentColor"}
+      />
+    </Svg>
+  );
+}
+
+export function TickForButton(props: Props) {
+  return (
+    <Svg
+      width="19"
+      height="13"
+      viewBox="0 0 19 13"
+      fill="none"
+      {...props}>
+      <Rect
+        width="9.84261"
+        height="2.13886"
+        rx="1.06943"
+        transform="matrix(0.714629 0.699503 -0.714629 0.699503 1.5293 4.61891)"
+        fill="white"
+      />
+      <Rect
+        width="16.4458"
+        height="2.13886"
+        rx="1.06943"
+        transform="matrix(0.714629 -0.699504 0.714629 0.699503 5.7207 11.5039)"
+        fill="white"
+      />
+    </Svg>
+  );
+}
+
+export function Cross(props: Props) {
+  return (
+    <Svg
+      width={props.width || "13"}
+      height={props.height || "13"}
+      viewBox="0 0 13 13"
+      fill="none"
+      {...props}>
+      <Rect
+        width="16.4204"
+        height="1.96277"
+        rx="0.981383"
+        transform="matrix(0.707046 0.707168 -0.707046 0.707168 1.39062 0)"
+        fill={props.color || colors.charcoal}
+      />
+      <Rect
+        width="16.4204"
+        height="1.96277"
+        rx="0.981383"
+        transform="matrix(-0.707046 0.707168 0.707046 0.707168 11.6094 0)"
+        fill={props.color || colors.charcoal}
       />
     </Svg>
   );

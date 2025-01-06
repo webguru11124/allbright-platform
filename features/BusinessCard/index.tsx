@@ -1,6 +1,8 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
+import { Pressable } from "react-native";
 
 import { businessCardAdaptor } from "@/features/BusinessCard/adaptors";
+import MemberCardModalWithId from "@/features/Member/components/MemberCardModalWithId";
 import withTheme from "@/hocs/withTheme";
 import { UserModel } from "@/types/user";
 import { InterestTitles } from "@/types/user/interests";
@@ -13,12 +15,14 @@ type Props = {
   member: UserModel;
   canViewQrCode?: boolean;
   theme: Theme;
+  isStatic?: boolean;
 };
 
 const whiteTextColours = ["#525858", "#834973", "#6D8868", "#955C5C", "#617595", "#886BB7", "#50968D"];
 
 const BusinessCardContainer: FunctionComponent<Props> = ({ member, theme, canViewQrCode = false }) => {
-  if (!member) return null;
+  const [showModal, setShowModal] = useState(false);
+  if (!member.id && !member.objectID) return null;
 
   const WIDTH = 300;
   const HEIGHT = 260;
@@ -36,7 +40,7 @@ const BusinessCardContainer: FunctionComponent<Props> = ({ member, theme, canVie
     ? theme.colors.background
     : theme.colors.inputs.text;
 
-  return (
+  const BusinessCardContent = (
     <BusinessCard
       WIDTH={WIDTH}
       HEIGHT={HEIGHT}
@@ -48,6 +52,26 @@ const BusinessCardContainer: FunctionComponent<Props> = ({ member, theme, canVie
       canViewQrCode={canViewQrCode}
     />
   );
+
+  const handleBusinessCardPress = () => {
+    setShowModal(true);
+  };
+
+  if (canViewQrCode)
+    return (
+      <>
+        {showModal && (
+          <MemberCardModalWithId
+            showModal={showModal}
+            setShowModal={setShowModal}
+            userId={member.id || member.objectID || ""}
+          />
+        )}
+        <Pressable onPress={handleBusinessCardPress}>{BusinessCardContent}</Pressable>
+      </>
+    );
+
+  return BusinessCardContent;
 };
 
 const stripTags = <T extends string>(item: T): T => item && (item.replace(/<[^>]+>/g, "") as T);

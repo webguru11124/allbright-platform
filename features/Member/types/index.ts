@@ -23,4 +23,20 @@ export type MemberCardProps = {
   occupation: string;
   location: string;
   bioFields: BioField[];
+  isMentor?: boolean;
 };
+
+export enum ConnectionType {
+  WEB = "WEB",
+  QR_CODE_WEB = "QR_CODE_WEB",
+  MENTOR_MATCHING = "MENTOR_MATCHING",
+}
+
+export enum ConnectionState {
+  ACCEPTED = "ACCEPTED",
+  PENDING = "PENDING",
+  CANCELLED = "CANCELLED",
+  REMOVED = "REMOVED",
+  REJECTED = "REJECTED",
+  IGNORED = "IGNORED",
+}
