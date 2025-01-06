@@ -1,69 +1,77 @@
 import { Image } from "expo-image";
 import React from "react";
-import styled from "styled-components/native";
+import { Pressable, StyleSheet, View } from "react-native";
 
 import { IconCamera } from "@/components/Icons";
-import colors from "@/theme";
+import withTheme from "@/hocs/withTheme";
 
-interface StyleProps {
-  height?: string;
-  width?: string;
-}
 interface ProfilePhotoInputProps {
   imageSrc?: string | null;
   height?: string;
   width?: string;
   pickProfileImage: () => void;
+  theme: Theme;
 }
 
 const ProfilePhotoInput: React.FunctionComponent<ProfilePhotoInputProps> = (props) => {
-  const ImageDisplay = React.useMemo(() => {
-    if (props.imageSrc)
-      return (
+  const ImageDisplay = React.useMemo(
+    () =>
+      props.imageSrc ? (
         <Image
-          style={{ height: "100%", width: "100%", flex: 1 }}
+          style={styles.image}
           accessibilityLabel="profile-photo"
           source={props.imageSrc}
           contentFit="cover"
         />
-      );
-
-    return <S.CameraIcon testID="camera-icon" />;
-  }, [props.imageSrc]);
+      ) : (
+        <IconCamera
+          style={styles.cameraIcon}
+          testID="camera-icon"
+        />
+      ),
+    [props.imageSrc]
+  );
 
   return (
-    <S.DisplayPhotoSection onPress={props.pickProfileImage}>
-      <S.DisplayPhoto
-        height={props.height}
-        width={props.width}>
+    <Pressable
+      style={[styles.displayPhotoSection]}
+      onPress={props.pickProfileImage}>
+      <View
+        style={[
+          styles.displayPhoto,
+          { backgroundColor: props.theme.colors.overlay },
+          Boolean(props.height) && { height: parseInt(props.height || "") },
+          Boolean(props.width) && { height: parseInt(props.width || "") },
+        ]}>
         {ImageDisplay}
-      </S.DisplayPhoto>
-    </S.DisplayPhotoSection>
+      </View>
+    </Pressable>
   );
 };
 
-const S = () => {};
+const styles = StyleSheet.create({
+  displayPhotoSection: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  displayPhoto: {
+    backgroundColor: "transparent",
+    borderRadius: 100,
+    cursor: "pointer",
+    height: 200,
+    width: 200,
+    overflow: "hidden",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    height: "100%",
+    width: "100%",
+    flex: 1,
+  },
+  cameraIcon: {
+    transform: [{ scaleX: 1.6 }],
+  },
+});
 
-S.DisplayPhotoSection = styled.Pressable`
-  justify-content: center;
-  align-items: center;
-`;
-
-S.DisplayPhoto = styled.View<StyleProps>`
-  background-color: ${colors.shellOverlay};
-  border-radius: 100px;
-  cursor: pointer;
-  height: ${(p) => (p.height ? p.height : "200px")};
-  width: ${(p) => (p.width ? p.width : "200px")};
-  overflow: hidden;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-`;
-
-S.CameraIcon = styled(IconCamera)`
-  filter: contrast(0) brightness(1.4);
-  transform: scale(1.6);
-`;
-
-export default ProfilePhotoInput;
+export default withTheme(ProfilePhotoInput);
