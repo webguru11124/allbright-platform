@@ -1,5 +1,4 @@
-import { Pressable, SafeAreaView, View } from "react-native";
-import styled from "styled-components/native";
+import { Pressable, SafeAreaView, StyleSheet, View } from "react-native";
 
 import Space from "@/components/Space";
 import { CS } from "@/components/Typography";
@@ -18,11 +17,11 @@ export const RegisterForm = ({
   onBackPress,
 }: FormProps & { onBackPress: () => void }) => (
   <SafeAreaView>
-    <BackLinkContainer>
+    <View style={[styles.backLinkContainer]}>
       <Pressable onPress={onBackPress}>
         <CS style={{ textDecorationLine: "underline" }}>Back to register screen</CS>
       </Pressable>
-    </BackLinkContainer>
+    </View>
     <View style={{ height: 300 }}>
       <TextInput
         placeholder="First Name"
@@ -91,8 +90,12 @@ export const RegisterForm = ({
     </Button>
   </SafeAreaView>
 );
-const BackLinkContainer = styled.View`
-  align-items: start;
-  margin-bottom: 20px;
-`;
+
+const styles = StyleSheet.create({
+  backLinkContainer: {
+    alignItems: "flex-start",
+    marginBottom: 20,
+  },
+});
+
 export default RegisterForm;

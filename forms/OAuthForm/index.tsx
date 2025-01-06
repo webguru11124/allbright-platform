@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components/native";
+import { StyleSheet, View } from "react-native";
 
 import EmailPasswordSignIn from "@/forms/components/EmailPasswordSignin";
 import FacebookSignIn from "@/forms/components/FacebookSignIn";
@@ -20,7 +20,7 @@ export const OAuthForm = (props: Props) => {
   };
 
   return (
-    <Container>
+    <View style={[styles.container]}>
       {isSignup && <EmailPasswordSignIn onPress={handleEmailPasswordSignUp} />}
       <GoogleSignIn
         isSignin={!isSignup}
@@ -34,15 +34,16 @@ export const OAuthForm = (props: Props) => {
         isSignin={!isSignup}
         onPress={linkedinLogin}
       />
-    </Container>
+    </View>
   );
 };
 
-const Container = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  padding: 16px;
-`;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export default OAuthForm;
