@@ -1,65 +1,66 @@
-import styled from "styled-components/native";
+import { Image, StyleSheet, View } from "react-native";
 
 import RegisterLink from "@/features/Auth/partials/RegisterLink";
 import LoginForm from "@/forms/LoginForm";
 
 const LoginDesktop = () => (
-  <Main>
-    <Section>
-      <ImageContainer>
-        <StyledImage
+  <View style={[styles.main]}>
+    <View style={[styles.section]}>
+      <View style={[styles.imageContainer]}>
+        <Image
+          style={[styles.image]}
           source={require("@/assets/images/auth/login-image.png")}
           resizeMode="cover"
         />
-      </ImageContainer>
-      <FormContainer>
+      </View>
+      <View style={[styles.formContainer]}>
         <LoginForm />
         <RegisterLink />
-      </FormContainer>
-    </Section>
-  </Main>
+      </View>
+    </View>
+  </View>
 );
 
-const Main = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Section = styled.View`
-  height: 80%;
-  width: 80%;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px 0px 30px #17171750;
-`;
-
-const ImageContainer = styled.View`
-  position: relative;
-  height: 100%;
-  width: 50%;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-`;
-
-const StyledImage = styled.Image`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-`;
-
-const FormContainer = styled.View`
-  background: #eee;
-  width: 50%;
-  height: 100%;
-  justify-content: center;
-  padding: 20px;
-`;
+const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  section: {
+    height: "80%",
+    width: "80%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#17171750",
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 1,
+    shadowRadius: 30,
+  },
+  imageContainer: {
+    height: "100%",
+    width: "50%",
+    justifyContent: "center",
+    alignItems: "center",
+    overflow: "hidden",
+  },
+  image: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: "100%",
+    width: "100%",
+  },
+  formContainer: {
+    backgroundColor: "#EEE",
+    width: "50%",
+    height: "100%",
+    justifyContent: "center",
+    padding: 20,
+  },
+});
 
 export default LoginDesktop;

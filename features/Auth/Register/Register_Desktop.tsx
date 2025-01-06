@@ -1,65 +1,58 @@
-import styled from "styled-components/native";
+import { Image } from "expo-image";
+import { StyleSheet, View } from "react-native";
 
 import LoginLink from "@/features/Auth/partials/LoginLink";
 import RegisterForm from "@/forms/RegisterForm";
 
 const RegisterDesktop = () => (
-  <Main>
-    <Section>
-      <ImageContainer>
-        <StyledImage
+  <View style={[styles.main]}>
+    <View style={[styles.section]}>
+      <View style={[styles.imageContainer]}>
+        <Image
+          style={[StyleSheet.absoluteFill]}
           source={require("@/assets/images/auth/login-image.png")}
-          resizeMode="cover"
+          contentFit="cover"
         />
-      </ImageContainer>
-      <FormContainer>
+      </View>
+      <View style={[styles.formContainer]}>
         <RegisterForm />
         <LoginLink />
-      </FormContainer>
-    </Section>
-  </Main>
+      </View>
+    </View>
+  </View>
 );
 
-const Main = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Section = styled.View`
-  height: 90%;
-  width: 80%;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px 0px 30px #17171750;
-`;
-
-const ImageContainer = styled.View`
-  position: relative;
-  height: 100%;
-  width: 50%;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-`;
-
-const StyledImage = styled.Image`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-`;
-
-const FormContainer = styled.View`
-  background: #eee;
-  width: 50%;
-  height: 100%;
-  justify-content: center;
-  padding: 20px;
-`;
+const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  section: {
+    height: "90%",
+    width: "80%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 1,
+    shadowRadius: 30,
+    shadowColor: "#17171750",
+  },
+  imageContainer: {
+    height: "100%",
+    width: "50%",
+    justifyContent: "center",
+    alignItems: "center",
+    overflow: "hidden",
+  },
+  formContainer: {
+    backgroundColor: "#EEE",
+    width: "50%",
+    height: "100%",
+    justifyContent: "center",
+    padding: 20,
+  },
+});
 
 export default RegisterDesktop;

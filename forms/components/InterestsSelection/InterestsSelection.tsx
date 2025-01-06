@@ -1,14 +1,10 @@
 import React, { FunctionComponent } from "react";
-import styled from "styled-components/native";
+import { StyleSheet, View } from "react-native";
 
 import { CL } from "@/components/Typography";
 import FormFieldContainer from "@/forms/components/FormFieldContainer";
 import PillInput from "@/forms/components/PillInput";
 import { interests } from "@/utils/data/interests";
-
-type StyleProps = {
-  error?: string;
-};
 
 interface InterestsSelectionProps {
   interestIsSelected: (interest: (typeof interests)[number]) => boolean;
@@ -22,7 +18,7 @@ const InterestsSelection: FunctionComponent<InterestsSelectionProps> = ({ error,
       <CL>Interests* (at least 1)</CL>
 
       <FormFieldContainer error={error}>
-        <S.GoalsContainer>
+        <View style={[styles.goalsContainer]}>
           {interests.map((interest: string) => (
             <PillInput
               key={interests.indexOf(interest)}
@@ -32,31 +28,19 @@ const InterestsSelection: FunctionComponent<InterestsSelectionProps> = ({ error,
               onChange={() => props.setInterestStateHandler(interest)}
             />
           ))}
-        </S.GoalsContainer>
+        </View>
       </FormFieldContainer>
     </>
   );
 };
 
-const S = () => {};
-
-S.Container = styled.View<StyleProps>`
-  padding: 10px 0 0 0;
-
-  ${(p) =>
-    p.error &&
-    `
-    border-width: 3px;
-    border-color: red;
-    border-radius: 5px;
-  `}
-`;
-
-S.GoalsContainer = styled.View`
-  padding: 15px 0;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 8px;
-`;
+const styles = StyleSheet.create({
+  goalsContainer: {
+    paddingVertical: 15,
+    flexWrap: "wrap",
+    flexDirection: "row",
+    gap: 8,
+  },
+});
 
 export default InterestsSelection;

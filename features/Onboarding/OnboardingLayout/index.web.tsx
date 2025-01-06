@@ -1,6 +1,6 @@
 import { router } from "expo-router";
 import { Suspense } from "react";
-import styled from "styled-components/native";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 
 import HeaderBackButton from "@/components/HeaderBackButton";
 import Loading from "@/components/Loading";
@@ -11,43 +11,43 @@ interface Props {
 
 export const OnboadingPageLayout = ({ children }: Props) => {
   return (
-    <Main>
-      <Container>
-        <HeaderButtonsContainer>
+    <ScrollView style={[styles.main]}>
+      <SafeAreaView style={[styles.container]}>
+        <View style={[styles.headerBackButtonContainer]}>
           <HeaderBackButton
             onBackPress={() => {
               router.back();
             }}
           />
-        </HeaderButtonsContainer>
-        <ContentWrap>
+        </View>
+        <View style={[styles.contentWrap]}>
           <Suspense fallback={<Loading />}>{children}</Suspense>
-        </ContentWrap>
-      </Container>
-    </Main>
+        </View>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
-const Main = styled.ScrollView`
-  flex: 1;
-`;
-const Container = styled.SafeAreaView`
-  flex-direction: column;
-  align-items: center;
-  margin: 30px 20px;
-  flex: 1;
-`;
 
-const ContentWrap = styled.View`
-  width: 100%;
-  max-width: 640px;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1;
-`;
-
-const HeaderButtonsContainer = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  padding: 20px;
-`;
+const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    alignItems: "center",
+    marginVertical: 30,
+    marginHorizontal: 20,
+  },
+  contentWrap: {
+    flex: 1,
+    width: "100%",
+    maxWidth: 640,
+    gap: 10,
+  },
+  headerBackButtonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+    padding: 20,
+  },
+});

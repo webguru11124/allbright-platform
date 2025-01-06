@@ -1,5 +1,4 @@
-import { SafeAreaView } from "react-native";
-import styled from "styled-components/native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 
 import Space from "@/components/Space";
 import Button from "@/forms/components/Button";
@@ -8,7 +7,7 @@ import { FormProps } from "@/forms/types/forms.types";
 
 const PledgeForm = ({ errors, changeTextFuncs, isPending, onPress, inputs }: FormProps) => (
   <SafeAreaView>
-    <S.Row>
+    <View style={[styles.row]}>
       <TickBox
         testID="PledgeForm:AgreedToPledge"
         onChange={changeTextFuncs.agreedToPledge}
@@ -16,7 +15,7 @@ const PledgeForm = ({ errors, changeTextFuncs, isPending, onPress, inputs }: For
         error={errors.agreedToPledge}
         label="I have read and agree to the rules"
       />
-    </S.Row>
+    </View>
     <Space height={10} />
 
     <Button
@@ -27,9 +26,11 @@ const PledgeForm = ({ errors, changeTextFuncs, isPending, onPress, inputs }: For
     </Button>
   </SafeAreaView>
 );
-const S = () => {};
-S.Row = styled.View`
-  display: flex;
-  gap: 10px;
-`;
+
+const styles = StyleSheet.create({
+  row: {
+    gap: 10,
+  },
+});
+
 export default PledgeForm;

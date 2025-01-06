@@ -1,58 +1,65 @@
 import MaterialIcons from "@expo/vector-icons/FontAwesome";
 import React from "react";
-import { Platform, Text } from "react-native";
-import styled from "styled-components/native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 
+import { CM } from "@/components/Typography";
 import Button from "@/forms/components/Button";
+import withTheme from "@/hocs/withTheme";
 
 const GoogleSignIn = ({
   onPress,
   loading,
   isSignin,
+  theme,
 }: {
   onPress: GestureEvent;
   loading: boolean;
   isSignin: boolean;
+  theme: Theme;
 }) => {
   return (
-    <StyledButton
+    <Button
+      style={[
+        styles.button,
+        { backgroundColor: theme.colors.button.googleSignIn, width: Platform.OS !== "web" ? 304 : 396 },
+      ]}
       onPress={onPress}
       isLoading={loading}>
-      <VerticalCenter>
-        <GoogleIcon
+      <View style={[styles.vertialCenter]}>
+        <MaterialIcons
+          style={[styles.icon]}
           name={"google"}
           size={24}
-          color={"white"}
+          color={theme.colors.txt.light}
         />
-        <Text>
-          {isSignin ? "Sign in" : "Sign up"} with <Bold>Google</Bold>
-        </Text>
-      </VerticalCenter>
-    </StyledButton>
+        <CM style={{ color: theme.colors.txt.light, fontWeight: 500 }}>
+          {isSignin ? "Sign in" : "Sign up"} with <Text style={[styles.bold]}>Google</Text>
+        </CM>
+      </View>
+    </Button>
   );
 };
 
-const StyledButton = styled(Button)`
-  width: ${Platform.OS !== "web" ? "304px" : "396px"};
-  height: 45px;
-  margin-top: 8px;
-  background-color: #4285f4;
-  border-radius: 4px;
-  text-align: center;
-`;
+const styles = StyleSheet.create({
+  button: {
+    width: "100%",
+    height: 45,
+    marginTop: 8,
+    backgroundColor: "transparent",
+    borderRadius: 4,
+  },
+  vertialCenter: {
+    height: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  icon: {
+    marginRight: 10,
+  },
+  bold: {
+    fontWeight: 800,
+  },
+});
 
-const VerticalCenter = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const GoogleIcon = styled(MaterialIcons)`
-  margin-right: 10px;
-`;
-
-const Bold = styled.Text`
-  font-weight: 800;
-`;
-
-export default GoogleSignIn;
+export default withTheme(GoogleSignIn);

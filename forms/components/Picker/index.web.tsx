@@ -1,6 +1,5 @@
 import { Picker as NativePicker, PickerProps } from "@react-native-picker/picker";
-import { NativeSyntheticEvent, NativeTouchEvent } from "react-native";
-import styled from "styled-components/native";
+import { NativeSyntheticEvent, NativeTouchEvent, StyleSheet } from "react-native";
 
 import { CS } from "@/components/Typography";
 import withTheme from "@/hocs/withTheme";
@@ -20,21 +19,21 @@ type Props = PickerProps & {
   label: string;
 };
 
-type StyleProps = {
-  backgroundcolor: string;
-  color: string;
-  error: string | undefined;
-};
-
 const Picker = ({ value, onValueChange, onBlur, items, error, placeholder, theme, ...props }: Props) => {
   return (
     <>
-      <StyledPicker
+      <NativePicker
+        style={[
+          styles.main,
+          {
+            backgroundColor: theme.colors.inputs.background,
+            color: theme.colors.text,
+            borderColor: error ? "red" : "transparent",
+            borderWidth: error ? 3 : 0,
+          },
+        ]}
         selectedValue={value}
         onValueChange={onValueChange}
-        color={theme.colors.text}
-        backgroundcolor={theme.colors.inputs.background}
-        error={error}
         onBlur={onBlur}
         {...props}>
         <NativePicker.Item
@@ -49,21 +48,20 @@ const Picker = ({ value, onValueChange, onBlur, items, error, placeholder, theme
             value={value}
           />
         ))}
-      </StyledPicker>
+      </NativePicker>
       {error && <CS color="red">{error}</CS>}
     </>
   );
 };
 
-const StyledPicker = styled(NativePicker)<StyleProps>`
-  height: 50px;
-  background-color: ${(p) => p.backgroundcolor};
-  padding-left: 15px;
-  border-radius: 5px;
-  border-color: ${(p) => (p.error ? "red" : "tranparent")};
-  border-width: ${(p) => (p.error ? 3 : 0)}px;
-  font-size: 16px;
-  color: ${(p) => p.color};
-`;
+const styles = StyleSheet.create({
+  main: {
+    height: 50,
+    backgroundColor: "transparent",
+    paddingLeft: 15,
+    borderRadius: 5,
+    fontSize: 16,
+  },
+});
 
 export default withTheme(Picker);

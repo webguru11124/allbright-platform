@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components/native";
+import { StyleSheet, View } from "react-native";
 
 import { CM } from "@/components/Typography";
 import FormFieldContainer from "@/forms/components/FormFieldContainer";
@@ -16,7 +16,7 @@ const CareerGoalsSelection = ({ error, onSelectedHandler, goalIsSelected }: Prop
     <>
       <CM>Please choose 3 - 6</CM>
       <FormFieldContainer error={error}>
-        <S.GoalsContainer>
+        <View style={styles.goalsContainer}>
           {allCareerGoals.map((careerGoal) => (
             <PillInput
               key={careerGoal.id}
@@ -27,20 +27,19 @@ const CareerGoalsSelection = ({ error, onSelectedHandler, goalIsSelected }: Prop
               isSquare
             />
           ))}
-        </S.GoalsContainer>
+        </View>
       </FormFieldContainer>
     </>
   );
 };
 
-const S = () => {};
-
-S.GoalsContainer = styled.View`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-`;
+const styles = StyleSheet.create({
+  goalsContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: 8,
+  },
+});
 
 export default CareerGoalsSelection;

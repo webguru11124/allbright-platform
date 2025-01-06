@@ -1,42 +1,55 @@
 import MaterialIcons from "@expo/vector-icons/FontAwesome";
 import React from "react";
-import { Platform, Text } from "react-native";
-import styled from "styled-components/native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 
 import Button from "@/forms/components/Button";
+import withTheme from "@/hocs/withTheme";
 
-const LinkedInSignin = ({ onPress, isSignin }: { onPress: GestureEvent; isSignin: boolean }) => {
+type Props = {
+  onPress: GestureEvent;
+  theme: Theme;
+  isSignin: boolean;
+};
+
+const LinkedInSignin = ({ theme, onPress, isSignin }: Props) => {
   return (
-    <StyledButton onPress={onPress}>
-      <VerticalCenter>
-        <FacebookIcon
+    <Button
+      style={[
+        styles.button,
+        { backgroundColor: theme.colors.button.linkedinSignIn, width: Platform.OS !== "web" ? 304 : 396 },
+      ]}
+      onPress={onPress}>
+      <View style={[styles.vertialCenter]}>
+        <MaterialIcons
+          style={[styles.icon]}
           name={"linkedin-square"}
           size={24}
-          color={"white"}
+          color={theme.colors.txt.light}
         />
-        <Text>{isSignin ? "Sign in" : "Sign up"} in with LinkedIn</Text>
-      </VerticalCenter>
-    </StyledButton>
+        <Text style={{ color: theme.colors.txt.light, fontWeight: 500 }}>
+          {isSignin ? "Sign in" : "Sign up"} in with LinkedIn
+        </Text>
+      </View>
+    </Button>
   );
 };
 
-const StyledButton = styled(Button)`
-  width: ${Platform.OS !== "web" ? "304px" : "396px"};
-  height: 45px;
-  margin-top: 8px;
-  background-color: #0077b5;
-  border-radius: 4px;
-  text-align: center;
-`;
+const styles = StyleSheet.create({
+  button: {
+    width: "100%",
+    height: 45,
+    marginTop: 8,
+    backgroundColor: "transparent",
+    borderRadius: 4,
+  },
+  vertialCenter: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  icon: {
+    marginRight: 10,
+  },
+});
 
-const VerticalCenter = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const FacebookIcon = styled(MaterialIcons)`
-  margin-right: 10px;
-`;
-
-export default LinkedInSignin;
+export default withTheme(LinkedInSignin);

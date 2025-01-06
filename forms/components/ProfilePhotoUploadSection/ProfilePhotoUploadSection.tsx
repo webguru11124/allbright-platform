@@ -1,6 +1,5 @@
 import React from "react";
-import { View } from "react-native";
-import styled from "styled-components/native";
+import { StyleSheet, View } from "react-native";
 
 import { ArrowRight } from "@/components/Icons";
 import { CM, H4 } from "@/components/Typography";
@@ -28,24 +27,24 @@ const ProfilePhotoUploadSection = ({
     <View>
       <CM>Profile picture</CM>
 
-      <PhotoInformationSection>
-        <ArrowButton
+      <View style={[styles.photoInformationSection]}>
+        <Button
+          style={[styles.arrowButton]}
           onPress={pickProfileImage}
           testID="ProfilePhotoUploadSection:ArrowButton">
           <ArrowRight fill={colors.lightShell} />
-        </ArrowButton>
-        <SelectPhotoText>
+        </Button>
+        <View style={[styles.selectPhotoText]}>
           <H4>'Select photo'</H4>
-          <CMMarginBottom>Please ensure it is of just yourself and no one else.</CMMarginBottom>
-        </SelectPhotoText>
-      </PhotoInformationSection>
-
-      <PhotoUploadPosition>
+          <CM style={[styles.cmMarginBottom]}>Please ensure it is of just yourself and no one else.</CM>
+        </View>
+      </View>
+      <View style={[styles.photoUploadPosition]}>
         <ProfilePhotoInput
           imageSrc={profileImage.state === LocalImageType.FILE_UNSET ? null : profileImage.file}
           pickProfileImage={pickProfileImage}
         />
-      </PhotoUploadPosition>
+      </View>
       <TickBox
         label="I do not wish to use a photo"
         testID="ProfilePhotoUploadSection:ProfileWantedToggle"
@@ -62,31 +61,28 @@ const ProfilePhotoUploadSection = ({
   );
 };
 
-const ArrowButton = styled(Button)`
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 5px;
-`;
-const CMMarginBottom = styled(CM)`
-  margin-bottom: 20px;
-`;
-
-const PhotoInformationSection = styled.View`
-  flex-direction: row;
-  margin-bottom: 20px;
-  margin-top: 10px;
-  align-items: center;
-`;
-
-const PhotoUploadPosition = styled.View`
-  margin-bottom: 20px;
-`;
-
-const SelectPhotoText = styled.View`
-  width: 0;
-  flex-grow: 1;
-  flex: 1;
-  margin-left: 8px;
-`;
+const styles = StyleSheet.create({
+  arrowButton: {
+    paddingHorizontal: 20,
+  },
+  cmMarginBottom: {
+    marginBottom: 20,
+  },
+  photoInformationSection: {
+    flexDirection: "row",
+    marginBottom: 20,
+    marginTop: 10,
+    alignItems: "center",
+  },
+  photoUploadPosition: {
+    marginBottom: 20,
+  },
+  selectPhotoText: {
+    width: 0,
+    flex: 1,
+    flexGrow: 1,
+    marginLeft: 8,
+  },
+});
 
 export default ProfilePhotoUploadSection;

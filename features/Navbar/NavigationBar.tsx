@@ -1,6 +1,5 @@
 import React from "react";
-import { View } from "react-native";
-import styled from "styled-components/native";
+import { StyleSheet, View } from "react-native";
 
 import IconAllBright from "@/components/IconAllbright";
 import { H6 } from "@/components/Typography";
@@ -14,11 +13,11 @@ type Props = {
 };
 
 const NavigationBar = ({ user }: Props) => (
-  <NavigationBarContainer>
-    <TabContainer>
-      <TabTabImageContainer>
+  <View style={[styles.navigationBarContainer]}>
+    <View style={[styles.tabContainer]}>
+      <View style={[styles.tabImageContainer]}>
         <IconAllBright width={183} />
-      </TabTabImageContainer>
+      </View>
       <TabButton href="/home">
         <H6
           fontWeight={700}
@@ -61,42 +60,37 @@ const NavigationBar = ({ user }: Props) => (
           The Allbright Post
         </H6>
       </TabButton>
-    </TabContainer>
-    <TabImageContainer>
+    </View>
+    <View style={[styles.tabImageContainer]}>
       <TabImage
         imageSrc={user?.imageSrc}
         initials={(user?.firstName?.slice(0, 1) || "A") + (user?.lastName?.slice(0, 1) || "B")}
       />
-    </TabImageContainer>
-  </NavigationBarContainer>
+    </View>
+  </View>
 );
 
-const NavigationBarContainer = styled(View)`
-  height: ${Metrics.navbar.height}px;
-  width: 100%;
-  padding-horizontal: 40px;
-
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const TabContainer = styled(View)`
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-`;
-
-const TabTabImageContainer = styled(View)`
-  height: 100%;
-  max-width: fit-content;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 15px;
-  margin-right: 50px;
-`;
-
-const TabImageContainer = styled(View)``;
+const styles = StyleSheet.create({
+  navigationBarContainer: {
+    height: Metrics.navbar.height,
+    width: "100%",
+    paddingHorizontal: 40,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  tabContainer: {
+    height: "100%",
+    flexDirection: "row",
+  },
+  tabImageContainer: {
+    height: "100%",
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 15,
+    marginRight: 50,
+  },
+});
 
 export default NavigationBar;

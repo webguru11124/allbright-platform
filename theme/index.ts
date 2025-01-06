@@ -1,6 +1,7 @@
 "use strict";
 
 import { DarkTheme as NativeDarkTheme, DefaultTheme as NativeDefaultTheme } from "@react-navigation/native";
+import { Platform } from "react-native";
 import { MD2DarkTheme as DarkPaperTheme, MD2LightTheme as DefaultPaperTheme } from "react-native-paper";
 
 const colors = {
@@ -91,13 +92,16 @@ export const recommendationColor = {
 };
 
 export const PaperDefaultTheme = {
-  ...DefaultPaperTheme,
-  colors: {
-    ...DefaultPaperTheme.colors,
-    primary: recommendationColor.textColor,
-    placeholder: "rgb(73,101,140)",
-    text: recommendationColor.textColor,
-  },
+  ...Platform.select({
+    native: {
+      ...DefaultPaperTheme,
+      colors: {
+        ...DefaultPaperTheme.colors,
+        primary: recommendationColor.textColor,
+        placeholder: "rgb(73,101,140)",
+      },
+    },
+  }),
 };
 
 export const PaperDarkTheme = {
@@ -115,6 +119,7 @@ export const DefaultTheme = {
     background: "#F9F4F0",
     lightBackground: "#FFFBF9",
     overlay: "#F2E7DF",
+    pill: "#C8E8E5",
     inputs: {
       background: "#FFF",
       text: "#414143",
@@ -124,6 +129,9 @@ export const DefaultTheme = {
     button: {
       primary: "#FFF",
       background: "#00605C",
+      googleSignIn: "#4285f4",
+      facebookSignin: "#5890ff",
+      linkedinSignIn: "#0077b5",
     },
     txt: {
       primo: "#DADCE1",
@@ -152,6 +160,7 @@ export const DarkTheme = {
     background: "#bbb",
     lightBackground: "#ddd",
     overlay: "#ccc",
+    pill: "#C8E8E5",
     inputs: {
       background: "#FFF",
       text: "#414143",
@@ -161,6 +170,9 @@ export const DarkTheme = {
     button: {
       primary: "#000",
       background: "#00605C",
+      googleSignIn: "#4285f4",
+      facebookSignin: "#5890ff",
+      linkedinSignIn: "#0077b5",
     },
     txt: {
       primo: "#414143",

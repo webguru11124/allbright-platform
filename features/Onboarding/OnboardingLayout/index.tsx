@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import styled from "styled-components/native";
+import { ActivityIndicator, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 
 interface Props {
   children: React.ReactNode;
@@ -7,38 +7,44 @@ interface Props {
 
 export const OnboadingPageLayout = ({ children }: Props) => {
   return (
-    <Main>
-      <Container>
-        <ContentWrap>
-          <Suspense fallback={<Loading />}>{children}</Suspense>
-        </ContentWrap>
-      </Container>
-    </Main>
+    <ScrollView style={[styles.main]}>
+      <SafeAreaView style={[styles.container]}>
+        <View style={[styles.contentWrap]}>
+          <Suspense
+            fallback={
+              <ActivityIndicator
+                size={"large"}
+                color={"#0000ff"}
+                style={[styles.loading]}
+              />
+            }>
+            {children}
+          </Suspense>
+        </View>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
-const Main = styled.ScrollView`
-  flex: 1;
-`;
-const Container = styled.SafeAreaView`
-  flex-direction: column;
-  align-items: center;
-  margin: 30px 20px;
-  flex: 1;
-`;
 
-const ContentWrap = styled.View`
-  width: 100%;
-  max-width: 640px;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1;
-`;
-
-const Loading = styled.ActivityIndicator.attrs(() => ({
-  size: "large",
-  color: "#0000ff",
-}))`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
+const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    alignItems: "center",
+    marginVertical: 30,
+    marginHorizontal: 20,
+  },
+  contentWrap: {
+    flex: 1,
+    width: "100%",
+    maxWidth: 640,
+    gap: 10,
+  },
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
