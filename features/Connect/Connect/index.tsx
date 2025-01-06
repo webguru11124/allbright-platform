@@ -2,11 +2,14 @@ import * as React from "react";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 
 import config from "@/config";
+import { ConnecionsProvider } from "@/contexts/ConnectionContext";
 import BusinessCard from "@/features/BusinessCard";
 
+import MyConnections from "./MyConnections";
 import RecommendConnect from "./RecommendConnect";
 import AlgoliaSearch from "./RecommendConnect/InstantSearch";
 import Searchbox from "./Searchbox";
+import { ConnectionField } from "./type";
 
 const HitComponent = ({ hit }: { hit: any }) => {
   return (
@@ -17,6 +20,12 @@ const HitComponent = ({ hit }: { hit: any }) => {
   );
 };
 
+const ConnectionFilters = {
+  Sent: (elm: ConnectionField) => elm.isMyRequest && elm.state === "PENDING",
+  Received: (elm: ConnectionField) => !elm.isMyRequest && elm.state === "PENDING",
+  Accepted: (elm: ConnectionField) => elm.state === "ACCEPTED",
+};
+
 export default function Connect() {
   return (
     <SafeAreaView style={styles.root}>
@@ -25,9 +34,23 @@ export default function Connect() {
           <View style={styles.searchContainer}>
             <Searchbox containerStyle={styles.searchboxContainer} />
           </View>
-          {/* <PendingConnections fromMe={false} />
-          <PendingConnections fromMe={false} />
-          <AcceptedConnections/> */}
+          <ConnecionsProvider>
+            <MyConnections
+              filterFunc={ConnectionFilters.Sent}
+              title="Sent connections"
+              datacy="sent-connections-members"
+            />
+            <MyConnections
+              filterFunc={ConnectionFilters.Received}
+              title="Received connections"
+              datacy="received-connections-members"
+            />
+            <MyConnections
+              filterFunc={ConnectionFilters.Accepted}
+              title="My connections"
+              datacy="accepted-connections-members"
+            />
+          </ConnecionsProvider>
           <RecommendConnect hitComponent={HitComponent} />
         </>
       </AlgoliaSearch>

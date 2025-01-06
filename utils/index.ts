@@ -73,3 +73,11 @@ export function base64ToFile(base64Data: string, fileName: string): File {
   const blob = new Blob([byteArray], { type: mimeType });
   return new File([blob], fileName, { type: mimeType });
 }
+
+export const filterToArray = (obj: any, callback: (key: string, value: any, index: number) => boolean) => {
+  return Object.keys(obj)
+    .filter((key, idx) => {
+      return callback(key, obj[key], idx);
+    })
+    .map((key) => ({ key, ...obj[key] }));
+};

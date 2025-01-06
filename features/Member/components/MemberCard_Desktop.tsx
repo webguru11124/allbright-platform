@@ -1,5 +1,6 @@
 import MaterialIcons from "@expo/vector-icons/build/MaterialIcons";
 import { Link } from "expo-router";
+import * as React from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
 
 import Column from "@/components/Column";

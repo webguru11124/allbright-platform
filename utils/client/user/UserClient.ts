@@ -22,6 +22,27 @@ class UserClient {
     return data || null;
   }
 
+  public async paginateUserIds(userIds: string[], token: string | undefined | null) {
+    if (token === null) return { nextToken: null, data: [], remaining: [] };
+
+    let ids = [...userIds];
+    const limit = 30;
+    const start = token && userIds.includes(token) ? userIds.findIndex((el) => el === token) : 0;
+    const end = start + limit;
+
+    if (ids.length > 30) {
+      ids = ids.slice(start, end);
+    }
+
+    const { data } = (await api.post("/v1/users", ids)).data;
+
+    return {
+      nextToken: userIds[end] || null,
+      data,
+      remaining: userIds.slice(end) || [],
+    };
+  }
+
   public async updateUser(userId: string, user: Partial<UserModel>): Promise<UserModel> {
     if (!userId) throw new Error("Invalid User Id");
 
