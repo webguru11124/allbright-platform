@@ -158,10 +158,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    width: "25%",
+    width: "20%",
   },
   textInputContainer: {
-    width: "65%",
+    width: "70%",
   },
   closeButton: { width: 20, elevation: 2 },
   itemContainer: {
