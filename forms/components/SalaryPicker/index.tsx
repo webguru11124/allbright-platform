@@ -1,12 +1,11 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useMemo, useState } from "react";
-import { Alert, Modal, TextInputProps } from "react-native";
-import styled from "styled-components/native";
+import { Alert, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInputProps, View } from "react-native";
 
 import Space from "@/components/Space";
 import { CM, CS } from "@/components/Typography";
+import TextInput from "@/forms/components/TextInput";
 import withTheme from "@/hocs/withTheme";
-import { recommendationColor } from "@/theme";
 import { pickerAdaptor as salary } from "@/utils/data/salary";
 
 type Props = Omit<TextInputProps, "onBlur"> & {
@@ -18,6 +17,15 @@ type Props = Omit<TextInputProps, "onBlur"> & {
 
 const SalaryPicker = ({ theme, onChangeText, placeholder, onBlur, error, value }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [searchText, setSearchText] = useState<string | undefined>(undefined);
+
+  const filteredSalaries = useMemo(
+    () =>
+      searchText !== undefined
+        ? salary.filter((val) => val.value.toLowerCase().includes(searchText?.toLowerCase()))
+        : salary,
+    [searchText]
+  );
 
   const handleChangeText = (value: string) => {
     onChangeText(value);
@@ -34,6 +42,10 @@ const SalaryPicker = ({ theme, onChangeText, placeholder, onBlur, error, value }
     setModalVisible(!modalVisible);
   };
 
+  const onChangeSearchValue = (val: string) => {
+    setSearchText(val);
+  };
+
   return (
     <>
       <Modal
@@ -44,114 +56,142 @@ const SalaryPicker = ({ theme, onChangeText, placeholder, onBlur, error, value }
           Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}>
-        <CenteredView>
-          <ModalView>
-            <TitleContainer>
-              <Title>Salary band*</Title>
-              <CloseButton onPress={onCloseButtonPress}>
+        <View style={[styles.centeredView]}>
+          <View style={[styles.modalView]}>
+            <View style={[styles.titleContainer]}>
+              <CM style={[styles.title]}>Salary</CM>
+              <View style={[styles.textInputContainer]}>
+                <TextInput
+                  onChangeText={onChangeSearchValue}
+                  value={searchText}
+                  placeholder="Search..."
+                  error={undefined}
+                  onBlur={undefined}
+                />
+              </View>
+              <Pressable
+                style={[styles.closeButton]}
+                onPress={onCloseButtonPress}>
                 <MaterialIcons
                   name={"close"}
                   size={24}
                   color={"black"}
                 />
-              </CloseButton>
-            </TitleContainer>
+              </Pressable>
+            </View>
             <Space height={10} />
-            <ItemContainer>
-              {salary.map((item) => (
-                <PressableItem
+            <ScrollView style={[styles.itemContainer]}>
+              {filteredSalaries.map((item) => (
+                <Pressable
+                  style={[styles.pressableItem]}
                   key={item.key}
                   onPress={() => handleChangeText(item.value)}>
-                  <PressableLabel>{item.label}</PressableLabel>
-                </PressableItem>
+                  <CM style={[styles.pressableLabel]}>{item.label}</CM>
+                </Pressable>
               ))}
-            </ItemContainer>
-          </ModalView>
-        </CenteredView>
+            </ScrollView>
+          </View>
+        </View>
       </Modal>
-      <StyledPressable
-        theme={theme}
-        onPress={() => setModalVisible(true)}
-        error={error}>
-        <CM color={theme.colors.text}>{displayValue || placeholder}</CM>
+      <Pressable
+        style={[
+          styles.styledPressable,
+          {
+            backgroundColor: theme.colors.inputs.background,
+            borderColor: error ? "red" : "transparent",
+            borderWidth: error ? 3 : 0,
+          },
+        ]}
+        onPress={() => setModalVisible(true)}>
+        <CM style={[{ color: theme.colors.text }]}>{displayValue || placeholder}</CM>
         <MaterialIcons
           name={"arrow-drop-down"}
           size={24}
           color={"black"}
         />
-      </StyledPressable>
-      {error && <CS color="red">{error}</CS>}
+      </Pressable>
+      {error && <CS style={[styles.error]}>{error}</CS>}
     </>
   );
 };
 
-const CenteredView = styled.View`
-  flex: 1;
-  justify-content: flex-end;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.25);
-`;
-
-const ModalView = styled.View`
-  height: 70%;
-  width: 100%;
-  background-color: #eee;
-  border-radius: 20px;
-  padding-vertical: 20px;
-  align-items: center;
-  box-shadow: 0px 0px 15px #17171750;
-  elevation: 2;
-`;
-
-const TitleContainer = styled.View`
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
-  border-bottom-width: 1px;
-  border-bottom-color: #ddd;
-  padding: 0 20px 20px 20px;
-`;
-
-const Title = styled(CM)`
-  font-size: 18px;
-  font-weight: bold;
-`;
-
-const ItemContainer = styled.ScrollView`
-  flex: 1;
-  width: 100%;
-  height: 100%;
-`;
-
-const PressableItem = styled.Pressable`
-  height: 50px;
-  padding: 10px 20px;
-  margin-bottom: 5px;
-  border-radius: 5px;
-`;
-
-const PressableLabel = styled(CM)`
-  font-size: 16px;
-`;
-
-const CloseButton = styled.Pressable`
-  elevation: 2;
-  background-color: transparent;
-`;
-
-const StyledPressable = styled.Pressable<{ error: string | undefined }>`
-  height: 50px;
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: ${(p) => p.theme.colors.inputs.background};
-  padding-left: 20px;
-  padding-right: 10px;
-  padding-top: 15px;
-  border-color: ${(p) => (Boolean(p.error) ? "red" : "transparent")};
-  border-width: ${(p) => (Boolean(p.error) ? 3 : 0)}px;
-  border-radius: 5px;
-  color: ${recommendationColor.textColor};
-`;
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  modalView: {
+    height: "70%",
+    width: "100%",
+    backgroundColor: "#eee",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    paddingVertical: 20,
+    alignItems: "center",
+    ...Platform.select({
+      android: {
+        elevation: 2,
+        borderColor: "#00000025",
+        borderWidth: 1,
+      },
+      ios: {
+        shadowColor: "#17171750",
+        shadowOffset: { width: 0, height: 0 },
+        shadowRadius: 15,
+        shadowOpacity: 1,
+      },
+    }),
+  },
+  titleContainer: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd",
+    paddingRight: 20,
+    paddingBottom: 20,
+    paddingLeft: 20,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+    width: "20%",
+  },
+  textInputContainer: {
+    width: "70%",
+  },
+  closeButton: { width: 20, elevation: 2 },
+  itemContainer: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+  },
+  pressableItem: {
+    height: 50,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginBottom: 5,
+    borderRadius: 5,
+  },
+  pressableLabel: {
+    fontSize: 16,
+  },
+  styledPressable: {
+    height: 50,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingLeft: 20,
+    paddingRight: 10,
+    paddingTop: 15,
+    borderRadius: 5,
+  },
+  error: {
+    color: "red",
+  },
+});
 
 export default withTheme(SalaryPicker);
