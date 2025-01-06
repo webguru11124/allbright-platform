@@ -44,7 +44,10 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (props)
                 <TextInput
                   style={[
                     styles.textInput,
-                    { backgroundColor: props.theme.colors.txt.light, color: props.theme.colors.inputs.text },
+                    {
+                      backgroundColor: props.theme.colors.txt.light,
+                      color: props.theme.colors.inputs.text,
+                    },
                     checked && { backgroundColor: props.theme.colors.pill },
                     disabled && {
                       backgroundColor: props.theme.colors.overlay,
@@ -145,7 +148,7 @@ const styles = StyleSheet.create({
   textInput: {
     height: 45,
     width: "100%",
-    fontWeight: 500,
+    fontWeight: "600",
     backgroundColor: "transparent",
     cursor: "pointer",
     paddingLeft: 20,
