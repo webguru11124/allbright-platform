@@ -12,7 +12,7 @@ interface EthnicGroupsSectionProps {
 }
 
 const EthnicGroupsSectionContainer: FunctionComponent<EthnicGroupsSectionProps> = ({ field = [], setField, error }) => {
-  const { checkIfChecked, checkIfDisabled, getOtherValue, onEthnicGroupsChange } = useEthnicGroups({
+  const { isChecked, isDisabled, getOtherValue, onEthnicGroupsChange } = useEthnicGroups({
     field: field,
     setField: setField,
   });
@@ -21,8 +21,8 @@ const EthnicGroupsSectionContainer: FunctionComponent<EthnicGroupsSectionProps> 
     <EthnicGroupsSection
       error={error}
       getOtherValue={getOtherValue}
-      checkIfChecked={checkIfChecked}
-      checkIfDisabled={checkIfDisabled}
+      isChecked={isChecked}
+      isDisabled={isDisabled}
       onEthnicGroupsChange={onEthnicGroupsChange}
     />
   );

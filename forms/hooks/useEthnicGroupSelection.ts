@@ -17,9 +17,9 @@ export const useEthnicGroups = ({
     if (field.length > 0) setEthnicGroupsState(field);
   }, [field]);
 
-  const checkIfChecked = (elm: any) => ethnicGroupsState.some((item) => item.title === elm.title);
+  const isChecked = (elm: any) => ethnicGroupsState.some((item) => item.title === elm.title);
 
-  const checkIfDisabled = (elm: any) =>
+  const isDisabled = (elm: any) =>
     !!ethnicGroupsState.filter((item) => item.title === "Prefer not to say" && elm.title !== "Prefer not to say")
       .length;
 
@@ -48,8 +48,8 @@ export const useEthnicGroups = ({
   };
 
   return {
-    checkIfChecked,
-    checkIfDisabled,
+    isChecked,
+    isDisabled,
     getOtherValue,
     onEthnicGroupsChange,
   };
