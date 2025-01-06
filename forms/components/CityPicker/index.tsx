@@ -1,6 +1,6 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useMemo, useState } from "react";
-import { Alert, Modal, Pressable, ScrollView, StyleSheet, TextInputProps, View } from "react-native";
+import { Alert, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInputProps, View } from "react-native";
 
 import Space from "@/components/Space";
 import { CM, CS } from "@/components/Typography";
@@ -114,14 +114,14 @@ const CityPicker = ({ theme, onChangeText, placeholder, onBlur, error, selectedC
         ]}
         disabled={isDisabled}
         onPress={() => setModalVisible(true)}>
-        <CM color={isDisabled ? "#ddd" : theme.colors.text}>{displayValue || placeholder}</CM>
+        <CM style={[{ color: isDisabled ? "#ddd" : theme.colors.text }]}>{displayValue || placeholder}</CM>
         <MaterialIcons
           name={"arrow-drop-down"}
           size={24}
           color={"black"}
         />
       </Pressable>
-      {error && <CS color="red">{error}</CS>}
+      {error && <CS style={[styles.error]}>{error}</CS>}
     </>
   );
 };
@@ -131,24 +131,34 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
-    backgroundColor: "#00000025",
   },
   modalView: {
     height: "70%",
     width: "100%",
     backgroundColor: "#eee",
-    borderRadius: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     paddingVertical: 20,
     alignItems: "center",
-    shadowColor: "#17171750",
-    shadowOffset: { width: 0, height: 0 },
-    shadowRadius: 15,
-    elevation: 2,
+    ...Platform.select({
+      android: {
+        elevation: 2,
+        borderColor: "#00000025",
+        borderWidth: 1,
+      },
+      ios: {
+        shadowColor: "#17171750",
+        shadowOffset: { width: 0, height: 0 },
+        shadowRadius: 15,
+        shadowOpacity: 1,
+      },
+    }),
   },
   titleContainer: {
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
+    gap: 10,
     justifyContent: "space-between",
     borderBottomWidth: 1,
     borderBottomColor: "#ddd",
@@ -159,7 +169,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "bold",
+    width: "12%",
   },
+  textInputContainer: {
+    width: "75%",
+  },
+  closeButton: { width: 20, elevation: 2 },
   itemContainer: {
     flex: 1,
     width: "100%",
@@ -175,7 +190,6 @@ const styles = StyleSheet.create({
   pressableLabel: {
     fontSize: 16,
   },
-  closeButton: { elevation: 2 },
   styledPressable: {
     height: 50,
     width: "100%",
@@ -186,8 +200,8 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     borderRadius: 5,
   },
-  textInputContainer: {
-    minWidth: 200,
+  error: {
+    color: "red",
   },
 });
 
