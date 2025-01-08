@@ -56,6 +56,7 @@ const ProfileDesktop = ({ theme, user, formProps }: Props) => {
             <View style={styles.businessCardContainer}>
               <BusinessCard
                 member={{ ...user, businessCardColour: formProps.inputs.businessCardColour } as UserModel}
+                canViewQrCode={true}
               />
               <ColourSquares
                 style={{ marginTop: 20 }}

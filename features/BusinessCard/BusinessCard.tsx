@@ -19,9 +19,19 @@ type Props = {
   role: string;
   userInterests: any;
   goals: string;
+  canViewQrCode: boolean;
 };
 
-const BusinessCard: FunctionComponent<Props> = ({ WIDTH, HEIGHT, card, textColor, role, userInterests, goals }) => {
+const BusinessCard: FunctionComponent<Props> = ({
+  WIDTH,
+  HEIGHT,
+  card,
+  textColor,
+  role,
+  userInterests,
+  goals,
+  canViewQrCode,
+}) => {
   const Front = () => (
     <Main style={{ backgroundColor: card?.businessCardColour }}>
       <Header>
@@ -50,12 +60,15 @@ const BusinessCard: FunctionComponent<Props> = ({ WIDTH, HEIGHT, card, textColor
           />
         </ImageWrap>
       )}
-      <>
-        <TapMeWrap style={{}}>
-          <CS style={{ fontWeight: 500, color: card.businessCardColour }}>tap me</CS>
-        </TapMeWrap>
-        <TapMeTriangle style={{ borderBottomColor: textColor }} />
-      </>
+      {canViewQrCode && (
+        <>
+          <TapMeWrap style={{}}>
+            <CS style={{ fontWeight: 500, color: card.businessCardColour }}>tap me</CS>
+          </TapMeWrap>
+          <TapMeTriangle style={{ borderBottomColor: textColor }} />
+        </>
+      )}
+
       <Info>
         {role.length > 3 ? (
           <InfoSection>
@@ -90,13 +103,15 @@ const BusinessCard: FunctionComponent<Props> = ({ WIDTH, HEIGHT, card, textColor
     />
   );
 
-  return (
+  return canViewQrCode ? (
     <FlipCard
       frontComponent={<Front />}
       backComponent={<Back />}
       width={WIDTH}
       height={HEIGHT}
     />
+  ) : (
+    <Front />
   );
 };
 

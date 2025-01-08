@@ -11,12 +11,13 @@ import BusinessCard from "./BusinessCard";
 
 type Props = {
   member: UserModel;
+  canViewQrCode?: boolean;
   theme: Theme;
 };
 
 const whiteTextColours = ["#525858", "#834973", "#6D8868", "#955C5C", "#617595", "#886BB7", "#50968D"];
 
-const BusinessCardContainer: FunctionComponent<Props> = ({ member, theme }) => {
+const BusinessCardContainer: FunctionComponent<Props> = ({ member, theme, canViewQrCode = false }) => {
   if (!member) return null;
 
   const WIDTH = 300;
@@ -44,6 +45,7 @@ const BusinessCardContainer: FunctionComponent<Props> = ({ member, theme }) => {
       role={role}
       userInterests={userInterests}
       goals={goals}
+      canViewQrCode={canViewQrCode}
     />
   );
 };
