@@ -44,7 +44,7 @@ const BusinessCard: FunctionComponent<Props> = ({ WIDTH, HEIGHT, card, textColor
       {card.imageSrc && card.displayPhoto && (
         <ImageWrap>
           <Image
-            style={{ height: "100%", width: "100%" }}
+            style={{ height: "100%", width: "100%", borderRadius: 3 }}
             source={card.imageSrc}
             contentFit="cover"
           />
