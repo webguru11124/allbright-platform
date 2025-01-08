@@ -33,7 +33,7 @@ const BusinessCard: FunctionComponent<Props> = ({ WIDTH, HEIGHT, card, textColor
           />
           <CS style={{ fontWeight: 600, letterSpacing: 2, color: textColor }}>BUSINESS CARD</CS>
         </Row>
-        <H4>{card.displayName}</H4>
+        <H4 style={{ color: textColor }}>{card.displayName}</H4>
         {card.location && (
           <Row>
             <Location color={textColor} />
