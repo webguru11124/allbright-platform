@@ -19,19 +19,27 @@ export function useConnectionRequest() {
 
 export function useConnectionAccept() {
   const connectionClient = new ConnectionClient();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: ["connection-accept"],
     mutationFn: (connectionId: string) => connectionClient.acceptConnection(connectionId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user-connections"] });
+    },
   });
 }
 
 export function useConnectionReject() {
   const connectionClient = new ConnectionClient();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: ["connection-reject"],
     mutationFn: (connectionId: string) => connectionClient.rejectConnection(connectionId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user-connections"] });
+    },
   });
 }
 

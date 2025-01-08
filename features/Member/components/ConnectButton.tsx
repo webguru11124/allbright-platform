@@ -103,6 +103,7 @@ export default function ConnectButton(props: ConnectButtonProps) {
       <View style={styles.connectButtonContainer}>
         <Button
           onPress={goMessage}
+          isLoading={isLoading}
           size={props.size}
           data-cy={`message-connection-button--${connection?.id}`}
           isWide>
@@ -110,6 +111,7 @@ export default function ConnectButton(props: ConnectButtonProps) {
         </Button>
         <Button
           isSecondary
+          isLoading={isLoading}
           onPress={() => setShowRemoveConnectionDialog(true)}
           data-cy={`remove-connection-button--${connection?.id}`}
           isWide>
@@ -142,8 +144,9 @@ export default function ConnectButton(props: ConnectButtonProps) {
     return (
       <Button
         isSecondary
+        isLoading={isLoading}
         isWide
-        onPress={() => onRemoveRequest()}
+        onPress={onRemoveRequest}
         data-cy={`remove-request-button--${connection?.id}`}>
         Remove request
       </Button>
@@ -156,6 +159,7 @@ export default function ConnectButton(props: ConnectButtonProps) {
         <Button
           isCircle={props.isShort}
           isSecondary
+          isLoading={isLoading}
           size={props.isShort ? "big" : props.size}
           onPress={onReject}
           data-cy={`reject-connection-button--${connection?.id}`}>
@@ -193,13 +197,15 @@ export default function ConnectButton(props: ConnectButtonProps) {
     setIsLoading(false);
   }
 
-  async function onReject() {
+  async function onReject(event: GestureResponderEvent) {
+    event.stopPropagation();
     setIsLoading(true);
     await rejectConnection(connection?.id);
     setIsLoading(false);
   }
 
-  async function onRemoveRequest() {
+  async function onRemoveRequest(event: GestureResponderEvent) {
+    event.stopPropagation();
     setIsLoading(true);
     await rejectConnection(connection?.id);
     setIsLoading(false);
