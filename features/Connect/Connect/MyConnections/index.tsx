@@ -19,6 +19,7 @@ export default function MyConnections({ filterFunc, title, datacy }: Props) {
   const { connIds } = useConnectionsContext();
   const [members, setMembers] = useState([]);
   const [pageToken, setPageToken] = useState<string | undefined | null>(undefined);
+  const [isLastPage, setIsLastPage] = useState(false);
 
   useEffect(() => {
     getConnectedMembers(pageToken);
@@ -30,9 +31,9 @@ export default function MyConnections({ filterFunc, title, datacy }: Props) {
 
   return (
     <MembersCarousel
+      isLastPage={isLastPage}
       members={members}
       title={`${title} (${myConnections.length})`}
-      datacy={datacy}
       onLoadMembers={() => getConnectedMembers(pageToken)}
     />
   );
@@ -40,12 +41,12 @@ export default function MyConnections({ filterFunc, title, datacy }: Props) {
   async function getConnectedMembers(pageToken: string | undefined | null) {
     const myConnections = u.filterToArray(connIds, (_, elm) => filterFunc(elm));
     const myConnectionIds = R.pluck("key", myConnections);
-    console.log(myConnections);
     if (myConnectionIds.length) {
       if (pageToken !== null) {
-        const { nextToken, data } = await new UserClient().paginateUserIds(myConnectionIds, pageToken);
+        const { nextToken, data, remaining } = await new UserClient().paginateUserIds(myConnectionIds, pageToken);
         const byNotBlocked = (user: UserModel) => !user.disabled;
         const added = members.concat(data.filter(byNotBlocked));
+        setIsLastPage(remaining.length === 0);
         setMembers(added);
         setPageToken(nextToken);
       }

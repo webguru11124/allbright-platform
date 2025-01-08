@@ -1,15 +1,19 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { ConnectionType } from "@/features/Member/types";
 import ConnectionClient from "@/utils/client/user/ConnectionClient";
 
 export function useConnectionRequest() {
   const connectionClient = new ConnectionClient();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: ["connection-request"],
     mutationFn: ({ receiverId, type }: { receiverId: string; type: ConnectionType }) =>
       connectionClient.requestConnection(receiverId, type),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user-connections"] });
+    },
   });
 }
 
@@ -33,9 +37,13 @@ export function useConnectionReject() {
 
 export function useConnectionRemove() {
   const connectionClient = new ConnectionClient();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: ["connection-remove"],
     mutationFn: (connectionId: string) => connectionClient.removeConnection(connectionId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user-connections"] });
+    },
   });
 }

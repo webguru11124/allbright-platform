@@ -1,11 +1,26 @@
-import RecommendConnectMobile from "./RecommendConnect_Mobile";
+import { useInfiniteHits } from "react-instantsearch-core";
 
-type Props = {
-  hitComponent: React.ComponentType<any>;
-};
+import BusinessCard from "@/features/BusinessCard";
+import MemberListView from "@/features/Connect/components/MemberListView";
 
-function RecommendConnect(props: Props) {
-  return <RecommendConnectMobile {...props} />;
+function RecommendConnect() {
+  const { items, isLastPage, showMore } = useInfiniteHits({
+    escapeHTML: false,
+  });
+
+  return (
+    <MemberListView
+      items={items}
+      renderComponent={({ item }: { item: any }) => (
+        <BusinessCard
+          member={item}
+          isStatic
+        />
+      )}
+      loadMore={showMore}
+      isLastPage={isLastPage}
+    />
+  );
 }
 
 export default RecommendConnect;

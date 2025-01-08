@@ -34,7 +34,7 @@ export default function ConnectButton(props: ConnectButtonProps) {
 
   const otherUserId = props.id;
   const connection = connections?.connIds[otherUserId];
-
+  console.log(connection)
   const { isAcceptedConnection, isMyRequest, isTheirRequest, isCancelled, isIgnored, isRemoved } =
     useConnectionState(connection);
   const { mutateAsync: requestConnection } = useConnectionRequest();

@@ -18,7 +18,12 @@ type Props = Omit<ButtonProps, "title"> & {
 const Button = ({ disabled, theme, style, size, label, isWide, isSecondary, isCircle, ...props }: Props) => {
   return (
     <Pressable
-      style={[styles.main, { backgroundColor: theme.colors.button.background, opacity: disabled ? 0.6 : 1 }, style]}
+      style={[
+        styles.main,
+        { backgroundColor: theme.colors.button.background, opacity: disabled ? 0.6 : 1 },
+        { width: isWide ? "100%" : "auto" },
+        style,
+      ]}
       disabled={disabled || props.isLoading}
       onPress={props.onPress}
       {...props}>

@@ -1,7 +1,8 @@
 import React from "react";
-import { Animated, StyleSheet, Text, View } from "react-native";
+import { Animated, StyleSheet, View } from "react-native";
 
-import { LoadingVector } from "@/components/Icons";
+import { AllBrightVector } from "@/components/Icons";
+import useTheme from "@/hooks/useTheme";
 
 const defaultTexts = [
   "Our Mentorship programme allows you to select your own mentor from our pool of experts.",
@@ -52,10 +53,16 @@ const MemberLoading = () => {
     startAnimation();
   }, []);
 
+  const theme = useTheme();
+
   return (
     <View style={styles.page}>
-      <LoadingVector />
-      {/* <Animated.Text style={[styles.loadingText, { opacity: opacityAnim }]}>{defaultTexts[currentIndex]}</Animated.Text> */}
+      <AllBrightVector color={theme.colors.headerText} />
+      {currentIndex >= 0 && (
+        <Animated.Text style={[styles.loadingText, { opacity: opacityAnim }]}>
+          {defaultTexts[currentIndex]}
+        </Animated.Text>
+      )}
     </View>
   );
 };

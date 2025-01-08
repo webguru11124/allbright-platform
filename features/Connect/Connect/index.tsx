@@ -11,15 +11,6 @@ import AlgoliaSearch from "./RecommendConnect/InstantSearch";
 import Searchbox from "./Searchbox";
 import { ConnectionField } from "./type";
 
-const HitComponent = ({ hit }: { hit: any }) => {
-  return (
-    <BusinessCard
-      member={hit}
-      isStatic
-    />
-  );
-};
-
 const ConnectionFilters = {
   Sent: (elm: ConnectionField) => elm.isMyRequest && elm.state === "PENDING",
   Received: (elm: ConnectionField) => !elm.isMyRequest && elm.state === "PENDING",
@@ -31,10 +22,10 @@ export default function Connect() {
     <SafeAreaView style={styles.root}>
       <AlgoliaSearch index={config.ALGOLIA_SEARCH.CONNECT_INDEX}>
         <>
-          <View style={styles.searchContainer}>
-            <Searchbox containerStyle={styles.searchboxContainer} />
-          </View>
           <ConnecionsProvider>
+            <View style={styles.searchContainer}>
+              <Searchbox containerStyle={styles.searchboxContainer} />
+            </View>
             <MyConnections
               filterFunc={ConnectionFilters.Sent}
               title="Sent connections"
@@ -50,8 +41,8 @@ export default function Connect() {
               title="My connections"
               datacy="accepted-connections-members"
             />
+            <RecommendConnect />
           </ConnecionsProvider>
-          <RecommendConnect hitComponent={HitComponent} />
         </>
       </AlgoliaSearch>
     </SafeAreaView>

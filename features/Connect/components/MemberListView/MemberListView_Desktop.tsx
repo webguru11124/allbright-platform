@@ -1,19 +1,25 @@
 import React from "react";
-import { useInfiniteHits } from "react-instantsearch-core";
 import { ScrollView, StyleSheet, View } from "react-native";
+
+import Button from "@/forms/components/Button";
 
 const CARD_MARGIN = 40;
 
-type Props = {
-  hitComponent: React.ComponentType<any>;
+type Props<T> = {
+  items: T[];
+  renderComponent: React.ComponentType<{ item: T }>;
+  loadMore: () => void;
+  hasShowMoreButton?: boolean;
+  isLastPage: boolean;
 };
 
-function RecommendedConnectDesktop({ hitComponent: Hit, ...props }: Props) {
-  const { items, isLastPage, showMore } = useInfiniteHits({
-    ...props,
-    escapeHTML: false,
-  });
-
+function MemberListViewDesktop<T>({
+  items,
+  renderComponent: RenderComponent,
+  loadMore,
+  hasShowMoreButton = true,
+  isLastPage,
+}: Props<T>) {
   return (
     <ScrollView
       style={styles.scrollView}
@@ -21,20 +27,29 @@ function RecommendedConnectDesktop({ hitComponent: Hit, ...props }: Props) {
         const { layoutMeasurement, contentOffset, contentSize } = nativeEvent;
         const isEndReached = layoutMeasurement.height + contentOffset.y >= contentSize.height - 20;
 
-        if (isEndReached && !isLastPage) {
-          showMore();
+        if (isEndReached && !hasShowMoreButton && !isLastPage) {
+          loadMore();
         }
       }}
       scrollEventThrottle={400}>
       <View style={styles.container}>
-        {items.map((item) => (
+        {items.map((item: any) => (
           <View
-            key={item.objectID}
+            key={item.id || item.objectID}
             style={styles.cardWrapper}>
-            <Hit hit={item} />
+            <RenderComponent item={item} />
           </View>
         ))}
       </View>
+      {hasShowMoreButton && !isLastPage && (
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={loadMore}
+            style={{ width: 300 }}>
+            Show More
+          </Button>
+        </View>
+      )}
     </ScrollView>
   );
 }
@@ -55,6 +70,10 @@ const styles = StyleSheet.create({
     marginHorizontal: CARD_MARGIN / 2,
     borderRadius: 8,
   },
+  buttonContainer: {
+    alignItems: "center",
+    paddingHorizontal: 20,
+  },
 });
 
-export default RecommendedConnectDesktop;
+export default MemberListViewDesktop;
