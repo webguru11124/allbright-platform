@@ -1,13 +1,18 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useContext } from "react";
+import { StyleSheet, View } from "react-native";
 
 import { CM, H3 } from "@/components/Typography";
+import { UserContext } from "@/contexts/UserContext";
+import BusinessCard from "@/features/BusinessCard";
+import { useApprove } from "@/features/Onboarding/Complete/hooks/useApprove";
 import { OnboadingPageLayout } from "@/features/Onboarding/OnboardingLayout";
 import Button from "@/forms/components/Button";
-
-import { useApprove } from "./hooks/useApprove";
+import { UserModel } from "@/types/user";
 
 const Complete: FunctionComponent = () => {
   const { onClick } = useApprove();
+  const { user } = useContext(UserContext);
+
   return (
     <OnboadingPageLayout>
       <H3>Profile complete</H3>
@@ -15,10 +20,21 @@ const Complete: FunctionComponent = () => {
         Here is your AllBright Business Card. Please check everything looks right, and we’ll get you onto the platform
         immediately. You can change your details at any time through the Profile option at the top right of your screen.
       </CM>
-
+      <View style={[styles.container]}>
+        <BusinessCard member={user as UserModel} />
+      </View>
       <Button onPress={onClick}>Approve</Button>
     </OnboadingPageLayout>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 40,
+  },
+});
 
 export default Complete;
