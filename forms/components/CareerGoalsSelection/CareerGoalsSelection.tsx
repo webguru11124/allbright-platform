@@ -14,7 +14,7 @@ interface Props {
 const CareerGoalsSelection = ({ error, onSelectedHandler, goalIsSelected }: Props) => {
   return (
     <>
-      <CM>Please choose 3 - 6</CM>
+      <CM style={{ marginBottom: 10 }}>Please choose 3 - 6</CM>
       <FormFieldContainer error={error}>
         <View style={styles.goalsContainer}>
           {allCareerGoals.map((careerGoal) => (

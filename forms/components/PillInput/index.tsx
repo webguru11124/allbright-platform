@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Platform, Pressable, StyleSheet, Text } from "react-native";
 
 import withTheme from "@/hocs/withTheme";
 
@@ -18,13 +18,17 @@ const PillInput: FunctionComponent<Props> = ({ name, labelText, isChecked, isSqu
       style={[
         styles.container,
         { backgroundColor: theme.colors.overlay },
-        isSquare && { height: 100, width: 100, borderRadius: 5, padding: 10 },
+        isSquare && { height: 100, width: 100, borderRadius: 5, padding: 5 },
         isChecked && { backgroundColor: theme.colors.pill },
       ]}
       data-cy={`${name.toLowerCase().replace(/[\W_]+/g, "_")}-pill`}
       onPress={onChange}
       testID={`interests-checkbox-${labelText}`}>
-      <Text style={[styles.label, isSquare && { padding: 0, fontWeight: 500 }]}>{labelText}</Text>
+      <Text
+        adjustsFontSizeToFit={true}
+        style={[styles.label, isSquare && styles.labelSquare]}>
+        {labelText}
+      </Text>
     </Pressable>
   );
 };
@@ -41,6 +45,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingHorizontal: 20,
     zIndex: 1,
+  },
+  labelSquare: {
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+    fontWeight: 500,
+    ...Platform.select({
+      native: {
+        fontSize: 12,
+      },
+    }),
   },
 });
 

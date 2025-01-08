@@ -1,3 +1,11 @@
+jest.mock("firebase/storage", () => require("./firebase/firebase-storage"));
+jest.mock("firebase/app", () => require("./firebase/firebase-app"));
+jest.mock("firebase/auth", () => ({
+  ...jest.requireActual("./firebase/firebase-auth"),
+  getReactNativePersistence: () => {},
+  initializeAuth: () => {},
+}));
+
 jest.mock("@react-native-async-storage/async-storage", () =>
   require("@react-native-async-storage/async-storage/jest/async-storage-mock")
 );
@@ -27,7 +35,3 @@ jest.mock("@react-native-google-signin/google-signin", () => {
     },
   };
 });
-
-jest.mock("firebase/storage", () => require("./firebase/firebase-storage"));
-jest.mock("firebase/app", () => require("./firebase/firebase-app"));
-jest.mock("firebase/auth", () => require("./firebase/firebase-auth"));

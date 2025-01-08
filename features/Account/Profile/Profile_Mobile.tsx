@@ -34,7 +34,10 @@ const ProfileMobile = ({ theme, user, formProps }: Props) => {
         />
         <View style={styles.main}>
           <View style={styles.businessCardContainer}>
-            <BusinessCard member={{ ...user, businessCardColour: formProps.inputs.businessCardColour } as UserModel} />
+            <BusinessCard
+              member={{ ...user, businessCardColour: formProps.inputs.businessCardColour } as UserModel}
+              canViewQrCode={true}
+            />
             <ColourSquares
               style={{ marginTop: 20 }}
               setValue={(val) => formProps.changeTextFuncs.businessCardColour(val)}

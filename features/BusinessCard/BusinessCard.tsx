@@ -19,9 +19,19 @@ type Props = {
   role: string;
   userInterests: any;
   goals: string;
+  canViewQrCode: boolean;
 };
 
-const BusinessCard: FunctionComponent<Props> = ({ WIDTH, HEIGHT, card, textColor, role, userInterests, goals }) => {
+const BusinessCard: FunctionComponent<Props> = ({
+  WIDTH,
+  HEIGHT,
+  card,
+  textColor,
+  role,
+  userInterests,
+  goals,
+  canViewQrCode,
+}) => {
   const Front = () => (
     <Main style={{ backgroundColor: card?.businessCardColour }}>
       <Header>
@@ -33,7 +43,7 @@ const BusinessCard: FunctionComponent<Props> = ({ WIDTH, HEIGHT, card, textColor
           />
           <CS style={{ fontWeight: 600, letterSpacing: 2, color: textColor }}>BUSINESS CARD</CS>
         </Row>
-        <H4>{card.displayName}</H4>
+        <H4 style={{ color: textColor }}>{card.displayName}</H4>
         {card.location && (
           <Row>
             <Location color={textColor} />
@@ -44,18 +54,21 @@ const BusinessCard: FunctionComponent<Props> = ({ WIDTH, HEIGHT, card, textColor
       {card.imageSrc && card.displayPhoto && (
         <ImageWrap>
           <Image
-            style={{ height: "100%", width: "100%" }}
+            style={{ height: "100%", width: "100%", borderRadius: 3 }}
             source={card.imageSrc}
             contentFit="cover"
           />
         </ImageWrap>
       )}
-      <>
-        <TapMeWrap style={{}}>
-          <CS style={{ fontWeight: 500, color: card.businessCardColour }}>tap me</CS>
-        </TapMeWrap>
-        <TapMeTriangle style={{ borderBottomColor: textColor }} />
-      </>
+      {canViewQrCode && (
+        <>
+          <TapMeWrap style={{}}>
+            <CS style={{ fontWeight: 500, color: card.businessCardColour }}>tap me</CS>
+          </TapMeWrap>
+          <TapMeTriangle style={{ borderBottomColor: textColor }} />
+        </>
+      )}
+
       <Info>
         {role.length > 3 ? (
           <InfoSection>
@@ -90,13 +103,15 @@ const BusinessCard: FunctionComponent<Props> = ({ WIDTH, HEIGHT, card, textColor
     />
   );
 
-  return (
+  return canViewQrCode ? (
     <FlipCard
       frontComponent={<Front />}
       backComponent={<Back />}
       width={WIDTH}
       height={HEIGHT}
     />
+  ) : (
+    <Front />
   );
 };
 
