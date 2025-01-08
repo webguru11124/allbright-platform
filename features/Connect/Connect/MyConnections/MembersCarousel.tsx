@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 import Collapse from "@/components/Collapse";
 import BusinessCard from "@/features/BusinessCard";
 import MemberListView from "@/features/Connect/components/MemberListView";
+import useTheme from "@/hooks/useTheme";
 import { UserModel } from "@/types/user";
 
 interface Props {
@@ -14,8 +15,9 @@ interface Props {
 }
 
 export default function MembersCarousel({ members, title, onLoadMembers, isLastPage }: Props) {
+  const theme = useTheme();
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { borderBottomColor: theme.colors.overlay }]}>
       <Collapse title={title}>
         <MemberListView
           items={members}
@@ -37,5 +39,6 @@ const styles = StyleSheet.create({
   container: {
     marginBottom: 30,
     marginHorizontal: 0,
+    borderBottomWidth: 1,
   },
 });

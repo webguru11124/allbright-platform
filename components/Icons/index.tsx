@@ -41,6 +41,22 @@ export function ArrowRight(props: Props) {
   );
 }
 
+export function ArrowDown(props: Props) {
+  return (
+    <Svg
+      viewBox="0 0 12 8"
+      fill="none"
+      color={props.color || "rgba(65, 65, 67, 1)"}
+      width="12"
+      height="12"
+      {...props}>
+      <Path
+        d="M1.41.295L6 4.875l4.59-4.58L12 1.705l-6 6-6-6L1.41.295z"
+        fill="currentColor"></Path>
+    </Svg>
+  );
+}
+
 export function Tick(props: Props) {
   return (
     <Svg
