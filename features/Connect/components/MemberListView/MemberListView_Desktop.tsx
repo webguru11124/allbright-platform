@@ -11,6 +11,7 @@ type Props<T> = {
   loadMore: () => void;
   hasShowMoreButton?: boolean;
   isLastPage: boolean;
+  isHorizontal?: boolean;
 };
 
 function MemberListViewDesktop<T>({
@@ -19,20 +20,24 @@ function MemberListViewDesktop<T>({
   loadMore,
   hasShowMoreButton = true,
   isLastPage,
+  isHorizontal = false,
 }: Props<T>) {
   return (
     <ScrollView
       style={styles.scrollView}
+      horizontal={isHorizontal}
       onScroll={({ nativeEvent }) => {
         const { layoutMeasurement, contentOffset, contentSize } = nativeEvent;
-        const isEndReached = layoutMeasurement.height + contentOffset.y >= contentSize.height - 20;
+        const isEndReached = isHorizontal
+          ? layoutMeasurement.width + contentOffset.x >= contentSize.width - 20
+          : layoutMeasurement.height + contentOffset.y >= contentSize.height - 20;
 
         if (isEndReached && !hasShowMoreButton && !isLastPage) {
           loadMore();
         }
       }}
       scrollEventThrottle={400}>
-      <View style={styles.container}>
+      <View style={[styles.container, isHorizontal && styles.horizontalContainer]}>
         {items.map((item: any) => (
           <View
             key={item.id || item.objectID}
@@ -73,6 +78,9 @@ const styles = StyleSheet.create({
   buttonContainer: {
     alignItems: "center",
     paddingHorizontal: 20,
+  },
+  horizontalContainer: {
+    flexDirection: "row",
   },
 });
 

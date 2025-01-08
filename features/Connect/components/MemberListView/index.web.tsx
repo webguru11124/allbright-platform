@@ -14,9 +14,17 @@ type Props<T> = {
   loadMore: () => void;
   isLastPage: boolean;
   hasShowMoreButton?: boolean;
+  isHorizontal?: boolean;
 };
 
-const MemberListView = <T,>({ items, renderComponent, loadMore, isLastPage, hasShowMoreButton = true }: Props<T>) => {
+const MemberListView = <T,>({
+  items,
+  renderComponent,
+  isHorizontal,
+  loadMore,
+  isLastPage,
+  hasShowMoreButton = true,
+}: Props<T>) => {
   const { maxWidth, currentWidth } = useContext<MediaQuery>(MediaQueryContext);
 
   const showCompactDisplay = React.useMemo(
@@ -38,6 +46,7 @@ const MemberListView = <T,>({ items, renderComponent, loadMore, isLastPage, hasS
       renderComponent={renderComponent}
       loadMore={loadMore}
       isLastPage={isLastPage}
+      isHorizontal={isHorizontal}
       hasShowMoreButton={hasShowMoreButton}
     />
   );

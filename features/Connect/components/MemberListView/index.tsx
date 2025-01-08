@@ -6,6 +6,7 @@ type Props<T> = {
   loadMore: () => void;
   isLastPage: boolean;
   hasShowMoreButton?: boolean;
+  isHorizontal?: boolean;
 };
 
 function MemberListView<T>({ items, renderComponent, loadMore, isLastPage, hasShowMoreButton = true }: Props<T>) {
