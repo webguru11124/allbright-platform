@@ -2,8 +2,13 @@ import { Image, StyleSheet, View } from "react-native";
 
 import RegisterLink from "@/features/Auth/partials/RegisterLink";
 import LoginForm from "@/forms/LoginForm";
+import withTheme from "@/hocs/withTheme";
 
-const LoginDesktop = () => (
+type Props = {
+  theme: Theme;
+};
+
+const LoginDesktop = ({ theme }: Props) => (
   <View style={[styles.main]}>
     <View style={[styles.section]}>
       <View style={[styles.imageContainer]}>
@@ -13,7 +18,7 @@ const LoginDesktop = () => (
           resizeMode="cover"
         />
       </View>
-      <View style={[styles.formContainer]}>
+      <View style={[styles.formContainer, { backgroundColor: theme.colors.baseColor }]}>
         <LoginForm />
         <RegisterLink />
       </View>
@@ -55,7 +60,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   formContainer: {
-    backgroundColor: "#EEE",
+    backgroundColor: "transparent",
     width: "50%",
     height: "100%",
     justifyContent: "center",
@@ -63,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginDesktop;
+export default withTheme(LoginDesktop);

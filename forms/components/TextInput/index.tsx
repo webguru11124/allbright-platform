@@ -27,9 +27,9 @@ const TextInput = ({ theme, error, onBlur, onChangeText, placeholder, label, ...
         }
         containerStyles={{
           backgroundColor: theme.colors.inputs.background,
-          paddingLeft: 15,
+          paddingHorizontal: 15,
           borderRadius: 5,
-          borderColor: Boolean(error) ? "red" : "transparent",
+          borderColor: Boolean(error) ? theme.colors.error.border : "transparent",
           borderWidth: Boolean(error) ? 3 : 0,
           paddingTop: rest.multiline ? 35 : 0,
           minHeight: rest.multiline ? 100 : 50,
@@ -41,7 +41,7 @@ const TextInput = ({ theme, error, onBlur, onChangeText, placeholder, label, ...
         onBlur={onBlur}
         {...rest}
       />
-      {error && <CS color="red">{error}</CS>}
+      {error && <CS style={{ color: theme.colors.error.text }}>{error}</CS>}
     </View>
   );
 };

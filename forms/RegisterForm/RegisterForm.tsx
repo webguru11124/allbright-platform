@@ -5,6 +5,9 @@ import { CS } from "@/components/Typography";
 import Button from "@/forms/components/Button";
 import TextInput from "@/forms/components/TextInput";
 import { FormProps } from "@/forms/types/forms.types";
+import withTheme from "@/hocs/withTheme";
+
+type Props = FormProps & { onBackPress: () => void; theme: Theme };
 
 export const RegisterForm = ({
   inputs,
@@ -15,11 +18,12 @@ export const RegisterForm = ({
   isPending,
   onPress,
   onBackPress,
-}: FormProps & { onBackPress: () => void }) => (
+  theme,
+}: Props) => (
   <SafeAreaView>
     <View style={[styles.backLinkContainer]}>
       <Pressable onPress={onBackPress}>
-        <CS style={{ textDecorationLine: "underline" }}>Back to register screen</CS>
+        <CS style={{ textDecorationLine: "underline", color: theme.colors.txt.dark }}>Back to register screen</CS>
       </Pressable>
     </View>
     <View style={{ height: 300 }}>
@@ -98,4 +102,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterForm;
+export default withTheme(RegisterForm);

@@ -45,7 +45,7 @@ export const DefaultTheme = {
   ...NativeDefaultTheme,
   name: "light",
   colors: {
-    baseColor: "#FFF",
+    baseColor: "#DDD",
     alert: { ...alertColors },
     primary: "rgb(50, 150, 50)",
     secondary: "rgb(255, 150, 50)",
@@ -54,6 +54,7 @@ export const DefaultTheme = {
     lightBackground: "#FFFBF9",
     overlay: "#F2E7DF",
     pill: "#C8E8E5",
+    text: "transparent", // Do not use - RN requirement
     inputs: {
       background: "#FFF",
       text: "#414143",
@@ -76,10 +77,12 @@ export const DefaultTheme = {
       subtitle: "#00605C",
     },
     card: "rgb(255, 255, 255)",
-    text: "rgb(28, 28, 30)",
     border: "rgb(199, 199, 204)",
     notification: "rgb(255, 69, 58)",
-    error: "rgb(255, 0, 0)",
+    error: {
+      border: "rgb(255, 0, 0)",
+      text: "rgb(255, 0, 0)",
+    },
   },
 };
 
@@ -96,6 +99,7 @@ export const DarkTheme = {
     lightBackground: "#ddd",
     overlay: "#ccc",
     pill: "#C8E8E5",
+    text: "transparent", // Do not use - RN requirement
     inputs: {
       background: "#EEEEEE",
       text: "#414143",
@@ -103,11 +107,11 @@ export const DarkTheme = {
       placeholder: "rgb(150,150,150)",
     },
     button: {
-      primary: "#000",
+      primary: "#FFF",
       background: "#76ABAE",
-      googleSignIn: "#4285f4",
-      facebookSignin: "#5890ff",
-      linkedinSignIn: "#0077b5",
+      googleSignIn: "#A5D7E8",
+      facebookSignin: "#A5D7E8",
+      linkedinSignIn: "#A5D7E8",
     },
     txt: {
       primary: "#76ABAE",
@@ -117,6 +121,12 @@ export const DarkTheme = {
       light: "#000000",
       subtitle: "#00605C",
     },
-    headerText: "rgb(255, 255, 255)",
+    card: "rgb(255, 255, 255)",
+    border: "rgb(199, 199, 204)",
+    notification: "rgb(255, 69, 58)",
+    error: {
+      border: "rgba(255, 0, 0, 0.9)",
+      text: "rgba(255, 0, 0, 0.9)",
+    },
   },
 };

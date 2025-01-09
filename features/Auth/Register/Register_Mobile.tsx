@@ -2,11 +2,18 @@ import { StyleSheet, View } from "react-native";
 
 import LoginLink from "@/features/Auth/partials/LoginLink";
 import RegisterForm from "@/forms/RegisterForm";
+import withTheme from "@/hocs/withTheme";
 
-const RegisterMobile = () => {
+type Props = {
+  theme: Theme;
+};
+
+const RegisterMobile = ({ theme }: Props) => {
   return (
     <View style={[styles.main]}>
-      <RegisterForm />
+      <View style={[styles.formContainer, { backgroundColor: theme.colors.baseColor }]}>
+        <RegisterForm />
+      </View>
       <View style={[styles.linkContainer]}>
         <LoginLink />
       </View>
@@ -21,6 +28,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 50,
   },
+  formContainer: {
+    flex: 1,
+    justifyContent: "center",
+    maxWidth: 360,
+    marginTop: 20,
+    paddingVertical: 30,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+  },
   linkContainer: {
     position: "absolute",
     bottom: 30,
@@ -28,4 +44,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterMobile;
+export default withTheme(RegisterMobile);
