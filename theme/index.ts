@@ -119,7 +119,7 @@ export const DarkTheme = {
       placeholder: "#41414380",
       dark: "#FFFFFF",
       light: "#000000",
-      subtitle: "#00605C",
+      subtitle: "#DDE6ED",
     },
     card: "rgb(255, 255, 255)",
     border: "rgb(199, 199, 204)",
