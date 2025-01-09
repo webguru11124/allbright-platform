@@ -21,13 +21,15 @@ export default function MyConnections({ filterFunc, title, datacy }: Props) {
   const [pageToken, setPageToken] = useState<string | undefined | null>(undefined);
   const [isLastPage, setIsLastPage] = useState(false);
 
+  const myConnections = React.useMemo(
+    () => u.filterToArray(connIds, (_, elm) => filterFunc(elm)),
+    [connIds, filterFunc]
+  );
   useEffect(() => {
     getConnectedMembers(pageToken);
-  }, [connIds]);
+  }, [myConnections, pageToken]);
 
   if (members.length === 0) return null;
-
-  const myConnections = u.filterToArray(connIds, (_, elm) => filterFunc(elm));
 
   return (
     <MembersCarousel

@@ -27,7 +27,7 @@ function ConnecionsProvider({ children }: { children: React.ReactNode }) {
     }
   }, [connections]);
 
-  const value = { connIds, setConnIds, refresh: refetch };
+  const value = React.useMemo(() => ({ connIds, setConnIds, refresh: refetch }), [connIds, refetch]);
   React.useEffect(() => {
     refetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
