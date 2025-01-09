@@ -46,6 +46,7 @@ export const DefaultTheme = {
   name: "light",
   colors: {
     baseColor: "#DDD",
+    navbarBackground: "#FFFFFF",
     alert: { ...alertColors },
     primary: "rgb(50, 150, 50)",
     secondary: "rgb(255, 150, 50)",
@@ -92,6 +93,7 @@ export const DarkTheme = {
   colors: {
     ...NativeDarkTheme.colors,
     baseColor: "#222831",
+    navbarBackground: "#222831",
     alert: { ...alertColors },
     secondary: "rgb(0, 250, 50)",
     inactive: "rgb(221,221,221)",

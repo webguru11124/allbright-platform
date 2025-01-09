@@ -1,11 +1,18 @@
 import { ScrollView } from "react-native-gesture-handler";
 
 import RecommendationsMasonryGrid from "@/components/recommendation_cards/RecommendationsMasonryGrid";
+import withTheme from "@/hocs/withTheme";
 
-export default function Home() {
+type Props = {
+  theme: Theme;
+};
+
+function Home({ theme }: Props) {
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: theme.colors.background }}>
       <RecommendationsMasonryGrid />
     </ScrollView>
   );
 }
+
+export default withTheme(Home);

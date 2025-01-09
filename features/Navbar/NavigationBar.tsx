@@ -15,52 +15,31 @@ type Props = {
 };
 
 const NavigationBar = ({ user, theme }: Props) => (
-  <View style={[styles.navigationBarContainer, { backgroundColor: theme.colors.baseColor }]}>
+  <View style={[styles.navigationBarContainer, { backgroundColor: theme.colors.navbarBackground }]}>
     <View style={[styles.tabContainer]}>
       <View style={[styles.tabImageContainer]}>
-        <IconAllBright width={183} />
+        <IconAllBright
+          width={183}
+          color={theme.colors.txt.dark}
+        />
       </View>
       <TabButton href="/home">
-        <H6
-          fontWeight={700}
-          color={"#414143"}>
-          Home
-        </H6>
+        <H6 style={{ fontWeight: "700", color: theme.colors.txt.dark }}>Home</H6>
       </TabButton>
       <TabButton href="/connect">
-        <H6
-          fontWeight={700}
-          color={"#414143"}>
-          Connect
-        </H6>
+        <H6 style={{ fontWeight: "700", color: theme.colors.txt.dark }}>Connect</H6>
       </TabButton>
       <TabButton href="/learning">
-        <H6
-          fontWeight={700}
-          color={"#414143"}>
-          Learning
-        </H6>
+        <H6 style={{ fontWeight: "700", color: theme.colors.txt.dark }}>Learning</H6>
       </TabButton>
       <TabButton href="/events">
-        <H6
-          fontWeight={700}
-          color={"#414143"}>
-          Events
-        </H6>
+        <H6 style={{ fontWeight: "700", color: theme.colors.txt.dark }}>Events</H6>
       </TabButton>
       <TabButton href="/groups">
-        <H6
-          fontWeight={700}
-          color={"#414143"}>
-          Groups
-        </H6>
+        <H6 style={{ fontWeight: "700", color: theme.colors.txt.dark }}>Groups</H6>
       </TabButton>
       <TabButton href="/edit">
-        <H6
-          fontWeight={700}
-          color={"#414143"}>
-          The Allbright Post
-        </H6>
+        <H6 style={{ fontWeight: "700", color: theme.colors.txt.dark }}>The Allbright Post</H6>
       </TabButton>
     </View>
     <View style={[styles.tabImageContainer]}>
