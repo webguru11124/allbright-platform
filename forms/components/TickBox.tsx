@@ -12,7 +12,7 @@ type Props = Omit<TextInputProps, "onBlur" | "value" | "onChange"> & {
   value: boolean;
 };
 
-const TickBox = ({ onChange, error, value, label, testID }: Props) => {
+const TickBox = ({ onChange, error, value, label, theme, testID }: Props) => {
   const onPress = () => {
     onChange(!value);
   };
@@ -26,21 +26,24 @@ const TickBox = ({ onChange, error, value, label, testID }: Props) => {
         <View
           style={[
             styles.tickWrapper,
-            { borderColor: Boolean(error) ? "red" : "transparent", borderWidth: Boolean(error) ? 3 : 0 },
+            {
+              borderColor: Boolean(error) ? theme.colors.error.border : "transparent",
+              borderWidth: Boolean(error) ? 3 : 0,
+            },
           ]}>
           {value && (
             <MaterialIcons
               aria-checked={value}
               aria-label="Checkbox"
               name={"check"}
-              size={24}
+              size={16}
               color={"black"}
             />
           )}
         </View>
-        <CS>{label}</CS>
+        <CS style={{ color: theme.colors.txt.dark }}>{label}</CS>
       </Pressable>
-      {error && <CS color="red">{error}</CS>}
+      {error && <CS color={theme.colors.error.text}>{error}</CS>}
     </View>
   );
 };

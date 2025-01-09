@@ -4,18 +4,22 @@ import { StyleSheet, View } from "react-native";
 import { CL } from "@/components/Typography";
 import FormFieldContainer from "@/forms/components/FormFieldContainer";
 import TickBox from "@/forms/components/TickBox";
+import withTheme from "@/hocs/withTheme";
 import goals from "@/utils/data/goals";
 
 interface GoalsSectionProps {
   goalIsSelected: (goal: (typeof goals)[number]) => boolean;
   setGoalsStateHandler: (goal: (typeof goals)[number]) => void;
   error?: string;
+  theme: Theme;
 }
 
 const GoalsSection: FunctionComponent<GoalsSectionProps> = ({ error, ...props }) => {
   return (
     <View style={styles.root}>
-      <CL>Why do you want to meet others? Choose between 1 and to 3</CL>
+      <CL style={{ color: props.theme.colors.txt.dark, marginBottom: 10 }}>
+        Why do you want to meet others? Choose between 1 and to 3
+      </CL>
       <FormFieldContainer error={error}>
         <View style={styles.goalsContainer}>
           {goals.map((goal) => (
@@ -42,4 +46,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GoalsSection;
+export default withTheme(GoalsSection);

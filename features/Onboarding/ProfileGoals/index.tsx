@@ -10,9 +10,9 @@ type Props = {
 const ProfileGoals = ({ theme }: Props) => {
   return (
     <OnboadingPageLayout>
-      <H3>Section 3: Your Career Goals</H3>
+      <H3 style={{ color: theme.colors.txt.dark }}>Section 3: Your Career Goals</H3>
       <H5 style={{ color: theme.colors.txt.subtitle }}>Step 4 of 4</H5>
-      <CM>
+      <CM style={{ color: theme.colors.txt.dark }}>
         This information will never be shown to anyone except AllBright. We will use it to tailor your experience on the
         platform.
       </CM>

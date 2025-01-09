@@ -98,7 +98,7 @@ export const DarkTheme = {
     background: "#31363F",
     lightBackground: "#ddd",
     overlay: "#ccc",
-    pill: "#C8E8E5",
+    pill: "#57A6A1",
     text: "transparent", // Do not use - RN requirement
     inputs: {
       background: "#EEEEEE",

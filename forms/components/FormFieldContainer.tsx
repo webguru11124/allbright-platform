@@ -1,23 +1,28 @@
 import { StyleSheet, View } from "react-native";
 
 import { CS } from "@/components/Typography";
+import withTheme from "@/hocs/withTheme";
 
 type Props = {
   children: React.ReactNode;
   error?: string;
+  theme: Theme;
 };
 
-const FormFieldContainer = ({ children, error }: Props) => {
+const FormFieldContainer = ({ children, error, theme }: Props) => {
   return (
     <View>
       <View
         style={
           (styles.container,
-          { borderColor: Boolean(error) ? "red" : "transparent", borderRadius: Boolean(error) ? 5 : 0 })
+          {
+            borderColor: Boolean(error) ? theme.colors.error.border : "transparent",
+            borderRadius: Boolean(error) ? 5 : 0,
+          })
         }>
         {children}
       </View>
-      {error && <CS style={styles.error}>{error}</CS>}
+      {error && <CS style={{ color: theme.colors.error.text }}>{error}</CS>}
     </View>
   );
 };
@@ -27,9 +32,6 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: "transparent",
   },
-  error: {
-    color: "red",
-  },
 });
 
-export default FormFieldContainer;
+export default withTheme(FormFieldContainer);

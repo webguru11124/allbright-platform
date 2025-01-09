@@ -61,7 +61,7 @@ const PrivateProfileForm = ({ inputs, errors, blurFuncs, changeTextFuncs, isPend
       error={errors.dateOfBirth}
       testID="PrivateProfileForm:DateOfBirth"
     />
-    <Space height={10} />
+    <Space height={20} />
     <Button
       isLoading={isPending}
       onPress={onPress}
