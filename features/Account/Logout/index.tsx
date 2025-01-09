@@ -6,9 +6,12 @@ import { Platform, StyleSheet, View } from "react-native";
 import { CS } from "@/components/Typography";
 import { useUserContext } from "@/contexts/UserContext";
 import Button from "@/forms/components/Button";
+import withTheme from "@/hocs/withTheme";
 import { signOut } from "@/utils/client/FirebaseAuthClient";
 
-const Logout = () => {
+type Props = { theme: Theme };
+
+const Logout = ({ theme }: Props) => {
   const queryClient = useQueryClient();
   const { refetch } = useUserContext();
   const onPress = async () => {
@@ -21,7 +24,7 @@ const Logout = () => {
   return (
     <View style={[styles.root]}>
       <View style={[styles.textContainer]}>
-        <CS>Are you sure you would like to logout?</CS>
+        <CS style={{ color: theme.colors.txt.dark }}>Are you sure you would like to logout?</CS>
       </View>
       <Button
         disabled={false}
@@ -53,4 +56,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Logout;
+export default withTheme(Logout);

@@ -6,7 +6,13 @@ import useTheme from "@/hooks/useTheme";
 export default function TabLayout() {
   const theme = useTheme();
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: theme.colors.primary }}>
+    <Tabs
+      screenOptions={{
+        tabBarActiveBackgroundColor: theme.colors.background,
+        tabBarInactiveBackgroundColor: theme.colors.background,
+        tabBarActiveTintColor: theme.colors.txt.dark,
+        tabBarInactiveTintColor: theme.colors.txt.dark + "50",
+      }}>
       <Tabs.Screen
         name="index"
         options={{
