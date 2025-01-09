@@ -103,7 +103,7 @@ const JobStatusPicker = ({ theme, onChangeText, placeholder, onBlur, error, valu
           },
         ]}
         onPress={() => setModalVisible(true)}>
-        <CM style={[{ color: theme.colors.text }]}>{displayValue || placeholder}</CM>
+        <CM style={[{ color: theme.colors.inputs.text }]}>{displayValue || placeholder}</CM>
         <MaterialIcons
           name={"arrow-drop-down"}
           size={24}

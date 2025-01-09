@@ -54,7 +54,7 @@ const TabItem = ({ tabItemStyle, tabItemTextStyle, name, onPress, active, theme 
             style={[
               styles.tabItemText,
               {
-                color: active ? theme.colors.text : theme.colors.inactive,
+                color: active ? theme.colors.inputs.text : theme.colors.inactive,
                 fontWeight: active ? 800 : 400,
               },
               tabItemTextStyle,

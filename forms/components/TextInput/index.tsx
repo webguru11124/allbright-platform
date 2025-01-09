@@ -18,10 +18,11 @@ const TextInput = ({ theme, error, onBlur, onChangeText, placeholder, label, ...
         autoCapitalize="none"
         inputStyles={
           {
+            backgroundColor: theme.colors.inputs.background,
             outline: "none",
             minHeight: 50,
             fontSize: 16,
-            color: theme.colors.text,
+            color: theme.colors.inputs.text,
           } as TextStyle
         }
         containerStyles={{

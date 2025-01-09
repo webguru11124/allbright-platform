@@ -6,14 +6,16 @@ import { H6 } from "@/components/Typography";
 import { Metrics } from "@/constants/Metrics";
 import TabButton from "@/features/Navbar/partials/TabButton";
 import TabImage from "@/features/Navbar/partials/TabImage";
+import withTheme from "@/hocs/withTheme";
 import { UserModel } from "@/types/user";
 
 type Props = {
   user: Partial<UserModel> | undefined;
+  theme: Theme;
 };
 
-const NavigationBar = ({ user }: Props) => (
-  <View style={[styles.navigationBarContainer]}>
+const NavigationBar = ({ user, theme }: Props) => (
+  <View style={[styles.navigationBarContainer, { backgroundColor: theme.colors.baseColor }]}>
     <View style={[styles.tabContainer]}>
       <View style={[styles.tabImageContainer]}>
         <IconAllBright width={183} />
@@ -93,4 +95,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NavigationBar;
+export default withTheme(NavigationBar);

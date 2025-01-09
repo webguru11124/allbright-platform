@@ -45,6 +45,7 @@ export const DefaultTheme = {
   ...NativeDefaultTheme,
   name: "light",
   colors: {
+    baseColor: "#FFF",
     alert: { ...alertColors },
     primary: "rgb(50, 150, 50)",
     secondary: "rgb(255, 150, 50)",
@@ -67,7 +68,8 @@ export const DefaultTheme = {
       linkedinSignIn: "#0077b5",
     },
     txt: {
-      primo: "#DADCE1",
+      primary: "#DADCE1",
+      secondary: "#414143",
       placeholder: "#DADCE180",
       dark: "#000000",
       light: "#FFFFFF",
@@ -75,7 +77,6 @@ export const DefaultTheme = {
     },
     card: "rgb(255, 255, 255)",
     text: "rgb(28, 28, 30)",
-    headerText: "rgb(50, 100, 30)",
     border: "rgb(199, 199, 204)",
     notification: "rgb(255, 69, 58)",
     error: "rgb(255, 0, 0)",
@@ -84,19 +85,19 @@ export const DefaultTheme = {
 
 export const DarkTheme = {
   ...NativeDarkTheme,
-  headerText: NativeDarkTheme.colors.text,
   name: "dark",
   colors: {
     ...NativeDarkTheme.colors,
+    baseColor: "#222831",
     alert: { ...alertColors },
     secondary: "rgb(0, 250, 50)",
     inactive: "rgb(221,221,221)",
-    background: "#bbb",
+    background: "#31363F",
     lightBackground: "#ddd",
     overlay: "#ccc",
     pill: "#C8E8E5",
     inputs: {
-      background: "#FFF",
+      background: "#EEEEEE",
       text: "#414143",
       border: "rgb(199, 199, 204)",
       placeholder: "rgb(150,150,150)",
@@ -109,10 +110,11 @@ export const DarkTheme = {
       linkedinSignIn: "#0077b5",
     },
     txt: {
-      primo: "#414143",
+      primary: "#76ABAE",
+      secondary: "#EEEEEE",
       placeholder: "#41414380",
-      dark: "#FFFFFF",
-      light: "#000000",
+      dark: "#000",
+      light: "#FFFFFF",
       subtitle: "#00605C",
     },
     headerText: "rgb(255, 255, 255)",

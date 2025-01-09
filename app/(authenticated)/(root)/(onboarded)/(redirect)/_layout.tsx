@@ -15,7 +15,13 @@ export default function Layout() {
   return (
     <>
       <Drawer
-        screenOptions={{ drawerHideStatusBarOnOpen: true, headerTintColor: theme.colors.primary }}
+        screenOptions={{
+          drawerHideStatusBarOnOpen: true,
+          headerTintColor: theme.colors.txt.primary,
+          headerStyle: {
+            backgroundColor: theme.colors.baseColor,
+          },
+        }}
         drawerContent={(props) => {
           return (
             <>
