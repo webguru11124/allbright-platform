@@ -6,7 +6,7 @@ import { CM, H4 } from "@/components/Typography";
 import Button from "@/forms/components/Button";
 import ProfilePhotoInput from "@/forms/components/ProfilePhotoInput";
 import TickBox from "@/forms/components/TickBox";
-import colors from "@/theme";
+import withTheme from "@/hocs/withTheme";
 import { LocalImageType } from "@/types/files/localImage";
 
 interface ProfilePhotoUploadSectionProps {
@@ -16,12 +16,14 @@ interface ProfilePhotoUploadSectionProps {
     state: LocalImageType;
   };
   pickProfileImage: () => void;
+  theme: Theme;
 }
 
 const ProfilePhotoUploadSection = ({
   pickProfileImage,
   handleProfileWantedToggle,
   profileImage,
+  theme,
 }: ProfilePhotoUploadSectionProps) => {
   return (
     <View>
@@ -32,7 +34,7 @@ const ProfilePhotoUploadSection = ({
           style={[styles.arrowButton]}
           onPress={pickProfileImage}
           testID="ProfilePhotoUploadSection:ArrowButton">
-          <ArrowRight fill={colors.lightShell} />
+          <ArrowRight fill={theme.colors.lightBackground} />
         </Button>
         <View style={[styles.selectPhotoText]}>
           <H4>'Select photo'</H4>
@@ -85,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfilePhotoUploadSection;
+export default withTheme(ProfilePhotoUploadSection);
