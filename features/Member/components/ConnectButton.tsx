@@ -103,7 +103,6 @@ export default function ConnectButton(props: ConnectButtonProps) {
       <View style={styles.connectButtonContainer}>
         <Button
           onPress={goMessage}
-          isLoading={isLoading}
           size={props.size}
           data-cy={`message-connection-button--${connection?.id}`}
           isWide>
@@ -111,7 +110,6 @@ export default function ConnectButton(props: ConnectButtonProps) {
         </Button>
         <Button
           isSecondary
-          isLoading={isLoading}
           onPress={() => setShowRemoveConnectionDialog(true)}
           data-cy={`remove-connection-button--${connection?.id}`}
           isWide>
@@ -266,6 +264,7 @@ function RemoveConnectionDialog(props: {
 const styles = StyleSheet.create({
   connectButtonContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    gap: 10,
+    justifyContent: "center",
   },
 });

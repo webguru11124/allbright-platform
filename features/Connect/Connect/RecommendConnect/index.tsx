@@ -11,12 +11,7 @@ function RecommendConnect() {
   return (
     <MemberListView
       items={items}
-      renderComponent={({ item }: { item: any }) => (
-        <BusinessCard
-          member={item}
-          isStatic
-        />
-      )}
+      renderComponent={({ item }: { item: any }) => <BusinessCard member={item} />}
       loadMore={showMore}
       isLastPage={isLastPage}
     />

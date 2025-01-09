@@ -35,12 +35,7 @@ export default function MembersCarousel({ members, title, onLoadMembers, isLastP
       <Collapse title={title}>
         <MemberListView
           items={members}
-          renderComponent={({ item }) => (
-            <BusinessCard
-              member={item}
-              isStatic
-            />
-          )}
+          renderComponent={({ item }) => <BusinessCard member={item} />}
           loadMore={onLoadMembers}
           isHorizontal
           isLastPage={isLastPage}

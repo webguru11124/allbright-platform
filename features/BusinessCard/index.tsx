@@ -15,7 +15,6 @@ type Props = {
   member: UserModel;
   canViewQrCode?: boolean;
   theme: Theme;
-  isStatic?: boolean;
 };
 
 const whiteTextColours = ["#525858", "#834973", "#6D8868", "#955C5C", "#617595", "#886BB7", "#50968D"];
@@ -57,7 +56,7 @@ const BusinessCardContainer: FunctionComponent<Props> = ({ member, theme, canVie
     setShowModal(true);
   };
 
-  if (canViewQrCode)
+  if (!canViewQrCode)
     return (
       <>
         {showModal && (
