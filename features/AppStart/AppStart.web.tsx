@@ -6,10 +6,11 @@ import { CXL, H2 } from "@/components/Typography";
 import BackgroundImageMasonry from "@/features/AppStart/partials/BackgroundImageMasonry";
 import EntryButtons from "@/features/AppStart/partials/EntryButtons";
 import { AppStartProps } from "@/features/AppStart/types";
+import withTheme from "@/hocs/withTheme";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 
-const AppStart = ({ store, nameAnim, animY, NOTCH, heightOffset, minWidth }: AppStartProps) => (
-  <View style={[styles.main]}>
+const AppStart = ({ store, nameAnim, animY, NOTCH, heightOffset, minWidth, theme }: AppStartProps) => (
+  <View style={[styles.main, , { backgroundColor: theme.colors.background }]}>
     <View style={[styles.section]}>
       <SafeAreaView style={[styles.container]}>
         <StatusBar
@@ -23,9 +24,9 @@ const AppStart = ({ store, nameAnim, animY, NOTCH, heightOffset, minWidth }: App
         <View style={[styles.blurWrapper]}>
           <Space height={NOTCH ? 15 : 50} />
           <Animated.View style={{ opacity: nameAnim, transform: [{ translateY: animY }] }}>
-            <H2 style={{ textAlign: "center" }}>Welcome to AllBright.</H2>
+            <H2 style={{ color: theme.colors.txt.dark, textAlign: "center" }}>Welcome to AllBright.</H2>
             <Space height={10} />
-            <CXL style={{ textAlign: "center" }}>
+            <CXL style={{ color: theme.colors.txt.dark, textAlign: "center" }}>
               A professional community for
               {"\n"} smart-minded women
             </CXL>
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#FFF",
+    backgroundColor: "transparent",
   },
   subContainer: {
     flex: 1,
@@ -80,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppStart;
+export default withTheme(AppStart);
