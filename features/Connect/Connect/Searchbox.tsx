@@ -15,7 +15,6 @@ export default function Searchbox({
   const [inputValue, setInputValue] = useState(query);
 
   function setQuery(newQuery: string) {
-    console.log("changing");
     setInputValue(newQuery);
     refine(newQuery);
   }

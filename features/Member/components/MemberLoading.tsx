@@ -4,7 +4,7 @@ import { Animated, StyleSheet, View } from "react-native";
 import { AllBrightVector } from "@/components/Icons";
 import useTheme from "@/hooks/useTheme";
 
-const defaultTexts = [
+export const defaultTexts = [
   "Our Mentorship programme allows you to select your own mentor from our pool of experts.",
   "You can add any AllBright member just by tapping their business card and choosing 'connect'.",
   "The latest events or courses you are attending will appear on your home screen.",

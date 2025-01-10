@@ -45,7 +45,6 @@ export default function ConnectButton(props: ConnectButtonProps) {
 
   // const isPaid = !!user.membership?.id;
   const isPaid = true;
-
   if (!user) return null;
 
   if (props.id === user.id) return null;
