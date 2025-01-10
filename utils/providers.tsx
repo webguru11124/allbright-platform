@@ -7,7 +7,7 @@ import { RootSiblingParent } from "react-native-root-siblings";
 
 import { MediaQueryProvider } from "@/contexts/MediaQueryContext";
 import { UserProvider } from "@/contexts/UserContext";
-import { DefaultTheme, PaperDefaultTheme } from "@/theme";
+import { DarkTheme, PaperDarkTheme } from "@/theme";
 
 type Props = {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ const client = new QueryClient();
 
 export const AppProviders = ({ children }: Props) => (
   <QueryClientProvider client={client}>
-    <ThemeProvider value={DefaultTheme}>
+    <ThemeProvider value={DarkTheme}>
       <MediaQueryProvider>{children}</MediaQueryProvider>
     </ThemeProvider>
   </QueryClientProvider>
@@ -26,7 +26,7 @@ export const AuthenticatedProviders = ({ children }: Props) => (
   <GestureHandlerRootView style={{ flex: 1 }}>
     <UserProvider>
       <PaperProvider
-        theme={PaperDefaultTheme}
+        theme={PaperDarkTheme}
         settings={{
           rippleEffectEnabled: false,
         }}>
@@ -40,11 +40,11 @@ const Providers = ({ children }: Props) => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={client}>
-        <ThemeProvider value={DefaultTheme}>
+        <ThemeProvider value={DarkTheme}>
           <UserProvider>
             <MediaQueryProvider>
               <PaperProvider
-                theme={PaperDefaultTheme}
+                theme={PaperDarkTheme}
                 settings={{
                   rippleEffectEnabled: false,
                 }}>
