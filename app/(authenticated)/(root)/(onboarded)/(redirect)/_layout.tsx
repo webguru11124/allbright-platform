@@ -155,6 +155,23 @@ function Layout({ theme }: Props) {
           }}
         />
         <Drawer.Screen
+          name="settings"
+          options={{
+            drawerLabel: "Settings",
+            title: "Settings",
+            drawerLabelStyle: {
+              color: theme.colors.txt.dark,
+            },
+            drawerIcon: ({ focused, size }) => (
+              <MaterialIcons
+                name="settings"
+                size={size}
+                color={theme.colors.txt.dark}
+              />
+            ),
+          }}
+        />
+        <Drawer.Screen
           name="account"
           options={{
             title: "Account",

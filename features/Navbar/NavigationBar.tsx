@@ -1,5 +1,7 @@
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { router } from "expo-router";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 
 import IconAllBright from "@/components/IconAllbright";
 import { H6 } from "@/components/Typography";
@@ -43,6 +45,17 @@ const NavigationBar = ({ user, theme }: Props) => (
       </TabButton>
     </View>
     <View style={[styles.tabImageContainer]}>
+      <Pressable
+        onPress={() => {
+          router.navigate("/settings");
+        }}
+        style={[styles.settingsIconContainer, { backgroundColor: theme.colors.inputs.border }]}>
+        <MaterialIcons
+          name="settings"
+          size={24}
+          color={theme.colors.txt.light + "90"}
+        />
+      </Pressable>
       <TabImage
         imageSrc={user?.imageSrc}
         initials={(user?.firstName?.slice(0, 1) || "A") + (user?.lastName?.slice(0, 1) || "B")}
@@ -67,10 +80,19 @@ const styles = StyleSheet.create({
   tabImageContainer: {
     height: "100%",
     alignSelf: "center",
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 15,
     marginRight: 50,
+  },
+  settingsIconContainer: {
+    width: 30,
+    height: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 10,
+    borderRadius: 50,
   },
 });
 
