@@ -20,11 +20,6 @@ export default function Searchbox({
     refine(newQuery);
   }
 
-  // Track when the InstantSearch query changes to synchronize it with
-  // the React state.
-  // We bypass the state update if the input is focused to avoid concurrent
-  // updates when typing.
-
   return (
     <View style={[containerStyle]}>
       <TextInput
