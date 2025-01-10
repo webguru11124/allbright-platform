@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react";
+import { useContext } from "react";
 import { StyleSheet, Switch, View } from "react-native";
 
 import { CM } from "@/components/Typography";
@@ -8,20 +8,19 @@ import { DarkTheme, DefaultTheme } from "@/theme";
 
 const SelectTheme = () => {
   const { theme, setTheme } = useContext(AppContext);
-  const isDarkTheme = useMemo(() => theme === DarkTheme, [theme]);
 
   return (
     <View style={[styles.themeContainer]}>
       <CM style={{ color: theme.colors.txt.dark }}>Dark Theme?</CM>
       <Switch
         style={{ marginLeft: 20 }}
-        trackColor={{ false: "#767577", true: "#81b0ff" }}
-        thumbColor={isDarkTheme ? "#f5dd4b" : "#f4f3f4"}
+        trackColor={{ false: theme.colors.inputs.border, true: theme.colors.inputs.background }}
+        thumbColor={theme.dark ? theme.colors.pill : theme.colors.inactive}
         ios_backgroundColor="#3e3e3e"
         onValueChange={(val) => {
           setTheme && setTheme(val ? DarkTheme : DefaultTheme);
         }}
-        value={isDarkTheme}
+        value={theme.dark}
       />
     </View>
   );
