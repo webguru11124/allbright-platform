@@ -49,11 +49,11 @@ const NavigationBar = ({ user, theme }: Props) => (
         onPress={() => {
           router.navigate("/settings");
         }}
-        style={[styles.settingsIconContainer, { backgroundColor: theme.colors.inputs.border }]}>
+        style={[styles.settingsIconContainer, { backgroundColor: theme.colors.background }]}>
         <MaterialIcons
           name="settings"
-          size={24}
-          color={theme.colors.txt.light + "90"}
+          size={16}
+          color={theme.colors.txt.dark + "90"}
         />
       </Pressable>
       <TabImage
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   navigationBarContainer: {
     height: Metrics.navbar.height,
     width: "100%",
-    paddingHorizontal: 40,
+    paddingHorizontal: 20,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -87,11 +87,11 @@ const styles = StyleSheet.create({
     marginRight: 50,
   },
   settingsIconContainer: {
-    width: 30,
-    height: 30,
+    width: 32,
+    height: 32,
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 10,
+    marginRight: 20,
     borderRadius: 50,
   },
 });

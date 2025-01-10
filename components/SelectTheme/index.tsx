@@ -11,7 +11,7 @@ const SelectTheme = () => {
 
   return (
     <View style={[styles.themeContainer]}>
-      <CM style={{ color: theme.colors.txt.dark }}>Dark Theme?</CM>
+      <CM style={{ color: theme.colors.txt.dark }}>Dark Theme</CM>
       <Switch
         style={{ marginLeft: 20 }}
         trackColor={{ false: theme.colors.inputs.border, true: theme.colors.inputs.background }}
