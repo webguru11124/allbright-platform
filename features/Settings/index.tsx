@@ -1,9 +1,7 @@
 import Settings from "@/features/Settings/Settings";
 
 const SettingsContainer = () => {
-  const isDarkTheme = true;
-
-  return <Settings isDarkTheme={isDarkTheme} />;
+  return <Settings />;
 };
 
 export default SettingsContainer;

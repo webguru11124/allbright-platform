@@ -5,12 +5,7 @@ import SettingsDesktop from "@/features/Settings/Settings_Desktop";
 import SettingsMobile from "@/features/Settings/Settings_Mobile";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
 
-type Props = {
-  isDarkTheme: boolean;
-};
-
-const Settings = ({ isDarkTheme }: Props) => {
-  console.log(isDarkTheme);
+const Settings = () => {
   const { maxWidth, currentWidth } = useContext<MediaQuery>(MediaQueryContext);
 
   const showCompactDisplay = React.useMemo(
@@ -18,7 +13,7 @@ const Settings = ({ isDarkTheme }: Props) => {
     [maxWidth, currentWidth]
   );
 
-  return showCompactDisplay ? <SettingsDesktop /> : <SettingsMobile />;
+  return showCompactDisplay ? <SettingsMobile /> : <SettingsDesktop />;
 };
 
 export default Settings;
