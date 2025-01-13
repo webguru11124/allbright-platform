@@ -23,6 +23,7 @@ describe("MemberListView", () => {
         loadMore={mockLoadMore}
         isLastPage={false}
         hasShowMoreButton={false}
+        showCompact={false}
       />
     );
     expect(screen.queryByText("Show More")).toBeNull();
@@ -36,6 +37,7 @@ describe("MemberListView", () => {
         loadMore={mockLoadMore}
         isLastPage={false}
         hasShowMoreButton={true}
+        showCompact={false}
       />
     );
     expect(screen.getByText("Show More")).not.toBeNull();
@@ -49,6 +51,7 @@ describe("MemberListView", () => {
         loadMore={mockLoadMore}
         isLastPage={true}
         hasShowMoreButton={true}
+        showCompact={false}
       />
     );
     expect(screen.queryByText("Show More")).toBeNull();
@@ -62,6 +65,7 @@ describe("MemberListView", () => {
         loadMore={mockLoadMore}
         isLastPage={false}
         hasShowMoreButton={true}
+        showCompact={false}
       />
     );
     fireEvent.press(screen.getByText("Show More"));

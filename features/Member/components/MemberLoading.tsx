@@ -51,6 +51,7 @@ const MemberLoading = ({ theme }: { theme: Theme }) => {
     const initialIndex = getRandomIndex(-1);
     setCurrentIndex(initialIndex);
     startAnimation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

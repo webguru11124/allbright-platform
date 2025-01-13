@@ -6,6 +6,7 @@ import Logout from "@/features/Account/Logout";
 import Membership from "@/features/Account/Membership";
 import Profile from "@/features/Account/Profile";
 import Tabs from "@/features/Tabs/index.web";
+import { BREAKPOINT_MOBILE } from "@/hooks/useMediaQuery";
 import useTheme from "@/hooks/useTheme";
 
 const tabs = [
@@ -42,7 +43,7 @@ export default function Index() {
     <View style={{ flex: 1 }}>
       <Tabs
         data={tabs}
-        tabContainerStyle={{ flex: 1, displayVerticalBreakpointWidth: 480 }}
+        tabContainerStyle={{ flex: 1, displayVerticalBreakpointWidth: BREAKPOINT_MOBILE }}
         tabItemContainerStyle={{
           marginTop: 10,
           marginHorizontal: 20,
