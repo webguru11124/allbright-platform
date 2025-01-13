@@ -2,7 +2,7 @@ import React from "react";
 import { Animated, StyleSheet, View } from "react-native";
 
 import { AllBrightVector } from "@/components/Icons";
-import useTheme from "@/hooks/useTheme";
+import withTheme from "@/hocs/withTheme";
 
 export const defaultTexts = [
   "Our Mentorship programme allows you to select your own mentor from our pool of experts.",
@@ -13,7 +13,7 @@ export const defaultTexts = [
   "We now encourage you to join in with Question of the Week in our Conversation.",
 ];
 
-const MemberLoading = () => {
+const MemberLoading = ({ theme }: { theme: Theme }) => {
   const [currentIndex, setCurrentIndex] = React.useState(-1);
   const opacityAnim = React.useRef(new Animated.Value(0)).current;
 
@@ -53,8 +53,6 @@ const MemberLoading = () => {
     startAnimation();
   }, []);
 
-  const theme = useTheme();
-
   return (
     <View style={styles.page}>
       <AllBrightVector color={theme.colors.headerText} />
@@ -83,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MemberLoading;
+export default withTheme(MemberLoading);

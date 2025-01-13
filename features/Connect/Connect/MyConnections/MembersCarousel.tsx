@@ -5,8 +5,8 @@ import Collapse from "@/components/Collapse";
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import BusinessCard from "@/features/BusinessCard";
 import MemberListView from "@/features/Connect/components/MemberListView";
+import withTheme from "@/hocs/withTheme";
 import { BREAKPOINT_TABLET } from "@/hooks/useMediaQuery";
-import useTheme from "@/hooks/useTheme";
 import { UserModel } from "@/types/user";
 
 interface Props {
@@ -14,11 +14,10 @@ interface Props {
   title: string;
   onLoadMembers: () => void;
   isLastPage: boolean;
+  theme: Theme;
 }
 
-export default function MembersCarousel({ members, title, onLoadMembers, isLastPage }: Props) {
-  const theme = useTheme();
-
+function MembersCarousel({ members, title, onLoadMembers, isLastPage, theme }: Props) {
   const { maxWidth, currentWidth } = React.useContext<MediaQuery>(MediaQueryContext);
 
   const showCompactDisplay = React.useMemo(
@@ -51,3 +50,4 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
 });
+export default withTheme(MembersCarousel);

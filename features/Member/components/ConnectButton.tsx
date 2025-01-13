@@ -176,7 +176,7 @@ export default function ConnectButton(props: ConnectButtonProps) {
   return null;
 
   async function onConnect(e: GestureResponderEvent) {
-    e.stopPropagation();
+    e?.stopPropagation();
 
     setIsLoading(true);
 
@@ -188,21 +188,21 @@ export default function ConnectButton(props: ConnectButtonProps) {
   }
 
   async function onAccept(event: GestureResponderEvent) {
-    event.stopPropagation();
+    event?.stopPropagation();
     setIsLoading(true);
     await acceptConnection(connection?.id);
     setIsLoading(false);
   }
 
   async function onReject(event: GestureResponderEvent) {
-    event.stopPropagation();
+    event?.stopPropagation();
     setIsLoading(true);
     await rejectConnection(connection?.id);
     setIsLoading(false);
   }
 
   async function onRemoveRequest(event: GestureResponderEvent) {
-    event.stopPropagation();
+    event?.stopPropagation();
     setIsLoading(true);
     await rejectConnection(connection?.id);
     setIsLoading(false);
@@ -215,7 +215,7 @@ export default function ConnectButton(props: ConnectButtonProps) {
   }
 
   function goMessage(e: GestureResponderEvent) {
-    e.stopPropagation();
+    e?.stopPropagation();
 
     router.push(`/messages?id=${otherUserId}`);
   }

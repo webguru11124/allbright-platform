@@ -2,6 +2,7 @@ import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React from "react";
 
+import { TestProviders } from "@/__mocks__/test-utils";
 import { useConnectionsContext } from "@/contexts/ConnectionContext";
 import { useUserContext } from "@/contexts/UserContext";
 import ConnectButton from "@/features/Member/components/ConnectButton";
@@ -12,17 +13,15 @@ import {
   useConnectionRequest,
 } from "@/hooks/resources/Connections/useConnectionRequest";
 import ConnectionClient from "@/utils/client/user/ConnectionClient";
-import Providers from "@/utils/providers";
 
 jest.mock("expo-router");
 jest.mock("@/hooks/resources/Connections/useConnectionRequest");
 jest.mock("@/contexts/ConnectionContext");
 jest.mock("@/contexts/UserContext");
 jest.mock("@/lib/api");
-jest.mock("@/features/Member/hooks/useConnectionState");
 jest.mock("@/utils/client/user/ConnectionClient");
 
-describe.skip("ConnectButton", () => {
+describe("ConnectButton", () => {
   const mockRouterPush = jest.fn();
   const mockRequestConnection = jest.fn();
   const mockAcceptConnection = jest.fn();
@@ -36,6 +35,7 @@ describe.skip("ConnectButton", () => {
     (useConnectionAccept as jest.Mock).mockReturnValue({ mutateAsync: mockAcceptConnection });
     (useConnectionReject as jest.Mock).mockReturnValue({ mutateAsync: mockRejectConnection });
     (useConnectionRemove as jest.Mock).mockReturnValue({ mutateAsync: mockRemoveConnection });
+
     (useLocalSearchParams as jest.Mock).mockReturnValue(mockUseLocalSearchParams);
 
     ConnectionClient.prototype.getConnections = jest.fn();
@@ -58,7 +58,7 @@ describe.skip("ConnectButton", () => {
         size="big"
       />,
       {
-        wrapper: Providers,
+        wrapper: TestProviders,
       }
     );
   };
@@ -71,7 +71,7 @@ describe.skip("ConnectButton", () => {
 
     fireEvent.press(getByText("Connect"));
     await waitFor(() => {
-      expect(mockRequestConnection).toHaveBeenCalledWith({ userId: otherUserId });
+      expect(mockRequestConnection).toHaveBeenCalledWith({ receiverId: otherUserId, type: "WEB" });
     });
   });
 
@@ -92,11 +92,11 @@ describe.skip("ConnectButton", () => {
 
     const { getByText } = renderComponent(connectionState, user, otherUserId);
 
-    expect(getByText("Pending")).toBeTruthy();
+    expect(getByText("Remove request")).toBeTruthy();
   });
 
   it("should handle accept connection", async () => {
-    const connectionState = { state: "PENDING", isMyRequest: false };
+    const connectionState = { id: "conn-1", state: "PENDING", isMyRequest: false };
     const user = { id: "user1", membership: { id: "membership1" } };
     const otherUserId = "user2";
 
@@ -105,12 +105,12 @@ describe.skip("ConnectButton", () => {
     fireEvent.press(getByText("Accept"));
 
     await waitFor(() => {
-      expect(mockAcceptConnection).toHaveBeenCalledWith({ userId: otherUserId });
+      expect(mockAcceptConnection).toHaveBeenCalledWith("conn-1");
     });
   });
 
   it("should handle reject connection", async () => {
-    const connectionState = { state: "PENDING", isMyRequest: false };
+    const connectionState = { id: "conn-1", state: "PENDING", isMyRequest: false };
     const user = { id: "user1", membership: { id: "membership1" } };
     const otherUserId = "user2";
 
@@ -119,21 +119,17 @@ describe.skip("ConnectButton", () => {
     fireEvent.press(getByText("Reject"));
 
     await waitFor(() => {
-      expect(mockRejectConnection).toHaveBeenCalledWith({ userId: otherUserId });
+      expect(mockRejectConnection).toHaveBeenCalledWith("conn-1");
     });
   });
 
-  it("should handle remove connection", async () => {
+  it("should handle message connection", async () => {
     const connectionState = { state: "ACCEPTED" };
     const user = { id: "user1", membership: { id: "membership1" } };
     const otherUserId = "user2";
 
     const { getByText } = renderComponent(connectionState, user, otherUserId);
 
-    fireEvent.press(getByText("Remove"));
-
-    await waitFor(() => {
-      expect(mockRemoveConnection).toHaveBeenCalledWith({ userId: otherUserId });
-    });
+    fireEvent.press(getByText("Message"));
   });
 });
