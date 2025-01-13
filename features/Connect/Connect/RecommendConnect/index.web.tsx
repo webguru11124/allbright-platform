@@ -10,14 +10,12 @@ function RecommendConnect() {
   });
 
   return (
-    <View style={{ alignItems: "center" }}>
-      <MemberListView
-        items={items}
-        renderComponent={({ item }: { item: any }) => <BusinessCard member={item} />}
-        loadMore={showMore}
-        isLastPage={isLastPage}
-      />
-    </View>
+    <MemberListView
+      items={items}
+      renderComponent={({ item }: { item: any }) => <BusinessCard member={item} />}
+      loadMore={showMore}
+      isLastPage={isLastPage}
+    />
   );
 }
 
