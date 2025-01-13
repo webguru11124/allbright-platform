@@ -25,7 +25,7 @@ const MarketingAgreedCheckBox = ({ theme, onChangeText, error, value, testID }: 
           style={[
             styles.tickWrapper,
             {
-              backgroundColor: theme.colors.txt.light,
+              backgroundColor: theme.colors.inputs.background,
               borderColor: Boolean(error) ? "red" : "transparent",
               borderWidth: Boolean(error) ? 3 : 0,
             },
@@ -33,12 +33,12 @@ const MarketingAgreedCheckBox = ({ theme, onChangeText, error, value, testID }: 
           {value && (
             <MaterialIcons
               name={"check"}
-              size={24}
+              size={16}
               color={"black"}
             />
           )}
         </View>
-        <CS>
+        <CS style={{ color: theme.colors.txt.dark }}>
           I would like to receive relevant information, newsletters and opportunities updates from AllBright by email
         </CS>
       </TouchableOpacity>

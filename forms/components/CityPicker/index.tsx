@@ -114,7 +114,7 @@ const CityPicker = ({ theme, onChangeText, placeholder, onBlur, error, selectedC
         ]}
         disabled={isDisabled}
         onPress={() => setModalVisible(true)}>
-        <CM style={[{ color: isDisabled ? "#ddd" : theme.colors.text }]}>{displayValue || placeholder}</CM>
+        <CM style={[{ color: isDisabled ? "#ddd" : theme.colors.inputs.text }]}>{displayValue || placeholder}</CM>
         <MaterialIcons
           name={"arrow-drop-down"}
           size={24}

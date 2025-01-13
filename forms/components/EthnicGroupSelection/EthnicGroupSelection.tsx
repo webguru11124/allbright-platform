@@ -24,8 +24,8 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (props)
     <View
       style={[styles.container]}
       data-cy="ethnic-groups-container">
-      <H5>Please describe your race/ethnicity (check all that apply)</H5>
-      <CM>
+      <H5 style={{ color: props.theme.colors.txt.dark }}>Please describe your race/ethnicity (check all that apply)</H5>
+      <CM style={{ color: props.theme.colors.txt.dark }}>
         Inclusion is one of our priorities at AllBright and we are committed to creating an environment that is
         representative of all women.
         <Space height={10} />
@@ -45,7 +45,7 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (props)
                   style={[
                     styles.textInput,
                     {
-                      backgroundColor: props.theme.colors.txt.light,
+                      backgroundColor: props.theme.colors.inputs.background,
                       color: props.theme.colors.inputs.text,
                     },
                     checked && { backgroundColor: props.theme.colors.pill },
@@ -80,7 +80,7 @@ const EthnicGroupsSection: FunctionComponent<EthnicGroupsSectionProps> = (props)
                     {
                       borderBottomWidth: 1,
                       borderBottomColor: props.theme.colors.background,
-                      backgroundColor: props.theme.colors.txt.light,
+                      backgroundColor: props.theme.colors.inputs.background,
                     },
                     checked && { backgroundColor: props.theme.colors.pill },
                     disabled && {

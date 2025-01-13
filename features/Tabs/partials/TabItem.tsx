@@ -54,7 +54,7 @@ const TabItem = ({ tabItemStyle, tabItemTextStyle, name, onPress, active, theme 
             style={[
               styles.tabItemText,
               {
-                color: active ? theme.colors.text : theme.colors.inactive,
+                color: active ? theme.colors.txt.dark : theme.colors.inactive,
                 fontWeight: active ? 800 : 400,
               },
               tabItemTextStyle,
@@ -65,7 +65,7 @@ const TabItem = ({ tabItemStyle, tabItemTextStyle, name, onPress, active, theme 
             style={[
               {
                 height: 2,
-                backgroundColor: "black",
+                backgroundColor: theme.colors.txt.dark,
                 marginTop: 3,
                 width: widthAnim.interpolate({
                   inputRange: [0, 100],

@@ -63,7 +63,7 @@ export const PickerInput = withTheme(
     {
       const style = styles({
         backgroundColor: theme.colors.inputs.background,
-        color: theme.colors.text,
+        color: theme.colors.inputs.text,
       });
 
       return Boolean(input) === false || input === "undefined" ? (

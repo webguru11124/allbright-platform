@@ -34,7 +34,7 @@ const BusinessCardContainer: FunctionComponent<Props> = ({ member, theme, canVie
 
   const textColor = whiteTextColours.includes(stripTags(card.businessCardColour))
     ? theme.colors.background
-    : theme.colors.text;
+    : theme.colors.inputs.text;
 
   return (
     <BusinessCard

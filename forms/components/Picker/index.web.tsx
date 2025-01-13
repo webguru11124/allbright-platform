@@ -27,7 +27,7 @@ const Picker = ({ value, onValueChange, onBlur, items, error, placeholder, theme
           styles.main,
           {
             backgroundColor: theme.colors.inputs.background,
-            color: theme.colors.text,
+            color: theme.colors.inputs.text,
             borderColor: error ? "red" : "transparent",
             borderWidth: error ? 3 : 0,
           },

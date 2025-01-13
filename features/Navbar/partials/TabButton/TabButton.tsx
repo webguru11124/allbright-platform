@@ -1,6 +1,8 @@
 import { Href, Link } from "expo-router";
 import { Animated, Pressable, StyleSheet } from "react-native";
 
+import withTheme from "@/hocs/withTheme";
+
 export type Props = {
   isActive: boolean;
   widthAnim: Animated.Value;
@@ -8,9 +10,10 @@ export type Props = {
   onHoverIn: MyMouseEvent;
   onHoverOut: MyMouseEvent;
   children: React.ReactNode;
+  theme: Theme;
 };
 
-const TabButton = ({ isActive, widthAnim, href, onHoverIn, onHoverOut, children }: Props) => (
+const TabButton = ({ isActive, widthAnim, href, onHoverIn, onHoverOut, theme, children }: Props) => (
   <Pressable
     style={[styles.pressable]}
     onHoverIn={onHoverIn}
@@ -24,7 +27,7 @@ const TabButton = ({ isActive, widthAnim, href, onHoverIn, onHoverOut, children 
       style={[
         {
           height: 2,
-          backgroundColor: "black",
+          backgroundColor: theme.colors.txt.dark,
           marginTop: 3,
           width: isActive
             ? "100%"
@@ -51,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TabButton;
+export default withTheme(TabButton);

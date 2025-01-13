@@ -18,7 +18,13 @@ const Button = ({ disabled, theme, style, ...props }: Props) => {
       onPress={props.onPress}
       {...props}>
       {typeof props.children === "string" ? (
-        <CM style={{ color: theme.colors.txt.light, justifyContent: "center", alignItems: "center" }}>
+        <CM
+          style={{
+            color: theme.colors.button.primary,
+            justifyContent: "center",
+            alignItems: "center",
+            fontWeight: "700",
+          }}>
           {props.isLoading ? (
             <ActivityIndicator
               size={24}

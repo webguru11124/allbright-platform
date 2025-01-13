@@ -7,21 +7,35 @@ import { View } from "react-native";
 import { H4 } from "@/components/Typography";
 import { useUserContext } from "@/contexts/UserContext";
 import TabImage from "@/features/Navbar/partials/TabImage";
-import useTheme from "@/hooks/useTheme";
+import withTheme from "@/hocs/withTheme";
 
-export default function Layout() {
+type Props = {
+  theme: Theme;
+};
+
+function Layout({ theme }: Props) {
   const { user } = useUserContext();
-  const theme = useTheme();
   return (
     <>
       <Drawer
-        screenOptions={{ drawerHideStatusBarOnOpen: true, headerTintColor: theme.colors.primary }}
+        screenOptions={{
+          drawerHideStatusBarOnOpen: true,
+          headerTintColor: theme.colors.txt.secondary,
+          headerStyle: {
+            backgroundColor: theme.colors.baseColor,
+          },
+          drawerStyle: {
+            backgroundColor: theme.colors.background,
+          },
+        }}
         drawerContent={(props) => {
           return (
             <>
               <View
                 style={{
                   backgroundColor: theme.colors.background,
+                  borderBottomColor: theme.colors.txt.dark + "50",
+                  borderBottomWidth: 1,
                   flexDirection: "row",
                   justifyContent: "flex-start",
                   alignItems: "center",
@@ -32,7 +46,7 @@ export default function Layout() {
                   imageSrc={user?.imageSrc}
                   initials={(user?.firstName?.slice(0, 1) || "A") + (user?.lastName?.slice(0, 1) || "B")}
                 />
-                <H4 style={{ paddingLeft: 10 }}>{user?.name}</H4>
+                <H4 style={{ color: theme.colors.txt.dark, paddingLeft: 10 }}>{user?.name}</H4>
               </View>
               <DrawerContent {...props}></DrawerContent>
             </>
@@ -43,11 +57,14 @@ export default function Layout() {
           options={{
             drawerLabel: "Home",
             title: "Home",
+            drawerLabelStyle: {
+              color: theme.colors.txt.dark,
+            },
             drawerIcon: ({ focused, size }) => (
               <MaterialIcons
                 name="home"
                 size={size}
-                color={focused ? theme.colors.primary : theme.colors.inactive}
+                color={theme.colors.txt.dark}
               />
             ),
           }}
@@ -57,11 +74,14 @@ export default function Layout() {
           options={{
             drawerLabel: "Connect",
             title: "Connect",
+            drawerLabelStyle: {
+              color: theme.colors.txt.dark,
+            },
             drawerIcon: ({ focused, size }) => (
               <MaterialIcons
                 name="hub"
                 size={size}
-                color={focused ? theme.colors.primary : theme.colors.inactive}
+                color={theme.colors.txt.dark}
               />
             ),
           }}
@@ -71,11 +91,14 @@ export default function Layout() {
           options={{
             drawerLabel: "Learning",
             title: "Learning",
+            drawerLabelStyle: {
+              color: theme.colors.txt.dark,
+            },
             drawerIcon: ({ focused, size }) => (
               <MaterialIcons
                 name="school"
                 size={size}
-                color={focused ? theme.colors.primary : theme.colors.inactive}
+                color={theme.colors.txt.dark}
               />
             ),
           }}
@@ -85,11 +108,14 @@ export default function Layout() {
           options={{
             drawerLabel: "Events",
             title: "Events",
+            drawerLabelStyle: {
+              color: theme.colors.txt.dark,
+            },
             drawerIcon: ({ focused, size }) => (
               <MaterialIcons
                 name="event"
                 size={size}
-                color={focused ? theme.colors.primary : theme.colors.inactive}
+                color={theme.colors.txt.dark}
               />
             ),
           }}
@@ -99,11 +125,14 @@ export default function Layout() {
           options={{
             drawerLabel: "Groups",
             title: "Groups",
+            drawerLabelStyle: {
+              color: theme.colors.txt.dark,
+            },
             drawerIcon: ({ focused, size }) => (
               <MaterialIcons
                 name="people"
                 size={size}
-                color={focused ? theme.colors.primary : theme.colors.inactive}
+                color={theme.colors.txt.dark}
               />
             ),
           }}
@@ -113,11 +142,31 @@ export default function Layout() {
           options={{
             drawerLabel: "The AllBright Post",
             title: "The AllBright Post",
+            drawerLabelStyle: {
+              color: theme.colors.txt.dark,
+            },
             drawerIcon: ({ focused, size }) => (
               <MaterialIcons
                 name="article"
                 size={size}
-                color={focused ? theme.colors.primary : theme.colors.inactive}
+                color={theme.colors.txt.dark}
+              />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="settings"
+          options={{
+            drawerLabel: "Settings",
+            title: "Settings",
+            drawerLabelStyle: {
+              color: theme.colors.txt.dark,
+            },
+            drawerIcon: ({ focused, size }) => (
+              <MaterialIcons
+                name="settings"
+                size={size}
+                color={theme.colors.txt.dark}
               />
             ),
           }}
@@ -140,3 +189,5 @@ export default function Layout() {
     </>
   );
 }
+
+export default withTheme(Layout);

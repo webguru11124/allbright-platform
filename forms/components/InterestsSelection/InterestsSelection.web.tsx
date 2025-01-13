@@ -4,18 +4,20 @@ import { StyleSheet, View } from "react-native";
 import { CL } from "@/components/Typography";
 import FormFieldContainer from "@/forms/components/FormFieldContainer";
 import PillInput from "@/forms/components/PillInput";
+import withTheme from "@/hocs/withTheme";
 import { interests } from "@/utils/data/interests";
 
 interface InterestsSelectionProps {
   interestIsSelected: (interest: (typeof interests)[number]) => boolean;
   setInterestStateHandler: (interest: (typeof interests)[number]) => void;
+  theme: Theme;
   error?: string;
 }
 
-const InterestsSelection: FunctionComponent<InterestsSelectionProps> = ({ error, ...props }) => {
+const InterestsSelection: FunctionComponent<InterestsSelectionProps> = ({ error, theme, ...props }) => {
   return (
     <View style={[styles.main]}>
-      <CL>Interests* (at least 1)</CL>
+      <CL style={{ color: theme.colors.txt.dark }}>Interests* (at least 1)</CL>
 
       <FormFieldContainer error={error}>
         <View style={[styles.goalsContainer]}>
@@ -46,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default InterestsSelection;
+export default withTheme(InterestsSelection);

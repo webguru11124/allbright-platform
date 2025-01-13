@@ -26,7 +26,7 @@ const AgreeTermsCheckBox = ({ theme, onChangeText, error, value, testID }: Props
           style={[
             styles.tickWrapper,
             {
-              backgroundColor: theme.colors.txt.light,
+              backgroundColor: theme.colors.inputs.background,
               borderColor: Boolean(error) ? "red" : "transparent",
               borderWidth: Boolean(error) ? 3 : 0,
             },
@@ -34,16 +34,16 @@ const AgreeTermsCheckBox = ({ theme, onChangeText, error, value, testID }: Props
           {value && (
             <MaterialIcons
               name={"check"}
-              size={24}
+              size={16}
               color={"black"}
             />
           )}
         </View>
-        <CS>
+        <CS style={{ color: theme.colors.txt.dark }}>
           I agree to the AllBright{" "}
           <View>
             <Pressable onPress={() => Linking.openURL(Links.terms)}>
-              <CS style={styles.link}>Terms of Use</CS>
+              <CS style={[styles.link, { color: theme.colors.txt.dark }]}>Terms of Use</CS>
             </Pressable>
           </View>
         </CS>

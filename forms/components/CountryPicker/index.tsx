@@ -103,7 +103,7 @@ const CountryPicker = ({ theme, onChangeText, placeholder, onBlur, error, value 
           },
         ]}
         onPress={() => setModalVisible(true)}>
-        <CM style={[{ color: theme.colors.text }]}>{displayValue || placeholder}</CM>
+        <CM style={[{ color: theme.colors.inputs.text }]}>{displayValue || placeholder}</CM>
         <MaterialIcons
           name={"arrow-drop-down"}
           size={24}

@@ -39,7 +39,9 @@ const ProfileDesktop = ({ theme, user, formProps }: Props) => {
             <View style={styles.profileAppearanceContainer}>
               <Column style={{ width: "50%", alignItems: "flex-start" }}>
                 <Pressable onPress={() => setShowModal(true)}>
-                  <CS style={{ textDecorationLine: "underline" }}>View Profile Appearance</CS>
+                  <CS style={{ color: theme.colors.txt.secondary, textDecorationLine: "underline" }}>
+                    View Profile Appearance
+                  </CS>
                 </Pressable>
               </Column>
               <Column style={{ width: "50%", alignItems: "flex-end" }}>

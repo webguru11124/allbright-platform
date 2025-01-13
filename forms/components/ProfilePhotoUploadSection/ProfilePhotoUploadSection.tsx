@@ -26,8 +26,8 @@ const ProfilePhotoUploadSection = ({
   theme,
 }: ProfilePhotoUploadSectionProps) => {
   return (
-    <View>
-      <CM>Profile picture</CM>
+    <View style={[styles.main]}>
+      <CM style={{ color: theme.colors.txt.dark, fontWeight: "600" }}>Profile picture</CM>
 
       <View style={[styles.photoInformationSection]}>
         <Button
@@ -37,8 +37,10 @@ const ProfilePhotoUploadSection = ({
           <ArrowRight fill={theme.colors.lightBackground} />
         </Button>
         <View style={[styles.selectPhotoText]}>
-          <H4>'Select photo'</H4>
-          <CM style={[styles.cmMarginBottom]}>Please ensure it is of just yourself and no one else.</CM>
+          <H4 style={{ color: theme.colors.txt.dark }}>'Select photo'</H4>
+          <CM style={[styles.cmMarginBottom, { color: theme.colors.txt.dark }]}>
+            Please ensure it is of just yourself and no one else.
+          </CM>
         </View>
       </View>
       <View style={[styles.photoUploadPosition]}>
@@ -64,6 +66,9 @@ const ProfilePhotoUploadSection = ({
 };
 
 const styles = StyleSheet.create({
+  main: {
+    marginVertical: 20,
+  },
   arrowButton: {
     paddingHorizontal: 20,
   },
@@ -74,7 +79,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginBottom: 20,
     marginTop: 10,
-    alignItems: "center",
+    alignItems: "flex-start",
   },
   photoUploadPosition: {
     marginBottom: 20,
@@ -83,7 +88,7 @@ const styles = StyleSheet.create({
     width: 0,
     flex: 1,
     flexGrow: 1,
-    marginLeft: 8,
+    marginLeft: 16,
   },
 });
 

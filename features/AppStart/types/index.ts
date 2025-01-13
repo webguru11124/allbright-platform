@@ -22,6 +22,7 @@ export type AppStartProps = Omit<EntryButtonsProps, "theme"> &
     animY: Animated.AnimatedInterpolation<string | number>;
     NOTCH: boolean;
     minWidth: (val: number) => boolean;
+    theme: Theme;
   };
 
 export type AppStartImgProps = {

@@ -45,7 +45,9 @@ const ProfileMobile = ({ theme, user, formProps }: Props) => {
             <Pressable
               style={[styles.viewProfileContainer]}
               onPress={() => setShowModal(true)}>
-              <CS style={{ textDecorationLine: "underline" }}>View Profile Appearance</CS>
+              <CS style={{ color: theme.colors.txt.secondary, textDecorationLine: "underline" }}>
+                View Profile Appearance
+              </CS>
             </Pressable>
           </View>
           <View style={styles.inputsContainer}>
