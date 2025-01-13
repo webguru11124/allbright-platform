@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   container: {
     marginBottom: 30,
     borderBottomWidth: 1,
+    alignItems: "center",
   },
 });
 export default withTheme(MembersCarousel);

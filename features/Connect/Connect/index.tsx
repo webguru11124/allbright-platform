@@ -41,7 +41,9 @@ export default function Connect() {
               title="My connections"
               datacy="accepted-connections-members"
             />
+            <View style={styles.recommendContainer}>
             <RecommendConnect />
+            </View>
           </ConnecionsProvider>
         </>
       </AlgoliaSearch>
@@ -62,4 +64,7 @@ const styles = StyleSheet.create({
   searchboxContainer: {
     width: 300,
   },
+  recommendContainer: {
+    alignItems: "center",
+  }
 });
