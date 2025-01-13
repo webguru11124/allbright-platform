@@ -1,5 +1,5 @@
-import * as R from "ramda";
-import React, { useState } from "react";
+import _ from "lodash";
+import React from "react";
 
 import { useConnectionsContext } from "@/contexts/ConnectionContext";
 import { ConnectionField } from "@/features/Connect/Connect/type";
@@ -22,7 +22,7 @@ export default function MyConnections({ filterFunc, title, datacy }: Props) {
     () => u.filterToArray(connIds, (_, elm) => filterFunc(elm)),
     [connIds, filterFunc]
   );
-  const myConnectionIds = React.useMemo(() => R.pluck("key", myConnections), [myConnections]);
+  const myConnectionIds = React.useMemo(() => _.map(myConnections, "key"), [myConnections]);
 
   const {
     data: users,
