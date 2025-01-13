@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#F5F5F5",
     padding: 20,
+    minHeight: 300,
   },
   loadingText: {
     textAlign: "center",
