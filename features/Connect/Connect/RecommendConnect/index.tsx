@@ -3,7 +3,11 @@ import { useInfiniteHits } from "react-instantsearch-core";
 import BusinessCard from "@/features/BusinessCard";
 import MemberListView from "@/features/Connect/components/MemberListView";
 
-function RecommendConnect() {
+type Props = {
+  showCompact: boolean;
+};
+
+function RecommendConnect({ showCompact }: Props) {
   const { items, isLastPage, showMore } = useInfiniteHits({
     escapeHTML: false,
   });
@@ -14,6 +18,7 @@ function RecommendConnect() {
       renderComponent={({ item }: { item: any }) => <BusinessCard member={item} />}
       loadMore={showMore}
       isLastPage={isLastPage}
+      showCompact={showCompact}
     />
   );
 }

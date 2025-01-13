@@ -14,10 +14,11 @@ interface Props {
   title: string;
   onLoadMembers: () => void;
   isLastPage: boolean;
+  showCompact: boolean;
   theme: Theme;
 }
 
-function MembersCarousel({ members, title, onLoadMembers, isLastPage, theme }: Props) {
+function MembersCarousel({ members, title, onLoadMembers, isLastPage, showCompact, theme }: Props) {
   const { maxWidth, currentWidth } = React.useContext<MediaQuery>(MediaQueryContext);
 
   const showCompactDisplay = React.useMemo(
@@ -37,10 +38,11 @@ function MembersCarousel({ members, title, onLoadMembers, isLastPage, theme }: P
       <Collapse title={title}>
         <MemberListView
           items={members}
-          renderComponent={({ item }) => <BusinessCard member={item} />}
+          renderComponent={({ item }: { item: any }) => <BusinessCard member={item} />}
           loadMore={onLoadMembers}
           isHorizontal
           isLastPage={isLastPage}
+          showCompact={showCompact}
         />
       </Collapse>
     </View>

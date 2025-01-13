@@ -2,20 +2,20 @@ import _ from "lodash";
 import React from "react";
 
 import { useConnectionsContext } from "@/contexts/ConnectionContext";
+import MembersCarousel from "@/features/Connect/components/MembersCarousel";
 import { ConnectionField } from "@/features/Connect/Connect/type";
 import { useUserIds } from "@/hooks/resources/Users/useUserIds";
 import { UserModel } from "@/types/user";
 import * as u from "@/utils";
 
-import MembersCarousel from "./MembersCarousel";
-
 interface Props {
   filterFunc: (conn: ConnectionField) => boolean;
-  title?: string;
   datacy: string;
+  showCompact: boolean;
+  title?: string;
 }
 
-export default function MyConnections({ filterFunc, title, datacy }: Props) {
+export default function MyConnections({ showCompact, filterFunc, title, datacy }: Props) {
   const { connIds } = useConnectionsContext();
 
   const myConnections = React.useMemo(
@@ -38,6 +38,7 @@ export default function MyConnections({ filterFunc, title, datacy }: Props) {
 
   return (
     <MembersCarousel
+      showCompact={showCompact}
       isLastPage={!hasNextPage}
       members={members ?? []}
       title={`${title} (${myConnections.length})`}

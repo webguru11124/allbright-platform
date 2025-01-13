@@ -4,6 +4,7 @@ import Connect from "@/features/Connect/Connect";
 import FindMentor from "@/features/Connect/FindMentor";
 import YourMentorship from "@/features/Connect/Mentorship";
 import Tabs from "@/features/Tabs/index.web";
+import { BREAKPOINT_MOBILE } from "@/hooks/useMediaQuery";
 import useTheme from "@/hooks/useTheme";
 import { recommendationColor } from "@/theme";
 
@@ -31,7 +32,7 @@ export default function Index() {
     <View style={{ flex: 1 }}>
       <Tabs
         data={tabs}
-        tabContainerStyle={{ flex: 1, displayVerticalBreakpointWidth: 480 }}
+        tabContainerStyle={{ flex: 1, displayVerticalBreakpointWidth: BREAKPOINT_MOBILE }}
         tabItemContainerStyle={{
           marginTop: 20,
           marginHorizontal: 20,
