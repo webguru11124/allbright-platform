@@ -55,7 +55,7 @@ const MemberLoading = ({ theme }: { theme: Theme }) => {
 
   return (
     <View style={styles.page}>
-      <AllBrightVector color={theme.colors.headerText} />
+      <AllBrightVector color={theme.colors.baseColor} />
       {currentIndex >= 0 && (
         <Animated.Text style={[styles.loadingText, { opacity: opacityAnim }]}>
           {defaultTexts[currentIndex]}

@@ -4,7 +4,7 @@ import { IconButtonProps } from "react-native-paper";
 import IconButton from "@/components/IconButton";
 import withTheme from "@/hocs/withTheme";
 
-interface Props extends Omit<IconButtonProps, "icon"> {
+interface Props extends Omit<IconButtonProps, "icon" | "theme"> {
   onBackPress?: () => void;
   theme: Theme;
 }

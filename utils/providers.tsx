@@ -28,13 +28,16 @@ export const AppProviders = ({ children }: Props) => {
 export const AuthenticatedProviders = ({ children }: Props) => (
   <GestureHandlerRootView style={{ flex: 1 }}>
     <UserProvider>
-      <PaperProvider
-        theme={PaperDarkTheme}
-        settings={{
-          rippleEffectEnabled: false,
-        }}>
-        <RootSiblingParent>{children}</RootSiblingParent>
-      </PaperProvider>
+      <ConnecionsProvider>
+        <PaperProvider
+          theme={PaperDarkTheme}
+          settings={{
+            rippleEffectEnabled: false,
+          }}>
+          <RootSiblingParent>{children}</RootSiblingParent>
+
+        </PaperProvider>
+      </ConnecionsProvider>
     </UserProvider>
   </GestureHandlerRootView>
 );
