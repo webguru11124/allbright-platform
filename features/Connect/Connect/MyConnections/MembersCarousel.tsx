@@ -29,7 +29,10 @@ function MembersCarousel({ members, title, onLoadMembers, isLastPage, theme }: P
     <View
       style={[
         styles.container,
-        { borderBottomColor: theme.colors.overlay, marginHorizontal: showCompactDisplay ? 0 : 30 },
+        {
+          borderBottomColor: theme.colors.overlay,
+          marginHorizontal: showCompactDisplay ? 10 : 30,
+        },
       ]}>
       <Collapse title={title}>
         <MemberListView
@@ -48,7 +51,6 @@ const styles = StyleSheet.create({
   container: {
     marginBottom: 30,
     borderBottomWidth: 1,
-    alignItems: "center",
   },
 });
 export default withTheme(MembersCarousel);
