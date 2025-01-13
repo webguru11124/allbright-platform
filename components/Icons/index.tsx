@@ -196,14 +196,14 @@ export function Cross(props: Props) {
         height="1.96277"
         rx="0.981383"
         transform="matrix(0.707046 0.707168 -0.707046 0.707168 1.39062 0)"
-        fill={props.color || colors.charcoal}
+        fill={props.color}
       />
       <Rect
         width="16.4204"
         height="1.96277"
         rx="0.981383"
         transform="matrix(-0.707046 0.707168 0.707046 0.707168 11.6094 0)"
-        fill={props.color || colors.charcoal}
+        fill={props.color}
       />
     </Svg>
   );

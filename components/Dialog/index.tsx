@@ -5,7 +5,6 @@ import { Modal, Pressable, StyleSheet, View } from "react-native";
 import { CXL, H3 } from "@/components/Typography";
 import Button from "@/forms/components/Button";
 import withTheme from "@/hocs/withTheme";
-import colors from "@/theme";
 
 type Props = {
   title: string;
@@ -16,10 +15,17 @@ type Props = {
   children: React.ReactNode;
   visible?: boolean;
   theme: Theme;
+  disableBackdropClick?: boolean; // New prop
 };
 
 function Dialog(props: Props) {
   const [loading, setLoading] = React.useState(false);
+
+  const handleBackdropClick = () => {
+    if (!props.disableBackdropClick && props.onCancelClick) {
+      props.onCancelClick();
+    }
+  };
 
   const handleConfirmClick = async () => {
     setLoading(true);
@@ -32,9 +38,12 @@ function Dialog(props: Props) {
       visible={props.visible}
       transparent={true}
       animationType="fade">
-      <View style={[styles.root]}>
+      <Pressable
+        style={[styles.root]}
+        testID="backdrop"
+        onPress={handleBackdropClick}>
         <View style={[styles.main]}>
-          <View style={styles.dialog}>
+          <View style={[styles.dialog]}>
             <Pressable
               onPress={props.onCancelClick}
               style={[styles.iconContainer]}>
@@ -73,7 +82,7 @@ function Dialog(props: Props) {
             </View>
           </View>
         </View>
-      </View>
+      </Pressable>
     </Modal>
   );
 }
@@ -93,7 +102,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   dialog: {
-    backgroundColor: colors.shell,
     margin: 20,
     padding: 30,
     width: "90%",

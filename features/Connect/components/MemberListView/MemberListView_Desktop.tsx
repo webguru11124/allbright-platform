@@ -36,7 +36,8 @@ function MemberListViewDesktop<T>({
           loadMore();
         }
       }}
-      scrollEventThrottle={400}>
+      scrollEventThrottle={400}
+      testID="member-list">
       <View style={[styles.container, isHorizontal && styles.horizontalContainer]}>
         {items.map((item: any) => (
           <View

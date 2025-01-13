@@ -38,9 +38,12 @@ export default function Collapse({ title, children }: Props) {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.header}
-        onPress={toggleVisibility}>
+        onPress={toggleVisibility}
+        testID="collapse-header">
         <CM>{title}</CM>
-        <Animated.View style={{ transform: [{ rotate }] }}>
+        <Animated.View
+          style={{ transform: [{ rotate }] }}
+          testID={"arrow-icon"}>
           <ArrowDown color="black" />
         </Animated.View>
       </TouchableOpacity>

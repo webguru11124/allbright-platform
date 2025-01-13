@@ -43,6 +43,7 @@ function MemberListViewMobile<T>({
           </View>
         ) : null
       }
+      testID="member-list"
     />
   );
 }
