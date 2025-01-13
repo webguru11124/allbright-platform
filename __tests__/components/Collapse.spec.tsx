@@ -1,14 +1,17 @@
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
 
+import { TestProviders } from "@/__mocks__/test-utils";
 import Collapse from "@/components/Collapse";
 import { CM } from "@/components/Typography";
 
 describe("Collapse Component", () => {
   it("renders correctly with title and children", () => {
     const { getByText } = render(
-      <Collapse title="Test Title">
-        <CM>Test Children</CM>
-      </Collapse>
+      <TestProviders>
+        <Collapse title="Test Title">
+          <CM>Test Children</CM>
+        </Collapse>
+      </TestProviders>
     );
 
     expect(getByText("Test Title")).toBeTruthy();
@@ -17,9 +20,11 @@ describe("Collapse Component", () => {
 
   it("toggles visibility when header is pressed", async () => {
     const { getByText } = render(
-      <Collapse title="Test Title">
-        <CM>Test Children</CM>
-      </Collapse>
+      <TestProviders>
+        <Collapse title="Test Title">
+          <CM>Test Children</CM>
+        </Collapse>
+      </TestProviders>
     );
 
     const header = getByText("Test Title");

@@ -35,7 +35,6 @@ export const AuthenticatedProviders = ({ children }: Props) => (
             rippleEffectEnabled: false,
           }}>
           <RootSiblingParent>{children}</RootSiblingParent>
-
         </PaperProvider>
       </ConnecionsProvider>
     </UserProvider>

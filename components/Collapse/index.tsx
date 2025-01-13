@@ -3,14 +3,16 @@ import { Animated, StyleSheet, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 import { ArrowDown } from "@/components/Icons"; // Import ArrowDown icon
-import { CL, CM } from "@/components/Typography";
+import { CM } from "@/components/Typography";
+import withTheme from "@/hocs/withTheme";
 
 interface Props {
   title: string;
   children: React.ReactNode;
+  theme: Theme;
 }
 
-export default function Collapse({ title, children }: Props) {
+function Collapse({ title, children, theme }: Props) {
   const [isVisible, setIsVisible] = React.useState(true);
   const animatedHeight = React.useRef(new Animated.Value(1)).current;
   const rotateAnim = React.useRef(new Animated.Value(0)).current; // Animation value for rotation
@@ -40,11 +42,11 @@ export default function Collapse({ title, children }: Props) {
         style={styles.header}
         onPress={toggleVisibility}
         testID="collapse-header">
-        <CM>{title}</CM>
+        <CM style={{ color: theme.colors.txt.dark }}>{title}</CM>
         <Animated.View
           style={{ transform: [{ rotate }] }}
           testID={"arrow-icon"}>
-          <ArrowDown color="black" />
+          <ArrowDown color={theme.colors.txt.dark} />
         </Animated.View>
       </TouchableOpacity>
       <Animated.View
@@ -71,3 +73,5 @@ const styles = StyleSheet.create({
     gap: 10,
   },
 });
+
+export default withTheme(Collapse);
