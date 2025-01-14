@@ -24,6 +24,7 @@ export type MemberCardProps = {
   location: string;
   bioFields: BioField[];
   isMentor?: boolean;
+  showCompactDisplay?: boolean;
 };
 
 export enum ConnectionType {

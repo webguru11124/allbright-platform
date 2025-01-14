@@ -22,6 +22,7 @@ const MemberCardDesktop = ({
   location,
   bioFields,
   isMentor,
+  showCompactDisplay,
 }: MemberCardProps) => {
   return (
     <View style={[styles.card, { backgroundColor: lightBackground }]}>
@@ -58,6 +59,7 @@ const MemberCardDesktop = ({
             id={id}
             name={name}
             canRemoveConnection
+            showCompactDisplay={showCompactDisplay}
           />
         )}
       </Column>
@@ -120,7 +122,6 @@ function BioRow({ index, info, evenRowColour, oddRowColour, title, isLink }: Bio
 const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
-    marginTop: 40,
     padding: 40,
     borderRadius: 5,
     shadowColor: "#ddd",

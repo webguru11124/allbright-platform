@@ -22,6 +22,7 @@ interface ConnectButtonProps {
   canRemoveConnection?: boolean;
   size?: "big" | "small";
   isShort?: boolean;
+  showCompactDisplay?: boolean;
 }
 
 export default function ConnectButton(props: ConnectButtonProps) {
@@ -99,7 +100,14 @@ export default function ConnectButton(props: ConnectButtonProps) {
 
   if (isAcceptedConnection) {
     return props.canRemoveConnection ? (
-      <View style={styles.connectButtonContainer}>
+      <View
+        style={[
+          styles.connectButtonContainer,
+          {
+            width: props.showCompactDisplay ? "100%" : "auto",
+            flexDirection: props.showCompactDisplay ? "column" : "row",
+          },
+        ]}>
         <Button
           onPress={goMessage}
           size={props.size}
@@ -152,7 +160,14 @@ export default function ConnectButton(props: ConnectButtonProps) {
 
   if (isTheirRequest) {
     return (
-      <View style={styles.connectButtonContainer}>
+      <View
+        style={[
+          styles.connectButtonContainer,
+          {
+            width: props.showCompactDisplay ? "100%" : "auto",
+            flexDirection: props.showCompactDisplay ? "column" : "row",
+          },
+        ]}>
         <Button
           isCircle={props.isShort}
           isSecondary
