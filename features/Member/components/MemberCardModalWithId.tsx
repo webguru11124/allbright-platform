@@ -1,6 +1,6 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { useContext } from "react";
-import { Modal, Pressable, StyleSheet, View } from "react-native";
+import { Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
 
 import { MediaQueryContext } from "@/contexts/MediaQueryContext";
 import MemberCardDesktop from "@/features/Member/components/MemberCard_Desktop";
@@ -46,7 +46,7 @@ const Member = ({ userId, showModal, setShowModal, theme }: Props) => {
       transparent={true}
       visible={showModal}>
       <View style={[styles.root]}>
-        <View style={[styles.main]}>
+        <ScrollView style={[styles.main]}>
           <Pressable
             onPress={() => setShowModal(false)}
             style={[styles.iconContainer]}>
@@ -72,7 +72,7 @@ const Member = ({ userId, showModal, setShowModal, theme }: Props) => {
               theme={theme}
             />
           )}
-        </View>
+        </ScrollView>
       </View>
     </Modal>
   );
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     maxWidth: 960,
     width: "100%",
+    maxHeight: 500,
   },
   iconContainer: {
     justifyContent: "center",

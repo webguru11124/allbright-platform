@@ -122,7 +122,6 @@ function BioRow({ index, info, evenRowColour, oddRowColour, title, isLink }: Bio
 const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
-    marginTop: 40,
     padding: 40,
     borderRadius: 5,
     shadowColor: "#ddd",

@@ -21,7 +21,6 @@ const MemberCardMobile = ({
   location,
   bioFields,
   isMentor,
-  showCompactDisplay,
 }: MemberCardProps) => {
   return (
     <View style={[styles.card, { backgroundColor: lightBackground }]}>
@@ -117,7 +116,6 @@ const styles = StyleSheet.create({
     minWidth: 380,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 40,
     paddingVertical: 20,
     paddingHorizontal: 10,
     borderRadius: 5,
