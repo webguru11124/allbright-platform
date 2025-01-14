@@ -61,6 +61,7 @@ const Member = ({ user, showModal, setShowModal, theme }: Props) => {
             location={location}
             bioFields={bioFields}
             theme={theme}
+            showCompactDisplay={showCompactDisplay}
           />
         </View>
       </View>

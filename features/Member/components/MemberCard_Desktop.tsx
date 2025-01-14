@@ -22,6 +22,7 @@ const MemberCardDesktop = ({
   location,
   bioFields,
   isMentor,
+  showCompactDisplay,
 }: MemberCardProps) => {
   return (
     <View style={[styles.card, { backgroundColor: lightBackground }]}>
@@ -58,6 +59,7 @@ const MemberCardDesktop = ({
             id={id}
             name={name}
             canRemoveConnection
+            showCompactDisplay={showCompactDisplay}
           />
         )}
       </Column>

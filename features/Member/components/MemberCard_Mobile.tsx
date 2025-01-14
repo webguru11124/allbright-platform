@@ -21,6 +21,7 @@ const MemberCardMobile = ({
   location,
   bioFields,
   isMentor,
+  showCompactDisplay,
 }: MemberCardProps) => {
   return (
     <View style={[styles.card, { backgroundColor: lightBackground }]}>
@@ -56,6 +57,7 @@ const MemberCardMobile = ({
           id={id}
           name={name}
           canRemoveConnection
+          showCompactDisplay
         />
       )}
       {
