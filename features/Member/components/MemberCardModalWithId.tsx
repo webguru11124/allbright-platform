@@ -87,8 +87,8 @@ const styles = StyleSheet.create({
   },
   main: {
     backgroundColor: "transparent",
-    width: "80%",
     maxWidth: 960,
+    width: "100%",
   },
   iconContainer: {
     justifyContent: "center",
