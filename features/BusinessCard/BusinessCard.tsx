@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import React, { FunctionComponent } from "react";
+import { StyleSheet, View } from "react-native";
 
 import FlipCard from "@/components/FlipCard";
 import { AllBrightVector, Location } from "@/components/Icons/index";
@@ -20,6 +21,7 @@ type Props = {
   userInterests: any;
   goals: string;
   canViewQrCode: boolean;
+  qrColor?: string;
 };
 
 const BusinessCard: FunctionComponent<Props> = ({
@@ -30,10 +32,12 @@ const BusinessCard: FunctionComponent<Props> = ({
   role,
   userInterests,
   goals,
+  qrColor,
   canViewQrCode,
 }) => {
   const Front = () => (
     <Main style={{ backgroundColor: card?.businessCardColour }}>
+      <View style={[styles.backgroundOverlay, { backgroundColor: card.businessCardColour }]} />
       <Header>
         <Row>
           <AllBrightVector
@@ -98,6 +102,7 @@ const BusinessCard: FunctionComponent<Props> = ({
   const Back = () => (
     <QRCodeGenerator
       width={WIDTH}
+      bgColor={qrColor}
       height={HEIGHT}
       value={`${config.API_URL}/member/${card.id}?qrcode=true`}
     />
@@ -114,5 +119,19 @@ const BusinessCard: FunctionComponent<Props> = ({
     <Front />
   );
 };
+
+const styles = StyleSheet.create({
+  backgroundOverlay: {
+    left: 0,
+    bottom: 0,
+    height: 60,
+    width: "100%",
+    position: "absolute",
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+    // TODO: need to change filter to react native style
+    // filter: "brightness(0.95)",
+  },
+});
 
 export default BusinessCard;

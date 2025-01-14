@@ -6,17 +6,23 @@ import withTheme from "@/hocs/withTheme";
 import { useUserFetch } from "@/hooks/resources/useUserFetch";
 import { UserModel } from "@/types/user";
 
+import MemberLoading from "./components/MemberLoading";
+
 type Props = {
   userId: string;
   theme: Theme;
 };
 
 function MemberContainer({ userId, theme }: Props) {
-  const { data } = useUserFetch({ id: userId });
-  const { id, name, initials, imageSrc, occupation, location, bioFields, lightBackground } = useMemberCard({
+  const { data, isLoading } = useUserFetch({ id: userId });
+  const { id, name, initials, imageSrc, occupation, location, bioFields, lightBackground, isMentor } = useMemberCard({
     theme: theme,
     user: data as UserModel,
   });
+
+  if (isLoading) {
+    return <MemberLoading />;
+  }
 
   return (
     <Member
@@ -29,6 +35,7 @@ function MemberContainer({ userId, theme }: Props) {
       location={location}
       bioFields={bioFields}
       theme={theme}
+      isMentor={isMentor}
     />
   );
 }

@@ -8,12 +8,22 @@ type Props = Omit<ButtonProps, "title"> & {
   theme: Theme;
   children: React.ReactNode;
   style?: StyleProp<LayoutProps>;
+  isWide?: boolean;
+  isSecondary?: boolean;
+  label?: string;
+  size?: "xsml" | "sml" | "big" | "mid" | "small";
+  isCircle?: boolean;
 };
 
-const Button = ({ disabled, theme, style, ...props }: Props) => {
+const Button = ({ disabled, theme, style, size, label, isWide, isSecondary, isCircle, ...props }: Props) => {
   return (
     <Pressable
-      style={[styles.main, { backgroundColor: theme.colors.button.background, opacity: disabled ? 0.6 : 1 }, style]}
+      style={[
+        styles.main,
+        { backgroundColor: theme.colors.button.background, opacity: disabled ? 0.6 : 1 },
+        { width: isWide ? "100%" : "auto" },
+        style,
+      ]}
       disabled={disabled || props.isLoading}
       onPress={props.onPress}
       {...props}>

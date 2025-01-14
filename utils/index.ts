@@ -1,27 +1,5 @@
 "use strict";
 
-export const localStorage = (() => {
-  if (typeof window !== "undefined") return window.localStorage;
-
-  return {
-    getItem: (_key: string): string | null => null,
-    setItem: (_key: string, _value: string): void => {},
-    removeItem: (_key: string): void => {},
-    clear: (): void => {},
-  };
-})();
-
-export const sessionStorage = (() => {
-  if (typeof window !== "undefined") return window.sessionStorage;
-
-  return {
-    getItem: (_key: string): string | null => null,
-    setItem: (_key: string, _value: string): void => {},
-    removeItem: (_key: string): void => {},
-    clear: (): void => {},
-  };
-})();
-
 export const pause = (time: number, message?: string): Promise<void> => {
   return new Promise((resolve) => {
     if (message) console.log(message);
@@ -95,3 +73,11 @@ export function base64ToFile(base64Data: string, fileName: string): File {
   const blob = new Blob([byteArray], { type: mimeType });
   return new File([blob], fileName, { type: mimeType });
 }
+
+export const filterToArray = (obj: any, callback: (key: string, value: any, index: number) => boolean) => {
+  return Object.keys(obj)
+    .filter((key, idx) => {
+      return callback(key, obj[key], idx);
+    })
+    .map((key) => ({ key, ...obj[key] }));
+};

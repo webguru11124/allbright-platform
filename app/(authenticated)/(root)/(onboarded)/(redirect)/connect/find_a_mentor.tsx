@@ -1,5 +1,5 @@
-import Placeholder from "@/components/Placeholder";
+import FindMentor from "@/features/Connect/FindMentor";
 
 export default function Index() {
-  return <Placeholder placeholderText="Find a mentor" />;
+  return <FindMentor />;
 }

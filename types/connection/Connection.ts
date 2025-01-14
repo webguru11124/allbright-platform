@@ -1,3 +1,5 @@
+import { ConnectionState } from "@/features/Member/types";
+
 export type Connection = {
   id: string;
   firstName: string;
@@ -10,4 +12,7 @@ export type Connection = {
   displayPhoto: string;
   isMentee: boolean;
   isMentor: boolean;
+  state: ConnectionState;
+  substate: string;
+  isMyRequest: boolean;
 };

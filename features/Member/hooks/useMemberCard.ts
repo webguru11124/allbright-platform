@@ -47,8 +47,9 @@ const useMemberCard = ({ user, theme }: Props) => {
     },
   ];
   const lightBackground = theme.colors.lightBackground;
+  const isMentor = user?.isMentor;
 
-  return { id, name, initials, imageSrc, occupation, location, bioFields, lightBackground };
+  return { id, name, initials, imageSrc, occupation, location, bioFields, lightBackground, isMentor };
 };
 
 export default useMemberCard;

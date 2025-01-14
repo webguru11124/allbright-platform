@@ -22,6 +22,7 @@ export const CXL = (p: Props) => <Text style={[styles(p).cxl, p.style]}>{p.child
 export const CL = (p: Props) => <Text style={[styles(p).cl, p.style]}>{p.children}</Text>;
 export const CM = (p: Props) => <Text style={[styles(p).cm, p.style]}>{p.children}</Text>;
 export const CS = (p: Props) => <Text style={[styles(p).cs, p.style]}>{p.children}</Text>;
+export const A = (p: Props) => <Text style={[styles(p).a, p.style]}>{p.children}</Text>;
 
 const styles = (p: TextStyle) =>
   StyleSheet.create({
@@ -87,5 +88,11 @@ const styles = (p: TextStyle) =>
       fontFamily: "HK Grotesk, Sans-Serif",
       fontSize: 12,
       flexShrink: 1,
+    },
+    a: {
+      fontFamily: "HK Grotesk, Sans-Serif",
+      fontSize: 12,
+      color: "#007AFF",
+      textDecorationLine: "underline",
     },
   });

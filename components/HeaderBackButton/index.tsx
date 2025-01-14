@@ -2,15 +2,14 @@ import { router } from "expo-router";
 import { IconButtonProps } from "react-native-paper";
 
 import IconButton from "@/components/IconButton";
-import useTheme from "@/hooks/useTheme";
+import withTheme from "@/hocs/withTheme";
 
-interface Props extends Omit<IconButtonProps, "icon"> {
+interface Props extends Omit<IconButtonProps, "icon" | "theme"> {
   onBackPress?: () => void;
+  theme: Theme;
 }
 
-const HeaderBackButton = ({ onBackPress, ...props }: Props) => {
-  const theme = useTheme();
-
+const HeaderBackButton = ({ onBackPress, theme, ...props }: Props) => {
   return (
     <IconButton
       color={theme.colors.primary}
@@ -29,4 +28,4 @@ const HeaderBackButton = ({ onBackPress, ...props }: Props) => {
   );
 };
 
-export default HeaderBackButton;
+export default withTheme(HeaderBackButton);

@@ -1,11 +1,14 @@
 import MaterialIcons from "@expo/vector-icons/build/MaterialIcons";
 import { Link } from "expo-router";
+import * as React from "react";
 import { StyleSheet, View } from "react-native";
 
 import ImageOrInitials from "@/components/ImageOrInitials";
 import Row from "@/components/Row";
-import { CL, CS, H4, H6 } from "@/components/Typography";
+import { A, CL, CS, H4, H6 } from "@/components/Typography";
 import { BioRowProps, MemberCardProps } from "@/features/Member/types";
+
+import ConnectButton from "./ConnectButton";
 
 const MemberCardMobile = ({
   lightBackground,
@@ -17,6 +20,7 @@ const MemberCardMobile = ({
   occupation,
   location,
   bioFields,
+  isMentor,
 }: MemberCardProps) => {
   return (
     <View style={[styles.card, { backgroundColor: lightBackground }]}>
@@ -41,6 +45,19 @@ const MemberCardMobile = ({
         />
         <CL style={{ fontWeight: 500 }}>{location}</CL>
       </Row>
+      {isMentor && (
+        <Link href={`/mentor/${id}`}>
+          <A>View mentor profile</A>
+        </Link>
+      )}
+
+      {id && name && (
+        <ConnectButton
+          id={id}
+          name={name}
+          canRemoveConnection
+        />
+      )}
       {
         <Row>
           <View style={[styles.bio]}>

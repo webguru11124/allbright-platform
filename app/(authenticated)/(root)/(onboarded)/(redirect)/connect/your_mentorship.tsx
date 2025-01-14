@@ -1,5 +1,5 @@
-import Placeholder from "@/components/Placeholder";
+import YourMentorship from "@/features/Connect/Mentorship";
 
 export default function Index() {
-  return <Placeholder placeholderText="Your Mentorship" />;
+  return <YourMentorship />;
 }
